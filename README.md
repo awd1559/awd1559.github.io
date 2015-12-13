@@ -1,4 +1,6 @@
-#a simple single game by cocos2d-x
+#code snip & note 
+	awd1559.github.io
+	
 ****
 	create a cocostudio project
 	copy Classes & Resources in the project
