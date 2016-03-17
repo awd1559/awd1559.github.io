@@ -5,4 +5,4 @@
 	create a cocostudio project
 	copy Classes & Resources in the project
 
-![preview.gif](preview.gif)
+jekyll template from [huxpro](https://github.com/Huxpro/huxpro.github.io)
