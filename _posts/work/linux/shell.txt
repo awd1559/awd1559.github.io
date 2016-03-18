@@ -1,0 +1,92 @@
+---
+layout:     post
+title:      "shell"
+subtitle:   " \"shell脚本\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - linux shell 
+---
+shell 脚本
+------------------------------------------------------------------------
+按照如下顺序寻找该执行的命令
+1)别名
+2)关键字
+3)函数
+4)内置命令
+5)PATH中的可执行程序
+
+变量：局部变量和环境变量
+管道： who | wc #who命令输出传为wc的输入
+重定向: who > file #who命令的输出到file文件
+
+------------------------------------------------------------------------
+命令
+------------------------------------------------------------------------
+ps -- 当前运行进程
+pstree -- 进程树
+id  -- 当前用户
+env -- shell的环境变量
+set  -- 显示或设置shell的局部变量和环境变量
+
+------------------------------------------------------------------------
+bash sehll
+------------------------------------------------------------------------
+#!/bin/bash		#第一行
+* ? [ ]			#用于文件名通配符
+< > 2> >> |		#用于IO重定向和管道
+
+echo how are you \<?\>
+echo "how are you <?>"  #通配符必须用反斜杠或引号输出
+
+var=value		#不能有空格
+declare var=value;	#declare内置函数定义局部变量
+
+export VAR=value	#export内置函数定义全局变量
+			#全局变量当脚本执行结束，退出子进程，依然存在
+
+echo $var		#$提取变量
+
+read name1 name2	#读取用户输入
+
+#命令行参数
+$scriptname arg1 arg2 arg3 ...
+#脚本中
+echo $1 $2 $3...	#命令行参数
+echo $*			#所有参数
+echo $#			#参数的个数
+
+declare -a array_name=(word1 word2 word3...)		#定义数组
+declare -a fruit=(apples pears plums)
+echo ${fruit[0]}					#读取数组
+
+var=`cmd`		#使用命令输出
+var=$(cmd)		#
+echo "Today is `date`"	#
+echo "Today is $(date)"	#
+
+#if...else
+if command			#命令
+if [[expression]]		#表达式求真
+if ((numeric expression))	#算术式求真
+then
+	block of statements
+else
+	block of statements
+fi
+
+case $color in
+blue)
+	echo blue
+	;;
+green)
+	echo green
+	;;
+*)
+	echo donot know
+	;;
+esac
+
+
+$?		#最后一个命令的退出状态, 0为正常退出
