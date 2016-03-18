@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "shell"
-subtitle:   " \"shell脚本\""
+title:      "kernel asm script"
+subtitle:   " \"kernel asm script\""
 date:       2015-01-29 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"

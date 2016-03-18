@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "shell"
-subtitle:   " \"shell脚本\""
+title:      "binfmt"
+subtitle:   " \"bin format\""
 date:       2015-01-29 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
