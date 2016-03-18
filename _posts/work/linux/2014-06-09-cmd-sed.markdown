@@ -8,7 +8,6 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - linux
     - shell
-    - sed
 ---
 sed
 1)逐行处理文本

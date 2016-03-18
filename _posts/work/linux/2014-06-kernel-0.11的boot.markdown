@@ -1,0 +1,41 @@
+---
+layout:     post
+title:      "shell"
+subtitle:   " \"shell脚本\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - linux kernel
+---
+1、利用Int 13读磁盘Sector，加载Setup、加载System模块
+2、Setup
+	a、Bios中顿保存硬件信息，覆盖BootSector
+	b、将System模块移动到内存0处
+	c、加载临时idt、gdt
+	d、开A20，初始化 级联的8259芯片
+	e、进入保护模式，
+					mov ax， 0X0001
+					lmsw ax
+	f、跳到System的head中执行，jmp 0， 8
+3、head
+	a、重设idt，共256项
+	b、重设gdt
+	c、将main地址入栈
+	d、加载页目录到地址0处
+4、main
+
+
+
+--------------------
+Setup		0x9200	|
+--------------------
+BootSector  0x9000	|
+--------------------
+					|
+--------------------
+System		0x1000	|
+--------------------
+
+
+

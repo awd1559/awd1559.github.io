@@ -1,0 +1,24 @@
+---
+layout:     post
+title:      "shell"
+subtitle:   " \"shell脚本\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - linux kernel
+---
+Bios启动地址
+怎么引导
+权限切换，如何保护
+虚拟内存切换、分页机制
+进程切换
+中断的地址和权限
+内核态、用户态堆栈建立
+
+
+
+
+.S代码中的SYMBOL_NAME是什么意思
+
+EXPORT_PER_CPU_SYMBOL:为每个cpu设定一个变量吗

@@ -6,7 +6,8 @@ date:       2015-01-29 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - linux rpm
+    - linux
+    - shell
 ---
 
 finger @kernl.org			获得最新的代码列表
