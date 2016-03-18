@@ -6,7 +6,9 @@ date:       2015-01-29 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - linux shell sed
+    - linux
+    - shell
+    - sed
 ---
 sed
 1)逐行处理文本

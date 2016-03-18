@@ -6,7 +6,9 @@ date:       2015-01-29 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - linux shell kernel init
+    - linux
+    - kernel init
+    - script
 ---
 
 redhat启动脚本顺序
