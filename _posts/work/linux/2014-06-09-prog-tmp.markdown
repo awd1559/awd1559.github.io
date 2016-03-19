@@ -1,0 +1,31 @@
+---
+layout:     post
+title:      "linux program"
+subtitle:   " \"linux program tmp notes\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - linux prog
+---
+
+
+
+//错误处理
+===========================================================
+//<errno.h>中定义了变量errno
+
+#include <string.h>
+char* strerrno(int errno);		//指向消息字符串的指针
+
+#include <stdio.h>
+void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
+
+
+
+目录的读权限：对目录进行搜索的能力
+目录的写权限：在目录中创建和删除文件的能力
+目录的执行权限：打开或访问目录中包含的文件或子目录时搜索目录的能力
+
+粘着位sticky bit:t
+如果文件设置了粘着位，那么只有文件的数组或root才可以删除该文件

@@ -1,0 +1,156 @@
+---
+layout:     post
+title:      "Linux dir"
+subtitle:   " \"Linux dir\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - linux prog
+---
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int stat(const char* pathname, struct stat* buf);
+int fstat(int filedes, struct stat* buf);
+int lstat(const char* pathname, struct stat* buf);
+
+
+struct stat {
+	mode_t 	st_mode;	//file type & mode
+	ino_t	st_ino;		//inode number
+	dev_t	st_dev;		//device number
+	dev_t	st_rdev;	//device number for special files
+	nlink_t	st_nlink;	//number of links
+	uid_t	st_uid;		//user id for owner
+	gid_t	st_gid;		//group id for owner
+	off_t	st_size;	//size in bytes, for regular files
+	time_t	st_atimve;	//time of last access
+	time_t 	st_mtime;	//time of last modification
+	time_t	st_ctime;	//time of last file status change
+	long	st_blksize;	//best IO block size
+	long	st_blocks;	//number of 512-byte blocks allocated
+}
+
+------------------------
+文件类型				|
+------------------------|
+<sys/stat.h>			|
+------------------------|
+S_ISREG(st_mode)		|
+S_ISDIR(st_mode)		|
+S_ISCHR(st_mode)		|
+S_ISBLK(st_mode)		|
+S_ISFIFO(st_mode)		|
+S_ISLNK(st_mode)		|
+S_ISSOCK(st_mode)		|	
+------------------------
+
+--------------------------------	
+用户ID							|
+-------------------------------	|
+实际uid		实际上是谁			|
+实际gid							|
+-------------------------------	|
+有效uid		用于文件许可权检查	|
+有效gid							|
+添加gid							|
+-------------------------------	|
+保存设置uid	由exec函数保存		|
+保存设置gid						|
+--------------------------------
+
+
+
+
+======================================================================
+#include <unistd.h>
+int access(const char* pathname, int mode);	//成功返回0
+	mode
+	R_OK	//读许可权
+	W_OK	//写许可权
+	X_OK	//执行许可权
+	F_OK	//文件是否存在
+
+
+
+
+
+======================================================================
+#include <sys/types.h>
+#include <sys/stat.h>
+
+mode_t umask(mode_t cmask);	//返回旧屏蔽字，将cmask中指定的权限从后续的文件操作中去掉
+	cmask
+	S_IRUSR		//用户-读
+	S_IWUSR		//用户-写
+	S_IXUSR		//用户-执行
+	S_IRGRP		//组-读
+	S_IWGRP		//组-写
+	S_IXGRP		//组-执行
+	S_IROTH		//其他-读
+	S_IWOTH		//其他-写
+	S_IXOTH		//其他-执行
+
+
+======================================================================
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int chmode(const char* pathname, mode_t mode);
+int fchmod(int filedes, mode_t mode);
+	mode
+	S_ISUID
+	S_ISGID
+	S_ISVTX
+	S_IRWXU	= S_IRUSR S_IWUSR S_IXUSR
+	S_IRWXG = S_IRGRP S_IWGRP S_IXGRP
+	S_IRWXO = S_IROTH S_IWOTH S_IXOTH
+
+
+======================================================================
+#include <sys/types.h>
+#include <unistd.h>
+
+int chown(const char* pathname, uid_t owner, gid_t group);
+int fchown(int filedes, uid_t owner, gid_t group);
+int lchown(const char* pathname, uid_t owner, gid_t group);
+
+文件截断
+======================================================================
+#include <sys/types.h>
+#include <unistd.h>
+
+int truncate(const char* pathname, off_t length);
+int ftruncate(int filedes, off_t length);
+
+
+
+
+======================================================================
+#inlcude <unistd.h>
+int link(const char* existingpath, const char* newpath);
+
+#include <unistd.h>
+int unlink(const char* pathname);		//删除一个现存的目录项
+
+#include <stdio.h>
+int remove(const char* pathname);		//对文件与unlink函数相同，对于目录与rmdir函数相同
+
+#include <stdio.h>
+int rename(const char* oldname, const char* newname);
+
+
+
+#include <unistd.h>
+int symlink(const char* acutualpath, const char* sympath);	//创建链接
+int readlink(const char* pathname, char buf, int bufsize);	//组合了open，read，close
+
+
+
+#include <sys/types.h>
+#include <utime.h>
+int utime(const char* pathname, const struct utimebuf times);	//文件的存取/修改时间
+
+
+
