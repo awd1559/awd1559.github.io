@@ -188,7 +188,7 @@ self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refr
 ```objc
 self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 // 具体实现参考MJDIYBackFooter.h和MJDIYBackFooter.m
-```
+
 
 ```objc
 class MyViewController : UITableViewController {
