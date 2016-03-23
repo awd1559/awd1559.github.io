@@ -12,7 +12,7 @@ tags:
 
 ## install
 ```swift
-pod 'MJRefresh'
+pod	'MJRefresh'
 ```
 
 ## get start
@@ -28,18 +28,22 @@ import MJRefresh
  	endRefreshing()
  	//是否在刷新
  	isRefreshing() -> Bool
- ```
+```
 ###### MJRefreshHeader.h
+```swift
 	//创建header
 	headerWithRefreshingBlock(MJRefreshComponentRefreshingBlock) -> MJRefreshHeader
 	headerWithRefreshingTarget(target, refreshingAction action:SEL) -> MJRefreshHeader
 	lastUpdatedTimeKey:String
 	lastUpdatedTime:NSDate
+```
 ###### MJRefreshFooter.h
+```swift
 	footerWithRefreshingBlock(MJRefreshComponentRefreshingBlock)
 	footerWithRefreshingTarget(target, refreshingAction:SEL)
 	endRefreshingWithNoMoreDate()
 	resetNoMoreData()	
+```
 ###### MJRefreshAutoFooter.h
 
 
