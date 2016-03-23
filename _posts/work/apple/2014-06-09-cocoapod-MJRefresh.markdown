@@ -1,13 +1,15 @@
 ---
-layout:     post
-title:      "MJRefresh"
-subtitle:   " \"MJRefresh\""
-date:       2014-06-09 12:00:00
-author:     "awd"
-header-img: "img/post-bg-2015.jpg"
-tags:
-    - cocoapod
+layout: post
+title: MJRefresh
+subtitle: " \"MJRefresh\""
+date: {}
+author: awd
+"header-img": "img/post-bg-2015.jpg"
+tags: 
+  - cocoapod
+published: true
 ---
+
 #[MJRefresh](https://github.com/CoderMJLee/MJRefresh)
 
 ## install
@@ -51,58 +53,57 @@ import MJRefresh
 ###### 下拉刷新
 - default
 ```swift
-self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-   // 进入刷新状态后会自动调用这个block
-}];
-或
-// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-
-// 马上进入刷新状态
-[self.tableView.header beginRefreshing];
+self.tableView.header = MJRefreshNormalHeader.headerWithRefreshingBlock{
+	//进入刷新状态后会自动调用这个block
+}
+self.tableView.header = MJRefreshNormalHeader.headerWithRefreshingTarget(self, refreshingAction:Selector("loadNewData"))
+self.tableView.header.beginRefreshing()
 ```
+
 - animation
-```swift
-// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+```objc
+//设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
 MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-// 设置普通状态的动画图片
+//设置普通状态的动画图片
 [header setImages:idleImages forState:MJRefreshStateIdle];
-// 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+//设置即将刷新状态的动画图片（一松开就会刷新的状态）
 [header setImages:pullingImages forState:MJRefreshStatePulling];
 // 设置正在刷新状态的动画图片
 [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
 // 设置header
 self.tableView.mj_header = header;
 ```
+
 - hide time label
 ```swift
-header.lastUpdatedTimeLabel.hidden = YES;
+header.lastUpdatedTimeLabel.hidden = true
 ```
+
 - hide status and time
 ```swift
 // 隐藏时间
-header.lastUpdatedTimeLabel.hidden = YES;
-
+header.lastUpdatedTimeLabel.hidden = true
 // 隐藏状态
-header.stateLabel.hidden = YES;
+header.stateLabel.hidden = true
 ```
+
 - custome text
 ```swift
 // 设置文字
-[header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
-[header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
-[header setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
+header.setTitle("Pull down to refresh", forState:MJRefreshStateIdle)
+header.setTitle("Release to refresh", forState:MJRefreshStatePulling)
+header.setTitle("Loading ...", forState:MJRefreshStateRefreshing)
 
 // 设置字体
-header.stateLabel.font = [UIFont systemFontOfSize:15];
-header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];
+header.stateLabel.font = UIFont.systemFontOfSize(15)
+header.lastUpdatedTimeLabel.font = UIFont.systemFontOfSize(14)
 
 // 设置颜色
-header.stateLabel.textColor = [UIColor redColor];
-header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
+header.stateLabel.textColor = UIColor.redColor()
+header.lastUpdatedTimeLabel.textColor = UIColor.blueColor()
 ```
 - custome view 
-```swift
+```objc
 self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 // 具体实现参考MJDIYHeader.h和MJDIYHeader.m
 ```
@@ -110,7 +111,7 @@ self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshi
 
 ###### 上拉刷新
 - default
-```swift
+```objc
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
 }];
@@ -118,8 +119,9 @@ self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
+
 - animation
-```swift
+```objc
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
 MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 
@@ -129,19 +131,20 @@ MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTar
 // 设置尾部
 self.tableView.mj_footer = footer;
 ```
+
 - hide refresh text
 ```swift
 // 隐藏刷新状态的文字
-footer.refreshingTitleHidden = YES;
-// 如果没有上面的方法，就用footer.stateLabel.hidden = YES;
+footer.refreshingTitleHidden = true
+// 如果没有上面的方法，就用footer.stateLabel.hidden = true
 ```
 - load complete
-```swift
+```objc
 // 变为没有更多数据的状态
 [footer endRefreshingWithNoMoreData];
 ```
 - custome text
-```swift
+```objc
 // 设置文字
 [footer setTitle:@"Click or drag up to refresh" forState:MJRefreshStateIdle];
 [footer setTitle:@"Loading more ..." forState:MJRefreshStateRefreshing];
@@ -154,16 +157,16 @@ footer.stateLabel.font = [UIFont systemFontOfSize:17];
 footer.stateLabel.textColor = [UIColor blueColor];
 ```
 - hide after load
-```swift
+```objc
 // 隐藏当前的上拉刷新控件
 self.tableView.mj_footer.hidden = YES;
 ```
 - bounce 01
-```swift
+```objc
 self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
 - bounce 02
-```swift
+```objc
 MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 
 // 设置普通状态的动画图片
@@ -177,17 +180,17 @@ MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTar
 self.tableView.mj_footer = footer;
 ```
 - custome view 1
-```swift
+```objc
 self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 // 具体实现参考MJDIYAutoFooter.h和MJDIYAutoFooter.m
 ```
 - custome view 2
-```swift
+```objc
 self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 // 具体实现参考MJDIYBackFooter.h和MJDIYBackFooter.m
 ```
 
-```swift
+```objc
 class MyViewController : UITableViewController {
 
 //默认hedaer
