@@ -169,92 +169,115 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2014/06/09/cocoapod-DateTools/">
+    <a href="/2015/01/29/-kernelbootmem/">
         <h2 class="post-title">
-            Cocoapod Datetools
+            bootmem
         </h2>
         
+        <h3 class="post-subtitle">
+             "bootmem"
+        </h3>
+        
         <div class="post-content-preview">
-            DateTools
-https://github.com/MatthewYork/DateTools
-
-//install
-pod ‘DateTools’
-
-let timeAgoDate = NSDate(timeIntervalSinceNow:-4)
-timeAgoDate.timeAgoSinceNow
-timeAgoDate.shortTimeAgoSinceNow
-
-let da...
+            引导内存分配器			//setup_arch,检测内存分布，初始化内存分配位图
+每一个节点有一个bootmem_data,包含已分配页面的位图等
+struct bootmem_data
+{
+	unsigned long node_boot_start;	//起始物理地址
+	unsigned long node_low_pfn;	//结束地址
+	void *node_bootmem_map;	...
         </div>
     </a>
     <p class="post-meta">
-        Posted by AWD on June 9, 2014
+        Posted by awd on January 29, 2015
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2014/06/09/cocoapod-Alamofire/">
+    <a href="/2014/06/09/maya/">
         <h2 class="post-title">
-            Cocoapod Alamofire
+            使用Maya
         </h2>
         
+        <h3 class="post-subtitle">
+             "常用方法和快捷键"
+        </h3>
+        
         <div class="post-content-preview">
-            Alamofire
-https://github.com/Alamofire/Alamofire
+            
+  maya
+创建物体
+Create-&gt;NURBS-&gt;Primitive
+Alt+左键           拖拽
+Alt+右键	         缩放
+中键			移动
+F			使物体在屏幕居中
+A                      屏幕上显示场景冲所有物体
 
-pod ‘Alamofire’, ‘~&gt; 3.0’
-import Alamofire
 
-Making a Request
-Alamofire.request(.GET, “https://httpbin.org/get”)
-.responseString{response in 
-	se...
+F3 	多边形模式
+F4 	surface模式
+F5 	particle模式
+
+4 线条显示
+5 实体显示
+6...
         </div>
     </a>
     <p class="post-meta">
-        Posted by AWD on June 9, 2014
+        Posted by awd on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2014/06/09/cocoapod-AGEmojiKeyboard/">
+    <a href="/2014/06/09/3D-Max/">
         <h2 class="post-title">
-            Cocoapod Agemojikeyboard
+            使用3D Max
         </h2>
         
+        <h3 class="post-subtitle">
+             "常用方法和快捷键"
+        </h3>
+        
         <div class="post-content-preview">
-            AGEmojiKeyboard
-https://github.com/ayushgoel/AGEmojiKeyboard
-pod “AGEmojiKeyboard”
-
-#import “AGEmojiKeyboard.h”
-AGEmojiKeyboardView *emojiKeyboardView = [[AGEmojiKeyboardView alloc] initWithFrame:C...
+            #3D Max
+##骨骼
+* 1、创建人物模型
+* 2、全选模型，右键-转换为-转换为可编辑网络
+   到修改面板，进入顶点层级将相邻的面焊接
+* 3、点击Biped ，创建人物骨骼
+* 4、运动面板-体形模式，移动骨骼和人体吻合。（F3：转为线框模式）
+* 5、运动面板-体形模式
+* 6、修改面板-蒙皮，将人体骨骼全部添加
+* 7、将整个模型渲染成纹理，烘培的贴图一定要同模型一并放到U3d...
         </div>
     </a>
     <p class="post-meta">
-        Posted by AWD on June 9, 2014
+        Posted by awd on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2014/06/09/cocoapod-AFNetworking/">
+    <a href="/2014/06/09/kernel-linux-note/">
         <h2 class="post-title">
-            Cocoapod Afnetworking
+            Kernel Linux Note
         </h2>
         
         <div class="post-content-preview">
-            Architecture
-NSURLConnection
-	◦	AFURLConnectionOperation
-	◦	AFHTTPRequestOperation
-	◦	AFHTTPRequestOperationManager
-NSURLSession (iOS 7 / Mac OS X 10.9)
-	◦	AFURLSessionManager
-	◦	AFHTTPSessionManag...
+            ﻿—
+layout:     post
+title:      “linux note”
+subtitle:   “ "linux note"”
+date:       2015-01-29 12:00:00
+author:     “awd”
+header-img: “img/post-bg-2015.jpg”
+tags:
+    - linux kernel
+—
+oxA0000即640K...
         </div>
     </a>
     <p class="post-meta">
@@ -317,11 +340,23 @@ NSURLSession (iOS 7 / Mac OS X 10.9)
                             
                         
                             
+                                <a href="/tags/#cocoapod" title="cocoapod" rel="35">
+                                    cocoapod
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#apple" title="apple" rel="4">
+                                    apple
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
+                            
+                        
                             
                         
                             

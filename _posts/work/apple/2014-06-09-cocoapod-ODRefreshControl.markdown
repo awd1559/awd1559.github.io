@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "ODRefreshControl"
+subtitle:   " \"ODRefreshControl\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 ODRefreshControl
 https://github.com/Sephiroth87/ODRefreshControl
 下拉刷新

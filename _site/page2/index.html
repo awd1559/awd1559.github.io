@@ -169,6 +169,85 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2015/01/29/kernel-tmp/">
+        <h2 class="post-title">
+            kernel
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "tmp note"
+        </h3>
+        
+        <div class="post-content-preview">
+            list_head寄宿在其他宿主数据结构中
+INIT_LIST_HEAD(ptr)初始化list_head
+
+举例说明
+typedef struct page
+{
+	struct list_head list;  	//page结构可以在这个队列中
+	struct list_head lru;		//page结构也可以在这个队列中
+	struct page* hash_next;		//ha...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/kernel-task/">
+        <h2 class="post-title">
+            task
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "linux kernel task"
+        </h3>
+        
+        <div class="post-content-preview">
+            全局变量
+
+#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
+#define init_stack	(init_task_union.stack)
+
+struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/kernel-swap/">
+        <h2 class="post-title">
+            swap
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "Linux Kernel mm swap"
+        </h3>
+        
+        <div class="post-content-preview">
+            交换page到交换分区(swap)
+当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
+
+全局struct mm_struct *swap_mm = &amp;init_mm
+
+alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
+free_more_memory-&...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2015/01/29/kernel-slab/">
         <h2 class="post-title">
             slab
@@ -373,89 +452,6 @@ struct pg_data_t {					//NUMA非一致内存访问
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-init/">
-        <h2 class="post-title">
-            kernel init
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "kernel init"
-        </h3>
-        
-        <div class="post-content-preview">
-            start_kernel
-	-&gt;setup_arch
-		-&gt;setup_memory_region		//读e820图
-		-&gt;setup_memory			//
-			-&gt;find_max_pfn		//找到max_pfn
-			-&gt;find_max_low_pfn	//找到max_low_pfn
-			-&gt;init_bootmem(max_low_p...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-gcc/">
-        <h2 class="post-title">
-            gcc
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "gcc"
-        </h3>
-        
-        <div class="post-content-preview">
-            inline是gcc的扩展
-inline 含义与inline相同
-asm  含义与asm相同
-attribute
-
-long long int 类型是gcc增加的
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-filesystem/">
-        <h2 class="post-title">
-            filesystem
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "filesystem"
-        </h3>
-        
-        <div class="post-content-preview">
-            全局super_blocks列表	(fs/supper.c)	所有supper_block通过s_list连接起来管理
-
-supper_block
-{
-	… …
-	struct list_head	s_list;
-	kdev_t			s_dev;
-
-struct file_system_type	*s_type;
-struct super_operations	*s_op;
-struct d...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -514,11 +510,23 @@ struct d...
                             
                         
                             
+                                <a href="/tags/#cocoapod" title="cocoapod" rel="35">
+                                    cocoapod
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#apple" title="apple" rel="4">
+                                    apple
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
+                            
+                        
                             
                         
                             

@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "SMPageControl"
+subtitle:   " \"SMPageControl\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 SMPageControl
 几个指示小圆点
 https://github.com/Spaceman-Labs/SMPageControl

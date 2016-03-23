@@ -169,6 +169,89 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2015/01/29/kernel-init/">
+        <h2 class="post-title">
+            kernel init
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "kernel init"
+        </h3>
+        
+        <div class="post-content-preview">
+            start_kernel
+	-&gt;setup_arch
+		-&gt;setup_memory_region		//读e820图
+		-&gt;setup_memory			//
+			-&gt;find_max_pfn		//找到max_pfn
+			-&gt;find_max_low_pfn	//找到max_low_pfn
+			-&gt;init_bootmem(max_low_p...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/kernel-gcc/">
+        <h2 class="post-title">
+            gcc
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "gcc"
+        </h3>
+        
+        <div class="post-content-preview">
+            inline是gcc的扩展
+inline 含义与inline相同
+asm  含义与asm相同
+attribute
+
+long long int 类型是gcc增加的
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/kernel-filesystem/">
+        <h2 class="post-title">
+            filesystem
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "filesystem"
+        </h3>
+        
+        <div class="post-content-preview">
+            全局super_blocks列表	(fs/supper.c)	所有supper_block通过s_list连接起来管理
+
+supper_block
+{
+	… …
+	struct list_head	s_list;
+	kdev_t			s_dev;
+
+struct file_system_type	*s_type;
+struct super_operations	*s_op;
+struct d...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2015/01/29/kernel-binfmt/">
         <h2 class="post-title">
             binfmt
@@ -379,110 +462,6 @@ oxA0000即640KB一下为系统的基本内存
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/01/29/cocoapod-MJRefresh/">
-        <h2 class="post-title">
-            MJRefresh
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "MJRefresh"
-        </h3>
-        
-        <div class="post-content-preview">
-            #MJRefresh
-
-install
-
-  pod ‘MJRefresh’
-
-
-
-  1import MJRefresh
-2
-3class MyViewController : UITableViewController {
-4
-5//默认hedaer
-6var header = MJRefreshNormalHeader(refreshingBlock:{})
-
-
-
-
-//带动画图片的h...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/cmd-shell/">
-        <h2 class="post-title">
-            shell
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "shell脚本"
-        </h3>
-        
-        <div class="post-content-preview">
-            shell 脚本
-按照如下顺序寻找该执行的命令
-1)别名
-2)关键字
-3)函数
-4)内置命令
-5)PATH中的可执行程序
-
-变量：局部变量和环境变量
-管道： who | wc #who命令输出传为wc的输入
-重定向: who &gt; file #who命令的输出到file文件
-
-
-命令
-————————————————————————
-ps – 当前运行进程
-pstree – 进程树
-id...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/cmd-sed/">
-        <h2 class="post-title">
-            sed
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "文本模式匹配"
-        </h3>
-        
-        <div class="post-content-preview">
-            sed
-1)逐行处理文本
-2)把正在处理的行保存到临时缓冲区，称为模式空间
-3)执行完sed命令后，将该行发送到屏幕，读取下一行
-还有一个暂存缓冲区(8192)，供hH存放，供gG读取
-
-正则表达式是括在斜杠间的模式
-sed optoion ‘command’ filenames
-例子：	sed ‘1,3d’ file		#删除1-3行，其他行默认打印，不影响原文件
-	sed -n ‘/[J...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -541,11 +520,23 @@ sed optoion ‘command’ filenames
                             
                         
                             
+                                <a href="/tags/#cocoapod" title="cocoapod" rel="35">
+                                    cocoapod
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#apple" title="apple" rel="4">
+                                    apple
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
+                            
+                        
                             
                         
                             

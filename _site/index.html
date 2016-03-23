@@ -169,6 +169,56 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2015/01/29/xcode/">
+        <h2 class="post-title">
+            xcode
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "xcode"
+        </h3>
+        
+        <div class="post-content-preview">
+            1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
+2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
+
+
+XXX-Info.plist		工程描述文件
+InfoPlist.strings		本地化字符串...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/temp/">
+        <h2 class="post-title">
+            temp
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "uiSwitch "
+        </h3>
+        
+        <div class="post-content-preview">
+            UISwitch
+//selector函数不存在，只报错，编译能通过
+[[UISwitch alloc] initWithFrame:CGRectZero]
+[switch setOn:YES]
+[switch addTarget:self action:@selector(switchIsChanged:)	
+	forControlEvents:UIControlEventValueCha...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2015/01/29/rpm/">
         <h2 class="post-title">
             rpm
@@ -190,6 +240,31 @@ rpm -Uivh					升级
 
 apt-get update
 apt-get insta...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/resolution/">
+        <h2 class="post-title">
+            分辨率
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "XLPagerTabStrip"
+        </h3>
+        
+        <div class="post-content-preview">
+            http://iosdesign.ivomynttinen.com/
+
+The iOS Design Guidelines
+
+Design great-looking apps for Apple iOS devices.
+Designing iOS apps can be difficult sometimes, but finding correct and up-to-date inf...
         </div>
     </a>
     <p class="post-meta">
@@ -368,85 +443,6 @@ struct supper_block
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
-        <h2 class="post-title">
-            kernel
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "tmp note"
-        </h3>
-        
-        <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
-
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
-        <h2 class="post-title">
-            task
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
-        <div class="post-content-preview">
-            全局变量
-
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
-
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
-        <h2 class="post-title">
-            swap
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
-        <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
-
-全局struct mm_struct *swap_mm = &amp;init_mm
-
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -501,11 +497,23 @@ free_more_memory-&...
                             
                         
                             
+                                <a href="/tags/#cocoapod" title="cocoapod" rel="35">
+                                    cocoapod
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#apple" title="apple" rel="4">
+                                    apple
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
+                            
+                        
                             
                         
                             

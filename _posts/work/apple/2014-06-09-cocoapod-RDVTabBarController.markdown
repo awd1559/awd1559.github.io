@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "RDVTabBarController"
+subtitle:   " \"RDVTabBarController\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 RDVTabBarController
 https://github.com/robbdimitrov/RDVTabBarController
 

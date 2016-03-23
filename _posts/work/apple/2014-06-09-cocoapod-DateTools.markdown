@@ -1,9 +1,19 @@
+---
+layout:     post
+title:      "DateTools"
+subtitle:   " \"DateTools\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 DateTools
 https://github.com/MatthewYork/DateTools
 
 
 //install
-pod ‘DateTools'
+pod 'DateTools'
 
 
 let timeAgoDate = NSDate(timeIntervalSinceNow:-4)

@@ -169,261 +169,19 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/01/29/cmd-grep/">
+    <a href="/2015/01/29/frameworks/">
         <h2 class="post-title">
-            grep
+            ios framework
         </h2>
         
         <h3 class="post-subtitle">
-             "文本模式匹配"
-        </h3>
-        
-        <div class="post-content-preview">
-            grep
-grep -n ‘.5s’ datafile	#输出符合模式的行，包含.5s的行
-
--n	#输出原文件中的行号
--i	#不区分大小写
--v	#输出不符合模式的行
--l	#只输出文件名
--w	#模式作用于词
-
-egrep 在grep元字符集上增加了更多的元字符
-fgrep 在linux中为grep -F, 没有元字符，模式中字符为字面含义
-
-Linux中
-grep ‘pattern’...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/cmd-awk/">
-        <h2 class="post-title">
-            awk
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "文本模式匹配"
-        </h3>
-        
-        <div class="post-content-preview">
-            awk
-1)逐行扫描
-2)匹配则执行命令
-3)匹配而未制定命令，则打印该行到屏幕
-
-例子:
-awk ‘/Sally/{print $1, $2}’ datafile
-匹配模式后，打印第一和第二个字段，即第一和第二列
-字段间的分隔符为空格符
-
-字段
-  |
-  |
-Tom  Jones	4421	5/12/66	543354    &lt;—-记录
-Mary Adams	5346	11/4/6...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/-kernelbootmem/">
-        <h2 class="post-title">
-            bootmem
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "bootmem"
-        </h3>
-        
-        <div class="post-content-preview">
-            引导内存分配器			//setup_arch,检测内存分布，初始化内存分配位图
-每一个节点有一个bootmem_data,包含已分配页面的位图等
-struct bootmem_data
-{
-	unsigned long node_boot_start;	//起始物理地址
-	unsigned long node_low_pfn;	//结束地址
-	void *node_bootmem_map;	...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/maya/">
-        <h2 class="post-title">
-            使用Maya
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "常用方法和快捷键"
+             "ios framework"
         </h3>
         
         <div class="post-content-preview">
             
-  maya
-创建物体
-Create-&gt;NURBS-&gt;Primitive
-Alt+左键           拖拽
-Alt+右键	         缩放
-中键			移动
-F			使物体在屏幕居中
-A                      屏幕上显示场景冲所有物体
+  本文档可以删除
 
-
-F3 	多边形模式
-F4 	surface模式
-F5 	particle模式
-
-4 线条显示
-5 实体显示
-6...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/3D-Max/">
-        <h2 class="post-title">
-            使用3D Max
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "常用方法和快捷键"
-        </h3>
-        
-        <div class="post-content-preview">
-            #3D Max
-##骨骼
-* 1、创建人物模型
-* 2、全选模型，右键-转换为-转换为可编辑网络
-   到修改面板，进入顶点层级将相邻的面焊接
-* 3、点击Biped ，创建人物骨骼
-* 4、运动面板-体形模式，移动骨骼和人体吻合。（F3：转为线框模式）
-* 5、运动面板-体形模式
-* 6、修改面板-蒙皮，将人体骨骼全部添加
-* 7、将整个模型渲染成纹理，烘培的贴图一定要同模型一并放到U3d...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/xcode/">
-        <h2 class="post-title">
-            Xcode
-        </h2>
-        
-        <div class="post-content-preview">
-            1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
-2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
-
-
-XXX-Info.plist		工程描述文件
-InfoPlist.strings		本地化字符串...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/temp/">
-        <h2 class="post-title">
-            Temp
-        </h2>
-        
-        <div class="post-content-preview">
-            UISwitch
-//selector函数不存在，只报错，编译能通过
-[[UISwitch alloc] initWithFrame:CGRectZero]
-[switch setOn:YES]
-[switch addTarget:self action:@selector(switchIsChanged:)	
-	forControlEvents:UIControlEventValueCha...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/resolution/">
-        <h2 class="post-title">
-            Resolution
-        </h2>
-        
-        <div class="post-content-preview">
-            http://iosdesign.ivomynttinen.com/
-
-The iOS Design Guidelines
-
-Design great-looking apps for Apple iOS devices.
-Designing iOS apps can be difficult sometimes, but finding correct and up-to-date inf...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/kernel-linux-note/">
-        <h2 class="post-title">
-            Kernel Linux Note
-        </h2>
-        
-        <div class="post-content-preview">
-            ﻿—
-layout:     post
-title:      “linux note”
-subtitle:   “ "linux note"”
-date:       2015-01-29 12:00:00
-author:     “awd”
-header-img: “img/post-bg-2015.jpg”
-tags:
-    - linux kernel
-—
-oxA0000即640K...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/frameworks/">
-        <h2 class="post-title">
-            Frameworks
-        </h2>
-        
-        <div class="post-content-preview">
-            本文档可以删除
 
 iOS
 Audio &amp; Video
@@ -431,11 +189,285 @@ Audio &amp; Video
 Coca Touch Layer
 AddressBookUI      联系人显示相关的UI controlller
 	ABNewPersonViewController			[ABNewPersonViewControllerDelegate]
-	ABPeoplePickerNavigationController   	[A...
+	ABPeoplePickerNavigationController  ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by AWD on June 9, 2014
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-pureLayout/">
+        <h2 class="post-title">
+            PureLayout
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "PureLayout"
+        </h3>
+        
+        <div class="post-content-preview">
+            https://github.com/PureLayout/PureLayout
+ 支持swift和OC
+
+pod init
+in Podfile
+	pod ‘PureLayout’
+pod install
+
+#import “PureLayout.h”
+全部文档在头文件里
+
+-(void)updateViewConstraints
+{
+//中心
+//in center of superVi...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-pop/">
+        <h2 class="post-title">
+            pop
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "pop"
+        </h3>
+        
+        <div class="post-content-preview">
+            https://github.com/facebook/pop
+
+BasicAnimation
+SpringAnimation
+DecayAnimation
+CustomAnimation
+
+pod “pop”
+#import “POP.h”
+
+POPCustomAnimation
+POPPropertyAnimation
+	POPDecayAnimation
+	POPSpringAnima...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-iCarousel/">
+        <h2 class="post-title">
+            iCarousel
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "iCarousel"
+        </h3>
+        
+        <div class="post-content-preview">
+            iCarousel
+view旋转木马效果	
+https://github.com/nicklockwood/iCarousel
+
+添加QuartzCore,默认为不需要添加也可以成功
+select project -&gt; target -&gt; build phases -&gt; Link binary with Libraries
+
+只需要iCarousel.h、iCarousel...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-cocoapods/">
+        <h2 class="post-title">
+            cocoapod
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "cocoapod"
+        </h3>
+        
+        <div class="post-content-preview">
+            安装
+sudo gem install -g cocoapods
+sudo gem uninsall cocoapods
+
+pod setup    #设置环境
+
+pod init          #创建一个Podfile文件
+pod install
+pod update
+
+//制作cocoapods
+pod trunk register awd1559@gmail.com ‘awd155...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-carthage/">
+        <h2 class="post-title">
+            Cartfile
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "Cartfile"
+        </h3>
+        
+        <div class="post-content-preview">
+            Cartfile
+git “”
+
+brew install Carthage
+brew upgrade Carthage
+
+carthage version
+carhage update
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-XLPagerTabStrip/">
+        <h2 class="post-title">
+            XLPagerTabStrip
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "XLPagerTabStrip"
+        </h3>
+        
+        <div class="post-content-preview">
+            XLPagerTabStrip
+https://github.com/xmartlabs/XLPagerTabStrip
+ 
+pod ‘XLPagerTabStrip’, ‘~&gt; 4.0’
+
+4种
+Button Bar	:	ButtonBarPagerTabStripViewController 
+Bar		:	BarPagerStripViewController
+Twitter		...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-SwiftyUserDefaults/">
+        <h2 class="post-title">
+            SwiftyUserDefaults
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "SwiftyUserDefaults"
+        </h3>
+        
+        <div class="post-content-preview">
+            SwiftyUserDefaults
+https://github.com/radex/SwiftyUserDefaults
+
+install
+pod ‘SwiftyUserDefaults’
+
+import SwiftyUserDefaults
+
+定义keys
+extension DefaultsKeys {
+    static let username = DefaultsKey&lt...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-SwiftyJSON/">
+        <h2 class="post-title">
+            SwiftyJSON
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "SwiftyJSON"
+        </h3>
+        
+        <div class="post-content-preview">
+            SwiftyJSON
+https://github.com/SwiftyJSON/SwiftyJSON
+
+install
+platform :ios, ‘8.0’
+use_frameworks!
+
+target ‘MyApp’ do
+    pod ‘SwiftyJSON’, :git =&gt; ‘https://github.com/SwiftyJSON/SwiftyJSON.git’
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cocoapod-SnapKit/">
+        <h2 class="post-title">
+            SnapKit
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "SnapKit"
+        </h3>
+        
+        <div class="post-content-preview">
+            https://github.com/SnapKit/SnapKit
+
+//install
+use_frameworks!
+
+pod ‘SnapKit’, ‘~&gt; 0.15.0’
+
+import SnapKit
+
+class MyViewController: UIViewController {
+
+lazy var box = UIView()
+
+override func view...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
     </p>
 </div>
 <hr>
@@ -498,11 +530,23 @@ AddressBookUI      联系人显示相关的UI controlller
                             
                         
                             
+                                <a href="/tags/#cocoapod" title="cocoapod" rel="35">
+                                    cocoapod
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#apple" title="apple" rel="4">
+                                    apple
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
+                            
+                        
                             
                         
                             

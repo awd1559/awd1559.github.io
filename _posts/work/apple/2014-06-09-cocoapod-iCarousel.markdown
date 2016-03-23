@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "iCarousel"
+subtitle:   " \"iCarousel\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 iCarousel
 view旋转木马效果	
 https://github.com/nicklockwood/iCarousel

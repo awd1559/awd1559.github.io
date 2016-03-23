@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "XLPagerTabStrip"
+subtitle:   " \"XLPagerTabStrip\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 XLPagerTabStrip
 https://github.com/xmartlabs/XLPagerTabStrip
  

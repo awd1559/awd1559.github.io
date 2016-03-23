@@ -1,6 +1,16 @@
+---
+layout:     post
+title:      "FMDB"
+subtitle:   " \"FMDB\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 https://github.com/ccgus/fmdb
 
-pod ‘FMDB'
+pod 'FMDB'
 
 FMDatabase
 FMResultSet

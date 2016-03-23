@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      "xcode"
+subtitle:   " \"xcode\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+    - xcode
+---
 	1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
 	2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
 

@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "JazzHands"
+subtitle:   " \"JazzHands\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 启动页滚动介绍页面动画
 https://github.com/IFTTT/JazzHands
 

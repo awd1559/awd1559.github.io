@@ -1,12 +1,14 @@
-本文档可以删除
-
-
-
-
-
-
-
-
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+>本文档可以删除
 
 
 

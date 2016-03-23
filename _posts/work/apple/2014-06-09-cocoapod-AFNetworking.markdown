@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      "AFNetworking"
+subtitle:   " \"AFNetworking\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
 Architecture
 NSURLConnection
 	◦	AFURLConnectionOperation
