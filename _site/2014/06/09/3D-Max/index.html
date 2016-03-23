@@ -10,9 +10,9 @@
     <meta name="keyword"  content="awd, 3d, code, imdb, motion, music, sifi, ios, Android, cocos2d-x, Unity, game, laravel, ruby, rails">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Awd的博客 | AWD</title>
+    <title>使用3D Max - Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/2014/06/09/3D-Max/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -138,452 +138,231 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>AWD</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Motion, Music, Code</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#3d" title="3d">3d</a>
+                        
+                    </div>
+                    <h1>使用3D Max</h1>
+                    
+                    
+                    <h2 class="subheading"> "常用方法和快捷键"</h2>
+                    
+                    <span class="meta">Posted by awd on June 9, 2014</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2015/01/29/rpm/">
-        <h2 class="post-title">
-            rpm
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "redhat package manager"
-        </h3>
-        
-        <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
+				<p>#3D Max<br />
+##骨骼<br />
+* 1、创建人物模型<br />
+* 2、全选模型，右键-转换为-转换为可编辑网络<br />
+   到修改面板，进入顶点层级将相邻的面焊接<br />
+* 3、点击Biped ，创建人物骨骼<br />
+* 4、运动面板-体形模式，移动骨骼和人体吻合。（F3：转为线框模式）<br />
+* 5、运动面板-体形模式<br />
+* 6、修改面板-蒙皮，将人体骨骼全部添加<br />
+* 7、将整个模型渲染成纹理，烘培的贴图一定要同模型一并放到U3d项目文件夹的Assets中<br />
+* 8、导出FBX，选择骨骼</p>
 
-apt-get update
-apt-get insta...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>##烘培<br />
+有两种方式：LightMap，渲染出来的贴图只带有阴影信息，不包含基本纹理<br />
+将模型的基本纹理贴图和LightMap阴影贴图两者叠加<br />
+最终模型纹理比较清楚，可以使用重复纹理贴图，可直接导出FBX文件，不用修改贴图通道<br />
+不带高光<br />
+CompleteMap，渲染出来的贴图本身就带有基本纹理和光影信息<br />
+没有细节纹理，近处时纹理比较模糊</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
-        <h2 class="post-title">
-            redhat init script
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "redhat启动脚本"
-        </h3>
-        
-        <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>用Poly多边形建模<br />
+平移视图 鼠标中键<br />
+旋转视图 Alt+鼠标中键<br />
+缩放视图 鼠标滚轮<br />
+对齐到视图 V<br />
+自动平滑 A<br />
+选择定点级别 1<br />
+选择边级别 2<br />
+选择边界级别 3<br />
+选择多边形级别 4<br />
+选择元素级别 5<br />
+选择对象级别 6<br />
+打开变换输入 F12<br />
+进入倒角模式 Shift+Ctrl+B<br />
+倒角设置 Ctrl+B<br />
+断开 Shift+B<br />
+连接 Shift+Ctrl_E<br />
+连接边设置 Ctrl_N<br />
+切割 Alt_C<br />
+分离 Ctrl_D<br />
+挤出模式 E<br />
+进入挤出设置 Ctrl_E<br />
+翻转法线 F<br />
+进入插入顶点模式 Shift+I<br />
+进入插入模式 I<br />
+插入设置 Ctrl+I<br />
+选择循环边 Alt+L<br />
+选择环形边 Alt_R<br />
+收缩选择 Ctrl_PageDown<br />
+分割边 Shift+P<br />
+进入目标焊接模式 Shift_Ctrl_W<br />
+焊接设置 Ctrl_W<br />
+使用软件选择 Ctrl_S<br />
+塌陷 Shift_L<br />
+约束到边 Shift_X<br />
+约束到面 X<br />
+从边创建图形 Shift_M</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
-        <h2 class="post-title">
-            linux program
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux program tmp notes"
-        </h3>
-        
-        <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
+<p>A——角度捕捉开关 B——切换到底视图 <br />
+C——切换到摄像机视图 D——封闭视窗 <br />
+E——切换到轨迹视图 F——切换到前视图 <br />
+G——切换到网格视图 H——显示通过名称选择对话框 <br />
+I——交互式平移 J——选择框显示切换 <br />
+K——切换到背视图 L——切换到左视图 <br />
+M——材质编辑对话框 N——动画模式开关 <br />
+O——自适应退化开关 P——切换到透视用户视图 <br />
+Q——显示选定物体三角形数目 R——切换到右视图 <br />
+S——捕捉开关 T——切换到顶视图 <br />
+U——切换到等角用户视图 V——旋转场景 <br />
+W——最大化视窗开关 X——坐标轴高亮显示开关 <br />
+Y——工具样界面转换 Z——缩放模式</p>
 
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
-
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
-
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
-        <h2 class="post-title">
-            signal
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux signal program"
-        </h3>
-        
-        <div class="post-content-preview">
-            信号集的处理
-
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
-        <h2 class="post-title">
-            io
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux IO Porgram"
-        </h3>
-        
-        <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
-        <h2 class="post-title">
-            Linux dir
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
-        <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
-        <h2 class="post-title">
-            vfs
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
-        <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
-
-超级块对象
-struct supper_block
-{
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
-        <h2 class="post-title">
-            kernel
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "tmp note"
-        </h3>
-        
-        <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
-
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
-        <h2 class="post-title">
-            task
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
-        <div class="post-content-preview">
-            全局变量
-
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
-
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
-        <h2 class="post-title">
-            swap
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
-        <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
-
-全局struct mm_struct *swap_mm = &amp;init_mm
-
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>[——交互式移近 ]——交互式移远 <br />
+/——播放动画 F1——帮助文件 <br />
+F3——线框与光滑高亮显示切换 F4——DEGED FACES 显示切换 <br />
+F5——约束到X轴方向 F6——约束到Y轴方向 <br />
+F7——约束到Z轴方向 F8——约束轴面循环 <br />
+F9——快速渲染 F10——渲染对话框 <br />
+F11——MAX脚本程序编辑 F12——键盘输入变换</p>
 
 
-<!-- Pager -->
+                <hr>
 
-<ul class="pager">
-    
-    
-    <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+                
 
 
-    		</div>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2014/06/09/xcode/" data-toggle="tooltip" data-placement="top" title="Xcode">
+                        Previous<br>
+                        <span>Xcode</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2014/06/09/maya/" data-toggle="tooltip" data-placement="top" title="使用Maya">
+                        Next<br>
+                        <span>使用Maya</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2014/06/09/3D-Max"
+                        data-title="使用3D Max"
+                        data-url="http://emotion.net.cn/2014/06/09/3D-Max/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
-                    <h5><a href="">FEATURED TAGS</a></h5>
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#3d" title="3d" rel="2">
+                				<a href="/tags/#3d" title="3d" rel="2">
                                     3d
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux kernel" title="linux kernel" rel="22">
+                				<a href="/tags/#linux kernel" title="linux kernel" rel="22">
                                     linux kernel
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux" title="linux" rel="6">
+                				<a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#shell" title="shell" rel="5">
+                				<a href="/tags/#shell" title="shell" rel="5">
                                     shell
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux prog" title="linux prog" rel="4">
+                				<a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-hux.jpg" />
-                        
-                        
-                            <p>programmer, dreamer。</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.facebook.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
-                <h5>FRIENDS</h5>
+                <div style="display: none">
+                <h5>Links</h5>
                 <ul class="list-inline">
                     
                         <li><a href="http://qianduan.guru/">前端外刊评论</a></li>
@@ -603,11 +382,72 @@ free_more_memory-&...
                         <li><a href="http://wepiaofei.github.io/blog/">前端神盾局</a></li>
                     
                 </ul>
+                </div>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'awd1559';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

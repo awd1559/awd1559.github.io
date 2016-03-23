@@ -12,7 +12,7 @@
 
     <title>Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/page6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -169,280 +169,241 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/01/29/rpm/">
+    <a href="/2014/06/09/cocoapod-SDWebImage/">
         <h2 class="post-title">
-            rpm
+            Cocoapod Sdwebimage
         </h2>
         
-        <h3 class="post-subtitle">
-             "redhat package manager"
-        </h3>
-        
         <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
-
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
-
-apt-get update
-apt-get insta...
+            Using UIImageView+WebCache category with UITableView
+Just #import the UIImageView+WebCache.h header, and call the sd_setImageWithURL:placeholderImage: method from the tableView:cellForRowAtIndexPat...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
+    <a href="/2014/06/09/cocoapod-RxSwift/">
         <h2 class="post-title">
-            redhat init script
+            Cocoapod Rxswift
         </h2>
         
-        <h3 class="post-subtitle">
-             "redhat启动脚本"
-        </h3>
-        
         <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
+            RxSwift
+https://github.com/ReactiveX/RxSwift
+
+
+pod ‘RxSwift’
+pod ‘RxCocoa’
+pod ‘RxBlocking’
+
+import RxSwift
+
+
+
+
+Observable 背观察的对象，是一个事件序列，
+信号分：
+热信号：创建时就开始推送，在创建之后订阅的将收不到热信号
+冷信号：只有被订阅后，才会推送
+
+
+Observ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
+    <a href="/2014/06/09/cocoapod-ReactiveCocoa/">
         <h2 class="post-title">
-            linux program
+            Cocoapod Reactivecocoa
         </h2>
         
-        <h3 class="post-subtitle">
-             "linux program tmp notes"
-        </h3>
-        
         <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
+            事件处理方式
+action
+delegate
+KVO
+callback
+NSNotification 
+ReactiveCocoa为事件定义一个标准接口
 
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
+/////////////////
+// install
+/////////////////
+use_frameworks!
+pod 'ReactiveCocoa'
 
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
-
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
+Cartfile
+github "ReactiveCocoa/Reac...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
+    <a href="/2014/06/09/cocoapod-RKSwipeBetweenViewControllers/">
         <h2 class="post-title">
-            signal
+            Cocoapod Rkswipebetweenviewcontrollers
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux signal program"
-        </h3>
-        
         <div class="post-content-preview">
-            信号集的处理
+            RKSwipeBetweenViewControllers
+https://github.com/cwRichardKim/RKSwipeBetweenViewControllers
 
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
+//install
+pod 'RKSwipeBetweenViewControllers'
+
+
+UIPageViewController *pageController = [[UIPageViewContr...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
+    <a href="/2014/06/09/cocoapod-RESideMenu/">
         <h2 class="post-title">
-            io
+            Cocoapod Residemenu
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux IO Porgram"
-        </h3>
-        
         <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
+            RESideMenu
+https://github.com/romaonthego/RESideMenu
+
+
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
+    <a href="/2014/06/09/cocoapod-RDVTabBarController/">
         <h2 class="post-title">
-            Linux dir
+            Cocoapod Rdvtabbarcontroller
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
         <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
+            RDVTabBarController
+https://github.com/robbdimitrov/RDVTabBarController
 
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
+install
+pod 'RDVTabBarController'
+
+
+//使用
+TabBar
+UIViewController* first = [[FirstViewController alloc]init];
+UIViewControlle...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
+    <a href="/2014/06/09/cocoapod-QuickDialog/">
         <h2 class="post-title">
-            vfs
+            Cocoapod Quickdialog
         </h2>
         
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
         <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
+            https://github.com/escoz/QuickDialog/
 
-超级块对象
-struct supper_block
-{
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
+    <a href="/2014/06/09/cocoapod-PopMenu/">
         <h2 class="post-title">
-            kernel
+            Cocoapod Popmenu
         </h2>
         
-        <h3 class="post-subtitle">
-             "tmp note"
-        </h3>
-        
         <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
+            PopMenu
+https://github.com/xhzengAIB/PopMenu
 
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
+pod 'PopMenu'
+NSArray *items = @[
+	[MenuItem itemWithTitle:@"项目" iconName:@"pop_Project" index:0],
+        [MenuItem itemWithTitle:@"任务" iconName:@"pop...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
+    <a href="/2014/06/09/cocoapod-Ono/">
         <h2 class="post-title">
-            task
+            Cocoapod Ono
         </h2>
         
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
         <div class="post-content-preview">
-            全局变量
+            Ono
+https://github.com/mattt/Ono
 
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
+pod ‘Ono’
 
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
+#import "Ono/Ono.h"
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
+    <a href="/2014/06/09/cocoapod-ObjectMapper/">
         <h2 class="post-title">
-            swap
+            Cocoapod Objectmapper
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
         <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
+            ObjectMapper
+https://github.com/Hearst-DD/ObjectMapper
 
-全局struct mm_struct *swap_mm = &amp;init_mm
 
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
+//install
+pod 'ObjectMapper', '~> 1.1’
+
+
+
+class User: Mappable {
+    var username: String?
+    var age: Int?
+    var weight: Double!
+    var...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
@@ -452,9 +413,13 @@ free_more_memory-&...
 
 <ul class="pager">
     
+    <li class="previous">
+        <a href="/page5">&larr; Newer Posts</a>
+    </li>
+    
     
     <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
+        <a href="/page7">Older Posts &rarr;</a>
     </li>
     
 </ul>

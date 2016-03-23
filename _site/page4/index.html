@@ -12,7 +12,7 @@
 
     <title>Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/page4/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -169,27 +169,31 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/01/29/rpm/">
+    <a href="/2015/01/29/cmd-awk/">
         <h2 class="post-title">
-            rpm
+            awk
         </h2>
         
         <h3 class="post-subtitle">
-             "redhat package manager"
+             "文本模式匹配"
         </h3>
         
         <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
+            awk
+1)逐行扫描
+2)匹配则执行命令
+3)匹配而未制定命令，则打印该行到屏幕
 
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
+例子:
+awk ‘/Sally/{print $1, $2}’ datafile
+匹配模式后，打印第一和第二个字段，即第一和第二列
+字段间的分隔符为空格符
 
-apt-get update
-apt-get insta...
+字段
+  |
+  |
+Tom  Jones	4421	5/12/66	543354    &lt;—-记录
+Mary Adams	5346	11/4/6...
         </div>
     </a>
     <p class="post-meta">
@@ -199,167 +203,23 @@ apt-get insta...
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
+    <a href="/2015/01/29/-kernelbootmem/">
         <h2 class="post-title">
-            redhat init script
+            bootmem
         </h2>
         
         <h3 class="post-subtitle">
-             "redhat启动脚本"
+             "bootmem"
         </h3>
         
         <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
-        <h2 class="post-title">
-            linux program
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux program tmp notes"
-        </h3>
-        
-        <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
-
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
-
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
-
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
-        <h2 class="post-title">
-            signal
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux signal program"
-        </h3>
-        
-        <div class="post-content-preview">
-            信号集的处理
-
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
-        <h2 class="post-title">
-            io
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux IO Porgram"
-        </h3>
-        
-        <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
-        <h2 class="post-title">
-            Linux dir
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
-        <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
-        <h2 class="post-title">
-            vfs
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
-        <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
-
-超级块对象
-struct supper_block
+            引导内存分配器			//setup_arch,检测内存分布，初始化内存分配位图
+每一个节点有一个bootmem_data,包含已分配页面的位图等
+struct bootmem_data
 {
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
+	unsigned long node_boot_start;	//起始物理地址
+	unsigned long node_low_pfn;	//结束地址
+	void *node_bootmem_map;	...
         </div>
     </a>
     <p class="post-meta">
@@ -369,80 +229,229 @@ struct supper_block
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
+    <a href="/2014/06/09/maya/">
         <h2 class="post-title">
-            kernel
+            使用Maya
         </h2>
         
         <h3 class="post-subtitle">
-             "tmp note"
+             "常用方法和快捷键"
         </h3>
         
         <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
+            
+  maya
+创建物体
+Create-&gt;NURBS-&gt;Primitive
+Alt+左键           拖拽
+Alt+右键	         缩放
+中键			移动
+F			使物体在屏幕居中
+A                      屏幕上显示场景冲所有物体
 
-举例说明
-typedef struct page
+
+F3 	多边形模式
+F4 	surface模式
+F5 	particle模式
+
+4 线条显示
+5 实体显示
+6...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/3D-Max/">
+        <h2 class="post-title">
+            使用3D Max
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "常用方法和快捷键"
+        </h3>
+        
+        <div class="post-content-preview">
+            #3D Max
+##骨骼
+* 1、创建人物模型
+* 2、全选模型，右键-转换为-转换为可编辑网络
+   到修改面板，进入顶点层级将相邻的面焊接
+* 3、点击Biped ，创建人物骨骼
+* 4、运动面板-体形模式，移动骨骼和人体吻合。（F3：转为线框模式）
+* 5、运动面板-体形模式
+* 6、修改面板-蒙皮，将人体骨骼全部添加
+* 7、将整个模型渲染成纹理，烘培的贴图一定要同模型一并放到U3d...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/xcode/">
+        <h2 class="post-title">
+            Xcode
+        </h2>
+        
+        <div class="post-content-preview">
+            	1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
+	2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
+
+
+
+XXX-Info.plist		工程描述文件
+InfoPlist.strings		本地化...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/temp/">
+        <h2 class="post-title">
+            Temp
+        </h2>
+        
+        <div class="post-content-preview">
+            UISwitch
+//selector函数不存在，只报错，编译能通过
+[[UISwitch alloc] initWithFrame:CGRectZero]
+[switch setOn:YES]
+[switch addTarget:self action:@selector(switchIsChanged:)	
+	forControlEvents:UIControlEventValueCha...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/resolution/">
+        <h2 class="post-title">
+            Resolution
+        </h2>
+        
+        <div class="post-content-preview">
+            http://iosdesign.ivomynttinen.com/
+
+The iOS Design Guidelines
+
+Design great-looking apps for Apple iOS devices.
+Designing iOS apps can be difficult sometimes, but finding correct and up-to-date inf...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/kernel-linux-note/">
+        <h2 class="post-title">
+            Kernel Linux Note
+        </h2>
+        
+        <div class="post-content-preview">
+            ﻿—
+layout:     post
+title:      “linux note”
+subtitle:   “ "linux note"”
+date:       2015-01-29 12:00:00
+author:     “awd”
+header-img: “img/post-bg-2015.jpg”
+tags:
+    - linux kernel
+—
+oxA0000即640K...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/frameworks/">
+        <h2 class="post-title">
+            Frameworks
+        </h2>
+        
+        <div class="post-content-preview">
+            本文档可以删除
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+iOS
+Audio & Video
+
+Coca Touch Layer
+AddressBookUI      联系人显示相关的UI controlller
+	ABNewPersonViewController			[ABNewPersonViewControllerDelegate]
+	ABPeoplePickerNavigationCon...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/cocoapod-pureLayout/">
+        <h2 class="post-title">
+            Cocoapod Purelayout
+        </h2>
+        
+        <div class="post-content-preview">
+            https://github.com/PureLayout/PureLayout
+ 支持swift和OC
+
+pod init
+in Podfile
+	pod ‘PureLayout'
+pod install
+
+
+#import “PureLayout.h"
+全部文档在头文件里
+
+-(void)updateViewConstraints
 {
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
+//中心
+//in center of superV...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
-        <h2 class="post-title">
-            task
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
-        <div class="post-content-preview">
-            全局变量
-
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
-
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
-        <h2 class="post-title">
-            swap
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
-        <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
-
-全局struct mm_struct *swap_mm = &amp;init_mm
-
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
@@ -452,9 +461,13 @@ free_more_memory-&...
 
 <ul class="pager">
     
+    <li class="previous">
+        <a href="/page3">&larr; Newer Posts</a>
+    </li>
+    
     
     <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
+        <a href="/page5">Older Posts &rarr;</a>
     </li>
     
 </ul>

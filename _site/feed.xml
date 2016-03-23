@@ -5,199 +5,851 @@
     <description>Motion、Music、Code，SiFi | 这里是 @awd1559的个人日志。</description>
     <link>http://emotion.net.cn/</link>
     <atom:link href="http://emotion.net.cn/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 17 Mar 2016 18:07:37 +0800</pubDate>
-    <lastBuildDate>Thu, 17 Mar 2016 18:07:37 +0800</lastBuildDate>
+    <pubDate>Wed, 23 Mar 2016 11:58:29 +0800</pubDate>
+    <lastBuildDate>Wed, 23 Mar 2016 11:58:29 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>使用Maya</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;maya&lt;br /&gt;
-创建物体&lt;br /&gt;
-Create-&amp;gt;NURBS-&amp;gt;Primitive&lt;br /&gt;
-Alt+左键           拖拽&lt;br /&gt;
-Alt+右键	         缩放&lt;br /&gt;
-中键			移动&lt;br /&gt;
-F			使物体在屏幕居中&lt;br /&gt;
-A                      屏幕上显示场景冲所有物体&lt;/p&gt;
-&lt;/blockquote&gt;
+        <title>rpm</title>
+        <description>&lt;p&gt;finger @kernl.org			获得最新的代码列表&lt;/p&gt;
 
-&lt;p&gt;F3 	多边形模式&lt;br /&gt;
-F4 	surface模式&lt;br /&gt;
-F5 	particle模式&lt;/p&gt;
+&lt;p&gt;Redhat Package Manager &lt;br /&gt;
+rpm -e –nodeps 			强制卸载&lt;br /&gt;
+rpm -i src.rpm  			安装软件源代码包&lt;br /&gt;
+rpmbuild -bb H.src			做rpm&lt;br /&gt;
+rpm -ivh					安装rpm&lt;br /&gt;
+rpm -Uivh					升级&lt;/p&gt;
 
-&lt;p&gt;4 线条显示&lt;br /&gt;
-5 实体显示&lt;br /&gt;
-6 &lt;/p&gt;
-
-&lt;p&gt;Y last Tool&lt;br /&gt;
-G 重复上个命令&lt;/p&gt;
-
-&lt;p&gt;F8 Enter/Exit Component Mode&lt;/p&gt;
-
-&lt;p&gt;Window-&amp;gt;Render Editors-&amp;gt;Hypershade&lt;br /&gt;
-	添加材质球&lt;br /&gt;
-	鼠标中键拖动到物体上，赋予材质&lt;/p&gt;
-
-&lt;p&gt;Window - Animation Editor - Express Editor&lt;br /&gt;
-	object.TranslateY = sin(time)&lt;/p&gt;
-
-&lt;p&gt;Skeleton-&amp;gt;Joint Tool&lt;br /&gt;
-	定义骨骼工具&lt;/p&gt;
-
-&lt;p&gt;Create Deforme-&amp;gt;Cluster&lt;br /&gt;
-	创建Cluster辅助对象&lt;/p&gt;
-
-&lt;p&gt;按住v，拖动Joint Tool，把骨骼吸附到Cluster&lt;/p&gt;
-
-&lt;p&gt;选中对象&lt;br /&gt;
-Shift＋骨骼root节点&lt;br /&gt;
-Skin－Bind Skin－Smooth Bind绑定骨骼&lt;/p&gt;
-
-&lt;p&gt;Skeleton-&amp;gt;IK Handle Tool&lt;/p&gt;
-
-&lt;p&gt;沿路径运动&lt;br /&gt;
-Animate - Motion Paths - Attach To Motion Path&lt;/p&gt;
-
-&lt;p&gt;自动记录动画帧&lt;br /&gt;
-选中channel box中的属性，key selected&lt;br /&gt;
-打开autokey&lt;/p&gt;
-
-&lt;p&gt;选中对象&lt;br /&gt;
-Effect－&amp;gt;create Fire&lt;/p&gt;
-
-&lt;p&gt;view -&amp;gt; image plane -&amp;gt; input image&lt;/p&gt;
-
-&lt;p&gt;3dMax&lt;br /&gt;
-F3 线框显示&lt;br /&gt;
-F4 线框实体显示&lt;br /&gt;
-U  User View&lt;br /&gt;
-P  Perspective View&lt;/p&gt;
-
-&lt;p&gt;F5 x-轴&lt;br /&gt;
-F6 y-轴&lt;br /&gt;
-F7 z-轴&lt;/p&gt;
-
-&lt;p&gt;SketchUp&lt;br /&gt;
-space 	select&lt;br /&gt;
-q		Rotate&lt;br /&gt;
-e 		Eraser&lt;br /&gt;
-r  		Rectangle&lt;br /&gt;
-t		Tape Measuure&lt;br /&gt;
-o 		Orbit&lt;br /&gt;
-p 		Pull&lt;br /&gt;
-a		Arc&lt;br /&gt;
-s		Scale&lt;br /&gt;
-f		Offset&lt;br /&gt;
-g 		Component&lt;br /&gt;
-h		Hand/Pan&lt;br /&gt;
-l		Line&lt;br /&gt;
-z		Zoom&lt;br /&gt;
-c		Circle&lt;br /&gt;
-b		Brush&lt;br /&gt;
-m		Move&lt;/p&gt;
-
-&lt;p&gt;Preference - Extensions - install Extensions *.rbz&lt;/p&gt;
-
-&lt;p&gt;双击一个单独的面可以同时选中这个面和线&lt;/p&gt;
-
+&lt;p&gt;apt-get update&lt;br /&gt;
+apt-get install &lt;br /&gt;
+apt-get remove&lt;/p&gt;
 </description>
         <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
-        <link>http://emotion.net.cn/2015/01/29/maya/</link>
-        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/maya/</guid>
+        <link>http://emotion.net.cn/2015/01/29/rpm/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/rpm/</guid>
         
-        <category>3d</category>
+        <category>linux</category>
+        
+        <category>shell</category>
         
         
       </item>
     
       <item>
-        <title>使用3D Max</title>
-        <description>&lt;p&gt;#3D Max&lt;br /&gt;
-##骨骼&lt;br /&gt;
-* 1、创建人物模型&lt;br /&gt;
-* 2、全选模型，右键-转换为-转换为可编辑网络&lt;br /&gt;
-   到修改面板，进入顶点层级将相邻的面焊接&lt;br /&gt;
-* 3、点击Biped ，创建人物骨骼&lt;br /&gt;
-* 4、运动面板-体形模式，移动骨骼和人体吻合。（F3：转为线框模式）&lt;br /&gt;
-* 5、运动面板-体形模式&lt;br /&gt;
-* 6、修改面板-蒙皮，将人体骨骼全部添加&lt;br /&gt;
-* 7、将整个模型渲染成纹理，烘培的贴图一定要同模型一并放到U3d项目文件夹的Assets中&lt;br /&gt;
-* 8、导出FBX，选择骨骼&lt;/p&gt;
-
-&lt;p&gt;##烘培&lt;br /&gt;
-有两种方式：LightMap，渲染出来的贴图只带有阴影信息，不包含基本纹理&lt;br /&gt;
-将模型的基本纹理贴图和LightMap阴影贴图两者叠加&lt;br /&gt;
-最终模型纹理比较清楚，可以使用重复纹理贴图，可直接导出FBX文件，不用修改贴图通道&lt;br /&gt;
-不带高光&lt;br /&gt;
-CompleteMap，渲染出来的贴图本身就带有基本纹理和光影信息&lt;br /&gt;
-没有细节纹理，近处时纹理比较模糊&lt;/p&gt;
-
-&lt;p&gt;用Poly多边形建模&lt;br /&gt;
-平移视图 鼠标中键&lt;br /&gt;
-旋转视图 Alt+鼠标中键&lt;br /&gt;
-缩放视图 鼠标滚轮&lt;br /&gt;
-对齐到视图 V&lt;br /&gt;
-自动平滑 A&lt;br /&gt;
-选择定点级别 1&lt;br /&gt;
-选择边级别 2&lt;br /&gt;
-选择边界级别 3&lt;br /&gt;
-选择多边形级别 4&lt;br /&gt;
-选择元素级别 5&lt;br /&gt;
-选择对象级别 6&lt;br /&gt;
-打开变换输入 F12&lt;br /&gt;
-进入倒角模式 Shift+Ctrl+B&lt;br /&gt;
-倒角设置 Ctrl+B&lt;br /&gt;
-断开 Shift+B&lt;br /&gt;
-连接 Shift+Ctrl_E&lt;br /&gt;
-连接边设置 Ctrl_N&lt;br /&gt;
-切割 Alt_C&lt;br /&gt;
-分离 Ctrl_D&lt;br /&gt;
-挤出模式 E&lt;br /&gt;
-进入挤出设置 Ctrl_E&lt;br /&gt;
-翻转法线 F&lt;br /&gt;
-进入插入顶点模式 Shift+I&lt;br /&gt;
-进入插入模式 I&lt;br /&gt;
-插入设置 Ctrl+I&lt;br /&gt;
-选择循环边 Alt+L&lt;br /&gt;
-选择环形边 Alt_R&lt;br /&gt;
-收缩选择 Ctrl_PageDown&lt;br /&gt;
-分割边 Shift+P&lt;br /&gt;
-进入目标焊接模式 Shift_Ctrl_W&lt;br /&gt;
-焊接设置 Ctrl_W&lt;br /&gt;
-使用软件选择 Ctrl_S&lt;br /&gt;
-塌陷 Shift_L&lt;br /&gt;
-约束到边 Shift_X&lt;br /&gt;
-约束到面 X&lt;br /&gt;
-从边创建图形 Shift_M&lt;/p&gt;
-
-&lt;p&gt;A——角度捕捉开关 B——切换到底视图 &lt;br /&gt;
-C——切换到摄像机视图 D——封闭视窗 &lt;br /&gt;
-E——切换到轨迹视图 F——切换到前视图 &lt;br /&gt;
-G——切换到网格视图 H——显示通过名称选择对话框 &lt;br /&gt;
-I——交互式平移 J——选择框显示切换 &lt;br /&gt;
-K——切换到背视图 L——切换到左视图 &lt;br /&gt;
-M——材质编辑对话框 N——动画模式开关 &lt;br /&gt;
-O——自适应退化开关 P——切换到透视用户视图 &lt;br /&gt;
-Q——显示选定物体三角形数目 R——切换到右视图 &lt;br /&gt;
-S——捕捉开关 T——切换到顶视图 &lt;br /&gt;
-U——切换到等角用户视图 V——旋转场景 &lt;br /&gt;
-W——最大化视窗开关 X——坐标轴高亮显示开关 &lt;br /&gt;
-Y——工具样界面转换 Z——缩放模式&lt;/p&gt;
-
-&lt;p&gt;[——交互式移近 ]——交互式移远 &lt;br /&gt;
-/——播放动画 F1——帮助文件 &lt;br /&gt;
-F3——线框与光滑高亮显示切换 F4——DEGED FACES 显示切换 &lt;br /&gt;
-F5——约束到X轴方向 F6——约束到Y轴方向 &lt;br /&gt;
-F7——约束到Z轴方向 F8——约束轴面循环 &lt;br /&gt;
-F9——快速渲染 F10——渲染对话框 &lt;br /&gt;
-F11——MAX脚本程序编辑 F12——键盘输入变换&lt;/p&gt;
+        <title>redhat init script</title>
+        <description>&lt;p&gt;redhat启动脚本顺序&lt;br /&gt;
+加载内核&lt;br /&gt;
+执行init程序&lt;br /&gt;
+/etc/rc.d/rc.sysinit&lt;br /&gt;
+			#调入keymap及系统字体&lt;br /&gt;
+			#启动swapping&lt;br /&gt;
+			#设置主机名&lt;br /&gt;
+			#设置NIS域名&lt;br /&gt;
+			#fsck 并mount文件系统&lt;br /&gt;
+			#打开quota&lt;br /&gt;
+			#装载声卡模块&lt;br /&gt;
+			#设置系统时钟&lt;br /&gt;
+/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$RUNLEVEL&lt;br /&gt;
+			#执行相应等级目录下的脚本/etc/rc.d/rc3.d/Sxxx&lt;br /&gt;
+/etc/rc.d/rc.local&lt;br /&gt;
+/sbin/mingetty		#等待用户登录&lt;/p&gt;
 </description>
         <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
-        <link>http://emotion.net.cn/2015/01/29/3D-Max/</link>
-        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/3D-Max/</guid>
+        <link>http://emotion.net.cn/2015/01/29/redhat-init-script/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/redhat-init-script/</guid>
         
-        <category>3d</category>
+        <category>linux</category>
+        
+        <category>kernel init</category>
+        
+        <category>script</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>linux program</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;//错误处理&lt;/h1&gt;
+&lt;p&gt;//&lt;errno.h&gt;中定义了变量errno&lt;/errno.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &lt;string.h&gt;
+char* strerrno(int errno);		//指向消息字符串的指针&lt;/string.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &lt;stdio.h&gt;
+void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno&lt;/stdio.h&gt;&lt;/p&gt;
+
+&lt;p&gt;目录的读权限：对目录进行搜索的能力&lt;br /&gt;
+目录的写权限：在目录中创建和删除文件的能力&lt;br /&gt;
+目录的执行权限：打开或访问目录中包含的文件或子目录时搜索目录的能力&lt;/p&gt;
+
+&lt;p&gt;粘着位sticky bit:t&lt;br /&gt;
+如果文件设置了粘着位，那么只有文件的数组或root才可以删除该文件&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/prog-tmp/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/prog-tmp/</guid>
+        
+        <category>linux prog</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>signal</title>
+        <description>&lt;p&gt;信号集的处理&lt;/p&gt;
+
+&lt;p&gt;int sigemptyset(sigset_t &lt;em&gt;set); //创建set并且情况信号集&lt;br /&gt;
+int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号&lt;br /&gt;
+int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号&lt;br /&gt;
+int sigdelset(sigset_t&lt;/em&gt;set,int signo); //将set信号集中的signo定义的信号剔除&lt;/p&gt;
+
+&lt;p&gt;以上四个函数成功调用返回0,失败返回1&lt;/p&gt;
+
+&lt;p&gt;int sigismember(const sigset_t *set,int signo); //判断set信号集中是否已经包含signo所指向的信号,真返回1,假返回0&lt;br /&gt;
+int sigprocmask(int how,const sigset_t *set,sigset_t *oset);    //设置信号集的屏蔽位,如果oset不为NULL,则oset返回当前修改之前的屏蔽字&lt;br /&gt;
+how的参数定义&lt;br /&gt;
+SIG_BLOCK : 屏蔽set所包含的所有信号&lt;br /&gt;
+SIG_UNBLOCK : 解除set所包含的所有信号&lt;br /&gt;
+SIG_SETMASK : 直接设置屏蔽信号所指向的值给set信号集&lt;/p&gt;
+
+&lt;p&gt;int sigaction(int signo,const struct sigction &lt;em&gt;act,struct sigaction *oact);&lt;br /&gt;
+sigaction函数的功能是检测或者修改signo信号关联的处理动作&lt;br /&gt;
+signo是要检测或者修改具体动作的信号编号数,若act非NULL,则修改它的动作,如果oact非NULL,则返回该信号的原先动作&lt;br /&gt;
+struct sigaction{&lt;br /&gt;
+void (&lt;/em&gt;sa_handler)(int signo); //用户自定义处理函数,或者SIG_DFL或者 SIG_IGN&lt;br /&gt;
+sigset_t sa_mask;       //信号集,用来指导在信号处理指向过程中哪些信号要被阻塞&lt;br /&gt;
+int sa_flags;   //信号选项,包括是否则色,是否忽略SIGSTOP,SIGSTP,SIGTTIN,SIGTTOU信号,是否自定义信号只执行一次等等&lt;br /&gt;
+void (*as_restore);       &lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;int sigpending(sigset_t *set); //用于检测set信号集中是否为未决的信号,比如在信号集阻塞时的信号&lt;/p&gt;
+
+&lt;p&gt;sa_restorer已过时，POSIX不支持它，不应再使用。&lt;/p&gt;
+
+&lt;p&gt;当你的信号需要接收附加信息的时候，你必须给sa_sigaction赋信号处理函数指针，同时还要给sa_flags赋SA_SIGINFO, 如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;          sigemptyset(&amp;amp;sig_act.sa_mask);
+          sig_act.sa_sigaction=sig_handler_with_arg;
+          sig_act.sa_flags=SA_SIGINFO; 如果你的应用程序只需要接收信号，而不需要接收额外信息，那你需要的设置的是sa_handler,而不是sa_sigaction，如下：
+          sigemptyset(&amp;amp;sig_act.sa_mask);
+          sig_act.sa_handler=sig_handler;
+          sig_act.sa_flags=0;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;新版本&lt;br /&gt;
+信号发送函数sigqueue()及信号安装函数sigaction()&lt;/p&gt;
+
+&lt;p&gt;信号值位于SIGRTMIN和SIGRTMAX之间的信号都是可靠信号，可靠信号克服了信号可能丢失的问题。&lt;br /&gt;
+这些信号支持排队，不会丢失。&lt;/p&gt;
+
+&lt;p&gt;信号阻塞：当信号发生而无法处理的时候，不要忽略该信号，在进程准备好时再通知它&lt;br /&gt;
+信号产生到在进程上标记标志之间，信号未决(pending)&lt;/p&gt;
+
+&lt;p&gt;三个函数改变信号屏蔽字&lt;br /&gt;
+sigpending将制定的哦信号设置为阻塞和pending&lt;br /&gt;
+sigprocmask查询和设置当前进程的信号屏蔽字&lt;br /&gt;
+sigsuspend在原子操作中实现恢复信号屏蔽字,并且使进程睡眠&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/prog-signal/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/prog-signal/</guid>
+        
+        <category>linux prog</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>io</title>
+        <description>&lt;h1 id=&quot;io&quot;&gt;//文件IO&lt;/h1&gt;
+&lt;p&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &amp;lt;sys/stat.h&amp;gt;&lt;br /&gt;
+#include &lt;fcntl.h&gt;
+int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
+	oflag
+	O_RDONLY	0	只读
+	O_WRONLY	1	只写
+	O_RDWR		2	读写
+	O_APPEND		写到文件尾
+	O_CREAT			若不存在则创建，需要创建mods
+	O_EXCL			同时指定O_CREAT， 文件存在则出错，文件不存在则创建
+	O_TRUNC			若文件存在，且只读或只写打开，则文件长度截短为0
+	O_NOCTTY		若打开终端设备，则不将此设备分配为此进程的控制终端
+	O_NONBLOCK		若打开FIFO、块文件、字符文件，为此文件的本次打开操作和后续的IO操作设置非阻塞方式
+	O_SYNC			每次write都等到物理IO完成才返回，同步&lt;/fcntl.h&gt;&lt;/p&gt;
+
+&lt;p&gt;===============================================&lt;br /&gt;
+#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &amp;lt;sys/stat.h&amp;gt;&lt;br /&gt;
+#icnlude &lt;fcntl.h&gt;&lt;/fcntl.h&gt;&lt;/p&gt;
+
+&lt;p&gt;int creat(const char* pathname, mode_t mode);		//返回文件描述符&lt;br /&gt;
+open(pathname, O_WRONLY|O_CREAT|O_TRUNC, mode);		//等价于&lt;/p&gt;
+
+&lt;p&gt;===============================================&lt;br /&gt;
+#include &lt;unistd.h&gt;
+int close(int filedes);		//成功:0, 出错:-1&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;===============================================&lt;br /&gt;
+#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &lt;unistd.h&gt;&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;off_t lseek(int filedes, off_t offset, int whence);		//如果文件为管道文件或FIFO，返回-1&lt;br /&gt;
+//whence&lt;br /&gt;
+//SEEK_SET	设置文件当前位置为 文件开始+offset，offset取正值&lt;br /&gt;
+//SEEK_CUR	设置文件当前位置为 当前位置+offset，offset取正负值&lt;br /&gt;
+//SEEK_END	设置文件当前位置为 文件长度+offset，offset取正负值&lt;/p&gt;
+
+&lt;p&gt;off_t currpos = lseek(fd, 0, SEEK_CUR);		//获取文件当前位置&lt;br /&gt;
+//如果文件为管道文件或FIFO，返回-1&lt;br /&gt;
+//lseek不引起文件IO&lt;br /&gt;
+//文件位移可以大于文件长度，对该文件的下一次写将延长文件，并留下空洞&lt;/p&gt;
+
+&lt;p&gt;===============================================&lt;br /&gt;
+#include &lt;unistd.h&gt;
+ssize_t read(int filedes, void *buff,  size_t nbytes);		//返回读到的字节数，0为文件尾&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;//从终端设备读时，一次最多读一行&lt;br /&gt;
+//从网络读时，最多读取缓冲中的字符数&lt;/p&gt;
+
+&lt;p&gt;#include &lt;unistd.h&gt;
+ssize_t write(int filedes, const void* buff, size_t nbytes);	//返回已写的字节数&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;===============================================&lt;br /&gt;
+#include &lt;unistd.h&gt;
+int dup(int filedes);	//返回当前最小的可用文件描述符
+			//等效于fcntl(filedes, F_DUPFD, 0);
+int dup2(int filedes, int filedes2);		//已filedes2指定新描述符的数值, 如果filedes2已经打开，先将其关闭
+			//等效于close(filedes2); fcntl(filedes, F_DUPFD, filedes2);&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;&lt;/fcntl.h&gt;&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;int fcntl(int filedes, int cmd, … /* int arg */);	&lt;br /&gt;
+	cmd&lt;br /&gt;
+	F_DUPFD		//复制现存的描述符， 		返回新文件描述符&lt;br /&gt;
+	F_GETFD		//获得/设置文件描述符标志	返回文件描述符标志&lt;br /&gt;
+	F_SETFD		&lt;br /&gt;
+	F_GETFL		//获得/设置文件状态标志		&lt;br /&gt;
+	F_SETFL		&lt;br /&gt;
+	F_GETOWN	//获得/设置异步I/O有权&lt;br /&gt;
+	F_SETOWN&lt;br /&gt;
+	F_GETLK		//获得/设置记录锁&lt;br /&gt;
+	F_SETLK&lt;br /&gt;
+	F_SETLKW&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;F_GETFL/F_SETFL
+文件状态标志位
+O_RDONLY	//只读打开
+O_WRONLY	//只写打开
+O_RDWR		//读写打开,	这三个的掩码为O_ACCMODE
+O_APPEND	//写时添加至文件尾
+O_NONBLOCK	//非阻塞方式
+O_YNC		//等待写完成
+O_ASYNC		//异步IO
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;======================================================================================&lt;br /&gt;
+#include &lt;unistd.h&gt;
+#include &amp;lt;sys/ioctl.h&amp;gt;&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;int ioctl(int filedes, int request, …);&lt;/p&gt;
+
+&lt;p&gt;======================================================================================&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/prog-io-basic/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/prog-io-basic/</guid>
+        
+        <category>linux prog</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Linux dir</title>
+        <description>&lt;p&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &amp;lt;sys/stat.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;int stat(const char* pathname, struct stat* buf);&lt;br /&gt;
+int fstat(int filedes, struct stat* buf);&lt;br /&gt;
+int lstat(const char* pathname, struct stat* buf);&lt;/p&gt;
+
+&lt;p&gt;struct stat {&lt;br /&gt;
+	mode_t 	st_mode;	//file type &amp;amp; mode&lt;br /&gt;
+	ino_t	st_ino;		//inode number&lt;br /&gt;
+	dev_t	st_dev;		//device number&lt;br /&gt;
+	dev_t	st_rdev;	//device number for special files&lt;br /&gt;
+	nlink_t	st_nlink;	//number of links&lt;br /&gt;
+	uid_t	st_uid;		//user id for owner&lt;br /&gt;
+	gid_t	st_gid;		//group id for owner&lt;br /&gt;
+	off_t	st_size;	//size in bytes, for regular files&lt;br /&gt;
+	time_t	st_atimve;	//time of last access&lt;br /&gt;
+	time_t 	st_mtime;	//time of last modification&lt;br /&gt;
+	time_t	st_ctime;	//time of last file status change&lt;br /&gt;
+	long	st_blksize;	//best IO block size&lt;br /&gt;
+	long	st_blocks;	//number of 512-byte blocks allocated&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;文件类型				|&lt;br /&gt;
+————————|&lt;br /&gt;
+&amp;lt;sys/stat.h&amp;gt;			|&lt;br /&gt;
+————————|&lt;br /&gt;
+S_ISREG(st_mode)		|&lt;br /&gt;
+S_ISDIR(st_mode)		|&lt;br /&gt;
+S_ISCHR(st_mode)		|&lt;br /&gt;
+S_ISBLK(st_mode)		|&lt;br /&gt;
+S_ISFIFO(st_mode)		|&lt;br /&gt;
+S_ISLNK(st_mode)		|&lt;br /&gt;
+S_ISSOCK(st_mode)		|	&lt;br /&gt;
+————————&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;用户ID							|&lt;br /&gt;
+——————————-	|&lt;br /&gt;
+实际uid		实际上是谁			|&lt;br /&gt;
+实际gid							|&lt;br /&gt;
+——————————-	|&lt;br /&gt;
+有效uid		用于文件许可权检查	|&lt;br /&gt;
+有效gid							|&lt;br /&gt;
+添加gid							|&lt;br /&gt;
+——————————-	|&lt;br /&gt;
+保存设置uid	由exec函数保存		|&lt;br /&gt;
+保存设置gid						|&lt;br /&gt;
+——————————–&lt;/p&gt;
+
+&lt;p&gt;======================================================================&lt;br /&gt;
+#include &lt;unistd.h&gt;
+int access(const char* pathname, int mode);	//成功返回0
+	mode
+	R_OK	//读许可权
+	W_OK	//写许可权
+	X_OK	//执行许可权
+	F_OK	//文件是否存在&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;======================================================================&lt;br /&gt;
+#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &amp;lt;sys/stat.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;mode_t umask(mode_t cmask);	//返回旧屏蔽字，将cmask中指定的权限从后续的文件操作中去掉&lt;br /&gt;
+	cmask&lt;br /&gt;
+	S_IRUSR		//用户-读&lt;br /&gt;
+	S_IWUSR		//用户-写&lt;br /&gt;
+	S_IXUSR		//用户-执行&lt;br /&gt;
+	S_IRGRP		//组-读&lt;br /&gt;
+	S_IWGRP		//组-写&lt;br /&gt;
+	S_IXGRP		//组-执行&lt;br /&gt;
+	S_IROTH		//其他-读&lt;br /&gt;
+	S_IWOTH		//其他-写&lt;br /&gt;
+	S_IXOTH		//其他-执行&lt;/p&gt;
+
+&lt;p&gt;======================================================================&lt;br /&gt;
+#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &amp;lt;sys/stat.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;int chmode(const char* pathname, mode_t mode);&lt;br /&gt;
+int fchmod(int filedes, mode_t mode);&lt;br /&gt;
+	mode&lt;br /&gt;
+	S_ISUID&lt;br /&gt;
+	S_ISGID&lt;br /&gt;
+	S_ISVTX&lt;br /&gt;
+	S_IRWXU	= S_IRUSR S_IWUSR S_IXUSR&lt;br /&gt;
+	S_IRWXG = S_IRGRP S_IWGRP S_IXGRP&lt;br /&gt;
+	S_IRWXO = S_IROTH S_IWOTH S_IXOTH&lt;/p&gt;
+
+&lt;p&gt;======================================================================&lt;br /&gt;
+#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &lt;unistd.h&gt;&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;int chown(const char* pathname, uid_t owner, gid_t group);&lt;br /&gt;
+int fchown(int filedes, uid_t owner, gid_t group);&lt;br /&gt;
+int lchown(const char* pathname, uid_t owner, gid_t group);&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;文件截断&lt;/h1&gt;
+&lt;p&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &lt;unistd.h&gt;&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;int truncate(const char* pathname, off_t length);&lt;br /&gt;
+int ftruncate(int filedes, off_t length);&lt;/p&gt;
+
+&lt;p&gt;======================================================================&lt;br /&gt;
+#inlcude &lt;unistd.h&gt;
+int link(const char* existingpath, const char* newpath);&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &lt;unistd.h&gt;
+int unlink(const char* pathname);		//删除一个现存的目录项&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &lt;stdio.h&gt;
+int remove(const char* pathname);		//对文件与unlink函数相同，对于目录与rmdir函数相同&lt;/stdio.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &lt;stdio.h&gt;
+int rename(const char* oldname, const char* newname);&lt;/stdio.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &lt;unistd.h&gt;
+int symlink(const char* acutualpath, const char* sympath);	//创建链接
+int readlink(const char* pathname, char buf, int bufsize);	//组合了open，read，close&lt;/unistd.h&gt;&lt;/p&gt;
+
+&lt;p&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;br /&gt;
+#include &lt;utime.h&gt;
+int utime(const char* pathname, const struct utimebuf times);	//文件的存取/修改时间&lt;/utime.h&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/prog-dir/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/prog-dir/</guid>
+        
+        <category>linux prog</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>vfs</title>
+        <description>&lt;h2 id=&quot;vfs&quot;&gt;VFS&lt;/h2&gt;
+&lt;p&gt;sys_read&lt;br /&gt;
+	current-&amp;gt;file-&amp;gt;f_op-&amp;gt;read();&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;超级块对象&lt;/h2&gt;
+&lt;p&gt;struct supper_block&lt;br /&gt;
+{&lt;br /&gt;
+	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks&lt;br /&gt;
+	kdev_t			s_dev;&lt;br /&gt;
+	struct list_head	s_dirty;	//脏inode节点, link by inode-&amp;gt;i_list&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;索引节点对象&lt;/h2&gt;
+&lt;p&gt;struct inode&lt;br /&gt;
+{&lt;br /&gt;
+	struct list_head	i_hash;&lt;br /&gt;
+	struct list_head	i_list;		//放在全局列表中&lt;br /&gt;
+	struct list_head	i_dentry;	//每个inode可能存在多个目录项&lt;br /&gt;
+}&lt;br /&gt;
+索引节点对文件是唯一的，随文件存在而存在。&lt;/p&gt;
+
+&lt;p&gt;全局列表	//link by inode-&amp;gt;i_list&lt;br /&gt;
+inode_in_use	//inode.i_count &amp;gt; 0; 页面不脏;的inode存在于这个列表中&lt;br /&gt;
+inode_unused	//inode.i_count - 0; 页面不脏;的inode存在于这个列表中&lt;br /&gt;
+anon_hash_chain	//inodes with NULL i_sb;&lt;br /&gt;
+sb-&amp;gt;i_dirty	//脏inode&lt;/p&gt;
+
+&lt;p&gt;全局hash表&lt;br /&gt;
+static struct list_head *inode_hashtable;//inode-&amp;gt;i_hash解决hash冲突&lt;/p&gt;
+
+&lt;h2 id=&quot;file&quot;&gt;file对象&lt;/h2&gt;
+&lt;p&gt;描述进程怎样与打开的文件交互，文件对象爱你个在文件被打开时创建&lt;br /&gt;
+struct file&lt;br /&gt;
+{&lt;br /&gt;
+	struct list_head	f_list;&lt;br /&gt;
+	sturct dentry*		f_dentry;&lt;br /&gt;
+	struct vfsmount*	f_vfsmnt;&lt;br /&gt;
+	struct file_operations*	f_op;&lt;br /&gt;
+	unsigned int 		f_count;	//引用计数&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;全局列表 	//link by file-&amp;gt;f_list&lt;br /&gt;
+free_list	//”未使用”file对象列表，可作为file对象的cache, file-&amp;gt;f_count = 0;&lt;br /&gt;
+anon_list	//”在使用”但未分配给超级块的file对象，file-&amp;gt;f_count = 1;&lt;br /&gt;
+sb-&amp;gt;s_files	//”在使用”已分配给超级块的file对象&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;目录项对象&lt;/h2&gt;
+&lt;p&gt;路径中的每一部分都对应于一个dentry对象&lt;br /&gt;
+存在于名为dentry_cache的slab中&lt;br /&gt;
+struct dentry&lt;br /&gt;
+{&lt;br /&gt;
+	struct inode*		d_inode;&lt;br /&gt;
+	struct dentry*		d_parent;&lt;br /&gt;
+	struct list_head 	d_hash;		//link in dentry_hash&lt;br /&gt;
+	struct list_head 	d_lru;		//link in 未使用队列&lt;br /&gt;
+	struct list_head 	d_child;	//link in 父目录项&lt;br /&gt;
+	struct list_head 	d_subdirs;	//子目录项列表&lt;br /&gt;
+	struct list_head 	d_alias;	//link in inode&lt;br /&gt;
+	struct qstr 		d_name;		//文件名&lt;br /&gt;
+	unsigned char		d_iname;	//短文件名&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;全局列表		//dentry-&amp;gt;d_list&lt;br /&gt;
+inode-&amp;gt;i_dentry		//在使用的，link by dentry-&amp;gt;d_alias，一个inode可能有多个dentry&lt;br /&gt;
+dentry_unused;		//未使用的LRU列表, link by dentry-&amp;gt;d_lru&lt;br /&gt;
+负状态&lt;/p&gt;
+
+&lt;p&gt;全局hash表&lt;br /&gt;
+dentry_hashtable&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;进程相关结构&lt;/h2&gt;
+&lt;p&gt;struct fs_struct			//表示进程与文件系统交互所需信息,task-&amp;gt;fs&lt;br /&gt;
+{&lt;br /&gt;
+	atomic_t 	count;&lt;br /&gt;
+	struct dentry*	root;&lt;br /&gt;
+	struct dentry*	pwd;&lt;br /&gt;
+	struct dentry*	altroot;&lt;br /&gt;
+	struct vfsmount&lt;em&gt;rootmnt;&lt;br /&gt;
+	struct vfsmount&lt;/em&gt;pwdmnt;&lt;br /&gt;
+	struct vfsmount*altrootmnt;&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;struct files_struct			//表示进程当前打开的文件,task-&amp;gt;files&lt;br /&gt;
+{&lt;br /&gt;
+	atomic_t	count;&lt;br /&gt;
+	struct file**	fd;&lt;br /&gt;
+	struct file**	fd_array;&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;文件系统类型对象&lt;/h2&gt;
+&lt;p&gt;struct file_system_type&lt;br /&gt;
+{&lt;br /&gt;
+	super_block* (*)()	read_super;	//读取该文件系统超级块的方法&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;全局&lt;br /&gt;
+static struct file_system_type *file_systems;&lt;br /&gt;
+register_filesystem();			//将file_system_type放入全局列表file_systems中，每个文件系统不能有相同文件名&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;已安装的文件系统对象&lt;/h2&gt;
+&lt;p&gt;struct vfsmount&lt;br /&gt;
+{&lt;br /&gt;
+	struct list_head mnt_hash;&lt;br /&gt;
+	struct vfsmount *mnt_parent;&lt;br /&gt;
+	struct dentry *mnt_mountpoint;&lt;br /&gt;
+	struct dentry *mnt_root;&lt;br /&gt;
+	struct super_block *mnt_sb;&lt;br /&gt;
+	struct list_head mnt_mounts;	//子文件系统的列表&lt;br /&gt;
+	struct list_head mnt_child;	//link in 父文件系统的mnt_mounts;&lt;br /&gt;
+	struct list_head mnt_list;&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;全局列表&lt;/p&gt;
+
+&lt;p&gt;全局hashtable&lt;br /&gt;
+mount_hashtable;	//vfsmount-&amp;gt;mnt_hash解决hash冲突&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;路径名查找&lt;/h2&gt;
+&lt;p&gt;struct nameidata {&lt;br /&gt;
+	struct dentry *dentry;&lt;br /&gt;
+	struct vfsmount *mnt;&lt;br /&gt;
+	struct qstr last;&lt;br /&gt;
+	unsigned int flags;&lt;br /&gt;
+	int last_type;&lt;br /&gt;
+};&lt;/p&gt;
+
+&lt;p&gt;path_init&lt;br /&gt;
+path_walk&lt;br /&gt;
+path_release&lt;/p&gt;
+
+&lt;p&gt;__user_walk;(char* name, nameidata* nd)		//作为wrap函数，被很多系统调用使用&lt;br /&gt;
+	-getname;	//从用户空间获得数据&lt;br /&gt;
+	-path_lookup&lt;br /&gt;
+		-path_init&lt;br /&gt;
+			-walk_init_root&lt;br /&gt;
+		-path_wakk&lt;br /&gt;
+	-putname;&lt;/p&gt;
+
+&lt;p&gt;传到path_init的name是一个文件路径&lt;br /&gt;
+path_init()根据name是从根目录开始还是从当前目录开始，初始化nd-&amp;gt;mnt, nd-&amp;gt;dentry,指定搜索的起始位置&lt;br /&gt;
+	如果从根目录开始，调用walk_init_root&lt;br /&gt;
+	如果从相对目录开始，nd-&amp;gt;mnt = current-&amp;gt;fs-&amp;gt;pwdmnt; nd-&amp;gt;dentry = current-&amp;gt;fs-&amp;gt;pwd&lt;br /&gt;
+path_walk()&lt;br /&gt;
+	-link_path_walk&lt;br /&gt;
+		-permission	//inode检查MAY_EXEC权限&lt;br /&gt;
+		-follow_dotdot	//查看上层目录&lt;br /&gt;
+				//开始搜索目录&lt;br /&gt;
+		-cached_lookup	&lt;br /&gt;
+			-d_lookup	//dentry_hashtable&lt;br /&gt;
+		-real_lookup	&lt;br /&gt;
+			-d_alloc	//从dentry_cache分配一个目录项，初始化&lt;br /&gt;
+			-parent-&amp;gt;d_inode-&amp;gt;i_op-&amp;gt;lookup(parent-&amp;gt;d_inode, dentry)&lt;br /&gt;
+					//通过父节点inode读取dentry&lt;br /&gt;
+					//即ext2_lookup&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;文件系统的安装&lt;/h2&gt;
+&lt;p&gt;struct namespace {&lt;br /&gt;
+	atomic_t		count;&lt;br /&gt;
+	struct vfsmount *	root;&lt;br /&gt;
+	struct list_head	list;&lt;br /&gt;
+	struct rw_semaphore	sem;&lt;br /&gt;
+};&lt;/p&gt;
+
+&lt;p&gt;三个mount函数&lt;br /&gt;
+sys_mount			//系统调用&lt;br /&gt;
+	copy_mount_options&lt;br /&gt;
+	do_mount&lt;br /&gt;
+		do_remount&lt;br /&gt;
+		do_loopback	//建立/dev/loop0与普通文件之间的关系，命令losetup&lt;br /&gt;
+		do_move_mount&lt;br /&gt;
+		do_add_mount&lt;br /&gt;
+mount_root			//init进程-&amp;gt;prepare_namespace-&amp;gt;mount_root&lt;br /&gt;
+	devfs_make_root&lt;br /&gt;
+	create_dev(“/dev/root”,);&lt;br /&gt;
+	rd_load_disk&lt;br /&gt;
+	mount_block_root&lt;br /&gt;
+kern_mount			//安装特殊文件系统&lt;br /&gt;
+	do_kern_mount&lt;/p&gt;
+
+&lt;p&gt;1、安装根文件系统&lt;br /&gt;
+start_kernel-&amp;gt;mnt_init&lt;br /&gt;
+	init_rootfs&lt;br /&gt;
+		-register_filesystem(“rootfs”)&lt;br /&gt;
+	init_mount_tree&lt;br /&gt;
+		-do_kernel_mount&lt;br /&gt;
+			-type = get_fs_type&lt;br /&gt;
+			-mnt = alloc_vfsmnt&lt;br /&gt;
+			-sb = 	get_sb_bdev	这里复杂,常规文件系统&lt;br /&gt;
+				get_sb_single	&lt;br /&gt;
+				get_sb_nodev	无设备文件系统&lt;br /&gt;
+				-path_lookup&lt;br /&gt;
+				-fs_type-&amp;gt;read_super&lt;br /&gt;
+				-path_release&lt;/p&gt;
+
+&lt;p&gt;2、安装一般文件系统&lt;br /&gt;
+sys_mount&lt;br /&gt;
+	do_mount&lt;/p&gt;
+
+&lt;p&gt;卸载文件系统&lt;br /&gt;
+umount&lt;/p&gt;
+
+&lt;p&gt;__setup(“root=”, root_dev_setup);&lt;br /&gt;
+	root_dev_setup&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/kernel-vfs/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/kernel-vfs/</guid>
+        
+        <category>linux kernel</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>kernel</title>
+        <description>&lt;p&gt;list_head寄宿在其他宿主数据结构中&lt;br /&gt;
+INIT_LIST_HEAD(ptr)初始化list_head&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;举例说明&lt;/h1&gt;
+&lt;p&gt;typedef struct page&lt;br /&gt;
+{&lt;br /&gt;
+	struct list_head list;  	//page结构可以在这个队列中&lt;br /&gt;
+	struct list_head lru;		//page结构也可以在这个队列中&lt;br /&gt;
+	struct page* hash_next;		//hash队列&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;list_add(struct list_head *new, struct list_head *head);&lt;br /&gt;
+list_del(struct list_head *entry);&lt;/p&gt;
+
+&lt;p&gt;list_entry(ptr, type, member);	//获得宿主结构的指针&lt;/p&gt;
+
+&lt;p&gt;内核最大可以访问896M(MAXMEM)MAXMAM_PFN&lt;/p&gt;
+
+&lt;p&gt;_end是内核映像的结束处，pfn为start_pfn&lt;/p&gt;
+
+&lt;p&gt;start_kernel&lt;br /&gt;
+	-setup_arch&lt;br /&gt;
+		调用e820map,获得所有内存地址图&lt;br /&gt;
+		计算pfn，只有RAM可计算pfn&lt;br /&gt;
+		init_bootmem(start_pfn, max_low_pfn)&lt;br /&gt;
+			在start_pfn(_end)， 构建位图，记录所有的pfn，哪些是空洞，哪些不能动态分配&lt;br /&gt;
+		paging_init()&lt;br /&gt;
+			pagetable_init    	//扩充asm建立的页表，使用swapper_pg_dir做页目录表&lt;br /&gt;
+			flush_tbl_all		//将高速缓存的内容刷到内存&lt;br /&gt;
+			kmap_init			//内核中设置ige全局的pte_t指针kmap_pte,执行页面映射表中的一个表项，这个表项将动态地映射到不同的物理页面&lt;br /&gt;
+								//每当要访问一个属于“高内存”的物理页面时，&lt;br /&gt;
+								//就要先改变这个表项。&lt;br /&gt;
+								//函数kmap_init的作用主要就是设置指针kmap_pte&lt;br /&gt;
+			frea_area_init&lt;br /&gt;
+			men_init			&lt;br /&gt;
+				free_all_bootmem//bootmem位图中的数据不再需要&lt;/p&gt;
+
+&lt;p&gt;cpu_initialized全局位图，每个CPU在这个位图中都有对应的标志位&lt;/p&gt;
+
+&lt;p&gt;资源request_resource&lt;br /&gt;
+两棵树&lt;br /&gt;
+iomem_resource&lt;br /&gt;
+ioport_resource&lt;/p&gt;
+
+&lt;p&gt;一个数组&lt;br /&gt;
+rom_resources[] &lt;br /&gt;
+	System ROM (BIOS) 0xF0000~0xFFFFF&lt;br /&gt;
+	Video ROM	  0xC0000~0xC7FFF&lt;/p&gt;
+
+&lt;p&gt;page_cache_init分配空间建立起缓冲页面hash表page_hash_table&lt;br /&gt;
+以cpu编号为下标的数组init_tasks[]&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/kernel-tmp/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/kernel-tmp/</guid>
+        
+        <category>linux kernel</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>task</title>
+        <description>&lt;p&gt;全局变量&lt;/p&gt;
+
+&lt;p&gt;#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】&lt;br /&gt;
+#define init_stack	(init_task_union.stack)&lt;/p&gt;
+
+&lt;p&gt;struct task_struct * init_tasks[NR_CPUS] = {&amp;amp;init_task, };	//【kernel/sched.c】&lt;/p&gt;
+
+&lt;p&gt;static LIST_HEAD(runqueue_head);	//runing task列表&lt;br /&gt;
+wake_up_process&lt;br /&gt;
+	-try_to_wake_up&lt;br /&gt;
+		-add_to_runqueue&lt;/p&gt;
+
+&lt;p&gt;static struct task_struct *task_struct_head;&lt;br /&gt;
+static unsigned int nr_task_struct;&lt;/p&gt;
+
+&lt;p&gt;task_struct&lt;br /&gt;
+{&lt;br /&gt;
+	… …&lt;br /&gt;
+	struct list_head &lt;em&gt;prev_task;	//link to init_task&lt;br /&gt;
+	struct list_head *next_task;&lt;br /&gt;
+	struct list_head *run_list;	//link to runqueue_head list&lt;br /&gt;
+	… …&lt;br /&gt;
+	pid_t pid;&lt;br /&gt;
+	struct list_head thread_group; //线程组&lt;br /&gt;
+	… …&lt;br /&gt;
+	struct task_struct *pidhash_next;//解决pidhash表中的冲突&lt;br /&gt;
+	struct task_struct **pidhash_pprev;&lt;br /&gt;
+	… …&lt;br /&gt;
+	wait_queue_head_t wait_chldexit;	/&lt;/em&gt; for wait4() */&lt;br /&gt;
+	… …&lt;br /&gt;
+	struct rlimit rlim[RLIM_NLIMITS];&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct thread_struct thread;		//保存硬件tss中相关数据 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;do_fork&lt;br /&gt;
+	-alloc_task_struct		//分配2个页面做描述符和进程内核堆栈()&lt;/p&gt;
+
+&lt;p&gt;SET_LINK	//把描述符放入链表中&lt;br /&gt;
+MOVE_LINK	//把描述符从链表中删除&lt;/p&gt;
+
+&lt;p&gt;for_each_task(p)	//遍历进程&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;可运行队列&lt;/h2&gt;
+&lt;p&gt;struct list_head runqueue_head;		//全局，所有可运行进程的队列&lt;br /&gt;
+add_to_runqueue(p);			//将进程加入可运行队列&lt;br /&gt;
+del_from_runqueue(p);			//&lt;br /&gt;
+move_first_runqueue();			//将进程描述符移动到可运行队列的开头&lt;br /&gt;
+move_last_runqueue();			//将进程描述符移动到可运行队列的末尾&lt;/p&gt;
+
+&lt;h2 id=&quot;pidhash&quot;&gt;pidhash&lt;/h2&gt;
+&lt;p&gt;struct task_struct *pidhash[PIDHASH_SZ];//全局，&lt;br /&gt;
+pidhash[pid_hashfn(p-&amp;gt;pid)];		&lt;br /&gt;
+find_task_by_pid(int pid);		//从pid得到struct task_struct&lt;br /&gt;
+hash_pid();				//在pidhash中插入进程&lt;br /&gt;
+unhash_pid();				//在pidhash中删除进程&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;等待队列&lt;/h2&gt;
+&lt;p&gt;struct wait_queue_head_t;	//等待队列头，每个等待队列一个队列头&lt;br /&gt;
+struct wait_queue_t		//等待队列中的元素，每个元素一个睡眠进程&lt;br /&gt;
+{&lt;br /&gt;
+	unsigned int flags;&lt;br /&gt;
+	struct *task_struct;&lt;br /&gt;
+	struct list_head task_list;&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;进程切换&lt;/h2&gt;
+&lt;p&gt;进程切换只发生在内核态，执行进程切换之前，用户态进程使用的所有寄存器内容都已保存，如用户态堆栈指针ss和esp。&lt;br /&gt;
+Linux不是哦那个硬件文境切换，但强制为系统中每个不同的CPU创建一个TSS&lt;br /&gt;
+	cpu从用户态切换到内核态是，从tss中获取内核态堆栈地址&lt;br /&gt;
+	用户态访问I/O端口时，cpu访问tss中的I/O许可权位图&lt;br /&gt;
+struct tss_struct{}	描述tss结构&lt;br /&gt;
+task_struct-&amp;gt;thread	保存进程的tss&lt;/p&gt;
+
+&lt;p&gt;switch_to&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;进程创建&lt;/h2&gt;
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/kernel-task/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/kernel-task/</guid>
+        
+        <category>linux kernel</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>swap</title>
+        <description>&lt;h1 id=&quot;pageswap&quot;&gt;交换page到交换分区(swap)&lt;/h1&gt;
+&lt;p&gt;当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。&lt;/p&gt;
+
+&lt;p&gt;全局struct mm_struct *swap_mm = &amp;amp;init_mm&lt;/p&gt;
+
+&lt;p&gt;alloc_pages-&amp;gt;__alloc_pages-&amp;gt;balance_classzone&lt;br /&gt;
+free_more_memory-&amp;gt;try_to_free_pages&lt;br /&gt;
+kswapd-&amp;gt;kswapd_balance-&amp;gt;kswapd_balance_pgdat&lt;br /&gt;
+	-try_to_free_pages_zone&lt;br /&gt;
+		-shrink_caches&lt;br /&gt;
+			-shrink_cache&lt;br /&gt;
+				-swap_out&lt;/p&gt;
+
+&lt;p&gt;swap_out-&amp;gt;swap_out_mm-&amp;gt;swap_out_vma&lt;br /&gt;
+	-&amp;gt;swap_out_pgd-&amp;gt;swap_out_pmd&lt;br /&gt;
+	-&amp;gt;try_to_swap_out&lt;br /&gt;
+		-PageSwapCache		//查看页面是否在swap cache中，page-&amp;gt;mapping = swapper_space&lt;br /&gt;
+		-get_swap_page		//获得交换区的一个交换槽&lt;br /&gt;
+		-add_to_swap_cache	//放入swap cache&lt;br /&gt;
+		-set_pte		//将交换槽信息写入pte&lt;/p&gt;
+
+&lt;p&gt;当mm-&amp;gt;swap_address=TASK_SIZE，说明该进程已经被完全的搜索了一遍&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;交换区描述&lt;/h1&gt;
+&lt;p&gt;struct swap_info_struct swap_info[MAX_SWAPFILES];&lt;br /&gt;
+truct swap_info_struct&lt;br /&gt;
+{&lt;br /&gt;
+	… …&lt;br /&gt;
+	kdev_t swap_device;		//该交换区所使用的设备&lt;br /&gt;
+	struct dentry *swap_file;	//交换区挂载的dentry&lt;br /&gt;
+	struct vfsmount *swap_vfsmnt;&lt;br /&gt;
+	unsigned short *swap_map;	//交换区中页面槽的位图，槽使用者的引用计数&lt;br /&gt;
+	… …&lt;br /&gt;
+}&lt;br /&gt;
+多个交换区有优先级，最优先交换区存放在全局变量sturct swap_list_t swap_list,通过swap_into_struct-&amp;gt;next在swap_info数组&lt;br /&gt;
+中寻找&lt;/p&gt;
+
+&lt;p&gt;1、每个交换区在磁盘上划出大量页面大小的槽，第一个槽存放交换区信息&lt;br /&gt;
+2、在页面换出时，相应页表项pte中存放交换槽的信息：交换槽在swap_info中的下标、交换槽在swap_info-&amp;gt;swap_map中的偏移量，&lt;br /&gt;
+   即在pte中存入swp_entry_t&lt;br /&gt;
+   pte_to_swp_entry()&lt;br /&gt;
+   swp_entry_to_pte()&lt;/p&gt;
+
+&lt;p&gt;在x86中，&lt;br /&gt;
+   swp_entry_t的&lt;br /&gt;
+   第0位:  _PAGE_PRESENT&lt;br /&gt;
+   1-6位:  标识swap_info数组下标的类型，由宏SWAP_TYPE()返回该值&lt;br /&gt;
+   第7位:  _PAGE_PROTNONE&lt;br /&gt;
+   8-31位: 代表交换文件内的页号，即swap_map中的偏移，共24位，交换分区最大2&lt;em&gt;24&lt;/em&gt;4K=64G, SWAP_OFFSET()返回该值&lt;/p&gt;
+
+&lt;p&gt;SWP_ENTRY(type, offset)，生成一个swp_entry_t&lt;/p&gt;
+
+&lt;p&gt;寻找可用的交换槽&lt;br /&gt;
+get_swap_page()		//从swap_list中的交换区开始寻找可用的交换槽,寻找type&lt;br /&gt;
+	-scan_swap_map()//寻找在swap_map寻找可用的offset&lt;/p&gt;
+
+&lt;p&gt;swap_free()		//释放交换槽&lt;/p&gt;
+
+&lt;h1 id=&quot;swap-cache&quot;&gt;交换高速缓存(swap cache)&lt;/h1&gt;
+&lt;p&gt;全局交换高速缓存描述struct swap_cache_info&lt;br /&gt;
+swap cache总是使用swapper_space作为page-&amp;gt;mapping的地址空间&lt;br /&gt;
+add_to_swap_cache()	//将页面放入swap cache&lt;br /&gt;
+	-add_to_page_cache_unique	//将page放到page cache&lt;/p&gt;
+
+&lt;p&gt;handle_pte_fault-&amp;gt;do_swap_page&lt;br /&gt;
+lookup_swap_cache(entry)	//&lt;br /&gt;
+read_swap_cache_async		//&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Jan 2015 20:00:00 +0800</pubDate>
+        <link>http://emotion.net.cn/2015/01/29/kernel-swap/</link>
+        <guid isPermaLink="true">http://emotion.net.cn/2015/01/29/kernel-swap/</guid>
+        
+        <category>linux kernel</category>
         
         
       </item>

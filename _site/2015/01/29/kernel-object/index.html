@@ -10,9 +10,9 @@
     <meta name="keyword"  content="awd, 3d, code, imdb, motion, music, sifi, ios, Android, cocos2d-x, Unity, game, laravel, ruby, rails">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Awd的博客 | AWD</title>
+    <title>data struct - Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/2015/01/29/kernel-object/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -138,452 +138,266 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>AWD</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Motion, Music, Code</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#linux kernel" title="linux kernel">linux kernel</a>
+                        
+                    </div>
+                    <h1>data struct</h1>
+                    
+                    
+                    <h2 class="subheading"> "linux kernel data struct"</h2>
+                    
+                    <span class="meta">Posted by awd on January 29, 2015</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2015/01/29/rpm/">
-        <h2 class="post-title">
-            rpm
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "redhat package manager"
-        </h3>
-        
-        <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
+				<h2 id="section">节点</h2>
+<p>struct pg_data_t {					//NUMA非一致内存访问<br />
+	zone_t node_zones[MAX_NR_ZONES];<br />
+	zonelist_t node_zonelists[GFP_ZONEMASK+1];<br />
+	int nr_zones;<br />
+	struct page *node_mem_map;<br />
+	unsigned long *valid_addr_bitmap;<br />
+	struct bootmem_data *bdata;<br />
+	unsigned long node_start_paddr;			//节点的起始物理地址<br />
+	unsigned long node_start_mapnr;			// index of start page in mem_map[]<br />
+	unsigned long node_size;<br />
+	int node_id;<br />
+	struct pg_data_t *node_next;			//所有内存节点连在一起,放入pgdat_list<br />
+}<br />
+全局变量<br />
+pg_data_t *pgdat_list;					//对于UMA结构的pc来说，列表中只有一个对象<br />
+pg_data_t contig_page_data;</p>
 
-apt-get update
-apt-get insta...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<h2 id="section-1">管理区</h2>
+<p>struct zone_t<br />
+{<br />
+	unsigned long free_pages;<br />
+	unsigned long pages_min, pages_low, pages_high;<br />
+	int need_balance;</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
-        <h2 class="post-title">
-            redhat init script
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "redhat启动脚本"
-        </h3>
-        
-        <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<pre><code>free_area_t	free_area[MAX_ORDER];
+wait_queue_head_t*	wait_table;
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
-        <h2 class="post-title">
-            linux program
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux program tmp notes"
-        </h3>
-        
-        <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
+struct pglist_data* 	zone_pgdat;		//指向节点结构
+struct page*		zone_mem_map;		//管理区管理的page在mem_map中第一页的index
+unsigned long 		zone_start_paddr;	//同node_start_paddr
+unsigned long 		zone_start_mapnr;	//同node_start_mapnr }
+</code></pre>
 
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
+<p>空闲页面小于pages_low, 伙伴分配器唤醒kswapd释放页面</p>
 
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
+<h2 id="section-2">页面对象</h2>
+<p>struct page<br />
+{<br />
+	struct list_head list;		/* -&gt;mapping has some page lists. */<br />
+					//用于free_area_t中<br />
+					//用于address_space中<br />
+	struct address_space *mapping;	//页所属于的address_space<br />
+	unsigned long index;		//在mapping中的索引，已页大小为单位<br />
+	struct page *next_hash;		//page_hash_table<br />
+	struct page **pprev_hash;</p>
 
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<pre><code>atomic_t count;			//usage count
+struct list_head lru;		//inactive_list or active_list
+struct buffer_head * buffers;	/* Buffer maps us to a disk block. */
+</code></pre>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
-        <h2 class="post-title">
-            signal
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux signal program"
-        </h3>
-        
-        <div class="post-content-preview">
-            信号集的处理
+<p>}</p>
 
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>struct page **page_hash_table; 	//page_hash(宏得到hash槽)<br />
+add_page_to_hash_queue		//页放入page cache hashtable</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
-        <h2 class="post-title">
-            io
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux IO Porgram"
-        </h3>
-        
-        <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>add_page_to_inode_queue		//放入page cache对象address_space的clean_pages队列</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
-        <h2 class="post-title">
-            Linux dir
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
-        <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
+<p>全局变量<br />
+struct list_head inactive_list;<br />
+struct list_head active_list;<br />
+	add_page_to_active_list()<br />
+	add_page_to_inactive_list()<br />
+	del_page_from_active_list()<br />
+	del_page_from_inactive_list()</p>
 
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>初始化mem_map[]		//paging_init</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
-        <h2 class="post-title">
-            vfs
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
-        <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
+<h2 id="pagetableinit">页目录			//pagetable_init()初始化页表</h2>
+<p>task-&gt;mm-&gt;pgd</p>
 
-超级块对象
-struct supper_block
-{
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>pgd_alloc	pgd_free<br />
+pmd_alloc	pmd_free<br />
+pte_alloc	pte_free</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
-        <h2 class="post-title">
-            kernel
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "tmp note"
-        </h3>
-        
-        <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
+<h2 id="section-3">进程地址空间描述符</h2>
+<p>struct mm_struct<br />
+{<br />
+	struct vm_area_struct * mmap;		/* list of VMAs <em>/<br />
+	rb_root_t mm_rb;			//使用红黑树<br />
+	struct vm_area_struct * mmap_cache;	/</em> last find_vma result <em>/<br />
+	pgd_t * pgd;				//目录表地址<br />
+	atomic_t mm_users;			<br />
+	atomic_t mm_count;			<br />
+	int map_count;				/</em> number of VMAs */</p>
 
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<pre><code>struct list_head mmlist;		/* List of all active mm's.  These are globally strung
+					 * together off init_mm.mmlist, and are protected
+					 * by mmlist_lock
+					 */ } 每个进程有一个内存地址空间的描述符，线程共享一个mm_struct, 新进程从mm_cachep的slab中分配一个描述符
+</code></pre>
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
-        <h2 class="post-title">
-            task
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
-        <div class="post-content-preview">
-            全局变量
+<h2 id="section-4">内存区域</h2>
+<p>struct vm_arae_struct<br />
+{<br />
+	struct mm_struct * vm_mm;	/* The address space we belong to. <em>/<br />
+	unsigned long vm_start;		/</em> Our start address within vm_mm. <em>/<br />
+	unsigned long vm_end;		/</em> The first byte after our end address within vm_mm. */</p>
 
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
+<pre><code>struct vm_area_struct *vm_next;
 
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+pgprot_t vm_page_prot;		/* Access permissions of this VMA. */
+unsigned long vm_flags;		/* Flags, listed below. */
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
-        <h2 class="post-title">
-            swap
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
-        <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
+rb_node_t vm_rb;
 
-全局struct mm_struct *swap_mm = &amp;init_mm
+struct vm_area_struct *vm_next_share;
+struct vm_area_struct **vm_pprev_share;
+struct vm_operations_struct * vm_ops;
 
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+struct file * vm_file;		/* File we map to (can be NULL). */ }
+</code></pre>
 
 
-<!-- Pager -->
 
-<ul class="pager">
-    
-    
-    <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+                <hr>
+
+                
 
 
-    		</div>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/01/29/kernel-init/" data-toggle="tooltip" data-placement="top" title="kernel init">
+                        Previous<br>
+                        <span>kernel init</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/01/29/kernel-page-cache/" data-toggle="tooltip" data-placement="top" title="page cache">
+                        Next<br>
+                        <span>page cache</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2015/01/29/kernel-object"
+                        data-title="data struct"
+                        data-url="http://emotion.net.cn/2015/01/29/kernel-object/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
-                    <h5><a href="">FEATURED TAGS</a></h5>
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#3d" title="3d" rel="2">
+                				<a href="/tags/#3d" title="3d" rel="2">
                                     3d
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux kernel" title="linux kernel" rel="22">
+                				<a href="/tags/#linux kernel" title="linux kernel" rel="22">
                                     linux kernel
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux" title="linux" rel="6">
+                				<a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#shell" title="shell" rel="5">
+                				<a href="/tags/#shell" title="shell" rel="5">
                                     shell
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux prog" title="linux prog" rel="4">
+                				<a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-hux.jpg" />
-                        
-                        
-                            <p>programmer, dreamer。</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.facebook.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
-                <h5>FRIENDS</h5>
+                <div style="display: none">
+                <h5>Links</h5>
                 <ul class="list-inline">
                     
                         <li><a href="http://qianduan.guru/">前端外刊评论</a></li>
@@ -603,11 +417,72 @@ free_more_memory-&...
                         <li><a href="http://wepiaofei.github.io/blog/">前端神盾局</a></li>
                     
                 </ul>
+                </div>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'awd1559';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

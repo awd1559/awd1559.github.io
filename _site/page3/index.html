@@ -12,7 +12,7 @@
 
     <title>Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/page3/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -169,27 +169,22 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/01/29/rpm/">
+    <a href="/2015/01/29/kernel-binfmt/">
         <h2 class="post-title">
-            rpm
+            binfmt
         </h2>
         
         <h3 class="post-subtitle">
-             "redhat package manager"
+             "bin format"
         </h3>
         
         <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
-
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
-
-apt-get update
-apt-get insta...
+            static struct linux_binfmt *formats;	//全局(exec.c)
+… …
+static struct linux_binfmt aout_format;	//(fs/binfmt_aout.c)
+static struct linux_binfmt elf_format;	//(fs.binfmt_elf.c)
+… …
+//通过register_binfmt...
         </div>
     </a>
     <p class="post-meta">
@@ -199,29 +194,26 @@ apt-get insta...
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
+    <a href="/2015/01/29/kernel-asm/">
         <h2 class="post-title">
-            redhat init script
+            kernel asm script
         </h2>
         
         <h3 class="post-subtitle">
-             "redhat启动脚本"
+             "kernel asm script"
         </h3>
         
         <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
+            switch_to
+
+从终端或异常处理程序返回，如果当前内核控制路径只有一个，则返回用户态
+如果有其他的请求，则继续执行请求
+如果没有请求，处理当前进程未处理的信号，并代表当前进程继续在内核态执行
+ret_from_intr			//终止中断处理程序
+	//在ebx中装入当前进程描述符的地址,ret_from_sys_call要求
+	//ret_from_exception
+
+ret_fro...
         </div>
     </a>
     <p class="post-meta">
@@ -231,28 +223,30 @@ apt-get insta...
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
+    <a href="/2015/01/29/kernel-api/">
         <h2 class="post-title">
-            linux program
+            api
         </h2>
         
         <h3 class="post-subtitle">
-             "linux program tmp notes"
+             "kernel api"
         </h3>
         
         <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
+            部分内容属于2.6
 
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
+1、进程管理
+set_task_state(task, state);		//设置任务状态
+	set_current_state(state);
 
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
+for_each_process(task)	//遍历任务队列
+next_task(task)
+prev_task(task)
 
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
+kernel_thread();	//创建内核线程
+
+2、进程调度
+set_tsk_need_...
         </div>
     </a>
     <p class="post-meta">
@@ -262,22 +256,28 @@ void perror(const char* msg)	//输出以msg开头的错误信息，错误信息�
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
+    <a href="/2015/01/29/kernel-IO2/">
         <h2 class="post-title">
-            signal
+            io2
         </h2>
         
         <h3 class="post-subtitle">
-             "Linux signal program"
+             "io2"
         </h3>
         
         <div class="post-content-preview">
-            信号集的处理
+            IO读写
 
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
+全局变量
+struct blk_dev_struct {
+	/*
+	 * queue_proc has to be atomic
+	 */
+	request_queue_t		request_queue;   	//请求队列
+	queue_proc		*queue;			//函数
+	void			*data;
+};
+struct blk_dev_struct blk_dev[MA...
         </div>
     </a>
     <p class="post-meta">
@@ -287,79 +287,33 @@ int sigdelset(sigset_tse...
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
+    <a href="/2015/01/29/kernel-IO/">
         <h2 class="post-title">
             io
         </h2>
         
         <h3 class="post-subtitle">
-             "Linux IO Porgram"
+             "io"
         </h3>
         
         <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+            IO管理
+三种总线类型
+数据总线
+地址总线
+控制总线
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
-        <h2 class="post-title">
-            Linux dir
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
-        <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
-        <h2 class="post-title">
-            vfs
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
-        <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
-
-超级块对象
-struct supper_block
+struct resourc		//IO地址的一个范围
 {
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
+	const char *name;
+	unsigned long start, end;
+	unsigned long flags;
+	struct resource *parent, *sibling, *child;
+};
+
+全局变量
+ioport_resource
+io...
         </div>
     </a>
     <p class="post-meta">
@@ -369,25 +323,25 @@ struct supper_block
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
+    <a href="/2015/01/29/kernel-Bios/">
         <h2 class="post-title">
-            kernel
+            bios
         </h2>
         
         <h3 class="post-subtitle">
-             "tmp note"
+             "bios"
         </h3>
         
         <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
+            i386加电时，cs = 0xffff， ip=0，这个地址就是Bios所在的地址
+Bios读取磁盘的第一个扇区(MBR),到0x7c00处，并执行
 
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
+BIOS内存分布
+oxA0000即640KB以上都用于图形接口卡和BIOS本身
+oxA0000即640KB一下为系统的基本内存
+从0x100000即1MB开始为“高内存”
+
+
         </div>
     </a>
     <p class="post-meta">
@@ -397,22 +351,26 @@ typedef struct page
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
+    <a href="/2015/01/29/kernel-0.11%E7%9A%84boot/">
         <h2 class="post-title">
-            task
+            0.11的boot
         </h2>
         
         <h3 class="post-subtitle">
-             "linux kernel task"
+             "0.11的boot"
         </h3>
         
         <div class="post-content-preview">
-            全局变量
-
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
-
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
+            1、利用Int 13读磁盘Sector，加载Setup、加载System模块
+2、Setup
+	a、Bios中顿保存硬件信息，覆盖BootSector
+	b、将System模块移动到内存0处
+	c、加载临时idt、gdt
+	d、开A20，初始化 级联的8259芯片
+	e、进入保护模式，
+					mov ax， 0X0001
+					lmsw ax
+	f、跳到System的head中执行，...
         </div>
     </a>
     <p class="post-meta">
@@ -422,23 +380,96 @@ struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
+    <a href="/2015/01/29/cmd-shell/">
         <h2 class="post-title">
-            swap
+            shell
         </h2>
         
         <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
+             "shell脚本"
         </h3>
         
         <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
+            shell 脚本
+按照如下顺序寻找该执行的命令
+1)别名
+2)关键字
+3)函数
+4)内置命令
+5)PATH中的可执行程序
 
-全局struct mm_struct *swap_mm = &amp;init_mm
+变量：局部变量和环境变量
+管道： who | wc #who命令输出传为wc的输入
+重定向: who &gt; file #who命令的输出到file文件
 
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
+
+命令
+————————————————————————
+ps – 当前运行进程
+pstree – 进程树
+id...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cmd-sed/">
+        <h2 class="post-title">
+            sed
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "文本模式匹配"
+        </h3>
+        
+        <div class="post-content-preview">
+            sed
+1)逐行处理文本
+2)把正在处理的行保存到临时缓冲区，称为模式空间
+3)执行完sed命令后，将该行发送到屏幕，读取下一行
+还有一个暂存缓冲区(8192)，供hH存放，供gG读取
+
+正则表达式是括在斜杠间的模式
+sed optoion ‘command’ filenames
+例子：	sed ‘1,3d’ file		#删除1-3行，其他行默认打印，不影响原文件
+	sed -n ‘/[J...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/01/29/cmd-grep/">
+        <h2 class="post-title">
+            grep
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "文本模式匹配"
+        </h3>
+        
+        <div class="post-content-preview">
+            grep
+grep -n ‘.5s’ datafile	#输出符合模式的行，包含.5s的行
+
+-n	#输出原文件中的行号
+-i	#不区分大小写
+-v	#输出不符合模式的行
+-l	#只输出文件名
+-w	#模式作用于词
+
+egrep 在grep元字符集上增加了更多的元字符
+fgrep 在linux中为grep -F, 没有元字符，模式中字符为字面含义
+
+Linux中
+grep ‘pattern’...
         </div>
     </a>
     <p class="post-meta">
@@ -452,9 +483,13 @@ free_more_memory-&...
 
 <ul class="pager">
     
+    <li class="previous">
+        <a href="/page2">&larr; Newer Posts</a>
+    </li>
+    
     
     <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
+        <a href="/page4">Older Posts &rarr;</a>
     </li>
     
 </ul>

@@ -10,9 +10,9 @@
     <meta name="keyword"  content="awd, 3d, code, imdb, motion, music, sifi, ios, Android, cocos2d-x, Unity, game, laravel, ruby, rails">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>使用Maya - Awd的博客 | AWD</title>
+    <title>shell - Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/2015/01/29/maya/">
+    <link rel="canonical" href="http://emotion.net.cn/2015/01/29/cmd-shell/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -159,13 +159,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#3d" title="3d">3d</a>
+                        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+                        
+                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
                         
                     </div>
-                    <h1>使用Maya</h1>
+                    <h1>shell</h1>
                     
                     
-                    <h2 class="subheading"> "常用方法和快捷键"</h2>
+                    <h2 class="subheading"> "shell脚本"</h2>
                     
                     <span class="meta">Posted by awd on January 29, 2015</span>
                 </div>
@@ -185,96 +187,86 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<blockquote>
-  <p>maya<br />
-创建物体<br />
-Create-&gt;NURBS-&gt;Primitive<br />
-Alt+左键           拖拽<br />
-Alt+右键	         缩放<br />
-中键			移动<br />
-F			使物体在屏幕居中<br />
-A                      屏幕上显示场景冲所有物体</p>
-</blockquote>
+				<h2 id="shell-">shell 脚本</h2>
+<p>按照如下顺序寻找该执行的命令<br />
+1)别名<br />
+2)关键字<br />
+3)函数<br />
+4)内置命令<br />
+5)PATH中的可执行程序</p>
 
-<p>F3 	多边形模式<br />
-F4 	surface模式<br />
-F5 	particle模式</p>
+<p>变量：局部变量和环境变量<br />
+管道： who | wc #who命令输出传为wc的输入<br />
+重定向: who &gt; file #who命令的输出到file文件</p>
 
-<p>4 线条显示<br />
-5 实体显示<br />
-6 </p>
+<hr />
+<p>命令<br />
+————————————————————————<br />
+ps – 当前运行进程<br />
+pstree – 进程树<br />
+id  – 当前用户<br />
+env – shell的环境变量<br />
+set  – 显示或设置shell的局部变量和环境变量</p>
 
-<p>Y last Tool<br />
-G 重复上个命令</p>
+<hr />
+<p>bash sehll<br />
+————————————————————————<br />
+#!/bin/bash		#第一行<br />
+* ? [ ]			#用于文件名通配符<br />
+&lt; &gt; 2&gt; » |		#用于IO重定向和管道</p>
 
-<p>F8 Enter/Exit Component Mode</p>
+<p>echo how are you &lt;?&gt;<br />
+echo “how are you &lt;?&gt;”  #通配符必须用反斜杠或引号输出</p>
 
-<p>Window-&gt;Render Editors-&gt;Hypershade<br />
-	添加材质球<br />
-	鼠标中键拖动到物体上，赋予材质</p>
+<p>var=value		#不能有空格<br />
+declare var=value;	#declare内置函数定义局部变量</p>
 
-<p>Window - Animation Editor - Express Editor<br />
-	object.TranslateY = sin(time)</p>
+<p>export VAR=value	#export内置函数定义全局变量<br />
+			#全局变量当脚本执行结束，退出子进程，依然存在</p>
 
-<p>Skeleton-&gt;Joint Tool<br />
-	定义骨骼工具</p>
+<p>echo $var		#$提取变量</p>
 
-<p>Create Deforme-&gt;Cluster<br />
-	创建Cluster辅助对象</p>
+<p>read name1 name2	#读取用户输入</p>
 
-<p>按住v，拖动Joint Tool，把骨骼吸附到Cluster</p>
+<p>#命令行参数<br />
+$scriptname arg1 arg2 arg3 …<br />
+#脚本中<br />
+echo $1 $2 $3…	#命令行参数<br />
+echo $*			#所有参数<br />
+echo $#			#参数的个数</p>
 
-<p>选中对象<br />
-Shift＋骨骼root节点<br />
-Skin－Bind Skin－Smooth Bind绑定骨骼</p>
+<p>declare -a array_name=(word1 word2 word3…)		#定义数组<br />
+declare -a fruit=(apples pears plums)<br />
+echo ${fruit[0]}					#读取数组</p>
 
-<p>Skeleton-&gt;IK Handle Tool</p>
+<p>var=<code>cmd</code>		#使用命令输出<br />
+var=$(cmd)		#<br />
+echo “Today is <code>date</code>”	#<br />
+echo “Today is $(date)”	#</p>
 
-<p>沿路径运动<br />
-Animate - Motion Paths - Attach To Motion Path</p>
+<p>#if…else<br />
+if command			#命令<br />
+if [[expression]]		#表达式求真<br />
+if ((numeric expression))	#算术式求真<br />
+then<br />
+	block of statements<br />
+else<br />
+	block of statements<br />
+fi</p>
 
-<p>自动记录动画帧<br />
-选中channel box中的属性，key selected<br />
-打开autokey</p>
+<p>case $color in<br />
+blue)<br />
+	echo blue<br />
+	;;<br />
+green)<br />
+	echo green<br />
+	;;<br />
+*)<br />
+	echo donot know<br />
+	;;<br />
+esac</p>
 
-<p>选中对象<br />
-Effect－&gt;create Fire</p>
-
-<p>view -&gt; image plane -&gt; input image</p>
-
-<p>3dMax<br />
-F3 线框显示<br />
-F4 线框实体显示<br />
-U  User View<br />
-P  Perspective View</p>
-
-<p>F5 x-轴<br />
-F6 y-轴<br />
-F7 z-轴</p>
-
-<p>SketchUp<br />
-space 	select<br />
-q		Rotate<br />
-e 		Eraser<br />
-r  		Rectangle<br />
-t		Tape Measuure<br />
-o 		Orbit<br />
-p 		Pull<br />
-a		Arc<br />
-s		Scale<br />
-f		Offset<br />
-g 		Component<br />
-h		Hand/Pan<br />
-l		Line<br />
-z		Zoom<br />
-c		Circle<br />
-b		Brush<br />
-m		Move</p>
-
-<p>Preference - Extensions - install Extensions *.rbz</p>
-
-<p>双击一个单独的面可以同时选中这个面和线</p>
-
+<p>$?		#最后一个命令的退出状态, 0为正常退出</p>
 
 
                 <hr>
@@ -285,12 +277,19 @@ m		Move</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2015/01/29/3D-Max/" data-toggle="tooltip" data-placement="top" title="使用3D Max">
+                        <a href="/2015/01/29/cmd-sed/" data-toggle="tooltip" data-placement="top" title="sed">
                         Previous<br>
-                        <span>使用3D Max</span>
+                        <span>sed</span>
                         </a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2015/01/29/kernel-0.11%E7%9A%84boot/" data-toggle="tooltip" data-placement="top" title="0.11的boot">
+                        Next<br>
+                        <span>0.11的boot</span>
+                        </a>
+                    </li>
                     
                 </ul>
 
@@ -299,9 +298,9 @@ m		Move</p>
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2015/01/29/maya"
-                        data-title="使用Maya"
-                        data-url="http://emotion.net.cn/2015/01/29/maya/" >
+                        data-thread-key="/2015/01/29/cmd-shell"
+                        data-title="shell"
+                        data-url="http://emotion.net.cn/2015/01/29/cmd-shell/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -328,6 +327,34 @@ m		Move</p>
                 				<a href="/tags/#3d" title="3d" rel="2">
                                     3d
                                 </a>
+                            
+        				
+                            
+                				<a href="/tags/#linux kernel" title="linux kernel" rel="22">
+                                    linux kernel
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#linux" title="linux" rel="6">
+                                    linux
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#shell" title="shell" rel="5">
+                                    shell
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#linux prog" title="linux prog" rel="4">
+                                    linux prog
+                                </a>
+                            
+        				
+                            
+        				
                             
         				
         			</div>

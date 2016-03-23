@@ -10,9 +10,9 @@
     <meta name="keyword"  content="awd, 3d, code, imdb, motion, music, sifi, ios, Android, cocos2d-x, Unity, game, laravel, ruby, rails">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Awd的博客 | AWD</title>
+    <title>sed - Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/2015/01/29/cmd-sed/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -138,452 +138,215 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>AWD</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Motion, Music, Code</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+                        
+                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        
+                    </div>
+                    <h1>sed</h1>
+                    
+                    
+                    <h2 class="subheading"> "文本模式匹配"</h2>
+                    
+                    <span class="meta">Posted by awd on January 29, 2015</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2015/01/29/rpm/">
-        <h2 class="post-title">
-            rpm
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "redhat package manager"
-        </h3>
-        
-        <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
+				<p>sed<br />
+1)逐行处理文本<br />
+2)把正在处理的行保存到临时缓冲区，称为模式空间<br />
+3)执行完sed命令后，将该行发送到屏幕，读取下一行<br />
+还有一个暂存缓冲区(8192)，供hH存放，供gG读取</p>
 
-apt-get update
-apt-get insta...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>正则表达式是括在斜杠间的模式<br />
+sed optoion ‘command’ filenames<br />
+例子：	sed ‘1,3d’ file		#删除1-3行，其他行默认打印，不影响原文件<br />
+	sed -n ‘/[Jj]ohn/p’ file#打印符合模式的行，其他行不输出</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
-        <h2 class="post-title">
-            redhat init script
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "redhat启动脚本"
-        </h3>
-        
-        <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>option<br />
+-e	允许多项编辑<br />
+-f	制定sed脚本<br />
+-n	取消默认的输出</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
-        <h2 class="post-title">
-            linux program
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux program tmp notes"
-        </h3>
-        
-        <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
+<p>command<br />
+a\	#在当前行后添加一行和多行<br />
+c\	#替换<br />
+d	#删除<br />
+i\	#在当前行之前插入<br />
+h	#模式空间里的内容复制到暂存缓冲区<br />
+H	#模式空间里的内容追加到暂存缓冲区<br />
+g	#用暂存缓冲区内容覆盖模式空间内容<br />
+G	#暂存缓冲区内容追加模式空间内容<br />
+l	#列出非打印字符<br />
+p	#打印<br />
+n	#读入下一行，并从下一条命令而不是第一条命令开始对其处理<br />
+q	#退出sed<br />
+r	#从文件中读取行到模式空间<br />
+!	#对所选行外的所有行应用命令<br />
+s	#字符串替换</p>
 
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
+<p>替换标志<br />
+g	#在行内进行全局替换<br />
+p	#打印<br />
+w	#将行写如文件<br />
+x	#交换暂存换种去与模式空间的内容<br />
+y	#将字符转化为另一个字符</p>
 
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
+<p>例子<br />
+sed -e ‘1,3d’ -e ‘s/Hemenway/Jones/’ datafile<br />
+多重编辑：删除1-3行，将Hemenway替换为Jones</p>
 
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>sed ‘/Suan/r newfile’ datafile<br />
+匹配模式后，在该行后输出文件newfile中的内容</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
-        <h2 class="post-title">
-            signal
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux signal program"
-        </h3>
-        
-        <div class="post-content-preview">
-            信号集的处理
+<p>sed ‘/north/w newfile’ datafile<br />
+将模式匹配的行写入文件newfile中</p>
 
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>sed ‘/^north/a \<br />
+this will added as next line —-‘ datafile<br />
+匹配模式后，添加一行</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
-        <h2 class="post-title">
-            io
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux IO Porgram"
-        </h3>
-        
-        <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>sed ‘/eastern/{n; s/AM/Archie/;}’ datafile<br />
+匹配模式后，对下一行执行n中的命令<br />
+多个命令组成一个命令用{}表示</p>
 
-<div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
-        <h2 class="post-title">
-            Linux dir
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
-        <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
-        <h2 class="post-title">
-            vfs
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
-        <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
-
-超级块对象
-struct supper_block
-{
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
-        <h2 class="post-title">
-            kernel
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "tmp note"
-        </h3>
-        
-        <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
-
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
-        <h2 class="post-title">
-            task
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
-        <div class="post-content-preview">
-            全局变量
-
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
-
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
-        <h2 class="post-title">
-            swap
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
-        <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
-
-全局struct mm_struct *swap_mm = &amp;init_mm
-
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+<p>sed -e ‘/^north/h’ -e ‘$G’ datafile<br />
+1)匹配模式后放到暂存缓冲区， <br />
+2)匹配最后一行后，取出holding buffer内容，追加匹配行(本例即最后一行)</p>
 
 
-<!-- Pager -->
+                <hr>
 
-<ul class="pager">
-    
-    
-    <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+                
 
 
-    		</div>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/01/29/cmd-grep/" data-toggle="tooltip" data-placement="top" title="grep">
+                        Previous<br>
+                        <span>grep</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/01/29/cmd-shell/" data-toggle="tooltip" data-placement="top" title="shell">
+                        Next<br>
+                        <span>shell</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2015/01/29/cmd-sed"
+                        data-title="sed"
+                        data-url="http://emotion.net.cn/2015/01/29/cmd-sed/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
-                    <h5><a href="">FEATURED TAGS</a></h5>
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                                <a href="/tags/#3d" title="3d" rel="2">
+                				<a href="/tags/#3d" title="3d" rel="2">
                                     3d
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux kernel" title="linux kernel" rel="22">
+                				<a href="/tags/#linux kernel" title="linux kernel" rel="22">
                                     linux kernel
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux" title="linux" rel="6">
+                				<a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#shell" title="shell" rel="5">
+                				<a href="/tags/#shell" title="shell" rel="5">
                                     shell
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#linux prog" title="linux prog" rel="4">
+                				<a href="/tags/#linux prog" title="linux prog" rel="4">
                                     linux prog
                                 </a>
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-hux.jpg" />
-                        
-                        
-                            <p>programmer, dreamer。</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.facebook.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/awd1559">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
                 <hr>
-                <h5>FRIENDS</h5>
+                <div style="display: none">
+                <h5>Links</h5>
                 <ul class="list-inline">
                     
                         <li><a href="http://qianduan.guru/">前端外刊评论</a></li>
@@ -603,11 +366,72 @@ free_more_memory-&...
                         <li><a href="http://wepiaofei.github.io/blog/">前端神盾局</a></li>
                     
                 </ul>
+                </div>
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'awd1559';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

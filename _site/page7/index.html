@@ -12,7 +12,7 @@
 
     <title>Awd的博客 | AWD</title>
 
-    <link rel="canonical" href="http://emotion.net.cn/">
+    <link rel="canonical" href="http://emotion.net.cn/page7/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -169,280 +169,269 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/01/29/rpm/">
+    <a href="/2014/06/09/cocoapod-ODRefreshControl/">
         <h2 class="post-title">
-            rpm
+            Cocoapod Odrefreshcontrol
         </h2>
         
-        <h3 class="post-subtitle">
-             "redhat package manager"
-        </h3>
-        
         <div class="post-content-preview">
-            finger @kernl.org			获得最新的代码列表
-
-Redhat Package Manager 
-rpm -e –nodeps 			强制卸载
-rpm -i src.rpm  			安装软件源代码包
-rpmbuild -bb H.src			做rpm
-rpm -ivh					安装rpm
-rpm -Uivh					升级
-
-apt-get update
-apt-get insta...
+            ODRefreshControl
+https://github.com/Sephiroth87/ODRefreshControl
+下拉刷新
+#import "ODRefreshControl.h"
+ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.scrollView];
+//...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/redhat-init-script/">
+    <a href="/2014/06/09/cocoapod-Neon/">
         <h2 class="post-title">
-            redhat init script
+            Cocoapod Neon
         </h2>
         
-        <h3 class="post-subtitle">
-             "redhat启动脚本"
-        </h3>
-        
         <div class="post-content-preview">
-            redhat启动脚本顺序
-加载内核
-执行init程序
-/etc/rc.d/rc.sysinit
-			#调入keymap及系统字体
-			#启动swapping
-			#设置主机名
-			#设置NIS域名
-			#fsck 并mount文件系统
-			#打开quota
-			#装载声卡模块
-			#设置系统时钟
-/etc/rc.d/rc $RUNLEVEL	#/etc/inittab中设定$...
+            Neon
+https://github.com/mamaral/Neon
+
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-tmp/">
+    <a href="/2014/06/09/cocoapod-Masonry/">
         <h2 class="post-title">
-            linux program
+            Cocoapod Masonry
         </h2>
         
-        <h3 class="post-subtitle">
-             "linux program tmp notes"
-        </h3>
-        
         <div class="post-content-preview">
-            //错误处理
-//中定义了变量errno
+            Masory
+https://github.com/SnapKit/Masonry
 
-#include 
-char* strerrno(int errno);		//指向消息字符串的指针
+pod "Masonry"
 
-#include 
-void perror(const char* msg)	//输出以msg开头的错误信息，错误信息定义来自errno
+#import "Masonry.h"
 
-目录的读权限：对目录进行搜索的能力
-目录的写权限：在目录中创建和删除文件的能力
-目录的执行权限：打开或访问...
+#define kScreen_Bounds [UIScreen mainScreen].bounds
+#define kScreen_Height [UIScreen mainScreen].bounds.size.height
+#d...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-signal/">
+    <a href="/2014/06/09/cocoapod-MJRefresh/">
         <h2 class="post-title">
-            signal
+            Cocoapod Mjrefresh
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux signal program"
-        </h3>
-        
         <div class="post-content-preview">
-            信号集的处理
+            MJRefresh
+https://github.com/CoderMJLee/MJRefresh
 
-int sigemptyset(sigset_t set); //创建set并且情况信号集
-int sigfillset(sigset_t *set); //创建set并使set包含所有linux的信号
-int addset(sigset_t *set,int signo);      //给set信号集增加一个signo信号
-int sigdelset(sigset_tse...
+pod ‘MJRefresh'
+
+
+
+//swift
+//不需要bridge文件
+//bridge.h
+//#import 
+
+import MJRefresh
+
+
+class ViewController : UITableViewController {
+
+//默认hedaer
+var ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-io-basic/">
+    <a href="/2014/06/09/cocoapod-MBProgressHUD/">
         <h2 class="post-title">
-            io
+            Cocoapod Mbprogresshud
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux IO Porgram"
-        </h3>
-        
         <div class="post-content-preview">
-            //文件IO
-#include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
-#include 
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
-	O_RDONLY	0	只读
-	O_WRONLY	1	只写
-	O_RDWR		2...
+            MBProgressHUD
+https://github.com/jdg/MBProgressHUD
+
+install
+pod 'MBProgressHUD', '~> 0.9.2'
+
+
+
+
+
+
+
+Usage
+
+[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+dispatch_async(dispatch_get_global_q...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/prog-dir/">
+    <a href="/2014/06/09/cocoapod-JazzHands/">
         <h2 class="post-title">
-            Linux dir
+            Cocoapod Jazzhands
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux dir"
-        </h3>
-        
         <div class="post-content-preview">
-            #include &lt;sys/types.h&gt;
-#include &lt;sys/stat.h&gt;
+            启动页滚动介绍页面动画
+https://github.com/IFTTT/JazzHands
 
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* bu...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
+//install
+pod "JazzHands"
 
-<div class="post-preview">
-    <a href="/2015/01/29/kernel-vfs/">
-        <h2 class="post-title">
-            vfs
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "vfs"
-        </h3>
-        
-        <div class="post-content-preview">
-            VFS
-sys_read
-	current-&gt;file-&gt;f_op-&gt;read();
+#import 
 
-超级块对象
-struct supper_block
+ViewController : IFTTTAnimatedPagingScrollViewController
+
+- (NSUInteger)numberOfPages
 {
-	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
-	kdev_t			s_dev;
-	struct list_head	s_dirty;	//脏inode...
+    return 4;
+}
+
+-(void)...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-tmp/">
+    <a href="/2014/06/09/cocoapod-JDStatusBarNotification/">
         <h2 class="post-title">
-            kernel
+            Cocoapod Jdstatusbarnotification
         </h2>
         
-        <h3 class="post-subtitle">
-             "tmp note"
-        </h3>
-        
         <div class="post-content-preview">
-            list_head寄宿在其他宿主数据结构中
-INIT_LIST_HEAD(ptr)初始化list_head
+            JDStatusBarNotification
+https://github.com/jaydee3/JDStatusBarNotification
 
-举例说明
-typedef struct page
-{
-	struct list_head list;  	//page结构可以在这个队列中
-	struct list_head lru;		//page结构也可以在这个队列中
-	struct page* hash_next;		//ha...
+/install
+pod ‘JDStatusBarNotification'
+
+//use 
++ (JDStatusBarView*)showWithStatus:(NSString *)status;
++ (JDStatusBarView*...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-task/">
+    <a href="/2014/06/09/cocoapod-ImageScroll/">
         <h2 class="post-title">
-            task
+            Cocoapod Imagescroll
         </h2>
         
-        <h3 class="post-subtitle">
-             "linux kernel task"
-        </h3>
-        
         <div class="post-content-preview">
-            全局变量
+            ImageScroll
+https://github.com/tpctt/ImageScroll
 
-#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
-#define init_stack	(init_task_union.stack)
+没有pod
+只有两个类的oc代码
 
-struct task_struct * init_tasks[NR_CPUS] = {&amp;init_task, };	//【kernel/...
+ImageSlideshow
+https://github.com/zvonicek/ImageSlideshow
+
+
+ParallaxImageScrolling
+https://github.com/lammertw/ParallaxImageScrol...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/kernel-swap/">
+    <a href="/2014/06/09/cocoapod-FontAwesome/">
         <h2 class="post-title">
-            swap
+            Cocoapod Fontawesome
         </h2>
         
-        <h3 class="post-subtitle">
-             "Linux Kernel mm swap"
-        </h3>
-        
         <div class="post-content-preview">
-            交换page到交换分区(swap)
-当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
+            FontAwesome.swift
+https://github.com/thii/FontAwesome.swift
 
-全局struct mm_struct *swap_mm = &amp;init_mm
 
-alloc_pages-&gt;__alloc_pages-&gt;balance_classzone
-free_more_memory-&...
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+
+pod ‘FontAwesome.swift'
+
+
+import FontAwesome_swi...
         </div>
     </a>
     <p class="post-meta">
-        Posted by awd on January 29, 2015
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/cocoapod-FMDB/">
+        <h2 class="post-title">
+            Cocoapod Fmdb
+        </h2>
+        
+        <div class="post-content-preview">
+            https://github.com/ccgus/fmdb
+
+pod ‘FMDB'
+
+FMDatabase
+FMResultSet
+FMDatabaseQueue
+
+//存在打开，不存在则创建
+//@“”: 在临时文件夹创建空数据库
+//NULL: 内存数据库
+FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db"];
+
+if...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
     </p>
 </div>
 <hr>
@@ -452,9 +441,13 @@ free_more_memory-&...
 
 <ul class="pager">
     
+    <li class="previous">
+        <a href="/page6">&larr; Newer Posts</a>
+    </li>
+    
     
     <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
+        <a href="/page8">Older Posts &rarr;</a>
     </li>
     
 </ul>
