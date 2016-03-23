@@ -1,0 +1,58 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+//UIPickerView
+
+NSDictionary *pickerData;
+NSArray *pickerProvincesData;
+NSArray *pickerCitiesData;
+
+
+NSBundle *bundle = [NSBundle mainBundle];
+NSString *plistPath = [bundle pathForResource:@“provinces_cities” ofType:@“plist”];
+NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+
+pickerData = dict;
+pickerProvincesData = [pickerData allKeys];
+pickerCitiesData = [pickerProvincesData objectAtIndex:0];
+
+
+#pragma mark 实现协议UIPickerViewDelegate方法
+-(NSString *)pickerView:(UIPickerView *)pickerView
+			titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+	if (component == 0) {//选择省份名
+		return [self.pickerProvincesData objectAtIndex:row];
+	} else {//选择市名
+		return [self.pickerCitiesData objectAtIndex:row];
+	}
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+	  didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	if (component == 0) {
+		NSString *seletedProvince = [self.pickerProvincesData objectAtIndex:row];
+		NSArray *array = [self.pickerData objectForKey:seletedProvince];
+		self.pickerCitiesData = array;
+		[self.pickerView reloadComponent:1];
+	}
+}
+#pragma mark 实现协议UIPickerViewDataSource方法
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+	return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+        numberOfRowsInComponent:(NSInteger)component {
+	if (component == 0) {//省份个数
+		return [self.pickerProvincesData count];
+	} else {//市的个数
+		return [self.pickerCitiesData count];
+	}
+}

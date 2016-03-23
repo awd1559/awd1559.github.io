@@ -1,0 +1,517 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+基本语法
+
+定义常量
+let constValue = 99
+let integerValue = 10.7 as Int
+
+定义变量
+var myValue = 90
+var myString = “Swi”
+myString += “ft”
+
+
+定义Array
+let myArray = [“s1”, “s2”, “s3”, “s4”]
+var myArray = [String]()
+myArray.append(“Swift”)
+myArray.insert(“ssss”, atIndex: 0)
+print(myArray[0])     //ssss
+
+Dictionary
+let allInfo  = [
+  “name”: “wang”,
+  “age” : 22
+  “address” : “shanghai”
+] as [String : AnyObject]
+//没有as AnyObject的话, Dictonary只能包含一种类型值
+
+println(allInfo[“address”])
+
+Operators
+可以重写operator
+func == (left: Person, right: Person) -> Bool{
+    if left.firstname == right.firstname && left.lastname == right.lastname { 
+        return true
+    } else {
+        return false
+    }
+}
+
+
+postfix ++(inout person: Person) -> Person{}
+prefix ++(inout person: Person) -> Person{}
+
+
+
+Enum
+enum CarType: String{
+    case Classic = “Classic”
+    case 
+}
+
+
+入口点:
+AppDelegate.swift
+@UIApplicaitonMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+}
+
+String
+let value = "Guten Tag!"
+value[value.startIndex]					//G
+value[value.endIndex.predecessor()]		//!
+value[value.startIndex.successor()]			//u
+let index = value.startIndex.advanceBy(7)
+value[index]						//a
+
+for index in value.characters.indices {		//
+	value[index]
+}
+
+value.insert("!", atIndex: value.endIndex)
+value.removeAtIndex(value.endIndex.predecessor())
+
+if value.hasPrefix("!")
+if value.hasSuffix("!")
+
+Array
+var someInts = [Int]()
+someInt.append(3)
+someints = []
+
+var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
+var anotherThreeDoubles = Array(count: 3, repeatedValue: 2.5)
+var doubles = threeDoubles + anotherThreeDoubles
+
+if someInts.isEmpty
+
+someInts.insert(3, atIndex: 0)
+someInts.removeAll()
+someInts.removeFirst()
+someInts.removeAtIndex(0)
+someInts.removeLast()
+someInts.removeRange(range:Range)
+
+
+for item in someInts {						//遍历
+	print(item)
+}
+for ( index, value) in someInts.enumerate() {
+	print(“Item \(index+1): \(value)”)
+}
+
+
+Set
+var value: Set = ["Rock", "Rock", “Rock"]				//Rock
+value.isEmpty
+value.remove(“Rock")
+value.contains(“Rock")
+for v in value
+
+// 集合操作
+a.intersect(b)			//a,b集合中都有的值
+a.exclusiveOr(b)		//a + b，但不在两个集合中的值
+a.union(b)			//a + b
+a.subtract(b)			//a - b
+
+Dictionary
+dict.isEmpty
+dict["name"] = "edw"
+
+if let name = dict[“name"] {
+	//if dict has "name"
+}
+
+for (k, v) in dict { }
+for v in dict.keys { }
+for v in dict.vlaues  {  }
+
+
+
+
+UI
+UIButton
+let button: UIButton! = UIButton(type: .System) as? UIButton
+button.frame = CGRect(x: 100, y:100, width: 100, height: 100)
+button.setTitle(“xxxx”, forState: .Normal)
+button.setBackgroundImage(normalImage, forState: .Normal)
+button.setBackgroundImage(highlightedImage, forState: .Highlighted)
+button.addTarget(self, action: “onTap:”,    forControlEvents: .TouchUpInside)
+view.addSubView(button)
+
+func onPress(sender: UIButton) { 
+	//code
+}
+func onTap(sender: UIButton){ 
+	//code
+}
+
+UIButtonType.ContactAdd：前面带“+”图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
+UIButtonType.DetailDisclosure：前面带“!”图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
+UIButtonType.System：前面不带图标，默认文字颜色为蓝色，有触摸时的高亮效果
+UIButtonType.Custom：定制按钮，前面不带图标，默认文字颜色为白色，无触摸时的高亮效果
+UIButtonType.InfoDark：为感叹号“!”圆形按钮
+UIButtonType.InfoLight：为感叹号“!”圆形按钮
+Alert
+UIAlertView
+iOS8开始废弃，使用UIAlertController
+var alertview: UIAlertView = UIAlertView()
+alertview.title = “title”
+alertview.message = “message”
+alertview.addButtonWithTitle(“click me”)
+alertview.delegate = self 	//UIAlertViewDelegate
+alertview.show()
+
+UIAlertViewDelegate
+	alertView:clickedButtonAtIndex:
+	alertViewShouldEnableFirstOtherButton
+	willPresentAlertView:
+	didPresentAlertview:
+	alertView:willDismissWithButtonIndex:
+	alertView:didDismissWithButtonIndex:
+
+func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        let buttonTitle = alertview.buttonTitleAtIndex(buttonIndex)
+        message.text = String(format: "clicked on %@", buttonTitle!)
+}
+
+UIActionSheet
+iOS8开始废弃，使用UIAlertController
+	UIActionSheetDelegate
+
+
+
+
+UIAlertController
+let controller = UIAlertController(title: "title", message: "message", preferredStyle: .ActionSheet)	//.Alert
+
+// text field 
+controller.addTextFieldWithConfigurationHandler({(textField: UITextField) in
+            textField.placeholder = "XXX-XXXX"
+})
+
+//action
+let actionEmail = UIAlertAction(title: "email", style:.Default, handler: {[weak self](paramAction:UIAlertAction) in 
+	if let textFields = self!.controller?.textFields {
+		let theTextFields = textFields as [UITextField]
+		let userName = theTextFields[0].text
+	}
+})
+controller.addAction(actionEmail)
+
+self.presentViewController(controller, animated: true, completion: nil)label
+var label = UILabel(frame: CGRect(x:20, y: 100, width: 100, height: 23))
+label.adjustsFontSizeToFitWidth = true
+label.text = “iOS programming Cookbook”
+label.font = UIFont.boldSystemFontOfSize(14)
+
+
+
+//AttributeText
+let shadow = NSShadow()
+shadow.shadowColor = UIColor.darkGrayColor()
+shadow.shadowOffset = CGSize(width: 4, height: 4)
+
+let attribute = [
+	NSFontAttributeName: UIFont.boldSystemFontOfSize(60),
+	NSForegroundColorAttributeName: UIColor.whiteColor(),
+	NSBackgroundColorAttributeName: UIColor.greenColor(),
+	NSShadowAttributeName: shadow]
+
+let firstRange = NSRange(location: 0, length: 3)			//0,1,2
+let result = NSMutableAttributedString(string: stringValue)	//stringValue的[0-2]
+result.setAttributes(attribute, range: firstRange)			//stringValue的[0-2]设置attribute
+lable.attributedText = result
+
+
+//在AttributedString使用中，无法使用Range取代NSRange
+let range = Range(start: 0, end: 2)effect
+//Blur Effect
+let blurEffect  = UIBlurEffect(style: .Light)
+let blurView   = UIVisualEffectView(effect: blurEffect)
+
+
+UITableView
+//tableview by code
+class ViewController: UIViewController, UITableViewDataSource {
+  override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView = UITableView(frame: view.bounds, style: .Plain)    
+        if let theTableView = tableView{
+            theTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+            theTableView.dataSource = self
+            theTableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+            view.addSubview(theTableView)
+        }
+    }
+
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+  }
+    
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+  }
+    
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {     
+        var identifier = "Cell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel?.text = "section \(indexPath.section), Cell \(indexPath.row)"
+        return cell
+    }
+}
+
+UISwitch
+var switch = UISwitch(frame: CGRect(x: 100, y: 100, width: 0, height: 0))
+
+//custom
+switch.tintColor = UIColor.redColor()
+switch.onTintColor = UIColor.brownColor()
+switch.thumbTintColor = UIColor.greenColor()
+
+switch.setOn(true, animated: true)
+if switch.on {
+	
+}
+
+switch.addTarget(self, action: "switchIsChanged:", forControlEvents: .ValueChanged)
+func switchIsChanged(sender: UISwitch) {
+
+}
+
+
+
+UIPickerView
+var picker = UIPickerView()
+picker.dataSource = self		//UIPickerViewDataSource
+picker.delegate = self			//UIPickerViewDelegate
+picker.data
+
+UIPickerViewDataSource 
+	numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+	pickerView(UIPickerview, numberOfRowsInComponent ) -> Int
+UIPickerViewDelegate
+	pickerView(UIPickerView, titleForRow, forComponent) -> String
+
+
+
+UIDatePicker
+var datePicker = UIDatePicker()
+let today = NSDate()
+let oneYearFromToday = today.dateByAddingTimeInterval(365*24*60*60)
+let twoYearFromToday = today.dateByAddingTimeInterval(365*24*60*60*2)
+datePicker.minimumDate = oneYearFromToday
+datePicker.maximumDate = twoYearFromToday
+datePicker.datePickerMode = .CountDownTimer
+datePicker.countDownDuratio = (2*60) as NSTimeInterval
+
+UISlider
+let slider = UISlider(frame: CGRect(x:0, y:0, width: 200, height:23))
+slider.minimumValue = 0
+slider.maximumValue = 100
+slider.value = 50.0
+
+slider.setThumbImage(normalImage, forState: .Normal)
+slider.setThumbImage(highlightedImage, forState: .Highlighted)
+
+slider.addTarget(self, action:”sliderValueChanged:”, forControlEvents: .ValueChanged)
+func sliderValueChanged(slider: UISlider) {
+	print(“\(slider.value)”)
+}
+
+
+UISegmentedController
+var segmentedController = UISegmentedControl(items: [“iPhone”, “iPad”, “iPod”])
+
+segmentedControl.addTarget(self, action: “segmentedControlValueChanged:”, forControlEvents: .ValueChanged)
+
+func segmentedControlValueChanged(sender: UISegmentedControl) {
+	let index = sender.selectedSegmentIndex
+	let title = sender.titleForSegmentAtindex(index)
+}
+
+
+
+Navigation
+titleview
+let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+imageView.contentMode = .ScaleAspectFit
+imageView.image = UIImage(named:”Logo”)
+navigationItem.titleView = imageView
+
+
+//BarButtonItem
+func performAdd(sender: UIBarButtonItem) {
+}
+
+navigationItem.rightBarButtonItem = UIBarButtonItem(title: “Add”, style: .Plain, target: self, action: “performAdd:”)
+navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: “performAdd:”)
+
+let switch = UISwitch()
+switch.on = true
+navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
+
+
+UITextField
+let textField = UITextField(frame: CGRect(x:0, y: 0,width: 200, height: 31))
+textField.borderStyle = .RoundedRect
+textField.contentVerticalAlignment = .Center
+textField.textAlignment = .Center
+textField.placeholder = “Enter your text here….”
+textField.text = “Siri”
+textField.delegate = self
+
+
+UITextFieldDelegate
+	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+		let text = textField.text as NSString
+		let wholeText = text.stringByReplacingCharactersInRange(range, withString:string)
+		return true
+	}
+	func textFieldShoudlReturn(textField: UITextField) -> Bool {
+		return true
+	}
+
+
+
+UITextView
+let textView = UITextView(frame: view.bounds)
+textView.text = “Some text goes here …”
+textView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+textView.font = UIFont.systemFontOfSize(16)
+
+
+
+UITextViewDelegate
+UIKeyboard
+
+NotificaitionCenter.defaultCenter().addObserver(self, selector: “handleKeyboardDidShow:”, name: UIKeyboardDidShowNotification, object: nil)
+NotificaitionCenter.defaultCenter().addObserver(self, selector: “handleKeyboardWillHide:”, name: UIKeyboardWillHideNotification, object: nil)
+ 
+let defaultContentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+
+func handleKeyboardDidShow(notification: NSNotification) {
+	let keyboardRectAsObject = notification.userInfo![UIKeyboardFrameEnduserInfoKey] as NSValue
+
+	var keyboardRect = CGRectZero
+	keyboardRectAsObject.getValue(&keyboardRect)
+
+	textView!.contentInset = UIEdgeInsets(top: defaultContentInset.top, left: 0, buttom: keyboardRect.height, right: 0)
+}
+
+func handleKeyboardWillHide(notification: NSNotification) {
+	text.contentInset = defaultContentInset
+}
+UIScrollView
+let scrollView = UIScrollView(frame: view.bounds)
+scrollView.addSubview(imageView)
+scrollView.contentSize = imageView.bounds.size
+
+
+UIScrollViewDelegate
+	scrollViewDidScroll
+	scrollViewWillBeginDecelerating
+	scrollViewDidEndDecelerating
+	scrollViewDidEndDragging:willDecelerate:
+UIWebView
+WebKit
+CoreData
+
+
+NetWork
+
+
+
+Animations
+animation CABasicAnimation(keyPath: "path")
+animation.fromValue = startPath
+animation.toValue = endPath
+
+
+swift 坑
+Library not loaded : 真机无法使用
+Build Setting -> Embeded Content Contains Swift code -> YES
+
+Cannot assign to property:"xxx" is a get-only
+
+cocoaPods > 0.39.0
+
+
+Objective-c to Swift
+
+enumerateObjectsUsingBlock
+for (index, value) in array.enumerate() {
+    static var stop = false
+    if stop {
+	break
+   }
+   //your code
+}
+
+
+extension Array{
+    func enumerateObjectsUsingBlock(enumerator:(obj:Any, idx:Int, inout stop:Bool)->Void){
+        for (i,v) in self.enumerate(){
+            var stop:Bool = false
+            enumerator(obj: v, idx: i,  stop: &stop)
+            if stop{
+                break
+            }
+        }
+    }
+}
+
+[1,2,3,4,5].enumerateObjectsUsingBlock(){obj, idx, stop in
+}
+
+
+
+NSArray->reverseObjectEnumerator
+Array.reverse
+
+replaceCharactersInRange(NSRange, withString: NSString)
+String.stringByReplacingCharactersInRange(Range, withString:NSString)
+
+
+
+CoreGraphics
+kCGInterpolationNone
+  CGInterpolationQuality.None
+
+
+
+app目录结构
+iOS
+
+Application
+
+Controller
+
+Model
+
+Library
+	views
+	service
+	utils
+	extensions
+
+Resource
+Api
+Vendors
+
+Pod
+
+命令行编译
+xcodebuild -workspace OSChina-swift.xcworkspace -scheme OSChina-swift -target OSChina-swift – configuration Debug

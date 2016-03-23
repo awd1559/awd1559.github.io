@@ -1,0 +1,36 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+手势
+UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc]  initWithTarget:self  action:@selector(doubleTap:)];
+doubleTapRecognizer.numberOfTapsRequired = 2;
+doubleTapRecognizer.delaysTouchesBegan = YES;
+
+[myUIView addGestureRecognizer:doubleTapRecognizer];
+
+
+或者
+UIPanGestureRecognizer *moveRecognizer；
+self.moveRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveLine:)];
+self.moveRecognizer.delegate = self;
+self.moveRecognizer.cancelsTouchesInView = NO;
+[self addGestureRecognizer:self.moveRecognizer];
+
+
+
+UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+    shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other
+{
+    if (gestureRecognizer == self.moveRecognizer) {
+        return YES;
+    }
+    return NO;
+}

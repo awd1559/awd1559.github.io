@@ -1,0 +1,145 @@
+---
+layout:     post
+title:      "Alamofire"
+subtitle:   " \"Alamofire\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
+core data
+managed object context ==> database
+Entity                                      ==> table
+managed object                 ==> a row in a table   键值对
+
+
+FetchRequest 		  ==> select
+
+ 
+
+NSManagedObjectContext		 被管理对象上下文
+NSPersistentStoreCoordinator	 数据库的连接
+NSManagedObjectModel		 被管理对象模型
+NSManagedModel			
+NSEntityDescription
+
+
+NSManagedObject
+
+NSSortDescriptor
+
+查询数据
+NSManagedObjectContext *cxt = [self managedObjectContext];
+NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@“Books” inManagedObjectContext:cxt];
+
+NSFetchRequest* request = [[NSFetchRequest alloc] init];
+[request setEntity:entityDescription];
+
+NSSortDescriptor* sortDescription = [[NSSortDescriptor alloc] initWithKey:@“data” ascending:YES];
+[request setSortDescriptors:@[sortDescriptor]];
+
+NSError *error = nil;
+NSArray* listData = [cxt executeFetchRequest:request error:&error];
+
+NSMutableArray* resListData = [[NSMutableArray alloc] init];
+
+for (NoteManagedObject *mo in listData) {
+        Note *note = [[Note alloc] init];
+        note.date = mo.date;
+        note.content = mo.content;
+        [resListData addObject:note];
+}
+
+
+
+插入
+-(int) create:(Note*)model
+{
+    
+    NSManagedObjectContext *cxt = [self managedObjectContext];
+    
+    NoteManagedObject *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:cxt];
+    [note setValue: model.content forKey:@"content"];
+    [note setValue: model.date forKey:@"date"];
+    
+    note.date = model.date;
+    note.content = model.content;
+    
+    NSError *savingError = nil;
+    if ([self.managedObjectContext save:&savingError]){
+        NSLog(@"插入数据成功");
+    } else {
+        NSLog(@"插入数据失败");
+        return -1;
+    }
+    
+    return 0;
+}
+
+删除
+-(int) remove:(Note*)model
+{
+    
+    NSManagedObjectContext *cxt = [self managedObjectContext];
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Note" inManagedObjectContext:cxt];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"date =  %@", model.date];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *listData = [cxt executeFetchRequest:request error:&error];
+    if ([listData count] > 0) {
+        NoteManagedObject *note = [listData lastObject];
+        [self.managedObjectContext deleteObject:note];
+        
+        NSError *savingError = nil;
+        if ([self.managedObjectContext save:&savingError]){
+            NSLog(@"删除数据成功");
+        } else {
+            NSLog(@"删除数据失败");
+            return -1;
+        }
+    }
+    
+    return 0;
+}
+
+
+修改
+-(int) modify:(Note*)model
+{
+    NSManagedObjectContext *cxt = [self managedObjectContext];
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Note" inManagedObjectContext:cxt];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"date =  %@", model.date];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *listData = [cxt executeFetchRequest:request error:&error];
+    if ([listData count] > 0) {
+        NoteManagedObject *note = [listData lastObject];
+        note.content = model.content;
+        
+        NSError *savingError = nil;
+        if ([self.managedObjectContext save:&savingError]){
+            NSLog(@"修改数据成功");
+        } else {
+            NSLog(@"修改数据失败");
+            return -1;
+        }
+    }
+    return 0;
+}

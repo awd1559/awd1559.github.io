@@ -1,0 +1,24 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+//选择表视图行时候触发
+push segue to .. identifier:ShowSelectedProvince
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ShowSelectedProvince"])
+    {
+        CitiesViewController *citiesViewController = segue.destinationViewController;
+        NSInteger selectedIndex = [[self.tableView indexPathForSelectedRow] row];
+        NSString *selectName = [self.listData objectAtIndex:selectedIndex];
+        citiesViewController.listData = [self.dictData objectForKey:selectName];
+        citiesViewController.title = selectName;
+    }
+}
+

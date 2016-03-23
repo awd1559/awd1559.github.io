@@ -1,0 +1,42 @@
+---
+layout:     post
+title:      "Alamofire"
+subtitle:   " \"Alamofire\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
+UIAlertView
+UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"Alert"
+                              message:@"Alert text goes here"
+                              delegate:self
+                              cancelButtonTitle:@"No"
+                              otherButtonTitles:@"Yes", nil];
+[alertView show];
+
+
+#pragma  mark-- 实现UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"buttonIndex = %i",buttonIndex);
+}
+
+UIActionSheet
+UIActionSheet *actionSheet = [[UIActionSheet alloc]
+								 initWithTitle:nil
+								 delegate:self
+								 cancelButtonTitle:@"取消"
+								 destructiveButtonTitle:@"破坏性按钮"
+								 otherButtonTitles:@"Fackbook",@"新浪微博",nil];
+	
+actionSheet.actionSheetStyle =  UIActionSheetStyleAutomatic;
+[actionSheet showInView:self.view];
+
+
+#pragma  mark-- 实现UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"buttonIndex = %i",buttonIndex);
+}
+

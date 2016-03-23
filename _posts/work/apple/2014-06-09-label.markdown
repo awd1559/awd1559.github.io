@@ -1,0 +1,32 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+NSMutableAttributedString *styledText = [[NSMutableAttributedString alloc] initWithString:plainText];
+NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:_label.font.pointSize]};
+
+NSRange nameRange = [plainText rangeOfString:title];
+
+[styledText setAttributes:attributes range:nameRange];
+_label.attributedText = styledText;
+
+
+NSFontAttributeName  字体
+NSParagraphStyleAttributeName       段落格式 
+NSForegroundColorAttributeName     字体颜色
+NSBackgroundColorAttributeName    背景颜色
+NSStrikethroughStyleAttributeName  删除线格式
+NSUnderlineStyleAttributeName       下划线格式
+NSStrokeColorAttributeName            删除线颜色
+NSStrokeWidthAttributeName           删除线宽度
+NSShadowAttributeName                 阴影
+
+
+
+

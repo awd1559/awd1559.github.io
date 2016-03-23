@@ -1,0 +1,71 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+webView
+loadHTMLString:baseURL
+loadData:MIMEType:textEncodingName:baseURL
+
+NSString *htmlPath = [[NSBundle mainBundle] pathForResource: @“index” ofType:@“html”];
+NSURL *bundleUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] bundlePath]];
+NSError *erro = nil;
+
+NSString *html = [[NSString alloc] initWithContentsOfFile:htmlPath encoding: NSUTF8StringEncoding error:&error];
+if(error == nil) {
+   [self webView loadHTMLString:html baseURL:bundleUrl];
+}
+
+webview.delegate 
+
+
+UIWebViewDelegate
+#pragma mark — UIWebViewDelegate
+webview加载完成html之后调用,  webview访问加载的html中的js
+webview stringByEvaluatingJavaScriptFromString: //由webview执行这句javascript
+(void) webViewDidFinishLoad:(UIWebView*) webView{
+ NSLog(@“%@”, [webView stringByEvaluatingJavaScriptFromString: @“document.body.innerHTML”]);
+}
+
+html中js访问oc代码
+<button onclick='showDialog("JS to iOS 对象”)'>调用iOS对象</button>
+function showAndroidDialog(msg) {
+	var myJSONObject = new Object();
+	myJSONObject.title = 'HelloWorld';
+	myJSONObject.message = msg;
+	var JSONString = JSON.stringify(myJSONObject);
+	var uri = 'gap://XXXClass.XXXmethod#' + JSONString;
+	window.location = uri;
+}
+
+
+UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *actionType = request.URL.host;
+    NSString *scheme = request.URL.scheme;
+    NSString *fragment = [request.URL.fragment URLDecodedString];
+    NSData *responseData = [fragment dataUsingEncoding:NSUTF8StringEncoding];
+    
+    if ( [scheme isEqualToString:@"gap"] ) {
+        if ([actionType isEqualToString:@"XXXClass.XXXmethod"]) {
+            
+            NSError* error;
+            NSDictionary* json = [NSJSONSerialization
+                                  JSONObjectWithData:responseData
+                                  options:NSJSONReadingAllowFragments
+                                  error:&error];
+            
+            NSLog(@"title: %@ , message: %@",[json objectForKey:@"title"], [json objectForKey:@"message"] );
+            
+        }
+    }
+    return true;
+}
+
+

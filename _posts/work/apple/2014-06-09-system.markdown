@@ -1,0 +1,29 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+添加Reminder
+NSDate *date = self.datePicker.date;
+UILocalNotification *note = [[UILocalNotification alloc] init];
+note.alertBody = @"Hypnotize me!";
+note.fireDate = date;
+
+[[UIApplication sharedApplication] scheduleLocalNotification:note];
+
+随机数
+int x = arc4random() % 100;			[0,100)包括0，不包括100
+int y = (arc4random() % 501) + 500;		[500,1000]，包括500，包括1000
+
+
+-(int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to – from + 1)));
+}
+
+

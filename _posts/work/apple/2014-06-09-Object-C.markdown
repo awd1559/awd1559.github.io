@@ -1,0 +1,459 @@
+---
+layout:     post
+title:      "ios framework"
+subtitle:   " \"ios framework\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - apple
+---
+基本语法
+//接口
+@interface MyClass : NSObject
+{
+	@private
+	int  count;			// 成员变量
+	id data;
+	NSStrinig* name;
+}
+@private		提供setter和getter：setAge等函数
+@pretected		
+@public		
+@package		限制在同一个映像中
+
+OC2.0中系统实现setter和getter
+@interface
+	@property  NSString *name;
+	@property NSString *pass;
+@end
+
+@implementation
+	@synthesize name = _name;
+	@synthesize pass;
+@end
+
+//声明方法
+-(id)initWithString:(NSString*)aname;
+
+-实例方法      (none static)
++对象方法     (static)
+
+-(BOOL) isMemberOfClass:(Class)clazz
+-(BOOL) isKindOfClass:(Class)clazz
+-(BOOL) respondsToSelector:(SEL)selector
++(BOOL) instancesRespondToSelector:(SEL) selector
+-(id) performSelector:(SEL)selector
+(void) test:(NSString*)name, …;		//可变行参个数
+{
+	va_list argList;
+}
+
+//实现部分
+@implementation MyClass
+{
+	//成员变量声明,只能在当前类中使用
+}
+
+
+可以传递消息给nil，如[nil message]合法， NULL确做不到
+if([rec respondsToSelector:@selector(initWithWidth:andHeight:)]) //对象rec中是否有initWithWidth:andHeight:方法
+if(MyySquare instancesRespondToSelector:@selector(initWithSize:)) //类MySquare中是否有initWithSize方法KVC键值编码	NSKeyValueCoding
+@interface User
+@property NSString* name
+@end
+
+[user setValue:@“” forKey:@“name”];
+[user valueForKey:@“name”];
+
+
+KVO键值监听	NSKeyValueObserver
+someview addObserver:forKeyPath:options:context:
+someview removeObserver:forKeyPath:
+someview removeObserver:forKeyPath:context:
+
+//重写方法
+observeValueForKeyPath:ofObject:change:context:
+异常
+@try
+@catch
+@finally
+@throw
+
+封装基本的数据类型
+NSValue: short, int, long, float, char, 指针，id
+NSNumber: 
+NSArray
+NSSet
+
+
+
+类Category，扩充一个类的功能，但不适用继承
+@interface MyClass //普通类
+@interface MyClass (MyCategory) //类的类别
+
+main
+@autoreleasepool
+{	
+	NSLog(@“”); 	
+	return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+}
+LLVM low level virtual machine的clang编译器来编译objectiv-c程序
+
+clang -fobjc-arc -framework <framework> <sourcefiles> -o <a.out>
+
+
+
+@protocol 接口 ，允许多继承
+
+@protocol Printing1
+@end
+@protocol Printing2
+@end
+@protocol Printting3<Printing2>
+@end
+@interface MyClass:BaseClass<Printing1, Printing3> //遵从协议
+
+
+
+xxx.h
+@class xxxViewController;
+@interface xxxViewController : UIViewController
+@property(strong, nonatomic) UITableViw*table;
+@end;
+
+xxx.m
+@interface xxxViewController() {
+}
+@implementation xxxViewController
+	@synthesize table;
+	-(void)viewDidLoad{}
+	… …
+#pragma mark - Table View
+	… ...
+@end
+
+
+
+
+
+
+
+
+
+
+IOS入口文件 
+xxxApplicationDelegate.h
+	: UIResponder<UIApplicationDelegate>
+
+xxxApplicationDelegate.m
+	application:didFinishLaunchingWithOptions
+	applicationWillResignActive
+	applicationDidEnterBackground
+	applicationWillEnterForeground
+	applicationDidBecomeActive
+	applicationWillTerminate
+UI
+//StoryBoard
+全部在100%显示下添加控件，否则无法操作
+//add navigation
+添加UINavigationController
+Attributes面板 ->  Is initial View Controller,设为初试页面
+
+//add button
+添加视图
+添加button
+ctrl+鼠标左键拖动视图上控件到代码，自动生成IBoutlet
+没有初始化storyboard之前，IBoutlet是nil的
+
+ctrl+鼠标左键拖动button到另一个视图，完成点击跳转
+	performSegueWithIdentifier:sender:
+
+//add IBAction
+@IBAction func onButtonClick(sender: UIButton){}
+ctrl+鼠标左键拖动IBAction到对应的button
+
+选中button的事件，拖动到viewController代码中，自动生成一个IBAction
+
+//跳转时带参数
+Segue就是类UIStoryboardSegue的实例
+当跳转时当前视图会收到prepareForSegue:send:消息
+-(void)prepareForSegue:(UIStoryboardSegue *) segue sender:(id)sender{
+	secondViewController* second = segue.destinationViewController;        
+	[second setText: myInput.text];                  //实例未初始化nib
+}
+//add tab
+storyboard中添加Tab Bar Controller
+Editor -> Embeded in -> Tab bar Controller
+
+//add tab by code
+application:didFinishLaunchingWithOptions:
+	testcontroller *first = [[testcontroller alloc] init];
+	first.title = @“first”;
+	testcontroller *second = [[testcontroller alloc] init];
+	second.title = @“second”;
+
+	UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:first];
+	UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:second];
+
+	UITabBarController* tab = [[UITabBarController alloc] init];
+	tab.viewControllers = [NSArray arrayWithObjects:first, second, nil];
+
+	self.window.rootViewController = tab;
+	self.window.backgroundColor = [UIColor whiteColor];
+	[self.window makeKeyAndVisible];
+	return YES;//Navigation Bar
+拖入一个Navigation View Controller到storyboard, 属性设为Is Initial View Controller
+拖入普通的ViewController
+ctrl+鼠标左键: 拖动到ViewController， 选择 root view controller 
+选中View Controller 的 Navigation Item ， 在属性中可以设置Navigation title, prompt, back Button
+Navigation Item 与 Navigation Bar的区别?
+
+Editor -> Embedded in -> Navigation Controller
+
+//table view
+在viewController中viewDidLoad
+CGRect aScreenRect = [[UIScreen mainScreen] bunds];
+UITableView *myTableView = [[UITableView alloc] initWithFrame:self.view.bunds style:UITableViewStyleGrouped];
+
+[myTableView registerClass: [UITableViewCell class] forCellReuseIdentifier: TableViewCellIdentifier];
+myTableView.dataSource = self;
+
+self.myTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+UIView *headerView = [[UIView alloc]  initWithFrame:CGRectMake(0, 0, 320, 44)];
+myTableView.tableHeaderView = headerView;
+
+UINavigationBar *nav = [[UINavigationBar alloc]  initWithFrame:CGRectMake(0, 0, aScreenRect.size.width, 44)];
+UINavigationItem *navTitle = [[UINavigationitem alloc]  initWithTitle:@“详细介绍”];
+[nav pushNavigationitem:navTitle animated:YES];
+[self.view addSubview: nav];
+
+[self.view insertSubview:myTableView atIndex:1];
+
+@interface testViewController() <UITableViewDataSource>
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if ([tableView isEqual:self.myTableView]){
+        return 3;
+    }
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = nil;
+    
+    if ([tableView isEqual:self.myTableView]){
+        cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellIdentifier forIndexPath:indexPath];
+        cell.textLabel.text = [NSString stringWithFormat:@"section %ld, cell %ld", (long)indexPath.section, (long)indexPath.row];
+    }
+    
+    return cell;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([tableView isEqual:self.myTableView]){
+        switch(section){
+            case 0:
+                return 3;
+                break;
+            case 1:
+                return 3;
+                break;
+            case 2:
+                return 3;
+                break;
+        }
+    }
+    return 0;
+}
+//UIAlertView
+UIAlertView *alertView = [UIAlertView alloc]
+	initWithTitle:@“Title”
+	message:@“message”
+	delegate:nil
+	cancelButtonTitle:@“”
+	otherButtonTitles:@“OK”, nil];
+//带输入框的alertview
+[alertView setAlertViewStyle:UIAlertVeiwStylePlainTextInput];
+UITextField *textField = [alertView textFieldAtIndex:0];
+textField.keyboardType = UIKeyboardTypeNumberPad;
+[alertView show];
+
+//点击事件
+delegate:self
+xxViewController.h
+@interface xxViewController : UIViewController<UIAlertViewDelegate>
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonTitle isEqualToString:@"Cancel"]){
+        NSLog(@"User pressed the cancel button");
+    }else if ([buttonTitle isEqualToString:@"OK"]){
+        NSLog(@"User pressed the Ok button");
+    }
+}//UISwitch
+UISwitch * switch  = [[UISwitch alloc] initWithFrame: CGRectMake(100, 100, 0, 0)];
+[switch setOn:YES];
+[switch addTarget:self action:@selector(switchIsChanged:)
+  forControlEvent:UIControlEventValueChanged];
+
+-(void)switchIsChanged:(UISwitch* )paramSender{
+    NSLog(@"Sender is = %@)", paramSender);
+    
+    if([paramSender isOn]){
+        NSLog(@"The switch is truned on.");
+    }else {
+        NSLog(@"The seitch is turned off");
+    }
+}
+
+//UIPickerView
+UIPickerView* picker  = [[UIPickerView alloc] init];
+picker.center = self.view.center;
+picker.dataSource = self;
+picker.delegate = self;
+
+<UIPickerViewDataSource>
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    NSInteger result = 0;
+    if([pickerView isEqual:self.picker]){
+        return 1;
+    }
+    return result;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    NSInteger result = 0;
+    if([pickerView isEqual:self.picker]){
+        result = 10;
+    }
+    return result;
+}
+<UIPickViewDelegate>
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NSString *result = nil;
+    if([pickerView isEqual:self.mypicker]){
+        result = [NSString stringWithFormat:@"Row %ld", (long)row+1];
+    }
+    return result;
+}
+
+//UIDatePicker
+UIDatePicker* picker = [[UIDatePicker alloc] init];
+picker.datePickerMode = UIDatePickerModeCountDownTimer;
+picker addTarget:self action:@selector(datePickerDateChanged:)
+	forControlEvents:UIControlEventValueChanged];
+
+-(void)datePickerDateChanged:(UIDatePicker*)paramDatePicker{
+	if([paramDatePicker isEqual:picker]){
+		NSLog(@“selected date = %@”, paramDatePicker.date);
+	}
+}
+
+
+//UISlider
+UISlider* slider = [UISlider alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 23.0f)];
+slider.center = self.view.center;
+slider.minimumValue = 0.0f;
+slider.maximumValue = 100.0f;
+slider.value = slider.maximumValue / 2.0;
+
+slider addTarget:self action:@selector(sliderValueChanged:) forControlEvent:UIControlEventValueChanged];
+
+//UISegmentedControl
+NSArray *segments = [[NSArray alloc] initWithObjects: @“iPhone”, @“iPad”, @“iPod”, nil];
+UISegmentedControl* segmentview = [[UISegmentedControl alloc] initWithItems:segments];
+
+segmentview addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
+
+-(void)segmentChanged:(UISegmentedControl *)paramSender{
+	if([paramSender isEqual:self.segmentview]){
+		NSInteger selectedSegmentIndex = [paramSender selectedSegmentIndex];
+		NSString *selectedSegmentText = [paramSender titleForSegmentAtIndex:selectedSegmentIndex];
+	}
+}
+
+//UIImageView
+
+//UIBarButtonItem
+
+
+//UILabel
+
+
+//UITextField
+
+
+//UITextView
+
+//UIButton
+
+//UIScrollView
+
+//UIWebView
+
+//UISplitViewController
+
+
+//UIProgressView
+
+层次
+UIViewController
+	UINavigationController
+	UITableViewController     		UITableViewDelegate
+	UITabBarController			UITabBarDelegate
+	UISplitViewController
+	UIPageViewController
+	UICollectionViewController		UICollectionViewDelegate,  UIScrollViewDelegate
+	GLKViewController   			import GLKit
+	AVPlayerViewController		import AVKit
+
+UIView
+	UITextView
+
+
+
+
+CoreData
+
+NetWork
+
+Graphics
+//所有字体
+for(NSString *familyname in [UIFont familynames]){
+	NSLog(@“Font Family = %@”, familyName);
+}
+
+//绘图
+-(void)drawRect:(CGRect)rect{
+	UIFont *helveticaBold = [UIFont fontWithName:@“HelveticaNeue-Bold” size:40.0f];
+	NSString *myString = @“Some String”;
+	[myString drawAtPoint:CGPointmake(40, 180) withFont:helveticaBold];
+}
+
+
+Animations
+UIKit
+Quartz 2D
+Core Graphics
+Core Animation
+
+
+动画
+UIView动画
+//开始动画
+[UIView beginAnimations:@“doflip” context:nil]
+//动画时长
+[UIView setAnimationDuration:1]
+//动画curve
+[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut]
+//代理
+[UIView setAnimationDelegate:self]
+//翻转方向
+[UIView setAnimationTransition: 
+ UIViewAnimationTransitionFlipFromLeft  forView:myImageView cache:YES ]
+[UIView commitAnimations]
+
+animateWithDuration
