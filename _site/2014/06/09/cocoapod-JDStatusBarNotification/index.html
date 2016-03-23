@@ -1,46 +1,48 @@
-JDStatusBarNotification
-https://github.com/jaydee3/JDStatusBarNotification
+<p>JDStatusBarNotification<br />
+https://github.com/jaydee3/JDStatusBarNotification</p>
 
-/install
-pod ‘JDStatusBarNotification'
+<p>/install<br />
+pod ‘JDStatusBarNotification’</p>
 
-//use 
-+ (JDStatusBarView*)showWithStatus:(NSString *)status;
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
-                      dismissAfter:(NSTimeInterval)timeInterval;
+<p>//use <br />
++ (JDStatusBarView<em>)showWithStatus:(NSString *)status;<br />
++ (JDStatusBarView</em>)showWithStatus:(NSString *)status<br />
+                      dismissAfter:(NSTimeInterval)timeInterval;</p>
 
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
-                         styleName:(NSString*)styleName;
+<ul>
+  <li>
+    <p>(JDStatusBarView<em>)showWithStatus:(NSString *)status<br />
+                       styleName:(NSString</em>)styleName;</p>
+  </li>
+  <li>
+    <p>(JDStatusBarView<em>)showWithStatus:(NSString *)status<br />
+                    dismissAfter:(NSTimeInterval)timeInterval<br />
+                       styleName:(NSString</em>)styleName;</p>
+  </li>
+</ul>
 
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
-                      dismissAfter:(NSTimeInterval)timeInterval
-                         styleName:(NSString*)styleName;
+<p>//关闭<br />
++ (void)dismiss;<br />
+(void)dismissAfter:(NSTimeInterval)delay;<br />
+//显示进度<br />
+(void)showProgress:(CGFloat)progress;  // Range: 0.0 - 1.0</p>
 
-//关闭
-+ (void)dismiss;
-(void)dismissAfter:(NSTimeInterval)delay;
-//显示进度
-(void)showProgress:(CGFloat)progress;  // Range: 0.0 - 1.0
+<p>//active<br />
++ (void)showActivityIndicator:(BOOL)show<br />
+               indicatorStyle:(UIActivityIndicatorViewStyle)style;</p>
 
-//active
-+ (void)showActivityIndicator:(BOOL)show
-               indicatorStyle:(UIActivityIndicatorViewStyle)style;
+<p>Animation Types<br />
+	•	JDStatusBarAnimationTypeNone<br />
+	•	JDStatusBarAnimationTypeMove<br />
+	•	JDStatusBarAnimationTypeBounce<br />
+	•	JDStatusBarAnimationTypeFade<br />
+Progress Bar Positions<br />
+	•	JDStatusBarProgressBarPositionBottom<br />
+	•	JDStatusBarProgressBarPositionCenter<br />
+	•	JDStatusBarProgressBarPositionTop<br />
+	•	JDStatusBarProgressBarPositionBelow<br />
+	•	JDStatusBarProgressBarPositionNavBar</p>
 
-
-Animation Types
-	•	JDStatusBarAnimationTypeNone
-	•	JDStatusBarAnimationTypeMove
-	•	JDStatusBarAnimationTypeBounce
-	•	JDStatusBarAnimationTypeFade
-Progress Bar Positions
-	•	JDStatusBarProgressBarPositionBottom
-	•	JDStatusBarProgressBarPositionCenter
-	•	JDStatusBarProgressBarPositionTop
-	•	JDStatusBarProgressBarPositionBelow
-	•	JDStatusBarProgressBarPositionNavBar
-
-
-//swift
-bridge.h
-
+<p>//swift<br />
+bridge.h</p>
 

@@ -169,6 +169,39 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2015/01/29/cmd-grep/">
+        <h2 class="post-title">
+            grep
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "文本模式匹配"
+        </h3>
+        
+        <div class="post-content-preview">
+            grep
+grep -n ‘.5s’ datafile	#输出符合模式的行，包含.5s的行
+
+-n	#输出原文件中的行号
+-i	#不区分大小写
+-v	#输出不符合模式的行
+-l	#只输出文件名
+-w	#模式作用于词
+
+egrep 在grep元字符集上增加了更多的元字符
+fgrep 在linux中为grep -F, 没有元字符，模式中字符为字面含义
+
+Linux中
+grep ‘pattern’...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on January 29, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2015/01/29/cmd-awk/">
         <h2 class="post-title">
             awk
@@ -301,13 +334,12 @@ F5 	particle模式
         </h2>
         
         <div class="post-content-preview">
-            	1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
-	2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
-
+            1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
+2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
 
 
 XXX-Info.plist		工程描述文件
-InfoPlist.strings		本地化...
+InfoPlist.strings		本地化字符串...
         </div>
     </a>
     <p class="post-meta">
@@ -393,61 +425,13 @@ oxA0000即640K...
         <div class="post-content-preview">
             本文档可以删除
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 iOS
-Audio & Video
+Audio &amp; Video
 
 Coca Touch Layer
 AddressBookUI      联系人显示相关的UI controlller
 	ABNewPersonViewController			[ABNewPersonViewControllerDelegate]
-	ABPeoplePickerNavigationCon...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/cocoapod-pureLayout/">
-        <h2 class="post-title">
-            Cocoapod Purelayout
-        </h2>
-        
-        <div class="post-content-preview">
-            https://github.com/PureLayout/PureLayout
- 支持swift和OC
-
-pod init
-in Podfile
-	pod ‘PureLayout'
-pod install
-
-
-#import “PureLayout.h"
-全部文档在头文件里
-
--(void)updateViewConstraints
-{
-//中心
-//in center of superV...
+	ABPeoplePickerNavigationController   	[A...
         </div>
     </a>
     <p class="post-meta">
@@ -511,6 +495,8 @@ pod install
                                 <a href="/tags/#shell" title="shell" rel="5">
                                     shell
                                 </a>
+                            
+                        
                             
                         
                             

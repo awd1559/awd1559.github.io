@@ -1,45 +1,36 @@
-RxSwift
-https://github.com/ReactiveX/RxSwift
+<p>RxSwift<br />
+https://github.com/ReactiveX/RxSwift</p>
 
+<p>pod ‘RxSwift’<br />
+pod ‘RxCocoa’<br />
+pod ‘RxBlocking’</p>
 
-pod ‘RxSwift’
-pod ‘RxCocoa’
-pod ‘RxBlocking’
+<p>import RxSwift</p>
 
-import RxSwift
+<p>Observable 背观察的对象，是一个事件序列，<br />
+信号分：<br />
+热信号：创建时就开始推送，在创建之后订阅的将收不到热信号<br />
+冷信号：只有被订阅后，才会推送</p>
 
+<p>Observable<br />
+textField.rx_text 获得 Observable<string></string></p>
 
+<p>信号操作<br />
+map<br />
+bindTo<br />
+addDisposableTo<br />
+shareReplay</p>
 
-
-Observable 背观察的对象，是一个事件序列，
-信号分：
-热信号：创建时就开始推送，在创建之后订阅的将收不到热信号
-冷信号：只有被订阅后，才会推送
-
-
-Observable
-textField.rx_text 获得 Observable<String>
-
-
-
-信号操作
-map
-bindTo
-addDisposableTo
-shareReplay
-
-
-
-创建自己的Observable
-func myJust<E>(element: E) -> Observable<E> {
+<p>创建自己的Observable<br />
+func myJust<e>(element: E) -&gt; Observable<e> {
     return Observable.create { observer in
         observer.on(.Next(element))
         observer.on(.Completed)
         return NopDisposable.instance
     }
-}
+}</e></e></p>
 
-myJust(0)
-    .subscribeNext { n in
-      print(n)
-    }
+<p>myJust(0)<br />
+    .subscribeNext { n in<br />
+      print(n)<br />
+    }</p>

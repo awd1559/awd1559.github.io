@@ -1,65 +1,51 @@
-MBProgressHUD
-https://github.com/jdg/MBProgressHUD
+<p>MBProgressHUD<br />
+https://github.com/jdg/MBProgressHUD</p>
 
-install
-pod 'MBProgressHUD', '~> 0.9.2'
+<p>install<br />
+pod ‘MBProgressHUD’, ‘~&gt; 0.9.2’</p>
 
+<p>Usage</p>
 
+<p>[MBProgressHUD showHUDAddedTo:self.view animated:YES];<br />
+dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{<br />
+    // Do something…<br />
+    dispatch_async(dispatch_get_main_queue(), ^{<br />
+        [MBProgressHUD hideHUDForView:self.view animated:YES];<br />
+    });<br />
+});</p>
 
+<p>MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];<br />
+hud.mode = MBProgressHUDModeAnnularDeterminate;<br />
+hud.labelText = @”Loading”;<br />
+[self doSomethingInBackgroundWithProgressCallback:^(float progress) {<br />
+    hud.progress = progress;<br />
+} completionCallback:^{<br />
+    [hud hide:YES];<br />
+}];</p>
 
+<p>[MBProgressHUD showHUDAddedTo:self.view animated:YES];<br />
+dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);<br />
+dispatch_after(popTime, dispatch_get_main_queue(), ^(void){<br />
+    // Do something…<br />
+    [MBProgressHUD hideHUDForView:self.view animated:YES];<br />
+});</p>
 
+<p>#import “MBProgressHUD.h”<br />
+MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];<br />
+hud.mode = MBProgressHUDModeDeterminateHorizontalBar;<br />
+hud.labelText = @”Loading”;<br />
+[self doSomethingInBackgroundWithProgressCallback:^(float progress) {<br />
+    hud.progress = progress;<br />
+} completionCallback:^{<br />
+    [hud hide:YES];<br />
+}];</p>
 
+<p>//swift<br />
+bridge.h<br />
+#import “MBProgressHUD/MBProgressHUD.h”<br />
+import MBProgressHUD</p>
 
-Usage
-
-[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-    // Do something...
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
-});
-
-
-
-
-MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-hud.mode = MBProgressHUDModeAnnularDeterminate;
-hud.labelText = @"Loading";
-[self doSomethingInBackgroundWithProgressCallback:^(float progress) {
-    hud.progress = progress;
-} completionCallback:^{
-    [hud hide:YES];
-}];
-
-
-[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    // Do something...
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-});
-
-
-
-
-#import "MBProgressHUD.h"
-MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
-hud.labelText = @"Loading";
-[self doSomethingInBackgroundWithProgressCallback:^(float progress) {
-    hud.progress = progress;
-} completionCallback:^{
-    [hud hide:YES];
-}];
-
-
-//swift
-bridge.h
-#import “MBProgressHUD/MBProgressHUD.h"
-import MBProgressHUD
-
-let hud = MBProgressHUD.showHUDAddedTo(self.view, animated:true)
-hud.mode = MBProgressHUDMode.AnnularDeterminate
-hud.labelText = "Loading"
-hud.do
+<p>let hud = MBProgressHUD.showHUDAddedTo(self.view, animated:true)<br />
+hud.mode = MBProgressHUDMode.AnnularDeterminate<br />
+hud.labelText = “Loading”<br />
+hud.do</p>

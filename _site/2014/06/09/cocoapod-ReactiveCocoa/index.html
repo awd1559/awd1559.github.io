@@ -1,114 +1,100 @@
-事件处理方式
-action
-delegate
-KVO
-callback
-NSNotification 
-ReactiveCocoa为事件定义一个标准接口
+<p>事件处理方式<br />
+action<br />
+delegate<br />
+KVO<br />
+callback<br />
+NSNotification <br />
+ReactiveCocoa为事件定义一个标准接口</p>
 
-/////////////////
-// install
-/////////////////
-use_frameworks!
-pod 'ReactiveCocoa'
+<p>/////////////////<br />
+// install<br />
+/////////////////<br />
+use_frameworks!<br />
+pod ‘ReactiveCocoa’</p>
 
-Cartfile
-github "ReactiveCocoa/ReactiveCocoa"
-carthage update
+<p>Cartfile<br />
+github “ReactiveCocoa/ReactiveCocoa”<br />
+carthage update</p>
 
+<p>创建信号<br />
+self.usernameTextField  .rac_textSignal    subscribeNext:^(id value){}<br />
+self.usernameTextField  .rac_textSignal   filter:^(id value){}    subscribeNext: ^(id value){}<br />
+filter:过滤signal</p>
 
-创建信号
-self.usernameTextField  .rac_textSignal    subscribeNext:^(id value){}
-self.usernameTextField  .rac_textSignal   filter:^(id value){}    subscribeNext: ^(id value){}
-filter:过滤signal
+<p>RACSignal *signal = self.usernameTextField.rac_textSignal;</p>
 
-RACSignal *signal = self.usernameTextField.rac_textSignal;
+<p>map函数<br />
+从上一个next事件接收数据，通过执行block把返回值传给下一个next事件。<br />
+self.usernameTextField.rac_textSignal<br />
+    map:^id(NSString* text){ return @(text.length);}<br />
+    filter:^BOOL(NSNumber* length ){}<br />
+    subscribeNext:^(id x){};</p>
 
-map函数
-从上一个next事件接收数据，通过执行block把返回值传给下一个next事件。
-self.usernameTextField.rac_textSignal
-    map:^id(NSString* text){ return @(text.length);}
-    filter:^BOOL(NSNumber* length ){}
-    subscribeNext:^(id x){};
+<p>转换信号，修改背景色，实际不使用如下写法<br />
+RACSignal <em>validPasswordSignal = [self.passwordTextField.rac_textSignal <br />
+		 map:^id(NSString </em>text) { <br />
+		 return @([self isValidPassword:text]);<br />
+}];</p>
 
-转换信号，修改背景色，实际不使用如下写法
-RACSignal *validPasswordSignal = [self.passwordTextField.rac_textSignal 
-		 map:^id(NSString *text) { 
-		 return @([self isValidPassword:text]);
-}];
+<p>[[validPasswordSignal<br />
+   map:^id(NSNumber <em>passwordValid){return[passwordValid boolValue] ? [UIColor clearColor]:[UIColor yellowColor];<br />
+}]<br />
+	 subscribeNext:^(UIColor </em>color){<br />
+	    self.passwordTextField.backgroundColor = color;<br />
+}];</p>
 
-[[validPasswordSignal
-   map:^id(NSNumber *passwordValid){return[passwordValid boolValue] ? [UIColor clearColor]:[UIColor yellowColor];
-}]
-	 subscribeNext:^(UIColor *color){
-	    self.passwordTextField.backgroundColor = color;
-}];
+<p>使用如下写法<br />
+RAC(self.passwordTextField, backgroundColor) = [validPasswordSignal<br />
+	map:^id(NSNumber *passwordValid){<br />
+		return[passwordValid boolValue] ? [UIColor clearColor]:[UIColor yellowColor];<br />
+}];</p>
 
-使用如下写法
-RAC(self.passwordTextField, backgroundColor) = [validPasswordSignal
-	map:^id(NSNumber *passwordValid){
-		return[passwordValid boolValue] ? [UIColor clearColor]:[UIColor yellowColor];
-}];
+<p>聚合信号<br />
+RACSignal <em>signUpActiveSignal =<br />
+  [RACSignal combineLatest:@[validUsernameSignal, validPasswordSignal]<br />
+      reduce:^id(NSNumber</em>usernameValid, NSNumber *passwordValid){<br />
+          return @([usernameValid boolValue]&amp;&amp;[passwordValid boolValue]);<br />
+}];</p>
 
+<p>系统事件信号<br />
+[[[self.cancelButton <br />
+	rac_signalForControlEvents:UIControlEventTouchUpInside] <br />
+	takeUntil:self.rac_prepareForReuseSignal] <br />
+	subscribeNext:^(UIButton *x) { <br />
+}]; </p>
 
+<p>//siwft<br />
+bridge.h<br />
+#import &lt;ReactiveCocoa/ReactiveCocoa.h&gt;<br />
+import ReactiveCocoa</p>
 
+<p>button.rac_signalForControlEvents(UIControlEvents.TouchUpInside)<br />
+            .subscribeNext{  _ in<br />
+                print(“this button touchupinside”)<br />
+}</p>
 
+<p>let signal = RACSignal.ceateSignal({ (subscriber: RACSubscriber!) -&gt; RACDisposable! in<br />
+	let data = NSData(contentsOfURL: imageUrl)<br />
+	let image = UIImage(data: data!)<br />
+	subscriber.sendNext(image)<br />
+	subscriber.sendCompleted()<br />
+	return nil<br />
+})<br />
+let scheduler = RACScheduler(priority: RACSchedulerPriorityBackground)<br />
+return signal.subscribeOn(scheduler)</p>
 
+<p>使用ReactiveSwiftFlickrSearch中的RACObserve.swift, RAC.swift, RACSignal+Extensions.swift<br />
+atext.rac_textSignal() ~&gt; RAC(label, “text”)</p>
 
-聚合信号
-RACSignal *signUpActiveSignal =
-  [RACSignal combineLatest:@[validUsernameSignal, validPasswordSignal]
-      reduce:^id(NSNumber*usernameValid, NSNumber *passwordValid){
-          return @([usernameValid boolValue]&&[passwordValid boolValue]);
-}];
+<p>btext.rac_textSignal().map({text in<br />
+	if (text as! String).characters.count &gt; 0 {<br />
+		return true<br />
+	} else {<br />
+		return false<br />
+	}<br />
+}) ~&gt; RAC(button, “enabled”)</p>
 
-
-
-系统事件信号
-[[[self.cancelButton 
-	rac_signalForControlEvents:UIControlEventTouchUpInside] 
-	takeUntil:self.rac_prepareForReuseSignal] 
-	subscribeNext:^(UIButton *x) { 
-}]; 
-
-
-
-
-//siwft
-bridge.h
-#import <ReactiveCocoa/ReactiveCocoa.h>
-import ReactiveCocoa
-
-button.rac_signalForControlEvents(UIControlEvents.TouchUpInside)
-            .subscribeNext{  _ in
-                print("this button touchupinside")
-}
-
-
-let signal = RACSignal.ceateSignal({ (subscriber: RACSubscriber!) -> RACDisposable! in
-	let data = NSData(contentsOfURL: imageUrl)
-	let image = UIImage(data: data!)
-	subscriber.sendNext(image)
-	subscriber.sendCompleted()
-	return nil
-})
-let scheduler = RACScheduler(priority: RACSchedulerPriorityBackground)
-return signal.subscribeOn(scheduler)
-
-
-
-使用ReactiveSwiftFlickrSearch中的RACObserve.swift, RAC.swift, RACSignal+Extensions.swift
-atext.rac_textSignal() ~> RAC(label, “text”)
-
-btext.rac_textSignal().map({text in
-	if (text as! String).characters.count > 0 {
-		return true
-	} else {
-		return false
-	}
-}) ~> RAC(button, “enabled")
-
-RACSignalEx.combineLatestAs([favouritesSignal, commentsSignal]) {
-      (favourites:String, comments:String) -> Bool in
-     return false
-    }
+<p>RACSignalEx.combineLatestAs([favouritesSignal, commentsSignal]) {<br />
+      (favourites:String, comments:String) -&gt; Bool in<br />
+     return false<br />
+    }</p>

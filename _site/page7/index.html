@@ -169,6 +169,32 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2014/06/09/cocoapod-ObjectMapper/">
+        <h2 class="post-title">
+            Cocoapod Objectmapper
+        </h2>
+        
+        <div class="post-content-preview">
+            ObjectMapper
+https://github.com/Hearst-DD/ObjectMapper
+
+//install
+pod ‘ObjectMapper’, ‘~&gt; 1.1’
+
+class User: Mappable {
+    var username: String?
+    var age: Int?
+    var weight: Double!
+    var...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2014/06/09/cocoapod-ODRefreshControl/">
         <h2 class="post-title">
             Cocoapod Odrefreshcontrol
@@ -178,7 +204,7 @@
             ODRefreshControl
 https://github.com/Sephiroth87/ODRefreshControl
 下拉刷新
-#import "ODRefreshControl.h"
+#import “ODRefreshControl.h”
 ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.scrollView];
 //...
         </div>
@@ -217,47 +243,13 @@ https://github.com/mamaral/Neon
             Masory
 https://github.com/SnapKit/Masonry
 
-pod "Masonry"
+pod “Masonry”
 
-#import "Masonry.h"
+#import “Masonry.h”
 
 #define kScreen_Bounds [UIScreen mainScreen].bounds
 #define kScreen_Height [UIScreen mainScreen].bounds.size.height
 #d...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2014/06/09/cocoapod-MJRefresh/">
-        <h2 class="post-title">
-            Cocoapod Mjrefresh
-        </h2>
-        
-        <div class="post-content-preview">
-            MJRefresh
-https://github.com/CoderMJLee/MJRefresh
-
-pod ‘MJRefresh'
-
-
-
-//swift
-//不需要bridge文件
-//bridge.h
-//#import 
-
-import MJRefresh
-
-
-class ViewController : UITableViewController {
-
-//默认hedaer
-var ...
         </div>
     </a>
     <p class="post-meta">
@@ -277,18 +269,12 @@ var ...
 https://github.com/jdg/MBProgressHUD
 
 install
-pod 'MBProgressHUD', '~> 0.9.2'
-
-
-
-
-
-
+pod ‘MBProgressHUD’, ‘~&gt; 0.9.2’
 
 Usage
 
 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-dispatch_async(dispatch_get_global_q...
+dispatch_async(dispatch_get_global_queu...
         </div>
     </a>
     <p class="post-meta">
@@ -308,16 +294,18 @@ dispatch_async(dispatch_get_global_q...
 https://github.com/IFTTT/JazzHands
 
 //install
-pod "JazzHands"
+pod “JazzHands”
 
 #import 
 
 ViewController : IFTTTAnimatedPagingScrollViewController
 
-- (NSUInteger)numberOfPages
+
+  (NSUInteger)numberOfPages
 {
-    return 4;
+  return 4;
 }
+
 
 -(void)...
         </div>
@@ -339,11 +327,11 @@ ViewController : IFTTTAnimatedPagingScrollViewController
 https://github.com/jaydee3/JDStatusBarNotification
 
 /install
-pod ‘JDStatusBarNotification'
+pod ‘JDStatusBarNotification’
 
 //use 
-+ (JDStatusBarView*)showWithStatus:(NSString *)status;
-+ (JDStatusBarView*...
++ (JDStatusBarView)showWithStatus:(NSString *)status;
++ (JDStatusBarView)s...
         </div>
     </a>
     <p class="post-meta">
@@ -368,9 +356,8 @@ https://github.com/tpctt/ImageScroll
 ImageSlideshow
 https://github.com/zvonicek/ImageSlideshow
 
-
 ParallaxImageScrolling
-https://github.com/lammertw/ParallaxImageScrol...
+https://github.com/lammertw/ParallaxImageScroll...
         </div>
     </a>
     <p class="post-meta">
@@ -389,16 +376,13 @@ https://github.com/lammertw/ParallaxImageScrol...
             FontAwesome.swift
 https://github.com/thii/FontAwesome.swift
 
-
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+source ‘https://github.com/CocoaPods/Specs.git’
+platform :ios, ‘8.0’
 use_frameworks!
 
+pod ‘FontAwesome.swift’
 
-pod ‘FontAwesome.swift'
-
-
-import FontAwesome_swi...
+import FontAwesome_swift/...
         </div>
     </a>
     <p class="post-meta">
@@ -416,7 +400,7 @@ import FontAwesome_swi...
         <div class="post-content-preview">
             https://github.com/ccgus/fmdb
 
-pod ‘FMDB'
+pod ‘FMDB’
 
 FMDatabase
 FMResultSet
@@ -425,7 +409,7 @@ FMDatabaseQueue
 //存在打开，不存在则创建
 //@“”: 在临时文件夹创建空数据库
 //NULL: 内存数据库
-FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db"];
+FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db”];
 
 if...
         </div>
@@ -491,6 +475,8 @@ if...
                                 <a href="/tags/#shell" title="shell" rel="5">
                                     shell
                                 </a>
+                            
+                        
                             
                         
                             

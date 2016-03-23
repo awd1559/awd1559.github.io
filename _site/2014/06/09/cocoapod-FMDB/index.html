@@ -1,51 +1,46 @@
-https://github.com/ccgus/fmdb
+<p>https://github.com/ccgus/fmdb</p>
 
-pod ‘FMDB'
+<p>pod ‘FMDB’</p>
 
-FMDatabase
-FMResultSet
-FMDatabaseQueue
+<p>FMDatabase<br />
+FMResultSet<br />
+FMDatabaseQueue</p>
 
-//存在打开，不存在则创建
-//@“”: 在临时文件夹创建空数据库
-//NULL: 内存数据库
-FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db"];
+<p>//存在打开，不存在则创建<br />
+//@“”: 在临时文件夹创建空数据库<br />
+//NULL: 内存数据库<br />
+FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db”];</p>
 
-if (![db open]) {
-    [db release];
-    return;
-}
-NSString *sql = @“CREATE TABLE ‘User’ (‘id’ INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ‘name’ VARCHAR(30), ‘password’ VARCHAR(30)) ”;
-BOOL res = db executeUpdate:sql
-if (!res)
+<p>if (![db open]) {<br />
+    [db release];<br />
+    return;<br />
+}<br />
+NSString *sql = @“CREATE TABLE ‘User’ (‘id’ INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ‘name’ VARCHAR(30), ‘password’ VARCHAR(30)) ”;<br />
+BOOL res = db executeUpdate:sql<br />
+if (!res)</p>
 
-//query
-FMResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
-while ([s next]) {
-    //retrieve values for each record
-}
+<p>//query<br />
+FMResultSet *s = [db executeQuery:@”SELECT * FROM myTable”];<br />
+while ([s next]) {<br />
+    //retrieve values for each record<br />
+}</p>
 
-FMResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
-if ([s next]) {
-    int totalCount = [s intForColumnIndex:0];
-    NSString *pass = [s stringForColumn:@“name”];
-}
-[db close];
+<p>FMResultSet <em>s = [db executeQuery:@”SELECT COUNT(</em>) FROM myTable”];<br />
+if ([s next]) {<br />
+    int totalCount = [s intForColumnIndex:0];<br />
+    NSString *pass = [s stringForColumn:@“name”];<br />
+}<br />
+[db close];</p>
 
-
-
-
-NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-NSString* dbpath = [docsdir stringByAppendingPathComponent:@"user.sqlite"];
-FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
-[db open];
-FMResultSet *rs = [db executeQuery:@"select * from people"];
-while ([rs next]) {
-    NSLog(@"%@ %@",
-        [rs stringForColumn:@"firstname"],
-        [rs stringForColumn:@"lastname"]);
-}
-[db close];
-
-
+<p>NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) lastObject];<br />
+NSString* dbpath = [docsdir stringByAppendingPathComponent:@”user.sqlite”];<br />
+FMDatabase* db = [FMDatabase databaseWithPath:dbpath];<br />
+[db open];<br />
+FMResultSet *rs = [db executeQuery:@”select * from people”];<br />
+while ([rs next]) {<br />
+    NSLog(@”%@ %@”,<br />
+        [rs stringForColumn:@”firstname”],<br />
+        [rs stringForColumn:@”lastname”]);<br />
+}<br />
+[db close];</p>
 

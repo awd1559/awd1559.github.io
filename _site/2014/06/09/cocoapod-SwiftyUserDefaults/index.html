@@ -1,41 +1,35 @@
-SwiftyUserDefaults
-https://github.com/radex/SwiftyUserDefaults
+<p>SwiftyUserDefaults<br />
+https://github.com/radex/SwiftyUserDefaults</p>
 
-install
-pod ‘SwiftyUserDefaults'
+<p>install<br />
+pod ‘SwiftyUserDefaults’</p>
 
-import SwiftyUserDefaults
+<p>import SwiftyUserDefaults</p>
 
+<p>定义keys<br />
+extension DefaultsKeys {<br />
+    static let username = DefaultsKey&lt;String?&gt;(“username”)<br />
+    static let launchCount = DefaultsKey<int>("launchCount")
+}</int></p>
 
+<p>use it<br />
+// Get and set user defaults easily<br />
+let username = Defaults[.username]<br />
+Defaults[.hotkeyEnabled] = true</p>
 
-定义keys
-extension DefaultsKeys {
-    static let username = DefaultsKey<String?>("username")
-    static let launchCount = DefaultsKey<Int>("launchCount")
-}
+<p>// Modify value types in place<br />
+Defaults[.launchCount]++<br />
+Defaults[.volume] += 0.1<br />
+Defaults[.strings] += “… can easily be extended!”</p>
 
+<p>// Use and modify typed arrays<br />
+Defaults[.libraries].append(“SwiftyUserDefaults”)<br />
+Defaults[.libraries][0] += “ 2.0”</p>
 
-use it
-// Get and set user defaults easily
-let username = Defaults[.username]
-Defaults[.hotkeyEnabled] = true
+<p>// Easily work with custom serialized types<br />
+Defaults[.color] = NSColor.whiteColor()<br />
+Defaults[.color]?.whiteComponent // =&gt; 1.0</p>
 
-// Modify value types in place
-Defaults[.launchCount]++
-Defaults[.volume] += 0.1
-Defaults[.strings] += "… can easily be extended!"
-
-// Use and modify typed arrays
-Defaults[.libraries].append("SwiftyUserDefaults")
-Defaults[.libraries][0] += " 2.0"
-
-// Easily work with custom serialized types
-Defaults[.color] = NSColor.whiteColor()
-Defaults[.color]?.whiteComponent // => 1.0
-
-
-
-let colorKey = DefaultsKey<String>(“color")
-Defaults[colorKey] = “red"
-
+<p>let colorKey = DefaultsKey<string>(“color")
+Defaults[colorKey] = “red"</string></p>
 

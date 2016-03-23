@@ -1,51 +1,45 @@
-https://github.com/PureLayout/PureLayout
- 支持swift和OC
+<p>https://github.com/PureLayout/PureLayout<br />
+ 支持swift和OC</p>
 
-pod init
-in Podfile
-	pod ‘PureLayout'
-pod install
+<p>pod init<br />
+in Podfile<br />
+	pod ‘PureLayout’<br />
+pod install</p>
 
+<p>#import “PureLayout.h”<br />
+全部文档在头文件里</p>
 
-#import “PureLayout.h"
-全部文档在头文件里
+<p>-(void)updateViewConstraints<br />
+{<br />
+//中心<br />
+//in center of superView<br />
+self.view autoCenterInSuperview</p>
 
--(void)updateViewConstraints
-{
-//中心
-//in center of superView
-self.view autoCenterInSuperview
+<p>//长、宽<br />
+//width:50, height: 50<br />
+self.view autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)<br />
+//view.height = 25<br />
+self.view autoSetDimension:ALDimensionHeight toSize:25.0</p>
 
-//长、宽
-//width:50, height: 50
-self.view autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)
-//view.height = 25
-self.view autoSetDimension:ALDimensionHeight toSize:25.0
+<p>//view.width = blueView.width<br />
+self.view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.blueView</p>
 
+<p>//对齐<br />
+//view.top = blueView.bottom<br />
+self.view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView<br />
+self.view  autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.redView withOffset:10.0</p>
 
-//view.width = blueView.width
-self.view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.blueView
+<p>self.view  autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20.0</p>
 
-//对齐
-//view.top = blueView.bottom
-self.view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView
-self.view  autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.redView withOffset:10.0
+<p>}</p>
 
+<p>[view autoCenterInSuperview];					//view垂直水平居中<br />
+[view autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)];		//view大小<br />
+[view autoSetDimension:ALDimensionHeight toSize:40.0];		//高度</p>
 
-self.view  autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:20.0
+<p>//red的top与blue的底对齐<br />
+[self.redView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView withOffset:10.0];</p>
 
-
-}
-
-[view autoCenterInSuperview];					//view垂直水平居中
-[view autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)];		//view大小
-[view autoSetDimension:ALDimensionHeight toSize:40.0];		//高度
-
-//red的top与blue的底对齐
-[self.redView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView withOffset:10.0];
-
-//red的宽度与blue的宽度相同
-[self.redView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.blueView];
-
-
+<p>//red的宽度与blue的宽度相同<br />
+[self.redView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.blueView];</p>
 

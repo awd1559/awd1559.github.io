@@ -1,50 +1,47 @@
-https://github.com/SnapKit/SnapKit
+<p>https://github.com/SnapKit/SnapKit</p>
 
+<p>//install<br />
+use_frameworks!</p>
 
-//install
-use_frameworks!
+<p>pod ‘SnapKit’, ‘~&gt; 0.15.0’</p>
 
-pod 'SnapKit', '~> 0.15.0'
+<p>import SnapKit</p>
 
+<p>class MyViewController: UIViewController {</p>
 
+<pre><code>lazy var box = UIView()
 
-import SnapKit
+override func viewDidLoad() {
+    super.viewDidLoad()
 
-class MyViewController: UIViewController {
-
-    lazy var box = UIView()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.addSubview(box)
-        box.snp_makeConstraints { (make) -> Void in
-           make.width.height.equalTo(50)
-           make.center.equalTo(self.view)
-        }
+    self.view.addSubview(box)
+    box.snp_makeConstraints { (make) -&gt; Void in
+       make.width.height.equalTo(50)
+       make.center.equalTo(self.view)
     }
-
 }
+</code></pre>
 
-make.size.equalTo(CGSize(width: 500, height: 500))
-make.edges.equalTo(UIEdgeInsets(top:10, left: 10, bottom:10, right:10))
+<p>}</p>
 
-make.left.equalTo(view).offset(20)
-	   	.lessThanOrEqualTo
-		.greaterThanOrEqualTo
+<p>make.size.equalTo(CGSize(width: 500, height: 500))<br />
+make.edges.equalTo(UIEdgeInsets(top:10, left: 10, bottom:10, right:10))</p>
 
-make.left.equalTo(view.snp_right)
+<p>make.left.equalTo(view).offset(20)<br />
+	   	.lessThanOrEqualTo<br />
+		.greaterThanOrEqualTo</p>
 
+<p>make.left.equalTo(view.snp_right)</p>
 
-view.snp_left
-view.snp_right
-view.snp_top
-view.snp_bottom
-view.snp_leading
-view.snp_trailing
-view.snp_width
-view.snp_height
-view.snp_centerX
-view.snp_centerY
-view.snp_baseline
+<p>view.snp_left<br />
+view.snp_right<br />
+view.snp_top<br />
+view.snp_bottom<br />
+view.snp_leading<br />
+view.snp_trailing<br />
+view.snp_width<br />
+view.snp_height<br />
+view.snp_centerX<br />
+view.snp_centerY<br />
+view.snp_baseline</p>
 

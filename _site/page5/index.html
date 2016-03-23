@@ -169,6 +169,36 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2014/06/09/cocoapod-pureLayout/">
+        <h2 class="post-title">
+            Cocoapod Purelayout
+        </h2>
+        
+        <div class="post-content-preview">
+            https://github.com/PureLayout/PureLayout
+ 支持swift和OC
+
+pod init
+in Podfile
+	pod ‘PureLayout’
+pod install
+
+#import “PureLayout.h”
+全部文档在头文件里
+
+-(void)updateViewConstraints
+{
+//中心
+//in center of superVi...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AWD on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2014/06/09/cocoapod-pop/">
         <h2 class="post-title">
             Cocoapod Pop
@@ -209,10 +239,9 @@ view旋转木马效果
 https://github.com/nicklockwood/iCarousel
 
 添加QuartzCore,默认为不需要添加也可以成功
-select project -> target -> build phases -> Link binary with Libraries
+select project -&gt; target -&gt; build phases -&gt; Link binary with Libraries
 
-只需要iCarousel.h、iCarousel.m两个文件
-#i...
+只需要iCarousel.h、iCarousel...
         </div>
     </a>
     <p class="post-meta">
@@ -238,9 +267,8 @@ pod init          #创建一个Podfile文件
 pod install
 pod update
 
-
 //制作cocoapods
-pod trunk register awd1559@gmail.com 'awd15...
+pod trunk register awd1559@gmail.com ‘awd155...
         </div>
     </a>
     <p class="post-meta">
@@ -258,9 +286,6 @@ pod trunk register awd1559@gmail.com 'awd15...
         <div class="post-content-preview">
             Cartfile
 git “”
-
-
-
 
 brew install Carthage
 brew upgrade Carthage
@@ -287,12 +312,12 @@ carhage update
             XLPagerTabStrip
 https://github.com/xmartlabs/XLPagerTabStrip
  
-pod 'XLPagerTabStrip', '~> 4.0’
+pod ‘XLPagerTabStrip’, ‘~&gt; 4.0’
 
 4种
 Button Bar	:	ButtonBarPagerTabStripViewController 
 Bar		:	BarPagerStripViewController
-Twitter		:	T...
+Twitter		...
         </div>
     </a>
     <p class="post-meta">
@@ -312,15 +337,13 @@ Twitter		:	T...
 https://github.com/radex/SwiftyUserDefaults
 
 install
-pod ‘SwiftyUserDefaults'
+pod ‘SwiftyUserDefaults’
 
 import SwiftyUserDefaults
 
-
-
 定义keys
 extension DefaultsKeys {
-    static let username = DefaultsKey(...
+    static let username = DefaultsKey&lt...
         </div>
     </a>
     <p class="post-meta">
@@ -339,14 +362,13 @@ extension DefaultsKeys {
             SwiftyJSON
 https://github.com/SwiftyJSON/SwiftyJSON
 
-
 install
-platform :ios, '8.0'
+platform :ios, ‘8.0’
 use_frameworks!
 
-target 'MyApp' do
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-en...
+target ‘MyApp’ do
+    pod ‘SwiftyJSON’, :git =&gt; ‘https://github.com/SwiftyJSON/SwiftyJSON.git’
+...
         </div>
     </a>
     <p class="post-meta">
@@ -364,21 +386,18 @@ en...
         <div class="post-content-preview">
             https://github.com/SnapKit/SnapKit
 
-
 //install
 use_frameworks!
 
-pod 'SnapKit', '~> 0.15.0'
-
-
+pod ‘SnapKit’, ‘~&gt; 0.15.0’
 
 import SnapKit
 
 class MyViewController: UIViewController {
 
-    lazy var box = UIView()
+lazy var box = UIView()
 
-    override f...
+override func view...
         </div>
     </a>
     <p class="post-meta">
@@ -397,40 +416,15 @@ class MyViewController: UIViewController {
             SVProgressHUD
 https://github.com/SVProgressHUD/SVProgressHUD
 
-pod ‘SVProgressHUD'
-
-
-
+pod ‘SVProgressHUD’
 
 //show 
 + (void)show;
 (void)showWithStatus:(NSString*)string;
 
-+ (void)showProgress:(CGFloat)progress;
-(void)sh...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AWD on June 9, 2014
-    </p>
-</div>
-<hr>
 
-<div class="post-preview">
-    <a href="/2014/06/09/cocoapod-SMPageControl/">
-        <h2 class="post-title">
-            Cocoapod Smpagecontrol
-        </h2>
-        
-        <div class="post-content-preview">
-            SMPageControl
-几个指示小圆点
-https://github.com/Spaceman-Labs/SMPageControl
-
-@property (strong, nonatomic) SMPageControl *pageControl;
-
-self.pageControl = ({
-        SMPageControl *pageControl = [[SMPageC...
+  (void)showProgress:(CGFloat)progress;
+(void)show...
         </div>
     </a>
     <p class="post-meta">
@@ -494,6 +488,8 @@ self.pageControl = ({
                                 <a href="/tags/#shell" title="shell" rel="5">
                                     shell
                                 </a>
+                            
+                        
                             
                         
                             

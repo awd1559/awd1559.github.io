@@ -1,80 +1,75 @@
-安装
-sudo gem install -g cocoapods
-sudo gem uninsall cocoapods
+<p>安装<br />
+sudo gem install -g cocoapods<br />
+sudo gem uninsall cocoapods</p>
 
-pod setup    #设置环境
+<p>pod setup    #设置环境</p>
 
-pod init          #创建一个Podfile文件
-pod install
-pod update
+<p>pod init          #创建一个Podfile文件<br />
+pod install<br />
+pod update</p>
 
+<p>//制作cocoapods<br />
+pod trunk register awd1559@gmail.com ‘awd1559’ //注册</p>
 
-//制作cocoapods
-pod trunk register awd1559@gmail.com 'awd1559' //注册
+<p>//生成SwiftyExt.podspec<br />
+pod spec create NAME<br />
+//检查<br />
+pod spec lint SwiftyExt.podspec  <br />
+//添加到本地repo spec<br />
+pod repo push SPECNAME NAME.podspec</p>
 
-//生成SwiftyExt.podspec
-pod spec create NAME
-//检查
-pod spec lint SwiftyExt.podspec  
-//添加到本地repo spec
-pod repo push SPECNAME NAME.podspec
+<p>git tag ‘1.0.0’<br />
+git push —tags<br />
+//删除原称tag<br />
+git push origin —delete tag <tagnaem></tagnaem></p>
 
-git tag '1.0.0'
-git push —tags
-//删除原称tag
-git push origin —delete tag <tagnaem>  
+<p>//上传到cocoapods<br />
+pod trunk push SwiftyExt.podspec</p>
 
-//上传到cocoapods
-pod trunk push SwiftyExt.podspec  
+<p>常用的pod<br />
+autolayout<br />
+	masonry<br />
+	neon<br />
+	purelayout<br />
+	SnapKit <br />
+用起来都不是很好，直接食用Storyboard，可以很好很直观的解决问题<br />
+storyboard中还可以使用tab、nav、跳转</p>
 
+<p>ReactiveCocoa/RxSwift<br />
+KVOController</p>
 
+<p>网络<br />
+SDWebImage<br />
+AFNetworking<br />
+Alamofire</p>
 
+<p>动画<br />
+pop</p>
 
+<p>布局<br />
+MJRefresh<br />
+XLPagerTabStrip<br />
+RDVTabBarController<br />
+RKSwipeBetweenViewControllers<br />
+RESideMenu/DrawerController<br />
+HUD<br />
+	MBProgressHUD<br />
+	SVProgressHUD<br />
+	JGProgressHUD</p>
 
-常用的pod
-autolayout
-	masonry
-	neon
-	purelayout
-	SnapKit 
-用起来都不是很好，直接食用Storyboard，可以很好很直观的解决问题
-storyboard中还可以使用tab、nav、跳转
+<p>引导页<br />
+JazzHands</p>
 
-ReactiveCocoa/RxSwift
-KVOController
+<p>JSON<br />
+Objectmapper<br />
+Ono<br />
+SwiftJSON</p>
 
-网络
-SDWebImage
-AFNetworking
-Alamofire
+<p>加强<br />
+DateTool<br />
+Timepiece<br />
+FontAwesome<br />
+FontAwesome.swift</p>
 
-动画
-pop
-
-布局
-MJRefresh
-XLPagerTabStrip
-RDVTabBarController
-RKSwipeBetweenViewControllers
-RESideMenu/DrawerController
-HUD
-	MBProgressHUD
-	SVProgressHUD
-	JGProgressHUD
-
-引导页
-JazzHands
-
-JSON
-Objectmapper
-Ono
-SwiftJSON
-
-加强
-DateTool
-Timepiece
-FontAwesome
-FontAwesome.swift
-
-Log
-XCGLogger
+<p>Log<br />
+XCGLogger</p>

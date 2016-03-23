@@ -1,64 +1,49 @@
-	1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
-	2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
+<pre><code>1.	#pragma mark — 的“-”后面不能有空格, 技巧：连写两个-。
+2.	如果你的标志没有出现在弹出菜单中，比如没有分隔线出现，请在Xcode菜单 “Preferences..”中的 “Code Sense”选项取消选中”Sort list alphabetically”即可。
+</code></pre>
 
+<p>XXX-Info.plist		工程描述文件<br />
+InfoPlist.strings		本地化字符串<br />
+mani.m				入口文件<br />
+XXX-Prefix.pch		引入头文件</p>
 
+<p>文件夹是灰色的，组是黄色的<br />
+文件夹中路径需要指明，组中资源不用指出路径</p>
 
-XXX-Info.plist		工程描述文件
-InfoPlist.strings		本地化字符串
-mani.m				入口文件
-XXX-Prefix.pch		引入头文件
+<p>Scene通过Segue跳转<br />
+跳转的类型分：Push、Modal、Popover和自定义</p>
 
-文件夹是灰色的，组是黄色的
-文件夹中路径需要指明，组中资源不用指出路径
+<p>反向调用<br />
+NSString *className = @“MyViewController”;<br />
+Class viewControllerKlass = NSClassFromString(viewControllerClassName);<br />
+NSAssert(viewControllerKlass, @”Class should not be nil!”);<br />
+NSAssert([viewControllerKlass isSubclassOfClass:[UIViewController class]], @”Class should be a view controller!”);<br />
+UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibName:nil bundle:nil];</p>
 
+<p>快捷键:<br />
+Open Quickly 			        ctrl+shift+o	打开项目文件<br />
+Standard Editor&gt;Show Document Items  cmd+p          文件中函数跳转<br />
+Reveal in Project Navigator                 cmd+shift+j  在Project中显示文件<br />
+<em>.m</em>.h切换 ⌘+⌃ +↓or↑<br />
+option + 右键 查看符号的文档</p>
 
-Scene通过Segue跳转
-跳转的类型分：Push、Modal、Popover和自定义
+<p>cmd + .  暂停模拟器</p>
 
+<p>CMD+[     左缩进<br />
+CMD+]     右缩进</p>
 
-反向调用
-NSString *className = @“MyViewController”;
-Class viewControllerKlass = NSClassFromString(viewControllerClassName);
-NSAssert(viewControllerKlass, @"Class should not be nil!");
-NSAssert([viewControllerKlass isSubclassOfClass:[UIViewController class]], @"Class should be a view controller!");
-UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibName:nil bundle:nil];
+<p>前进后退文本文件⌘+⌃ +←or→<br />
+自动排版代码 ⌃+i<br />
+左右缩进 ⌘+[or]<br />
+注释 ⌘+/<br />
+查看名称定义，进入头文件 ⌘+鼠标左键<br />
+查看名称api文档 ⌥+鼠标左键</p>
 
+<p>doc位置<br />
+/Application/Xcode.app/Contents/Developer/Documentation/DocSets<br />
+app临时编译位置<br />
+/Users/awd/Library/Developer/Xcode/DerivedData预览sb、xib：<br />
+左上角preview</p>
 
-
-
-
-
-
-快捷键:
-Open Quickly 			        ctrl+shift+o	打开项目文件
-Standard Editor>Show Document Items  cmd+p          文件中函数跳转
-Reveal in Project Navigator                 cmd+shift+j  在Project中显示文件
-*.m*.h切换 ⌘+⌃ +↓or↑
-option + 右键 查看符号的文档
-
-cmd + .  暂停模拟器
-
-CMD+[     左缩进
-CMD+]     右缩进
-
-
-前进后退文本文件⌘+⌃ +←or→
-自动排版代码 ⌃+i
-左右缩进 ⌘+[or]
-注释 ⌘+/
-查看名称定义，进入头文件 ⌘+鼠标左键
-查看名称api文档 ⌥+鼠标左键
-
-
-
-
-doc位置
-/Application/Xcode.app/Contents/Developer/Documentation/DocSets
-app临时编译位置
-/Users/awd/Library/Developer/Xcode/DerivedData预览sb、xib：
-左上角preview
-
-
-
-shift+Option(alt) : 设置预览
-ctrl + Option : 预览
+<p>shift+Option(alt) : 设置预览<br />
+ctrl + Option : 预览</p>

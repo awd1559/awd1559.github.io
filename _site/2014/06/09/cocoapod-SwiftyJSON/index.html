@@ -1,39 +1,33 @@
-SwiftyJSON
-https://github.com/SwiftyJSON/SwiftyJSON
+<p>SwiftyJSON<br />
+https://github.com/SwiftyJSON/SwiftyJSON</p>
 
+<p>install<br />
+platform :ios, ‘8.0’<br />
+use_frameworks!</p>
 
-install
-platform :ios, '8.0'
-use_frameworks!
+<p>target ‘MyApp’ do<br />
+    pod ‘SwiftyJSON’, :git =&gt; ‘https://github.com/SwiftyJSON/SwiftyJSON.git’<br />
+end</p>
 
-target 'MyApp' do
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-end
+<p>import SwiftyJSON<br />
+let jsonString = “{    "emp": [        {            "firstname": "1111",            "lastname": "222222"        },        {            "firstname": "333",            "lastname": "444"        }    ]}”<br />
+let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)</p>
 
+<p>let json1 = JSON(data: dataFromNetworking)	//无法解析</p>
 
+<p>let json2 = JSON(jsonString)				//可以解析无法读取数据</p>
 
-import SwiftyJSON
-let jsonString = "{    \"emp\": [        {            \"firstname\": \"1111\",            \"lastname\": \"222222\"        },        {            \"firstname\": \"333\",            \"lastname\": \"444\"        }    ]}"
-let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+<p>if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {<br />
+    let json3 = JSON(data: dataFromString)	//无法解析<br />
+}</p>
 
-let json1 = JSON(data: dataFromNetworking)	//无法解析
+<p>var json1 : JSON? = nil<br />
+        if let file = NSBundle(forClass:AppDelegate.self).pathForResource(“SwiftyJSONTests”, ofType: “json”) {<br />
+            let data = NSData(contentsOfFile: file)!<br />
+            let json = JSON(data:data)<br />
+            json1 = json<br />
+        } else {<br />
+            json1 = JSON.null<br />
+        }</p>
 
-let json2 = JSON(jsonString)				//可以解析无法读取数据
-
-if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-    let json3 = JSON(data: dataFromString)	//无法解析
-}
-
-
-var json1 : JSON? = nil
-        if let file = NSBundle(forClass:AppDelegate.self).pathForResource("SwiftyJSONTests", ofType: "json") {
-            let data = NSData(contentsOfFile: file)!
-            let json = JSON(data:data)
-            json1 = json
-        } else {
-            json1 = JSON.null
-        }
-
-
-
-json 的标准格式
+<p>json 的标准格式</p>

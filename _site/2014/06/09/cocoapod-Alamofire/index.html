@@ -1,93 +1,89 @@
-Alamofire
-https://github.com/Alamofire/Alamofire
+<p>Alamofire<br />
+https://github.com/Alamofire/Alamofire</p>
 
-pod 'Alamofire', '~> 3.0’
-import Alamofire
+<p>pod ‘Alamofire’, ‘~&gt; 3.0’<br />
+import Alamofire</p>
 
-Making a Request
-Alamofire.request(.GET, “https://httpbin.org/get”)
-.responseString{response in 
-	self.label.text = response.result.value
-}
+<p>Making a Request<br />
+Alamofire.request(.GET, “https://httpbin.org/get”)<br />
+.responseString{response in <br />
+	self.label.text = response.result.value<br />
+}</p>
 
-Response Handling
-response(
-resonseData
-responseString
-responseJSON
-responsePropertyList
+<p>Response Handling<br />
+response(<br />
+resonseData<br />
+responseString<br />
+responseJSON<br />
+responsePropertyList</p>
 
-request: NSURLRequest
-response: NSHTTPURLResponse
-data: NSData
-error: NSError
+<p>request: NSURLRequest<br />
+response: NSHTTPURLResponse<br />
+data: NSData<br />
+error: NSError</p>
 
-Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
-         .responseJSON { response in
-             print(response.request)  // original URL request
-             print(response.response) // URL response
-             print(response.data)     // server data
-             print(response.result)   // result of response serialization
+<p>Alamofire.request(.GET, “https://httpbin.org/get”, parameters: [“foo”: “bar”])<br />
+         .responseJSON { response in<br />
+             print(response.request)  // original URL request<br />
+             print(response.response) // URL response<br />
+             print(response.data)     // server data<br />
+             print(response.result)   // result of response serialization</p>
 
-             if let JSON = response.result.value {
-                 print("JSON: \(JSON)")
-             }
+<pre><code>         if let JSON = response.result.value {
+             print("JSON: \(JSON)")
          }
+     }
+</code></pre>
 
+<p>response handler<br />
+Alamofire.request(.GET, “https://httpbin.org/get”, parameters: [“foo”: “bar”])<br />
+         .response { request, response, data, error in<br />
+             print(request)<br />
+             print(response)<br />
+             print(data)<br />
+             print(error)<br />
+          }<br />
+response data handler<br />
+Alamofire.request(.GET, “https://httpbin.org/get”, parameters: [“foo”: “bar”])<br />
+         .responseData { response in<br />
+             print(response.request)<br />
+             print(response.response)<br />
+             print(response.result)<br />
+          }<br />
+response string handler<br />
+Alamofire.request(.GET, “https://httpbin.org/get”)<br />
+         .responseString { response in<br />
+             print(“Success: (response.result.isSuccess)”)<br />
+             print(“Response String: (response.result.value)”)<br />
+         } response json handler<br />
+Alamofire.request(.GET, “https://httpbin.org/get”)<br />
+         .responseJSON { response in<br />
+             debugPrint(response)<br />
+         }<br />
+chained response handlers<br />
+Alamofire.request(.GET, “https://httpbin.org/get”)<br />
+         .responseString { response in<br />
+             print(“Response String: (response.result.value)”)<br />
+         }<br />
+         .responseJSON { response in<br />
+             print(“Response JSON: (response.result.value)”)<br />
+         }</p>
 
-response handler
-Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
-         .response { request, response, data, error in
-             print(request)
-             print(response)
-             print(data)
-             print(error)
-          }
-response data handler
-Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
-         .responseData { response in
-             print(response.request)
-             print(response.response)
-             print(response.result)
-          }
-response string handler
-Alamofire.request(.GET, "https://httpbin.org/get")
-         .responseString { response in
-             print("Success: \(response.result.isSuccess)")
-             print("Response String: \(response.result.value)")
-         } response json handler
-Alamofire.request(.GET, "https://httpbin.org/get")
-         .responseJSON { response in
-             debugPrint(response)
-         }
-chained response handlers
-Alamofire.request(.GET, "https://httpbin.org/get")
-         .responseString { response in
-             print("Response String: \(response.result.value)")
-         }
-         .responseJSON { response in
-             print("Response JSON: \(response.result.value)")
-         }
+<p>HTTP methods</p>
 
-HTTP methods
+<p>Parameters</p>
 
-Parameters
+<p>HTTP Headers<br />
+let headers = [<br />
+    “Authorization”: “Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==”,<br />
+    “Content-Type”: “application/x-www-form-urlencoded”<br />
+]</p>
 
-HTTP Headers
-let headers = [
-    "Authorization": "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==",
-    "Content-Type": "application/x-www-form-urlencoded"
-]
+<p>Alamofire.request(.GET, “https://httpbin.org/get”, headers: headers)<br />
+         .responseJSON { response in<br />
+             debugPrint(response)<br />
+         }</p>
 
-Alamofire.request(.GET, "https://httpbin.org/get", headers: headers)
-         .responseJSON { response in
-             debugPrint(response)
-         }
-
-
-
-response serialization
-use Ono
-
-
+<p>response serialization<br />
+use Ono</p>
 

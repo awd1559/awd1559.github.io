@@ -1,26 +1,25 @@
-UISwitch
-//selector函数不存在，只报错，编译能通过
-[[UISwitch alloc] initWithFrame:CGRectZero]
-[switch setOn:YES]
-[switch addTarget:self action:@selector(switchIsChanged:)	
-	forControlEvents:UIControlEventValueChanged];
--(void)switchIsChanged:(UISwitch*)switch{}
+<p>UISwitch<br />
+//selector函数不存在，只报错，编译能通过<br />
+[[UISwitch alloc] initWithFrame:CGRectZero]<br />
+[switch setOn:YES]<br />
+[switch addTarget:self action:@selector(switchIsChanged:)	<br />
+	forControlEvents:UIControlEventValueChanged];<br />
+-(void)switchIsChanged:(UISwitch*)switch{}</p>
 
+<p>switch.tintColor		off state color<br />
+switch.onTintColor		on state color<br />
+switch.thumbTintColor	knob color </p>
 
-switch.tintColor		off state color
-switch.onTintColor		on state color
-switch.thumbTintColor	knob color 
+<p>&lt;UIPickerViewDataSource, UIPickerViewDelegate&gt;<br />
+UIPickerView *picker = [[UIPickerView alloc] init];<br />
+picker.dataSource = self;<br />
+picker.delegate = self;</p>
 
-<UIPickerViewDataSource, UIPickerViewDelegate>
-UIPickerView *picker = [[UIPickerView alloc] init];
-picker.dataSource = self;
-picker.delegate = self;
+<p>#pragma UIPickerViewDataSource<br />
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView*)picker;<br />
+-(NSInteger)pickerView:numberOfRowsInComponent:</p>
 
-#pragma UIPickerViewDataSource
--(NSInteger) numberOfComponentsInPickerView:(UIPickerView*)picker;
--(NSInteger)pickerView:numberOfRowsInComponent:
-
-<UIPickerViewDelegate>
+<uipickerviewdelegate>
 -(NSString*)pickerView:titleForRow:forComponent:
 
 UIDatePicker* picker = [[UIDatePicker alloc] init];
@@ -66,7 +65,7 @@ UIActivityViewController *activity = 
 //弹出Share ViewController
 [self presentViewController:activity animated:YES completion:^{};];
 
-customActivity : UIActivity<UIActivityDelegate>{
+customActivity : UIActivity<uiactivitydelegate>{
 	-(NSString*)activityType
 	-(NSString*)activityTitle	
 	-(UIImage*) activityImage	显示定制图片
@@ -158,14 +157,14 @@ NSLayoutConstraint *centerXCons = 
 //Visual Format Language
 H:[button]-[textField]		标准间距
 H:[button]—8-[textField]	水平间距8
-H:[button(>=50)]		button.width >=50
+H:[button(&gt;=50)]		button.width &gt;=50
 H:|-50-[box]-50-|		距左边50，右边50；
 V:[topField]-10-[buttonField]	垂直间距10
 
 [maroonView][oceanView]		Flush Views
 [button(100@20)]		Priority
 [button1(==button2)]		Equal Widths
-[flexButton(>=70, <=100)]
+[flexButton(&gt;=70, &lt;=100)]
 
 NSDictionary *views = NSDictionaryOfVariableBindings(v1, v2, v3);
 NSArray *con = [NSLayoutConstraint constraintsWithVisualFormat:@“H||” optons:metrics:nil views:views];
@@ -351,7 +350,7 @@ Person *newPerson = [NSEntityDescription
                          insertNewObjectForEntityForName:@"Person"
                          inManagedObjectContext:self.managedObjectContext];
 NSError *savingError = nil;
-[self.managedObjectContext save:&savingError]
+[self.managedObjectContext save:&amp;savingError]
 
 //fetch
 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
@@ -364,8 +363,8 @@ fetchRequest.sortDescriptors = @[ageSorg, firstNameSort];
 
 NSArray *persons =
     [self.managedObjectContext executeFetchRequest:fetchRequest
-                                             error:&requestError];
-if([persons count] > 0)
+                                             error:&amp;requestError];
+if([persons count] &gt; 0)
     for(Person *p in persons)
 
 
@@ -377,7 +376,7 @@ if([p isDeleted])
 
 
 //binding
-    <NSFetchedResultsControllerDelegate>
+    <nsfetchedresultscontrollerdelegate>
 NSFetchedResultsController *frc =
     [[NSFetchedResultsController alloc]
      initWithFetchRequest:fetchRequest
@@ -387,7 +386,7 @@ NSFetchedResultsController *frc =
 frc.delegate = self;
 
 #pargram UITableViewDelegate
-    id <NSFetchedResultsSectionInfo> sectionInfo =
+    id <nsfetchedresultssectioninfo> sectionInfo =
         self.frc.sections[section];
     return sectionInfo.numberOfObjects;                //获取的数据数目
 
@@ -446,7 +445,7 @@ NSURLConnection sendAsynchronousRequest:urlRequest:queue:completionHandler:];
 
 NSError *error = nil;
 NSURLResponse *response = nil;
-NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response erro:&error];
+NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&amp;response erro:&amp;error];
 
 
 dispatch_queue_t dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -600,7 +599,7 @@ searchController.searchResultsDataSource = self;
 shouldReloadTableForSearchString:(NSString *)searchString
 {
     [filteredNames removeAllObjects];
-    if (searchString.length > 0) {
+    if (searchString.length &gt; 0) {
         NSPredicate *predicate =
         [NSPredicate
          predicateWithBlock:^BOOL(NSString *name, NSDictionary *b) {
@@ -682,3 +681,4 @@ NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
 
 
+</nsfetchedresultssectioninfo></nsfetchedresultscontrollerdelegate></uiactivitydelegate></uipickerviewdelegate>

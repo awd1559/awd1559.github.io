@@ -1,29 +1,29 @@
-Masory
-https://github.com/SnapKit/Masonry
+<p>Masory<br />
+https://github.com/SnapKit/Masonry</p>
 
-pod "Masonry"
+<p>pod “Masonry”</p>
 
-#import "Masonry.h"
+<p>#import “Masonry.h”</p>
 
-#define kScreen_Bounds [UIScreen mainScreen].bounds
-#define kScreen_Height [UIScreen mainScreen].bounds.size.height
-#define kScreen_Width [UIScreen mainScreen].bounds.size.width
-#define kScaleFrom_iPhone5_Desgin(_X_) (_X_ * (kScreen_Width/320))
+<p>#define kScreen_Bounds [UIScreen mainScreen].bounds<br />
+#define kScreen_Height [UIScreen mainScreen].bounds.size.height<br />
+#define kScreen_Width [UIScreen mainScreen].bounds.size.width<br />
+#define kScaleFrom_iPhone5_Desgin(<em>X</em>) (<em>X</em> * (kScreen_Width/320))</p>
 
-view1 mas_makeConstraints:^(MASConstraintMaker *make){
-	make.centerY.mas_equalTo(kScreen_Height/6);
-}
-[view2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view1.mas_bottom).offset(kScaleFrom_iPhone5_Desgin(45));
-}];
+<p>view1 mas_makeConstraints:^(MASConstraintMaker *make){<br />
+	make.centerY.mas_equalTo(kScreen_Height/6);<br />
+}<br />
+[view2 mas_makeConstraints:^(MASConstraintMaker *make) {<br />
+        make.top.equalTo(view1.mas_bottom).offset(kScaleFrom_iPhone5_Desgin(45));<br />
+}];</p>
 
-make.left.greaterThanOrEqualTo(label);
-make.left.greaterThanOrEqualTo(label.mas_left);
-make.width.lessThanOrEqualTo(@400)
-make.left.lessThanOrEqualTo(@10)
+<p>make.left.greaterThanOrEqualTo(label);<br />
+make.left.greaterThanOrEqualTo(label.mas_left);<br />
+make.width.lessThanOrEqualTo(@400)<br />
+make.left.lessThanOrEqualTo(@10)</p>
 
-make.top.mas_equalTo(42);
-make.height.mas_equalTo(20);
-make.size.mas_equalTo(CGSizeMake(50, 100));
-make.edges.mas_equalTo(UIEdgeInsetsMake(10, 0, 10, 0));
-make.left.mas_equalTo(view).mas_offset(UIEdgeInsetsMake(10, 0, 10, 0));
+<p>make.top.mas_equalTo(42);<br />
+make.height.mas_equalTo(20);<br />
+make.size.mas_equalTo(CGSizeMake(50, 100));<br />
+make.edges.mas_equalTo(UIEdgeInsetsMake(10, 0, 10, 0));<br />
+make.left.mas_equalTo(view).mas_offset(UIEdgeInsetsMake(10, 0, 10, 0));</p>

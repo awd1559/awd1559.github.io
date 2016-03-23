@@ -1,17 +1,17 @@
-SMPageControl
-几个指示小圆点
-https://github.com/Spaceman-Labs/SMPageControl
+<p>SMPageControl<br />
+几个指示小圆点<br />
+https://github.com/Spaceman-Labs/SMPageControl</p>
 
-@property (strong, nonatomic) SMPageControl *pageControl;
+<p>@property (strong, nonatomic) SMPageControl *pageControl;</p>
 
-self.pageControl = ({
-        SMPageControl *pageControl = [[SMPageControl alloc] init];
-        pageControl.numberOfPages = self.numberOfPages;
-        pageControl.userInteractionEnabled = NO;
-        pageControl.pageIndicatorImage = pageIndicatorImage;
-        pageControl.currentPageIndicatorImage = currentPageIndicatorImage;
-        [pageControl sizeToFit];
-        pageControl.currentPage = 0;
-        pageControl;
-});
-[self.view addSubview:self.pageControl];
+<p>self.pageControl = ({<br />
+        SMPageControl *pageControl = [[SMPageControl alloc] init];<br />
+        pageControl.numberOfPages = self.numberOfPages;<br />
+        pageControl.userInteractionEnabled = NO;<br />
+        pageControl.pageIndicatorImage = pageIndicatorImage;<br />
+        pageControl.currentPageIndicatorImage = currentPageIndicatorImage;<br />
+        [pageControl sizeToFit];<br />
+        pageControl.currentPage = 0;<br />
+        pageControl;<br />
+});<br />
+[self.view addSubview:self.pageControl];</p>

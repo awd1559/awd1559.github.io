@@ -1,105 +1,105 @@
-启动页滚动介绍页面动画
-https://github.com/IFTTT/JazzHands
+<p>启动页滚动介绍页面动画<br />
+https://github.com/IFTTT/JazzHands</p>
 
-//install
-pod "JazzHands"
+<p>//install<br />
+pod “JazzHands”</p>
 
-#import <IFTTTJazzHands.h>
+<p>#import <iftttjazzhands.h></iftttjazzhands.h></p>
 
-ViewController : IFTTTAnimatedPagingScrollViewController
+<p>ViewController : IFTTTAnimatedPagingScrollViewController</p>
 
-- (NSUInteger)numberOfPages
-{
-    return 4;
-}
+<ul>
+  <li>(NSUInteger)numberOfPages<br />
+{<br />
+  return 4;<br />
+}</li>
+</ul>
 
--(void)viewDidLoad {
-	[super viewDidLoad]
-	[self configViews]
-	[self configAnimations]
-}
--(void)configViews {
-	self.imageview0 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"intro_icon_0.png"]];
-	[self.contentView addSubview:self.imageview0];
-	.............
-}
--(void)configAnimations {
-	[self keepView:self.imageview0 onPage:0];
-	[self keepView:self.imageview1 onPage:1];
-	[self keepView:self.imageview2 onPage:2];
-	[self keepView:self.imageview3 onPage:3];
+<p>-(void)viewDidLoad {<br />
+	[super viewDidLoad]<br />
+	[self configViews]<br />
+	[self configAnimations]<br />
+}<br />
+-(void)configViews {<br />
+	self.imageview0 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@”intro_icon_0.png”]];<br />
+	[self.contentView addSubview:self.imageview0];<br />
+	………….<br />
+}<br />
+-(void)configAnimations {<br />
+	[self keepView:self.imageview0 onPage:0];<br />
+	[self keepView:self.imageview1 onPage:1];<br />
+	[self keepView:self.imageview2 onPage:2];<br />
+	[self keepView:self.imageview3 onPage:3];</p>
 
-	//animations 
-	//create animation
-	IFTTTAlphaAnimation *alphaAnimation = [IFTTTAlphaAnimation animationWithView: viewThatYouWantToAnimate];
-	//config animation
-	[alphaAnimation addKeyframeForTime:30 alpha:1.f];
-	[alphaAnimation addKeyframeForTime:60 alpha:0.f];
-	//register animator
-	[self.animator addAnimation: alphaAnimation];
-}
+<pre><code>//animations 
+//create animation
+IFTTTAlphaAnimation *alphaAnimation = [IFTTTAlphaAnimation animationWithView: viewThatYouWantToAnimate];
+//config animation
+[alphaAnimation addKeyframeForTime:30 alpha:1.f];
+[alphaAnimation addKeyframeForTime:60 alpha:0.f];
+//register animator
+[self.animator addAnimation: alphaAnimation]; }
+</code></pre>
 
-其中animation有很多变化
-//imageview0 y 对齐到一个高度
-[self.imageview0 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(-kScreen_Height/6);
-}];
-//tipview.top = imageview.bottom +  45
-[self.tipview0 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.imageview0.mas_bottom).offset(kScaleFrom_iPhone5_Desgin(45));
-}];
-//imageview0 在第0页和第1页显示
-[self keepView:self.imageview0 onPages:@[@(0), @(1)]];
+<p>其中animation有很多变化<br />
+//imageview0 y 对齐到一个高度<br />
+[self.imageview0 mas_makeConstraints:^(MASConstraintMaker *make) {<br />
+        make.centerY.mas_equalTo(-kScreen_Height/6);<br />
+}];<br />
+//tipview.top = imageview.bottom +  45<br />
+[self.tipview0 mas_makeConstraints:^(MASConstraintMaker *make) {<br />
+        make.top.equalTo(self.imageview0.mas_bottom).offset(kScaleFrom_iPhone5_Desgin(45));<br />
+}];<br />
+//imageview0 在第0页和第1页显示<br />
+[self keepView:self.imageview0 onPages:@[@(0), @(1)]];</p>
 
-//为各个view设置animation
-IFTTT*Animation *animation = [IFTTT*Animation animationWithView:view];
-[animation addKeyframe           ]
-[self.animator addAnimation:animation];
+<p>//为各个view设置animation<br />
+IFTTT<em>Animation *animation = [IFTTT</em>Animation animationWithView:view];<br />
+[animation addKeyframe           ]<br />
+[self.animator addAnimation:animation];</p>
 
-IFTTTAlphaAnimation
-[animation addKeyframeForTime:1.06f alpha:0];
-[animation addKeyframeForTime:1.08f alpha:1];
-[animation addKeyframeForTime:2.5f alpha:1];
-[animation addKeyframeForTime:3.f alpha:0];
+<p>IFTTTAlphaAnimation<br />
+[animation addKeyframeForTime:1.06f alpha:0];<br />
+[animation addKeyframeForTime:1.08f alpha:1];<br />
+[animation addKeyframeForTime:2.5f alpha:1];<br />
+[animation addKeyframeForTime:3.f alpha:0];</p>
 
-IFTTTRotationAnimation
-[animation addKeyframeForTime:0 rotation:0];
-[animation addKeyframeForTime:1 rotation:100];
+<p>IFTTTRotationAnimation<br />
+[animation addKeyframeForTime:0 rotation:0];<br />
+[animation addKeyframeForTime:1 rotation:100];</p>
 
-IFTTPScaleAnimation
-[animation addKeyframeForTime:0 scale:1 withEasingFunction:IFTTTEasingFunctionEaseInQuad];
-[animation addKeyframeForTime:1 scale:6];
+<p>IFTTPScaleAnimation<br />
+[animation addKeyframeForTime:0 scale:1 withEasingFunction:IFTTTEasingFunctionEaseInQuad];<br />
+[animation addKeyframeForTime:1 scale:6];</p>
 
-IFTTTBackgroundColor
-[animation addKeyframeForTime:0 color:[UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.f]];
-[animation addKeyframeForTime:1 color:[UIColor colorWithRed:0.14f green:0.8f blue:1.f alpha:1.f]];
+<p>IFTTTBackgroundColor<br />
+[animation addKeyframeForTime:0 color:[UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.f]];<br />
+[animation addKeyframeForTime:1 color:[UIColor colorWithRed:0.14f green:0.8f blue:1.f alpha:1.f]];</p>
 
-IFTTTCornerRadiusAnimation
+<p>IFTTTCornerRadiusAnimation</p>
 
-IFTTTHideAnimation
-IFTTTHideAnimation *animation = [IFTTTHideAnimation animationWithView:self.circle hideAt:1.15];
+<p>IFTTTHideAnimation<br />
+IFTTTHideAnimation *animation = [IFTTTHideAnimation animationWithView:self.circle hideAt:1.15];</p>
 
-IFTTTTranslationAnimation
-animation addKeyframeForTime:0 translation:(CGPoint)
+<p>IFTTTTranslationAnimation<br />
+animation addKeyframeForTime:0 translation:(CGPoint)</p>
 
+<p>IFTTTTransform3DAnimation</p>
 
-IFTTTTransform3DAnimation
+<p>IFTTTTextColorAnimation</p>
 
-IFTTTTextColorAnimation
+<p>IFTTTFillColorAnimation</p>
 
-IFTTTFillColorAnimation
+<p>IFTTTStrokeStartAnimation</p>
 
-IFTTTStrokeStartAnimation
+<p>IFTTTPathPositionAnimation</p>
 
-IFTTTPathPositionAnimation
+<p>IFTTTConstraintConstantAnimation<br />
+NSLayoutConstraint *c1<br />
+NSLayoutConstraint *c2</p>
 
-IFTTTConstraintConstantAnimation
-NSLayoutConstraint *c1
-NSLayoutConstraint *c2
+<p>IFTTTConstraintMultiplierAnimation</p>
 
+<p>IFTTTScrollViewPageConstraintAnimation</p>
 
-IFTTTConstraintMultiplierAnimation
-
-IFTTTScrollViewPageConstraintAnimation
-
-IFTTTFrameAnimation
+<p>IFTTTFrameAnimation</p>

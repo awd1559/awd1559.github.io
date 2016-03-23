@@ -1,23 +1,27 @@
-MJRefresh
-https://github.com/CoderMJLee/MJRefresh
+---
+layout:     post
+title:      "MJRefresh"
+subtitle:   " \"MJRefresh\""
+date:       2015-01-29 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - cocoapod
+---
+#[MJRefresh](https://github.com/CoderMJLee/MJRefresh)
 
-pod ‘MJRefresh'
+## install
+>pod ‘MJRefresh'
 
 
-
-//swift
-//不需要bridge文件
-//bridge.h
-//#import <MJRefresh/MJRefresh.h>
-
+```swift
 import MJRefresh
 
-
-class ViewController : UITableViewController {
+class MyViewController : UITableViewController {
 
 //默认hedaer
 var header = MJRefreshNormalHeader(refreshingBlock:{})
-
+```
 
 //带动画图片的header
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）

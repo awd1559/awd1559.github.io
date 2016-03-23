@@ -1,39 +1,36 @@
-FontAwesome.swift
-https://github.com/thii/FontAwesome.swift
+<p>FontAwesome.swift<br />
+https://github.com/thii/FontAwesome.swift</p>
 
+<p>source ‘https://github.com/CocoaPods/Specs.git’<br />
+platform :ios, ‘8.0’<br />
+use_frameworks!</p>
 
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-use_frameworks!
+<p>pod ‘FontAwesome.swift’</p>
 
+<p>import FontAwesome_swift//in label<br />
+label.font = UIFont.fontAwesomeOfSize(200)<br />
+label.text = String.fontAwesomeIconWithName(FontAwesome.Github)</p>
 
-pod ‘FontAwesome.swift'
+<p>//in label with code<br />
+label.font = UIFont.fontAwesomeOfSize(200)<br />
+label.text = String.fontAwesomeIconWithCode(“fa-github”)</p>
 
+<p>//in button<br />
+button.titleLabel?.font = UIFont.fontAwesomeOfSize(30)<br />
+button.setTitle(String.fontAwesomeIconWithName(.Github), forState: .Normal)</p>
 
-import FontAwesome_swift//in label
-label.font = UIFont.fontAwesomeOfSize(200)
-label.text = String.fontAwesomeIconWithName(FontAwesome.Github)
+<p>//in navigation bar item<br />
+let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(20)] as Dictionary!<br />
+leftBarButton.setTitleTextAttributes(attributes, forState: .Normal)<br />
+leftBarButton.title = String.fontAwesomeIconWithName(.Github)</p>
 
-//in label with code
-label.font = UIFont.fontAwesomeOfSize(200)
-label.text = String.fontAwesomeIconWithCode(“fa-github")
+<p>//toolbar item<br />
+let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(20)] as Dictionary!<br />
+toolbarItem.setTitleTextAttributes(attributes, forState: .Normal)<br />
+toolbarItem.title = String.fontAwesomeIconWithName(.Github)</p>
 
-//in button
-button.titleLabel?.font = UIFont.fontAwesomeOfSize(30)
-button.setTitle(String.fontAwesomeIconWithName(.Github), forState: .Normal)
+<p>//as image<br />
+tabBarItem.image = UIImage.fontAwesomeIconWithName(.Github, textColor: UIColor.blackColor(), size: CGSizeMake(30, 30))</p>
 
-//in navigation bar item
-let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(20)] as Dictionary!
-leftBarButton.setTitleTextAttributes(attributes, forState: .Normal)
-leftBarButton.title = String.fontAwesomeIconWithName(.Github)
-
-//toolbar item
-let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(20)] as Dictionary!
-toolbarItem.setTitleTextAttributes(attributes, forState: .Normal)
-toolbarItem.title = String.fontAwesomeIconWithName(.Github)
-
-//as image
-tabBarItem.image = UIImage.fontAwesomeIconWithName(.Github, textColor: UIColor.blackColor(), size: CGSizeMake(30, 30))
-
-//as image with background color
-tabBarItem.image = UIImage.fontAwesomeIconWithName(FontAwesome.Github, textColor: UIColor.blueColor(), size: CGSizeMake(4000, 4000), backgroundColor: UIColor.redColor())
+<p>//as image with background color<br />
+tabBarItem.image = UIImage.fontAwesomeIconWithName(FontAwesome.Github, textColor: UIColor.blueColor(), size: CGSizeMake(4000, 4000), backgroundColor: UIColor.redColor())</p>

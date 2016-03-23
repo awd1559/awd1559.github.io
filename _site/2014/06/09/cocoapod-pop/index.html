@@ -1,62 +1,55 @@
-https://github.com/facebook/pop
+<p>https://github.com/facebook/pop</p>
 
-BasicAnimation
-SpringAnimation
-DecayAnimation
-CustomAnimation
+<p>BasicAnimation<br />
+SpringAnimation<br />
+DecayAnimation<br />
+CustomAnimation</p>
 
-pod “pop”
-#import “POP.h”
+<p>pod “pop”<br />
+#import “POP.h”</p>
 
-POPCustomAnimation
-POPPropertyAnimation
-	POPDecayAnimation
-	POPSpringAnimation
-	POPBasicAnimation
+<p>POPCustomAnimation<br />
+POPPropertyAnimation<br />
+	POPDecayAnimation<br />
+	POPSpringAnimation<br />
+	POPBasicAnimation</p>
 
-//fade 
-POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-anim.fromValue = @(0.0);
-anim.toValue = @(1.0);
-aim.duration = 2.0f;
-[view pop_addAnimation:anim forKey:@“fade”];
+<p>//fade <br />
+POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];<br />
+anim.fromValue = @(0.0);<br />
+anim.toValue = @(1.0);<br />
+aim.duration = 2.0f;<br />
+[view pop_addAnimation:anim forKey:@“fade”];</p>
 
+<p>//xy scale<br />
+POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];<br />
+anim.toValue = [NSValue valueWithCGPoint:CGPointMake(arc4random()%2+1, arc4random()%2+1)];<br />
+//spring animation 必须添加类似如下参数<br />
+//反弹<br />
+anim.springBounciness = 4.0;<br />
+//速度<br />
+anim.springSpeed = 12.0;<br />
+//拉力<br />
+anim.dynamicsTension = <br />
+//摩擦力<br />
+anim.dynamicsFriction = <br />
+//质量<br />
+anime.dynamicsMass</p>
 
-//xy scale
-POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-anim.toValue = [NSValue valueWithCGPoint:CGPointMake(arc4random()%2+1, arc4random()%2+1)];
-//spring animation 必须添加类似如下参数
-//反弹
-anim.springBounciness = 4.0;
-//速度
-anim.springSpeed = 12.0;
-//拉力
-anim.dynamicsTension = 
-//摩擦力
-anim.dynamicsFriction = 
-//质量
-anime.dynamicsMass
+<p>anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {if (finished) {NSLog(@”Animation finished!”);}};<br />
+//BasicAnimation也可以作用于layer<br />
+[self.lbl.layer pop_addAnimation:anim forKey:@“size”];</p>
 
-anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {if (finished) {NSLog(@"Animation finished!”);}};
-//BasicAnimation也可以作用于layer
-[self.lbl.layer pop_addAnimation:anim forKey:@“size"];
+<p>//move to<br />
+POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];<br />
+anim.toValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 400, 400)];<br />
+anim.springBounciness = 4.0;<br />
+anim.springSpeed = 12.0;<br />
+[layer pop_addAnimation:anim forKey:@“size”];</p>
 
-//move to
-POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerBounds];
-anim.toValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 400, 400)];
-anim.springBounciness = 4.0;
-anim.springSpeed = 12.0;
-[layer pop_addAnimation:anim forKey:@“size"];
-
-
-
-
-
-
-//衰减，从x坐标的25开始按照100/s的速度做减速运动
-POPDecayAnimation *anim = [POPDecayAnimation animationWithPropertyNamed:kPOPLayerPositionX];
-anim.velocity = @(100.0);
-anim.fromValue = @(25.0);
-[layer pop_addAnimation:anim forKey:@“slide"];
-
+<p>//衰减，从x坐标的25开始按照100/s的速度做减速运动<br />
+POPDecayAnimation *anim = [POPDecayAnimation animationWithPropertyNamed:kPOPLayerPositionX];<br />
+anim.velocity = @(100.0);<br />
+anim.fromValue = @(25.0);<br />
+[layer pop_addAnimation:anim forKey:@“slide”];</p>
 

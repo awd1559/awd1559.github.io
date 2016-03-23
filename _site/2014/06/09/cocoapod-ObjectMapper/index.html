@@ -1,56 +1,49 @@
-ObjectMapper
-https://github.com/Hearst-DD/ObjectMapper
+<p>ObjectMapper<br />
+https://github.com/Hearst-DD/ObjectMapper</p>
 
+<p>//install<br />
+pod ‘ObjectMapper’, ‘~&gt; 1.1’</p>
 
-//install
-pod 'ObjectMapper', '~> 1.1’
+<p>class User: Mappable {<br />
+    var username: String?<br />
+    var age: Int?<br />
+    var weight: Double!<br />
+    var array: [AnyObject]?<br />
+    var dictionary: [String : AnyObject] = [:]<br />
+    var bestFriend: User?                       // Nested User object<br />
+    var friends: [User]?                        // Array of Users<br />
+    var birthday: NSDate?</p>
 
+<pre><code>required init?(_ map: Map) {
 
-
-class User: Mappable {
-    var username: String?
-    var age: Int?
-    var weight: Double!
-    var array: [AnyObject]?
-    var dictionary: [String : AnyObject] = [:]
-    var bestFriend: User?                       // Nested User object
-    var friends: [User]?                        // Array of Users
-    var birthday: NSDate?
-
-    required init?(_ map: Map) {
-
-    }
-
-    // Mappable
-    func mapping(map: Map) {
-        username    	<- map["username"]
-        age         		<- map["age"]
-        weight      	<- map["weight"]
-        array       		<- map["arr"]
-        dictionary  	<- map["dict"]
-        bestFriend  	<- map["best_friend"]
-        friends     	<- map["friends"]
-        birthday    	<- (map["birthday"], DateTransform())
-    }
 }
 
-
-//JSONString -> model
-let user = Mapper<User>().map(JSONString)
-//Model -> JSONString
-let JSONString = Mapper().toJSONString(user, prettyPrint: true)
-
-
-
-//嵌套
-"distance" : {
-     "text" : "102 ft",
-     "value" : 31
-}
-
+// Mappable
 func mapping(map: Map) {
-    distance <- map["distance.value"]
-}
-distance <- map["distances.0.value"]
+    username    	&lt;- map["username"]
+    age         		&lt;- map["age"]
+    weight      	&lt;- map["weight"]
+    array       		&lt;- map["arr"]
+    dictionary  	&lt;- map["dict"]
+    bestFriend  	&lt;- map["best_friend"]
+    friends     	&lt;- map["friends"]
+    birthday    	&lt;- (map["birthday"], DateTransform())
+} }
+</code></pre>
 
+<p>//JSONString -&gt; model<br />
+let user = Mapper<user>().map(JSONString)
+//Model -&gt; JSONString
+let JSONString = Mapper().toJSONString(user, prettyPrint: true)</user></p>
+
+<p>//嵌套<br />
+“distance” : {<br />
+     “text” : “102 ft”,<br />
+     “value” : 31<br />
+}</p>
+
+<p>func mapping(map: Map) {<br />
+    distance &lt;- map[“distance.value”]<br />
+}<br />
+distance &lt;- map[“distances.0.value”]</p>
 
