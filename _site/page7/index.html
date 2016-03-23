@@ -169,39 +169,6 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/01/29/cocoapod-FMDB/">
-        <h2 class="post-title">
-            FMDB
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "FMDB"
-        </h3>
-        
-        <div class="post-content-preview">
-            https://github.com/ccgus/fmdb
-
-pod ‘FMDB’
-
-FMDatabase
-FMResultSet
-FMDatabaseQueue
-
-//存在打开，不存在则创建
-//@“”: 在临时文件夹创建空数据库
-//NULL: 内存数据库
-FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db”];
-
-if...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on January 29, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2015/01/29/cocoapod-DateTools/">
         <h2 class="post-title">
             DateTools
@@ -459,6 +426,32 @@ loadData:MIMEType:textEncodingName:baseURL
 
 NSString *htmlPath = [[NSBundle mainBundle] pathForResource: @“index” ofType:@“html”];
 NSURL *bundleUrl = [NSURL fileURLWi...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/touch/">
+        <h2 class="post-title">
+            ios framework
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "ios framework"
+        </h3>
+        
+        <div class="post-content-preview">
+            覆盖UIResponder的touchesBegan等方法就可以接受touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@”Touch began on %@”, self);
+
+// Get 3 random numbers between 0 and 1
+float red ...
         </div>
     </a>
     <p class="post-meta">

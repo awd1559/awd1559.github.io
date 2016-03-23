@@ -169,32 +169,6 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2014/06/09/touch/">
-        <h2 class="post-title">
-            ios framework
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "ios framework"
-        </h3>
-        
-        <div class="post-content-preview">
-            覆盖UIResponder的touchesBegan等方法就可以接受touch
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@”Touch began on %@”, self);
-
-// Get 3 random numbers between 0 and 1
-float red ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by awd on June 9, 2014
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2014/06/09/toolbar/">
         <h2 class="post-title">
             ios framework
@@ -419,6 +393,34 @@ push segue to .. identifier:ShowSelectedProvince
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@”ShowSelectedProvince”...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by awd on June 9, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/09/scrollview/">
+        <h2 class="post-title">
+            ios framework
+        </h2>
+        
+        <h3 class="post-subtitle">
+             "ios framework"
+        </h3>
+        
+        <div class="post-content-preview">
+            ScrollView
+
+contentSize scrollview中内容的大小content size，所有内容的大小
+contentOffset  scrollview滚动的位置
+contaentInset  四周增加额外的滚动区域
+
+-(void) viewWillAppear:(BOOL)animated {
+    //注册键盘出现通知
+    [[NSNotificationCe...
         </div>
     </a>
     <p class="post-meta">
