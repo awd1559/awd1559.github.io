@@ -8,11 +8,16 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-AGEmojiKeyboard
-https://github.com/ayushgoel/AGEmojiKeyboard
+[AGEmojiKeyboard](https://github.com/ayushgoel/AGEmojiKeyboard)
+
+# install
+
+```
 pod "AGEmojiKeyboard"
+```
 
-
+# Usage
+```
 #import "AGEmojiKeyboard.h"
 AGEmojiKeyboardView *emojiKeyboardView = [[AGEmojiKeyboardView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216) dataSource:self];
 emojiKeyboardView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -44,3 +49,4 @@ self.textView.inputView = emojiKeyboardView;
   [img imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   return img;
 }
+```

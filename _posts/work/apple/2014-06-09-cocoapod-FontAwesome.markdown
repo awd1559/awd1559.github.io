@@ -8,25 +8,25 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-FontAwesome.swift
-https://github.com/thii/FontAwesome.swift
+[FontAwesome.swift](https://github.com/thii/FontAwesome.swift)
 
+# install
 
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+```
 use_frameworks!
-
-
 pod ‘FontAwesome.swift'
+```
 
+# usage
 
+```
 import FontAwesome_swift//in label
 label.font = UIFont.fontAwesomeOfSize(200)
 label.text = String.fontAwesomeIconWithName(FontAwesome.Github)
 
 //in label with code
 label.font = UIFont.fontAwesomeOfSize(200)
-label.text = String.fontAwesomeIconWithCode(“fa-github")
+label.text = String.fontAwesomeIconWithCode("fa-github")
 
 //in button
 button.titleLabel?.font = UIFont.fontAwesomeOfSize(30)
@@ -47,3 +47,4 @@ tabBarItem.image = UIImage.fontAwesomeIconWithName(.Github, textColor: UIColor.b
 
 //as image with background color
 tabBarItem.image = UIImage.fontAwesomeIconWithName(FontAwesome.Github, textColor: UIColor.blueColor(), size: CGSizeMake(4000, 4000), backgroundColor: UIColor.redColor())
+```

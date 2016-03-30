@@ -7,16 +7,15 @@ author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
+    - cartfile
+    - iOS
 ---
 Cartfile
-git “”
 
-
-
-
+```
 brew install Carthage
 brew upgrade Carthage
 
 carthage version
 carhage update
-
+```

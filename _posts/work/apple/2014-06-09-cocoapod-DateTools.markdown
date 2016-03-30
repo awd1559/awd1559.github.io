@@ -8,14 +8,18 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-DateTools
-https://github.com/MatthewYork/DateTools
+[DateTools](https://github.com/MatthewYork/DateTools)
 
 
-//install
+# install
+
+```
 pod 'DateTools'
+```
 
+# usage
 
+```
 let timeAgoDate = NSDate(timeIntervalSinceNow:-4)
 timeAgoDate.timeAgoSinceNow
 timeAgoDate.shortTimeAgoSinceNow
@@ -26,22 +30,29 @@ let year: Int = date.year
 let month  = date.month
 
 let day = date.dayWithCalendar(calendar)
+```
 
-
-日期比较
+//日期比较
 isEarlierThan
 isEarlierThanOrEqualTo
 isLaterThan
 isLaterThanOrEqualTo
 
 
+参考Timepiece
+
 对于Swift，Timepiece更方便
-https://github.com/naoty/Timepiece
+[Timepiece](https://github.com/naoty/Timepiece)
 
-//install
+# install
+
+```
 pod		pod “Timepiece"
-Carthage	github “naoty/Timepiece"
+```
 
+# usage 
+
+```
 let now = NSDate()
 let nextWeek = now + 1.week
 let dayAfterTomorrow = now + 2.days
@@ -84,3 +95,4 @@ dateInCST.timeZone //=> CST (CDT) offset -18000 (Daylight)
 firstCommitDate < 1.year.ago // false
 (1.year.ago...now).contains(firstCommitDate) // true
 firstCommitDate > now // false
+```

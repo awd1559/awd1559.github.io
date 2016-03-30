@@ -8,7 +8,9 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-安装
+# install
+
+```
 sudo gem install -g cocoapods
 sudo gem uninsall cocoapods
 
@@ -17,9 +19,11 @@ pod setup    #设置环境
 pod init          #创建一个Podfile文件
 pod install
 pod update
+```
 
+# make cocoapods
 
-//制作cocoapods
+```
 pod trunk register awd1559@gmail.com 'awd1559' //注册
 
 //生成SwiftyExt.podspec
@@ -36,55 +40,56 @@ git push origin —delete tag <tagnaem>
 
 //上传到cocoapods
 pod trunk push SwiftyExt.podspec  
+```
 
 
 
 
-
-常用的pod
-autolayout
+# 常用的pod
+- autolayout
 	masonry
 	neon
 	purelayout
 	SnapKit 
-用起来都不是很好，直接食用Storyboard，可以很好很直观的解决问题
-storyboard中还可以使用tab、nav、跳转
+	用起来都不是很好，直接食用Storyboard，可以很好很直观的解决问题
+	storyboard中还可以使用tab、nav、跳转
 
 ReactiveCocoa/RxSwift
 KVOController
 
-网络
-SDWebImage
-AFNetworking
-Alamofire
+- 网络
+	SDWebImage
+	AFNetworking
+	Alamofire
 
-动画
-pop
+- 动画
+	pop
 
-布局
-MJRefresh
-XLPagerTabStrip
-RDVTabBarController
-RKSwipeBetweenViewControllers
-RESideMenu/DrawerController
-HUD
+- 布局
+	MJRefresh
+	XLPagerTabStrip
+	RDVTabBarController
+	RKSwipeBetweenViewControllers
+	RESideMenu/DrawerController
+- HUD
 	MBProgressHUD
 	SVProgressHUD
 	JGProgressHUD
 
-引导页
-JazzHands
+- 引导页
+	JazzHands
 
-JSON
-Objectmapper
-Ono
-SwiftJSON
+- JSON
+	Objectmapper
+	SwiftJSON
+- Xml
+	Ono
 
-加强
-DateTool
-Timepiece
-FontAwesome
-FontAwesome.swift
+- 加强
+	DateTool
+	Timepiece
+	FontAwesome
+	FontAwesome.swift
 
-Log
-XCGLogger
+- Log
+	XCGLogger

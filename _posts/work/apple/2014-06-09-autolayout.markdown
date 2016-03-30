@@ -1,14 +1,14 @@
 ---
 layout:     post
-title:      "Alamofire"
-subtitle:   " \"Alamofire\""
+title:      "Autolayout"
+subtitle:   " \"Autolayout\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
+    - iOS
 ---
-```swift
+```
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,9 +59,9 @@ NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@
 
 [self.view addConstraints:horizontalConstraints];
 [self.view addConstraints:verticalConstraints];
-```
 
-手动添加Constraint
+
+//手动添加Constraint
 [self.view addConstraint: [NSLayoutConstraint constraintWithItem:blueView           blueview left = redview left * 1 + 0
 attribute:NSLayoutAttributeLeft
 relatedBy:NSLayoutRelationEqual
@@ -69,6 +69,7 @@ toItem:redView
 attribute:NSLayoutAttributeLeft
 multiplier:1
 constant:0]];
+```
 
 如果UI布局不变，只有在不同屏幕尺寸上有适应性变化，需要自动拉伸和位移，就要添加constraints
 约束冲突，使用优先级

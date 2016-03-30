@@ -1,13 +1,14 @@
 ---
 layout:     post
-title:      "Alamofire"
-subtitle:   " \"Alamofire\""
+title:      "alert"
+subtitle:   " \"UIAlert\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
+    - iOS
 ---
+```
 UIAlertView
 UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@"Alert"
@@ -23,7 +24,7 @@ UIAlertView *alertView = [[UIAlertView alloc]
     NSLog(@"buttonIndex = %i",buttonIndex);
 }
 
-UIActionSheet
+//UIActionSheet
 UIActionSheet *actionSheet = [[UIActionSheet alloc]
 								 initWithTitle:nil
 								 delegate:self
@@ -39,4 +40,4 @@ actionSheet.actionSheetStyle =  UIActionSheetStyleAutomatic;
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"buttonIndex = %i",buttonIndex);
 }
-
+```

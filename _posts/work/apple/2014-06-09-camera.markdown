@@ -1,13 +1,14 @@
 ---
 layout:     post
-title:      "Alamofire"
-subtitle:   " \"Alamofire\""
+title:      "camera"
+subtitle:   " \"camer\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
+    - iOS
 ---
+```
 - (IBAction)takePicture:(id)sender
 {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -44,3 +45,44 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info					//delegate
     // you must call this dismiss method
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+```
+
+## 判断相机是否可用
+
+```
+if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+```
+
+## 操作toolbar
+
+```
+@property (nonatomic, weak) IBOutlet UIToolbar *toolBar;
+NSMutableArray *toolbarItems = [self.toolBar.items mutableCopy];
+[toolbarItems removeObjectAtIndex:2];
+[self.toolBar setItems:toolbarItems animated:NO];
+
+
+ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@property (nonatomic) UIImagePickerController *imagePickerController;
+
+UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+imagePickerController.sourceType = sourceType;
+imagePickerController.delegate = self;
+self.imagePickerController = imagePickerController;
+[self presentViewController:self.imagePickerController animated:YES completion:nil];
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [self.imageView setImage:image];
+    self.picker = nil;
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+```
+

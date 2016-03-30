@@ -8,9 +8,13 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-https://github.com/ccgus/fmdb
+[FMDB](https://github.com/ccgus/fmdb)
 
+# install
+
+```
 pod 'FMDB'
+```
 
 FMDatabase
 FMResultSet

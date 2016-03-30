@@ -2,26 +2,48 @@
 layout:     post
 title:      "Alamofire"
 subtitle:   " \"Alamofire\""
-date:       2014-06-09 12:00:00
+date:       2015-01-29 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-Alamofire
-https://github.com/Alamofire/Alamofire
+[Alamofire](https://github.com/Alamofire/Alamofire)
 
+# install
+
+```
 pod 'Alamofire', '~> 3.0’
 import Alamofire
+```
 
-Making a Request
+# usage
+
+```
+Alamofire.request(.POST, url, parameters: parameters).responseXMLDocument{ response in
+    switch response.result {
+    case .Success(let value):
+        let result = value.root["result"]
+        let errorCode = result["errorCode"].intValue
+        let errorMessage = result["errorMessage"].stringValue
+    case .Failure(let error):
+        error.code
+    }
+}
+```
+
+
+## Making a Request
+
+```
 Alamofire.request(.GET, “https://httpbin.org/get”)
 .responseString{response in 
 	self.label.text = response.result.value
 }
+```
 
-Response Handling
-response(
+## Response Handling
+response
 resonseData
 responseString
 responseJSON
@@ -32,6 +54,7 @@ response: NSHTTPURLResponse
 data: NSData
 error: NSError
 
+```
 Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
          .responseJSON { response in
              print(response.request)  // original URL request
@@ -43,9 +66,11 @@ Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
                  print("JSON: \(JSON)")
              }
          }
+```
 
+## response handler
 
-response handler
+```
 Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
          .response { request, response, data, error in
              print(request)
@@ -53,14 +78,14 @@ Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
              print(data)
              print(error)
           }
-response data handler
+//response data handler
 Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
          .responseData { response in
              print(response.request)
              print(response.response)
              print(response.result)
           }
-response string handler
+//response string handler
 Alamofire.request(.GET, "https://httpbin.org/get")
          .responseString { response in
              print("Success: \(response.result.isSuccess)")
@@ -70,7 +95,7 @@ Alamofire.request(.GET, "https://httpbin.org/get")
          .responseJSON { response in
              debugPrint(response)
          }
-chained response handlers
+//chained response handlers
 Alamofire.request(.GET, "https://httpbin.org/get")
          .responseString { response in
              print("Response String: \(response.result.value)")
@@ -78,12 +103,15 @@ Alamofire.request(.GET, "https://httpbin.org/get")
          .responseJSON { response in
              print("Response JSON: \(response.result.value)")
          }
+```
 
-HTTP methods
+## HTTP methods
 
-Parameters
+## Parameters
 
-HTTP Headers
+## HTTP Headers
+
+```
 let headers = [
     "Authorization": "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==",
     "Content-Type": "application/x-www-form-urlencoded"
@@ -93,11 +121,8 @@ Alamofire.request(.GET, "https://httpbin.org/get", headers: headers)
          .responseJSON { response in
              debugPrint(response)
          }
+```
 
-
-
-response serialization
-use Ono
 
 
 
