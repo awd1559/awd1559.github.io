@@ -17,6 +17,192 @@ tags:
 [设备列表](/2014/06/09/设备列表/)
 [书单](/2014/06/09/书单/)
 
+# cocos2d-x
+- 捕鱼达人
+- 保卫萝卜
+- 神仙道
+- 凡人修真
+- 三国道
+- 战国
+- 战争大陆
+- 大掌门
+- 找你妹
+- 我叫MT
+- Tiny Wing
+- Feed me Oil
+- Badland				Frogmind
+- Castle Clash 			IGG.com
+- 疯狂猜成语
+- 封神争霸                           卡牌
+- 疯狂牙医    crazy dentist
+- 超级水管工  superJump
+- 有圈套
+
+
+# Unity
+- 滑雪大冒险
+- 神庙逃亡
+- 纪念碑谷
+- 蒸汽之城
+- 宫爆老奶奶
+- 地铁跑酷
+- Dad was a thief
+- 恋爱方块人
+
+
+# 经典游戏
+- 蜡笔物理学
+- 粘粘世界   2D boys
+- 植物大战僵尸
+- 涂鸦跳跃
+- 愤怒的小鸟
+- 骇客逃亡 mamaland 引擎实现
+- 糖果粉碎传奇
+- 部落战争 Clash of Clans
+- 🐦爆破小鸟
+- 🛀鳄鱼洗澡
+- 🐌蜗牛鲍勃
+
+- 合金弹头
+
+
+# Android游戏引擎
+artemis entity
+artemis 是一个主要为游戏设计的高性能实体管理系统
+它独立于任何引擎，全部用java书写，总大小26k
+http://gamadu.com/artemis/
+svn checkout http://gameadu.com/svn/artemis/
+
+emini
+物理引擎和粒子引擎
+http://www.emini.at/
+
+
+android libgdx experiments   libgdx试验
+http://code.google.com/p/android-libgdx-experiments/
+svn checkout http://android-libgdx-experiments.googlecode.com/svn/trunk/ android-libgdx-experiments-read-only
+
+bluegin                     
+android c++引擎。基于Flixel引擎，使用Cinder框架绘制opengl,并且包含一个pc的测试程序，支持本地调试。
+https://github.com/safetydank/bluegin
+
+yoghurgum
+跨平台2d游戏引擎,
+在android上使用opengles来进行渲染，支持Windows Mobile 6
+使用C++编写
+svn checkout http://yoghurtgum.googlecode.com/svn/trunk/ yoghurtgum-read-only
+
+
+Gamine
+个人开发的开源3D引擎
+http://gamine.sourceforge.net
+http://sourceforge.net/projects/gamine/files/
+
+
+e3roid-2d
+基于OpenglES的2D游戏引擎
+http://code.google.com/p/e3roid/
+svn checckout http://e3roid.googlecode.com/svn/trunk/ e3roid-read-only
+
+
+Alien3D
+http://code/google.com/p/alien3d/
+
+Catcake
+跨平台的java 3D图形引擎
+http://code.google.com/p/catcake
+
+jPCT
+基于OpenGL技术的3D图形引擎
+http://www.jpct.net/jpct-ae/
+
+
+libgdx
+http://code.google.com/p/libgdx
+
+AndEngine
+http://www.andengine.org
+http://code.google/com/p/andengineexamples/
+
+LGame
+国人个人开发的java游戏引擎
+http://code.google.com/p/loon-simple
+
+Rokon
+Android 2D 游戏引擎, 物理引擎为Box2D
+http://code/google.com/p/rokon
+
+Angle
+Android 2D游戏引擎
+http://code/google.com/p/angle/
+
+
+le3d engine
+
+
+# 游戏引擎
+TheoWorlds flash
+OpenBOR 横版动作引擎 
+2DFM
+
+RMXP
+Game Maker
+
+SDL
+libSDL-android
+
+side scrolling game 
+
+Underworld - Free Online Multiplayer Game
+http://www.dimensionex.net/underworld/
+
+
+Crossfire - The Multiplayer Adventure Game
+http://crossfire.real-time.com/
+
+
+M.U.G.E.N
+http://elecbyte.com
+
+
+Arianne RPG 引擎 sourceforge.net  standhal
+https://stendhalgame.org
+
+
+netease pomelo 
+git上开源，基于node.js express，rpg服务框架
+
+
+魔兽私服
+TrinityCore is a MMORPG Framework based mostly in c++
+
+
+大宇
+轩辕剑
+大富翁
+仙剑
+gamebox 引擎
+
+
+
+
+目标软件
+overmax引擎
+天骄
+傲视三国
+秦殇
+
+
+
+gamebryo 引擎
+上古卷轴 IV
+辐射 3
+战锤 online
+仙境传说2
+
+
+
+
 棋牌6603
 
 疯狂医生 台湾

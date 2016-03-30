@@ -6,7 +6,7 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - 3d
+    - tools
 ---
 
 #3D Max
@@ -95,3 +95,14 @@ F5——约束到X轴方向 F6——约束到Y轴方向 
 F7——约束到Z轴方向 F8——约束轴面循环 
 F9——快速渲染 F10——渲染对话框 
 F11——MAX脚本程序编辑 F12——键盘输入变换
+
+
+
+F3 线框显示
+F4 线框实体显示
+U  User View
+P  Perspective View
+
+F5 x-轴
+F6 y-轴
+F7 z-轴

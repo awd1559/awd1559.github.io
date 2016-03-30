@@ -1,0 +1,52 @@
+---
+layout:     post
+title:      "android使用"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+Android及Mi刷机
+
+//Recovery模式
+1）升级包改名为update.zip,拷贝到存储卡的根目录
+2）进入Recovery
+	MIUI：进入系统更新，菜单，重启Recovery模式
+	其他系统：关机，音量加 + 开机键
+
+
+//线刷
+1)关机，连线
+2)mi键 + 音量减 + 开机键
+  进入fastboot模式
+3)MiFlash->刷机
+
+
+
+//适用系统更新
+MIUI 系统更新， 每周五升级
+
+//升级包
+MIUI系统更新，菜单，选择安装包
+选择存储卡上的ROM文件
+
+
+
+
+
+
+
+su的方法
+################################################################
+进入手机shell
+sdk/platform-tools/adb
+./adb shell
+>>>>进入手机shell
+如果permission denied， su
+或者　./adb root
+
+
+进程android.process.media已停止解决方法
+应用 － 全部 － 媒体存储 － 清除数据

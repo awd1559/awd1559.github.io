@@ -1,0 +1,16 @@
+---
+layout:     post
+title:      "iis"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+IIS映射esf
+
+IIS中站点的属性->HTTP头->MIME映射->"文件类型"按钮->”新类型“按钮, 在随后的对话框中，扩展名填入上 .esf，MIME类型是application。 
+
+
+配置->选项->ASP脚本超时

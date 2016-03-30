@@ -1,0 +1,21 @@
+---
+layout:     post
+title:      "ai"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+unity 破解方法
+安装 unity-4.3.4.dmg
+解压u4.3.4f1cmac.zip
+文件Unity覆盖Content/MacOs/Unity文件
+断网
+Load Lisence -> 选择　Unity_v4.x.ulf
+
+完成
+
+
+ae 需要升级到11.0.4

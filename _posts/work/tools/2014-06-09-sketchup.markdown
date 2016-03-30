@@ -1,0 +1,32 @@
+---
+layout:     post
+title:      "SketchUp"
+subtitle:   " \"SketchUp\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+space 	select
+q		Rotate
+e 		Eraser
+r  		Rectangle
+t		Tape Measuure
+o 		Orbit
+p 		Pull
+a		Arc
+s		Scale
+f		Offset
+g 		Component
+h		Hand/Pan
+l		Line
+z		Zoom
+c		Circle
+b		Brush
+m		Move
+
+
+Preference - Extensions - install Extensions *.rbz
+
+双击一个单独的面可以同时选中这个面和线

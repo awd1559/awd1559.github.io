@@ -1,0 +1,59 @@
+---
+layout:     post
+title:      "ai"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+markdown语法
+我们谈技术－github pages
+工具Mou
+
+
+段落和换行
+标题     	#
+块引用   	>  
+列表		* + - 三种符号效果相同, 有序列表使用1.   2.    3.  
+代码块      缩进4个空格或一个tab
+分隔线     **** 一行中有3个以上*
+
+&amp;
+&copy;
+
+链接		[text](http://example.com)
+强调         *
+代码         `this is code line`
+图片 	      ![alter](/path/to/image.jpg)
+
+
+标题
+settext形式
+=========  一级,数量任意
+——————— 二级，数量任意
+
+
+atx形式
+#1
+##2
+###3
+可以使用闭合形式  #1##  , 末尾数量不用和开头数量相同
+
+git pages作为blog
+create repository username.github.io
+git clone username.github.io
+git push
+
+
+使用jekyll模版，markdown, textile语法
+可参考的网站和源码
+https://github.com/jekyll/jekyll/wiki/sites
+
+
+绑定域名
+echo “awd1559.github.io”  > CNAME
+
+添加评论功能
+https://disqus.com

@@ -1,0 +1,19 @@
+---
+layout:     post
+title:      "ai"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+
+brew 故障
+cd /usr/local
+git status
+
+git reset --hard && git clean -df
+
+brew doctor
+brew update

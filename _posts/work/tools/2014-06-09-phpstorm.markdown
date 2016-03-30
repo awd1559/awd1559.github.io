@@ -1,0 +1,27 @@
+---
+layout:     post
+title:      "ai"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+phpStorm
+ctrl+shift+o		项目中某文件
+ctrl+shift+n 		项目中某文件
+ctrl+f12			文件内某函数
+ctrl+shift+alt+n		项目中某函数
+alt+下箭头		下一个函数
+alt+上箭头		上一个函数
+ctrl+shift+f		项目中查找text
+ctrl+b			跳转到变量声明处
+
+ctrl+d	复制当前行
+ctrl+y	删除当前行
+
+ctrl+/			行注释
+ctrl+shift+/	块注释
+
+ctrl+[]	匹配{}[]

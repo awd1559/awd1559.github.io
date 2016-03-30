@@ -1,0 +1,84 @@
+---
+layout:     post
+title:      "ai"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+xcode
+
+CMD+[     左缩进
+CMD+]     右缩进
+
+
+打开项目文件： ctrl+shift+o
+
+
+command 控制Navigator
+command 1-8 在左侧Navigator间跳转
+command 0 显示／隐藏左侧Navigator
+
+
+
+Alt 控制 右侧 Asset Utility editor
+
+Command Alt 2-6 在右侧检测器间跳转
+Command Alt 0    显示／隐藏右侧检测器
+
+Command shift Y 显示／隐藏debugger
+
+Command shift o 快速打开项目中的文件
+
+
+
+*.m*.h切换 ⌘+⌃ +↓or↑
+前进后退文本文件⌘+⌃ +←or→
+关闭当前文本文件⌘+⌃+w
+自动排版代码 ⌃+i
+左右缩进 ⌘+[or]
+注释 ⌘+/
+查看名称定义，进入头文件 ⌘+鼠标左键
+查看名称api文档 ⌥+鼠标左键
+
+禁止Indexing
+defaults write com.apple.dt.XCode IDEIndexDisable 1包管理器Alcatraz
+http://alcatraz.io
+install
+curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh
+uninstall
+rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
+remove all cached data
+rm -rf ~/Library/Application\ Support/Alcatraz
+
+Auto-Importer
+CocoaControls
+CodePilot
+	Cmd+Shift+X
+CocoaPods
+ObjectGraph-Xcode
+	图形化展示对象关系
+OFPlugin
+	OpenFrameworks addons 
+OMColorSense
+OpenInSublimeText
+OpenInTerminal
+SuggestedColors
+SwiftCodeSnippets
+SwipeGestureSwitcher
+XCActionBar
+	使用键盘执行action
+	double Cmd
+xcfui
+	find unused import
+XcodeWay
+	Go To Folder Quickly
+XFunnyEditor
+	show background image in code editor
+XLCXcodeAssist
+	provide suggestion implementation for missing Object-C methods
+
+
+

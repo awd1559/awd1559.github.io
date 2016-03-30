@@ -1,0 +1,22 @@
+---
+layout:     post
+title:      "ai"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+sublime
+ctrl+p		项目中某文件
+ctrl+r		文件中某函数
+
+ctrl+L 选择整行
+
+
+command+k,command+b	打开关闭侧边栏
+command+option+1 	single view
+command+option+2  	two    view
+
+
