@@ -104,7 +104,7 @@ yaml 头文件长这样:
 layout:     post
 title:      "Hello 2015"
 subtitle:   "Hello World, Hello Blog"
-date:       2015-01-29 12:00:00
+date:       2014-06-09 12:00:00
 author:     "Hux"
 header-img: "img/post-bg-2015.jpg"
 tags:

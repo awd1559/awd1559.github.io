@@ -2,7 +2,7 @@
 layout:     post
 title:      "redhat init script"
 subtitle:   " \"redhat启动脚本\""
-date:       2015-01-29 12:00:00
+date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
