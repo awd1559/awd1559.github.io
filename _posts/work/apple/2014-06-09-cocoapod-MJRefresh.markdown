@@ -5,25 +5,25 @@ subtitle: " \"MJRefresh\""
 date:       2014-06-09 12:00:00
 author: awd
 "header-img": "img/post-bg-2015.jpg"
+catalog: true
 tags: 
   - cocoapod
-published: true
 ---
 
-#[MJRefresh](https://github.com/CoderMJLee/MJRefresh)
+[MJRefresh](https://github.com/CoderMJLee/MJRefresh)
 
-## install
+# install
 ```
 pod	'MJRefresh'
 ```
 
-## get start
+# get start
 
 ```
 import MJRefresh
 ```
 
-## api
+# api
 ###### MJRefreshsComponent.h
 
 ```
@@ -57,7 +57,7 @@ import MJRefresh
 ###### MJRefreshAutoFooter.h
 
 
-## examples
+# examples
 ###### 下拉刷新
 - default
 
