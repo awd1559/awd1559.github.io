@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "ios framework"
-subtitle:   " \"ios framework\""
+title:      "persistence"
+subtitle:   " \"persistence\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - apple
+    - iOS
 ---
 文件
 

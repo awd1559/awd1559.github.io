@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "ios framework"
-subtitle:   " \"ios framework\""
+title:      "resources"
+subtitle:   " \"resources\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - apple
+    - iOS
 ---
 [NSBundle mainBundle]pathForResource:@"my.plist" ofType:nil];
 my.plist应该是在group中，而不是reference的，reference的资源编译时不会放到pkg文件中

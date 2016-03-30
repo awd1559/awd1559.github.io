@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "Alamofire"
-subtitle:   " \"Alamofire\""
+title:      "collection"
+subtitle:   " \"collection\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
+    - iOS
 ---
 //读取文件
 NSBundle *bundle = [NSBundle mainBundle];

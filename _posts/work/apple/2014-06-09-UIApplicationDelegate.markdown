@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "ios framework"
-subtitle:   " \"ios framework\""
+title:      "UIApplicationDelegate"
+subtitle:   " \"application delegate\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - apple
+    - iOS
 ---
 iOS应用的5种状态
 not running: 没有运行或者被系统终止   

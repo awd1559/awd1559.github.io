@@ -1,12 +1,12 @@
 ---
 layout:     post
 title:      "分辨率"
-subtitle:   " \"XLPagerTabStrip\""
+subtitle:   " \"resolution, 分辨率\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - apple
+    - iOS
 ---
 http://iosdesign.ivomynttinen.com/
 
