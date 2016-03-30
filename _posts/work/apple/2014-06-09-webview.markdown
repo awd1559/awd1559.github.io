@@ -45,6 +45,8 @@ function showAndroidDialog(msg) {
 
 
 UIWebViewDelegate
+
+```
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *actionType = request.URL.host;
@@ -67,5 +69,5 @@ UIWebViewDelegate
     }
     return true;
 }
-
+```
 

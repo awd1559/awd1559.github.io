@@ -10,24 +10,29 @@ tags:
 ---
 
 viewDidLoad
+
+```
 [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@“Cell"];
+```
 
-
-
+```
 MyTableViewController : UITableViewController
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 -(CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+```
 
-
-
+```
 -(CGFloat)tableView:(UITableView*)tableview heightForHeaderInSection:(NSInteger)section
 -(UIView*)tableView:(UITableView*)tableview viewForHeaderInSection:(NSInteger)section
 -(CGFloat)tableView:(UITableView*)tableview heightForFooterInSection:(NSInteger)section
 -(UIView*)tableView:(UITableView*)tableview viewForFooterInSection:(NSInteger)section
+```
 
 代码方式初始化一个TableViewController
+
+```
 - (instancetype)init
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -44,8 +49,11 @@ MyTableViewController : UITableViewController
     UIView* header = self.headerView;
     [self.tableView setTableHeaderView: header];								//设定TableView的head
 }
+```
 
 headerview可以从xib中来
+
+```
 -(UIView*)headerView{
     if (!_headerView) {
         // Load HeaderView.xib
@@ -55,7 +63,11 @@ headerview可以从xib中来
     }
     return _headerView;
 }
+```
+
 定义表UI
+
+```
 #pragma mark --UITableViewDataSource 协议方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -82,10 +94,13 @@ headerview可以从xib中来
     
     return cell;
 }
+```
 
 
 定义表UI－自定义table view cell
 如果使用storyboard，拖入UITableViewCell
+
+```
 CustomCell : UITableViewCell
 @property(weak, nonatomic) IBOutlet UILable *name;
 @property(weak, nonatomic) IBOutlet UIImageView *image;
@@ -123,7 +138,11 @@ NSString *item = [NSString stringWithFormat:@“”];
 self.list insertObject:item atIndex:
 NSIndexpath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];   //构造表上的位置
 [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+```
+
 表编辑－move
+
+```
 UITableViewDataSource
 实现如下函数即可在编辑模式下移动UITableViewCell
 - (void)   tableView:(UITableView *)tableView
@@ -133,8 +152,11 @@ UITableViewDataSource
     Item *item = data[sourceIndex]
     //调换data中数据位置
 }
+```
 
 表编辑－删除
+
+```
 UITableViewDataSource
 - (void)   tableView:(UITableView *)tableView
   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -149,18 +171,21 @@ UITableViewDataSource
                          withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
+```
 
 
 
 
 Navigation to Detail
 比使用自定义view作为table的header View更好的方法
+
+```
 MyTableViewController *mycontroller = [[MyTableViewController alloc] init];
 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mycontroller];
 self.window.rootViewController = nav;
+```
 
-
+```
 MyTableViewController : UITableViewController
 - (instancetype)init
 {
@@ -173,7 +198,9 @@ MyTableViewController : UITableViewController
         navitem.rightBarButtonItem = right;
         navitem.leftBarButtonItem = self.editButtonItem;
 }
+```
 
+```
 //navigate to detailViewController
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -185,9 +212,10 @@ MyTableViewController : UITableViewController
     [self.navigationController pushViewController:detailViewController
                                          animated:YES];
 }
+```
 
 
-
+```
 UITableView中放入UISearchBar and Search Display Controller
 #pragma mark --UISearchBarDelegate 协议方法
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -204,7 +232,9 @@ UITableView中放入UISearchBar and Search Display Controller
     //YES情况下表视图可以重新加载
     return YES;
 }
+```
 
+```
 // 当Scope Bar选择发送变化时候，向表视图数据源发出重新加载消息
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
@@ -246,9 +276,12 @@ UITableView中放入UISearchBar and Search Display Controller
             break;
     }
 }
+```
 
 
 下拉刷新
+
+```
 UITableViewController
 //初始化UIRefreshControl
 UIRefreshControl *rc = [[UIRefreshControl alloc] init];
@@ -266,7 +299,9 @@ self.refreshControl = rc;
         [self performSelector:@selector(callBackMethod:) withObject:date afterDelay:3];
     }
 }
+```
 
+```
 //这是一个模拟方法，请求完成之后，回调方法
 -(void)callBackMethod:(id) obj
 {
@@ -276,12 +311,14 @@ self.refreshControl = rc;
     
     [self.tableView reloadData];
 }
-
+```
 
 
 
 
 UITableViewDataSource协议
+
+```
 tableView:cellForRowAtIndexPath:				返回cell
 tableView:numberOfRowsInSection:				某个section中的行数
 tableView:titleForHeaderInSection:				section的hader
@@ -289,14 +326,16 @@ tableView:titleForFooterInSection:				section的footer
 numberOfSectionsInTableView:				section的个数
 sectionIndexTitlesForTableView:				section的索引标题
 tableView:commitEditingStyles:forRowAtIndexPath:		为删除或修改提供数据
-
+```
 
 UITableViewDelegate协议
+
+```
 tableView:viewForHeaderInSection:				section的Header：UITableViewHeaderFooterView
 tableView:viewForFooterInSection:				section的Footer：UITableViewHeaderFooterView
 tableView:didEndDisplayingHeaderView:forSection:		Header消失时触发
 tableView:didEndDisplayingFooterView:forSection:		Footer消失时触发
 tableView:didEndDisplayingCell:forRowAtIndexPath:		Cell消失时触发
 tableView:didSelectRowAtIndexPath:				选中Cell时
-
+```
 
