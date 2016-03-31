@@ -8,13 +8,22 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - cocoapod
 ---
-SVProgressHUD
-https://github.com/SVProgressHUD/SVProgressHUD
+[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
 
+# install
+
+```
 pod ‘SVProgressHUD'
+```
 
 
+# usage
 
+```
+//config 
+SVProgressHUD.setForegroundColor(UIColor(white: 1, alpha: 1))
+SVProgressHUD.setBackgroundColor(UIColor(white: 0.15, alpha: 0.85))
+SVProgressHUD.setDefaultMaskType(.None)
 
 //show 
 + (void)show;
@@ -27,4 +36,4 @@ pod ‘SVProgressHUD'
 //dismiss
 + (void)showProgress:(CGFloat)progress;
 (void)showProgress:(CGFloat)progress status:(NSString*)status;
-
+```
