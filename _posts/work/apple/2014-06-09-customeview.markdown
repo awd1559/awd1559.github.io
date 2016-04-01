@@ -8,10 +8,9 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - iOS
 ---
-自定义view
-
-
-MyUIView : UIView
+# 自定义view
+```
+//MyUIView : UIView
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -52,13 +51,13 @@ MyUIView : UIView
     // Draw the line!
     [path stroke];
 }
+```
 
 
 
 
-
-
-自定义view
+```
+//自定义view
 view中包涵内部action
 新建MyView : UIView
 +(UIView*)instanceOfMyView
@@ -66,7 +65,9 @@ view中包涵内部action
 	NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"MyView" owner:nil options:nil];
         return [nibView objectAtIndex:0];
 }
+```
 
+```
 创建MyView.xib
 拖动IBAction， IBOutlet
 
@@ -78,4 +79,4 @@ view.frame = CGRectMake(100, 200, 400, 400);
 
 
 问题：屏幕对齐等使用layout constraints 约束
-
+```

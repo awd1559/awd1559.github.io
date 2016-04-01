@@ -18,21 +18,8 @@ UINavigationBar
 UINavigationItem
 
 
-
-UINavigationItem *navItem = self.navigationItem;   (navigationItem属于UIViewController)
-navItem.title = @“”;
-UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd //＋号
-                                                                             target:self
-                                                                             action:@selector(addNewItem:)];
-navItem.rightBarButtonItem = add;				//right bar button
-navItem.leftBarButtonItem = self.editButtonItem;		//left   bar button
-
-
-
-
-
 //切换到子viewcontroller中
-//TODO:默认动画为Push，如何自定义动画 
+//TODO:默认动画为Push，如何自定义动画
 [self.navigationController pushViewController:detailViewController animated:YES];
 
 //动画弹出viewController
@@ -59,4 +46,3 @@ self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomV
 
 -(void)back
     [self.dismissViewControllerAnimated:YES completion:nil];
-

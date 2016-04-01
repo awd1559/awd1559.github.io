@@ -133,7 +133,7 @@
         // if($nav) FastClick.attach($nav);
 
         // global FastClick!!
-        FastClick.attach(document.body);    
+        FastClick.attach(document.body);
     })
 </script>
 
@@ -176,7 +176,7 @@
 
 
 <!-- Side Catalog -->
-{% if page.catalog %}
+{% if page.catalog == null || page.catalog %}
 <script type="text/javascript">
     function generateCatalog (selector) {
         var P = $('div.post-container'),a,n,t,l,i,c;
@@ -189,7 +189,7 @@
             l = $('<li class="'+n+'_nav"></li>').append(c);
             $(selector).append(l);
         });
-        return true;    
+        return true;
     }
 
     generateCatalog(".catalog-body");
@@ -221,4 +221,3 @@
     });
 </script>
 {% endif %}
-

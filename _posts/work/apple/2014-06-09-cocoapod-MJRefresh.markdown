@@ -5,8 +5,7 @@ subtitle: " \"MJRefresh\""
 date:       2014-06-09 12:00:00
 author: awd
 "header-img": "img/post-bg-2015.jpg"
-catalog: true
-tags: 
+tags:
   - cocoapod
 ---
 
@@ -24,7 +23,7 @@ import MJRefresh
 ```
 
 # api
-###### MJRefreshsComponent.h
+#### MJRefreshsComponent.h
 
 ```
 	//进入刷新状态
@@ -35,7 +34,7 @@ import MJRefresh
  	isRefreshing() -> Bool
 ```
 
-###### MJRefreshHeader.h
+#### MJRefreshHeader.h
 
 ```
 	//创建header
@@ -45,21 +44,21 @@ import MJRefresh
 	lastUpdatedTime:NSDate
 ```
 
-###### MJRefreshFooter.h
+#### MJRefreshFooter.h
 
 ```
 	footerWithRefreshingBlock(MJRefreshComponentRefreshingBlock)
 	footerWithRefreshingTarget(target, refreshingAction:SEL)
 	endRefreshingWithNoMoreDate()
-	resetNoMoreData()	
+	resetNoMoreData()
 ```
 
-###### MJRefreshAutoFooter.h
+#### MJRefreshAutoFooter.h
 
 
 # examples
-###### 下拉刷新
-- default
+### 下拉刷新
+#### default
 
 ```
 self.tableView.header = MJRefreshNormalHeader.headerWithRefreshingBlock{
@@ -69,7 +68,7 @@ self.tableView.header = MJRefreshNormalHeader.headerWithRefreshingTarget(self, r
 self.tableView.header.beginRefreshing()
 ```
 
-- animation
+#### animation
 
 ```
 //设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
@@ -84,13 +83,13 @@ MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self
 self.tableView.mj_header = header;
 ```
 
-- hide time label
+#### hide time label
 
 ```
 header.lastUpdatedTimeLabel.hidden = true
 ```
 
-- hide status and time
+#### hide status and time
 
 ```
 // 隐藏时间
@@ -99,7 +98,7 @@ header.lastUpdatedTimeLabel.hidden = true
 header.stateLabel.hidden = true
 ```
 
-- custome text
+#### custome text
 
 ```
 // 设置文字
@@ -115,7 +114,7 @@ header.lastUpdatedTimeLabel.font = UIFont.systemFontOfSize(14)
 header.stateLabel.textColor = UIColor.redColor()
 header.lastUpdatedTimeLabel.textColor = UIColor.blueColor()
 ```
-- custome view 
+#### custome view
 
 ```
 self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -123,8 +122,8 @@ self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshi
 ```
 
 
-###### 上拉刷新
-- default
+### 上拉刷新
+#### default
 
 ```
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -135,7 +134,7 @@ self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
 
-- animation
+#### animation
 
 ```
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
@@ -148,7 +147,7 @@ MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTar
 self.tableView.mj_footer = footer;
 ```
 
-- hide refresh text
+#### hide refresh text
 
 ```
 // 隐藏刷新状态的文字
@@ -156,14 +155,14 @@ footer.refreshingTitleHidden = true
 // 如果没有上面的方法，就用footer.stateLabel.hidden = true
 ```
 
-- load complete
+#### load complete
 
 ```
 // 变为没有更多数据的状态
 [footer endRefreshingWithNoMoreData];
 ```
 
-- custome text
+#### custome text
 
 ```
 // 设置文字
@@ -178,20 +177,20 @@ footer.stateLabel.font = [UIFont systemFontOfSize:17];
 footer.stateLabel.textColor = [UIColor blueColor];
 ```
 
-- hide after load
+#### hide after load
 
 ```
 // 隐藏当前的上拉刷新控件
 self.tableView.mj_footer.hidden = YES;
 ```
 
-- bounce 01
+#### bounce 01
 
 ```
 self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
 
-- bounce 02
+#### bounce 02
 
 ```
 MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -207,14 +206,14 @@ MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTar
 self.tableView.mj_footer = footer;
 ```
 
-- custome view 1
+#### custome view 1
 
 ```
 self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 // 具体实现参考MJDIYAutoFooter.h和MJDIYAutoFooter.m
 ```
 
-- custome view 2
+#### custome view 2
 
 ```
 self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
