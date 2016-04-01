@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "swift"
-subtitle:   " \"swift\""
+subtitle:   " \"swift, code tips\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
@@ -203,6 +203,36 @@ UIButtonType.InfoDark：为感叹号“!”圆形按钮
 UIButtonType.InfoLight：为感叹号“!”圆形按钮
 ```
 
+## Progress
+```
+//UIActivityIndicatorView
+if self.myActivityIndicatorView.isAnimating {
+  self.myActivityIndicatorView.stopAnimating
+}else{
+  self.myActivityIndicatorView.startAnimating
+}
+
+//UIProgressView
+myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                               target:self
+                                             selector:@selector(download)
+                                             userInfo:nil
+                                              repeats:YES];
+//每秒钟更新一次
+-(void)download{
+    self.myProgressView.progress=self.myProgressView.progress+0.1;
+    if (self.myProgressView.progress==1.0) {
+        [myTimer invalidate];
+        UIAlertView*alert=[[UIAlertView  alloc]initWithTitle:@"download completed！"
+                                                     message:@""
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles: nil];
+        [alert show];
+    }
+}
+```
+
 ## Alert
 ### UIAlertView
 iOS8开始废弃，使用UIAlertController
@@ -397,13 +427,18 @@ func performAdd(sender: UIBarButtonItem) {
 //title
 navigationItem.rightBarButtonItem = UIBarButtonItem(title: “Add”, style: .Plain, target: self, action: “performAdd:”)
 
-//systemitem
+//systemItem
 navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: “performAdd:”)
 
 //custom view
 let switch = UISwitch()
 switch.on = true
 navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
+```
+
+### push viewController
+```
+self.navigationController.pushViewController(detailViewController, animated:true)
 ```
 
 
