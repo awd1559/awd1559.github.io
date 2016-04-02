@@ -11,19 +11,19 @@ tags:
 ---
 # 基本语法
 
-## 定义常量
+#### 定义常量
 ```
 let constValue = 99
 ```
 
-## 定义变量
+#### 定义变量
 ```
 var myValue = 90
-var myString = “Swi”
-myString += “ft”
+var myString = "Swi"
+myString += "ft"
 ```
 
-## Operators
+#### Operators
 ```
 //可以重写operator
 func == (left: Person, right: Person) -> Bool{
@@ -35,34 +35,24 @@ func == (left: Person, right: Person) -> Bool{
 }
 ```
 
-## Enum
+#### Enum
 ```
 enum CarType: String{
-    case Classic = “Classic”
+    case Classic = "Classic"
     case
 }
 ```
 
-
-## 入口点
-```
-AppDelegate.swift
-@UIApplicaitonMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-}
-```
-
-## String
+#### String
 ```
 let value = "Guten Tag!"
-value[value.startIndex]					//G
-value[value.endIndex.predecessor()]		//!
-value[value.startIndex.successor()]			//u
+value[value.startIndex]                     //G
+value[value.endIndex.predecessor()]         //!
+value[value.startIndex.successor()]         //u
 let index = value.startIndex.advancedBy(7)
-value[index]						//a
+value[index]                                //a
 
-for index in value.characters.indices {		//
+for index in value.characters.indices {     //
 	value[index]
 }
 
@@ -73,7 +63,7 @@ if value.hasPrefix("!")
 if value.hasSuffix("!")
 ```
 
-## Array
+#### Array
 ```
 var someInts = [Int]()
 someInt.append(3)
@@ -97,26 +87,26 @@ for item in someInts {
 	print(item)
 }
 for ( index, value) in someInts.enumerate() {
-	print(“Item \(index+1): \(value)”)
+	print("Item \(index+1): \(value)")
 }
 ```
 
-## Set
+#### Set
 ```
-var value: Set = ["Rock", "Rock", “Rock"]				//Rock
+var value: Set = ["Rock", "Rock", "Rock"]				//Rock
 value.isEmpty
-value.remove(“Rock")
-value.contains(“Rock")
+value.remove("Rock")
+value.contains("Rock")
 for v in value
 
 //集合操作
-a.intersect(b)			//a,b集合中都有的值
-a.exclusiveOr(b)		//a + b，但不在两个集合中的值
-a.union(b)			//a + b
-a.subtract(b)			//a - b
+a.intersect(b)           //a,b集合中都有的值
+a.exclusiveOr(b)         //a + b，但不在两个集合中的值
+a.union(b)               //a + b
+a.subtract(b)            //a - b
 ```
 
-## Dictionary
+#### Dictionary
 ```
 dict.isEmpty
 dict["name"] = "edw"
@@ -133,9 +123,10 @@ for v in dict.vlaues  {  }
 
 
 # UI
-## Label
 
-## AttributeText
+#### Label
+
+#### AttributeText
 ```
 let shadow = NSShadow()
 shadow.shadowColor = UIColor.darkGrayColor()
@@ -149,9 +140,9 @@ let attribute = [
 ```
 
 ```
-let firstRange = NSRange(location: 0, length: 3)			//0,1,2
-let result = NSMutableAttributedString(string: stringValue)	//stringValue的[0-2]
-result.setAttributes(attribute, range: firstRange)			//stringValue的[0-2]设置attribute
+let firstRange = NSRange(location: 0, length: 3)             //0,1,2
+let result = NSMutableAttributedString(string: stringValue)  //stringValue的[0-2]
+result.setAttributes(attribute, range: firstRange)           //stringValue的[0-2]设置attribute
 label.attributedText = result
 ```
 
@@ -173,7 +164,116 @@ let blurView   = UIVisualEffectView(effect: blurEffect)
 ||NSStrokeWidthAttributeName||删除线宽度||
 ||NSShadowAttributeName||阴影||
 
-## UIButton
+
+#### UITextView
+```
+let textView = UITextView(frame: view.bounds)
+textView.text = "Some text goes here …"
+textView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+textView.font = UIFont.systemFontOfSize(16)
+
+//UITextViewDelegate
+//UIKeyboard
+
+NSNotificationCenter.defaultCenter().addObserver(self, Selector("handleKeyboardDidShow:"), name: UIKeyboardDidShowNotification, object: nil)
+NSNotificationCenter.defaultCenter().addObserver(self, Selector("handleKeyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+
+let defaultContentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+
+func handleKeyboardDidShow(notification: NSNotification) -> Void {
+  let keyboardRectAsObject = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+
+  var keyboardRect = CGRectZero
+  keyboardRectAsObject.getValue(&keyboardRect)
+
+  textView.contentInset = UIEdgeInsets(top: defaultContentInset.top, left: 0, bottom: keyboardRect.height, right: 0)
+}
+
+func handleKeyboardWillHide(notification: NSNotification) -> Void {
+  textView.contentInset = defaultContentInset
+}
+```
+
+
+#### UITextField
+```
+let textField = UITextField(frame: CGRect(x:0, y: 0,width: 200, height: 31))
+textField.borderStyle = .RoundedRect
+textField.contentVerticalAlignment = .Center
+textField.textAlignment = .Center
+textField.placeholder = "Enter your text here…."
+textField.text = "Siri"
+textField.delegate = self
+
+//UITextFieldDelegate
+func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+  let range = Range(value.startIndex.advancedBy(8)..<value.startIndex.advancedBy(10))
+  textField.text.replaceRange(range, with: string)
+  return true
+}
+func textFieldShoudlReturn(textField: UITextField) -> Bool {
+  return true
+}
+```
+
+- UITextField右侧显示¥符号
+
+```
+//let left = UILabel()
+//left.text = NSNumberFormatter().currencySymbol//$符号
+//textField.leftView = left
+//textField.leftViewMode = UITextFieldViewMode.Always
+```
+
+
+#### Textkit
+```
+NSTextStorage* textStorage = [[NSTextStorage alloc]  initWithString:@""];
+NSLayoutManager* layoutManager = [[NSLayoutManager alloc] init];
+[textStorage addLayoutManager:layoutManager];
+NSTextContainer* textContainer = [[NSTextContainer alloc] initWithSize:rect.size];
+[layoutManager addTextContainer:textContainer];
+
+textView = [[UITextView alloc] initWithFrame:textViewRect textContainer:_textContainer];
+
+[textView.textStorage beginEditing];
+NSDictionary* attrsDic = @{NSTextEffectAttributeName:NSTextEffectLetterpressStyle};    //凸版效果
+NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrsDic];
+[textStorage setAttributedString:attrStr];
+[self markWord:@"我" inTextStorage:textStorage];
+[textView.textStorage endEditing];
+
+
+
+-(void) markWord:(NSString *)word inTextStorage:(NSTextStorage *)textStorage{
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:word options:0 error:nil];
+  NSArray* matches = [regex matchesInString:_textView.text options:0 range:NSMakeRange(0, [_textView.text length])];
+
+  for(NSTextCheckingResult* match in matches){
+    NSRange matchRange = [match range];
+    [textStorage addAttribute:NSBackgroundColorAttributeName value:[UIColor redColor] range:matchRange];
+  }
+}
+
+//动态字体
+self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+这样设置之后，文本控件就会以用户设定的字体大小及粗细显示
+在系统字体修改时，系统会给运行中的程序发送UIContentSizeCategoryDidChangeNotification通知
+[[NSNotificationCenter defaultCenter] addObserver:self 
+  selector:@selector(preferredContentSizeChanged:) 
+  name:UIContentSizeCategoryDidChangeNotification 
+  object:nil]; 
+```
+
+
+#### UIImageView
+```
+let image = UIImage(named:"")
+imageView.contentMode = .ScaleAspectFit
+```
+
+
+#### UIButton
 ```
 let button: UIButton! = UIButton(type: .System)
 button.frame = CGRect(x: 100, y:100, width: 100, height: 100)
@@ -184,18 +284,18 @@ button.addTarget(self, action: #selector(onTap(_:)),    forControlEvents: .Touch
 self.view.addSubview(button)
 
 func onTap(sender: UIButton){
-	//code
+  //code
 }
 
-UIButtonType.ContactAdd：前面带“+”图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
-UIButtonType.DetailDisclosure：前面带“!”图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
+UIButtonType.ContactAdd：前面带"+"图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
+UIButtonType.DetailDisclosure：前面带"!"图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
 UIButtonType.System：前面不带图标，默认文字颜色为蓝色，有触摸时的高亮效果
 UIButtonType.Custom：定制按钮，前面不带图标，默认文字颜色为白色，无触摸时的高亮效果
-UIButtonType.InfoDark：为感叹号“!”圆形按钮
-UIButtonType.InfoLight：为感叹号“!”圆形按钮
+UIButtonType.InfoDark：为感叹号"!"圆形按钮
+UIButtonType.InfoLight：为感叹号"!"圆形按钮
 ```
 
-## Progress
+#### Progress
 ```
 //UIActivityIndicatorView
 if self.myActivityIndicatorView.isAnimating {
@@ -214,27 +314,29 @@ myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                               repeats:YES];
 //每秒钟更新一次
 -(void)download{
-    self.myProgressView.progress=self.myProgressView.progress+0.1;
-    if (self.myProgressView.progress==1.0) {
-        [myTimer invalidate];
-        UIAlertView*alert=[[UIAlertView  alloc]initWithTitle:@"download completed！"
-                                                     message:@""
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK"
-                                           otherButtonTitles: nil];
-        [alert show];
-    }
+  self.myProgressView.progress=self.myProgressView.progress+0.1;
+  if (self.myProgressView.progress==1.0) {
+    [myTimer invalidate];
+    UIAlertView*alert=[[UIAlertView  alloc]initWithTitle:@"download completed！"
+                       message:@""
+                       delegate:nil
+                       cancelButtonTitle:@"OK"
+                       otherButtonTitles: nil];
+    [alert show];
+  }
 }
 ```
 
-## Alert
-### UIAlertView
+#### Alert
+
+- UIAlertView
 iOS8开始废弃，使用UIAlertController
+
 ```
 var alertview: UIAlertView = UIAlertView()
-alertview.title = “title”
-alertview.message = “message”
-alertview.addButtonWithTitle(“click me”)
+alertview.title = "title"
+alertview.message = "message"
+alertview.addButtonWithTitle("click me")
 alertview.delegate = self 	//UIAlertViewDelegate
 alertview.show()
 
@@ -252,75 +354,233 @@ func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
 }
 ```
 
-### UIActionSheet
+- UIActionSheet
 iOS8开始废弃，使用UIAlertController
 UIActionSheetDelegate
 
 
-### UIAlertController
+- UIAlertController
+
 ```
 let controller = UIAlertController(title: "title", message: "message", preferredStyle: .ActionSheet)	//.Alert
 
 // text field
 controller.addTextFieldWithConfigurationHandler({(textField: UITextField) in
-            textField.placeholder = "XXX-XXXX"
+  textField.placeholder = "XXX-XXXX"
 })
 
 //action
 let actionEmail = UIAlertAction(title: "email", style:.Default, handler: {[weak self](paramAction:UIAlertAction) in
-	if let textFields = self!.controller?.textFields {
-		let theTextFields = textFields as [UITextField]
-		let userName = theTextFields[0].text
-	}
+  if let textFields = self!.controller?.textFields {
+    let theTextFields = textFields as [UITextField]
+    let userName = theTextFields[0].text
+  }
 })
 controller.addAction(actionEmail)
 
 self.presentViewController(controller, animated: true, completion: nil)label
 var label = UILabel(frame: CGRect(x:20, y: 100, width: 100, height: 23))
 label.adjustsFontSizeToFitWidth = true
-label.text = “iOS programming Cookbook”
+label.text = "iOS programming Cookbook"
 label.font = UIFont.boldSystemFontOfSize(14)
 ```
 
-## UITableView
+
+
+#### UISwitch
 
 ```
-[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@“Cell"];
+var switch = UISwitch(frame: CGRect(x: 100, y: 100, width: 0, height: 0))
 ```
 
-### tableview by code
+
+#### UISearchController
+
 ```
-class ViewController: UIViewController, UITableViewDataSource {
-  override func viewDidLoad() {
-        super.viewDidLoad()
+MainViewController : UITableViewController<UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
+  UISearchController* searchController;
+  ResultsTableController* resultsTableController;
 
-        tableView = UITableView(frame: view.bounds, style: .Plain)    
-        if let theTableView = tableView{
-            theTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-            theTableView.dataSource = self
-            theTableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-            view.addSubview(theTableView)
-        }
-    }
+viewDidLoad
+  resultsTableController = ResultsTableController alloc init;
+  resultsTableController.tableView.delegate  = self;
 
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-  }
+  searchController = UISearchController alloc initWithSearchResultsController:resultViewController
+  searchController.delegate = self;
+  
+  searchController.searchBar sizeToFit
+  searchController.searchBar.delegate = self;		//UISearchBarDelegate
+  self.tableView.tableHeaderView = searchController.searchBar;
 
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-  }
+#pragma mark UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+  [searchBar resignFirstResponder];
+}
 
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {     
-        var identifier = "Cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel?.text = "section \(indexPath.section), Cell \(indexPath.row)"
-        return cell
-    }
+#pragma mark UISearchControllerDelegate
+- (void)presentSearchController:(UISearchController *)searchController {}
+- (void)willPresentSearchController:(UISearchController *)searchController {}
+- (void)didPresentSearchController:(UISearchController *)searchController {}
+- (void)willDismissSearchController:(UISearchController *)searchController {}
+- (void)didDismissSearchController:(UISearchController *)searchController {}
+
+#pragma mark UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+
+
+ResultsTableController : UITableController
+```
+
+
+- custom
+```
+switch.tintColor = UIColor.redColor()
+switch.onTintColor = UIColor.brownColor()
+switch.thumbTintColor = UIColor.greenColor()
+
+switch.setOn(true, animated: true)
+if switch.on {
+
+}
+
+switch.addTarget(self, action: "switchIsChanged:", forControlEvents: .ValueChanged)
+func switchIsChanged(sender: UISwitch) {
+
 }
 ```
 
-### 下拉刷新
+
+#### UIPickerView
+```
+var picker = UIPickerView()
+picker.dataSource = self		//UIPickerViewDataSource
+picker.delegate = self			//UIPickerViewDelegate
+
+UIPickerViewDataSource
+  numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+  pickerView(UIPickerview, numberOfRowsInComponent ) -> Int
+UIPickerViewDelegate
+  pickerView(UIPickerView, titleForRow, forComponent) -> String
+  pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (component == 0) {
+      let seletedProvince = self.pickerProvincesData[row]
+      let array = self.pickerData[seletedProvince]
+      self.pickerCitiesData = array
+      self.pickerView.reloadComponent(1)
+    }
+  }
+```
+
+#### UIPopoverController
+
+```
+ContentViewController *popoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectViewController"];
+UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:popoverViewController];
+UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:nav];
+[pop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+```
+
+##### UIDatePicker
+```
+var datePicker = UIDatePicker()
+let today = NSDate()
+let oneYearFromToday = today.dateByAddingTimeInterval(365*24*60*60)
+let twoYearFromToday = today.dateByAddingTimeInterval(365*24*60*60*2)
+datePicker.minimumDate = oneYearFromToday
+datePicker.maximumDate = twoYearFromToday
+datePicker.datePickerMode = .CountDownTimer
+datePicker.countDownDuration = (2*60) as NSTimeInterval
+```
+
+```
+let date = picker.date
+```
+
+#### UISlider
+```
+let slider = UISlider(frame: CGRect(x:0, y:0, width: 200, height:23))
+slider.minimumValue = 0
+slider.maximumValue = 100
+slider.value = 50.0
+```
+
+```
+slider.setThumbImage(normalImage, forState: .Normal)
+slider.setThumbImage(highlightedImage, forState: .Highlighted)
+
+slider.setMinimumTrackImage:forState
+slider.setThumbImage:forState
+slider.setThumbImage:forState
+slider.setMaximumTrackImage:forState
+
+slider.minimumValueImage
+slider.maximumValueImage
+slider.minimumTrackTintColor
+slider.maximumTrackTintColor
+slider.thumbTintColor
+```
+
+```
+slider.addTarget(self, action:"sliderValueChanged:", forControlEvents: .ValueChanged)
+func sliderValueChanged(slider: UISlider) {
+  print("\(slider.value)")
+}
+```
+
+#### UISegmentedController
+```
+var segmentedController = UISegmentedControl(items: ["iPhone", "iPad", "iPod"])
+
+segmentedControl.addTarget(self, action: "segmentedControlValueChanged:", forControlEvents: .ValueChanged)
+
+func segmentedControlValueChanged(sender: UISegmentedControl) {
+  let index = sender.selectedSegmentIndex
+  let title = sender.titleForSegmentAtindex(index)
+}
+```
+
+
+#### UITableView
+
+```
+[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+```
+
+- tableview by code
+
+```
+class ViewController: UIViewController, UITableViewDataSource {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    tableView = UITableView(frame: view.bounds, style: .Plain)    
+    if let theTableView = tableView{
+	  theTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+      theTableView.dataSource = self
+      theTableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+      view.addSubview(theTableView)
+    }
+  }
+
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 2
+  }
+
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 3
+  }
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {     
+    var identifier = "Cell"
+    let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! UITableViewCell
+    cell.textLabel?.text = "section \(indexPath.section), Cell \(indexPath.row)"
+    return cell
+  }
+}
+```
+
+- 下拉刷新
+
 
 ```
 UITableViewController
@@ -332,44 +592,46 @@ self.refreshControl = rc;
 
 -(void) refreshTableView
 {
-    if (self.refreshControl.refreshing) {
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"加载中..."];
-        //添加新的模拟数据
-        NSDate *date = [[NSDate alloc] init];
-        //模拟请求完成之后，回调方法callBackMethod
-        [self performSelector:@selector(callBackMethod:) withObject:date afterDelay:3];
-    }
+  if (self.refreshControl.refreshing) {
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"加载中..."];
+    //添加新的模拟数据
+    NSDate *date = [[NSDate alloc] init];
+    //模拟请求完成之后，回调方法callBackMethod
+    [self performSelector:@selector(callBackMethod:) withObject:date afterDelay:3];
+  }
 }
 ```
+
 
 ```
 //这是一个模拟方法，请求完成之后，回调方法
 -(void)callBackMethod:(id) obj
 {
-    [self.refreshControl endRefreshing];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [self.Logs addObject:(NSDate*)obj];
+  [self.refreshControl endRefreshing];
+  self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+  [self.Logs addObject:(NSDate*)obj];
 
-    [self.tableView reloadData];
+  [self.tableView reloadData];
 }
 ```
 
-### 切换编辑模式
+- 切换编辑模式
+
 ```
 - (IBAction)toggleEditingMode:(id)sender {
-    if (self.isEditing) {
-        [sender setTitle:@"编辑" forState:UIControlStateNormal];
+  if (self.isEditing) {
+    [sender setTitle:@"编辑" forState:UIControlStateNormal];
 
-        [self setEditing:NO animated:YES];
-    } else {
-        [sender setTitle:@"完成" forState:UIControlStateNormal];
+    [self setEditing:NO animated:YES];
+  } else {
+    [sender setTitle:@"完成" forState:UIControlStateNormal];
 
-        [self setEditing:YES animated:YES];
-    }
+    [self setEditing:YES animated:YES];
+  }
 }
 ```
 
-### 表编辑－move
+- 表编辑－move
 
 ```
 UITableViewDataSource
@@ -383,7 +645,7 @@ UITableViewDataSource
 }
 ```
 
-### 表编辑－删除
+- 表编辑－删除
 
 ```
 UITableViewDataSource
@@ -402,7 +664,8 @@ UITableViewDataSource
 }
 ```
 
-## UICollectionView
+#### UICollectionView
+
 
 ```
 #pragma mark - UICollectionViewDataSource
@@ -461,186 +724,31 @@ viewForSupplementaryElementOfKind atIndexPath
 
 UICollectionViewDelegate
 
-## UISwitch
-```
-var switch = UISwitch(frame: CGRect(x: 100, y: 100, width: 0, height: 0))
-```
 
-
-## UISearchController
-
-```
-MainViewController : UITableViewController<UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
-	UISearchController* searchController;
-	ResultsTableController* resultsTableController;
-
-viewDidLoad
-	resultsTableController = ResultsTableController alloc init;
-	resultsTableController.tableView.delegate  = self;
-
-	searchController = UISearchController alloc initWithSearchResultsController:resultViewController
-	searchController.delegate = self;
-
-	searchController.searchBar sizeToFit
-	searchController.searchBar.delegate = self;		//UISearchBarDelegate
-	self.tableView.tableHeaderView = searchController.searchBar;
-
-#pragma mark UISearchBarDelegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-}
-
-#pragma mark UISearchControllerDelegate
-- (void)presentSearchController:(UISearchController *)searchController {}
-- (void)willPresentSearchController:(UISearchController *)searchController {}
-- (void)didPresentSearchController:(UISearchController *)searchController {}
-- (void)willDismissSearchController:(UISearchController *)searchController {}
-- (void)didDismissSearchController:(UISearchController *)searchController {}
-
-#pragma mark UISearchResultsUpdating
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
-
-
-ResultsTableController : UITableController
-```
-
-
-### custom
-```
-switch.tintColor = UIColor.redColor()
-switch.onTintColor = UIColor.brownColor()
-switch.thumbTintColor = UIColor.greenColor()
-
-switch.setOn(true, animated: true)
-if switch.on {
-
-}
-
-switch.addTarget(self, action: "switchIsChanged:", forControlEvents: .ValueChanged)
-func switchIsChanged(sender: UISwitch) {
-
-}
-```
-
-
-## UIPickerView
-```
-var picker = UIPickerView()
-picker.dataSource = self		//UIPickerViewDataSource
-picker.delegate = self			//UIPickerViewDelegate
-
-UIPickerViewDataSource
-	numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
-	pickerView(UIPickerview, numberOfRowsInComponent ) -> Int
-UIPickerViewDelegate
-	pickerView(UIPickerView, titleForRow, forComponent) -> String
-  pickerView:(UIPickerView *)pickerView
-  	  didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-  	if (component == 0) {
-  		let seletedProvince = self.pickerProvincesData[row]
-  		let array = self.pickerData[seletedProvince]
-  		self.pickerCitiesData = array
-  		self.pickerView.reloadComponent(1)
-  	}
-  }
-```
-
-## UIPopoverController
-
-```
-ContentViewController *popoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectViewController"];
-UINavigationController *nav = [[UINavigationController alloc]
-                                       initWithRootViewController:popoverViewController];
-UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:nav];
-[pop presentPopoverFromBarButtonItem:sender
-                     permittedArrowDirections:UIPopoverArrowDirectionUp
-                                     animated:YES];
-```
-
-### UIDatePicker
-```
-var datePicker = UIDatePicker()
-let today = NSDate()
-let oneYearFromToday = today.dateByAddingTimeInterval(365*24*60*60)
-let twoYearFromToday = today.dateByAddingTimeInterval(365*24*60*60*2)
-datePicker.minimumDate = oneYearFromToday
-datePicker.maximumDate = twoYearFromToday
-datePicker.datePickerMode = .CountDownTimer
-datePicker.countDownDuration = (2*60) as NSTimeInterval
-```
-
-```
-let date = picker.date
-```
-
-## UISlider
-```
-let slider = UISlider(frame: CGRect(x:0, y:0, width: 200, height:23))
-slider.minimumValue = 0
-slider.maximumValue = 100
-slider.value = 50.0
-```
-
-```
-slider.setThumbImage(normalImage, forState: .Normal)
-slider.setThumbImage(highlightedImage, forState: .Highlighted)
-
-slider.setMinimumTrackImage:forState
-slider.setThumbImage:forState
-slider.setThumbImage:forState
-slider.setMaximumTrackImage:forState
-
-slider.minimumValueImage
-slider.maximumValueImage
-slider.minimumTrackTintColor
-slider.maximumTrackTintColor
-slider.thumbTintColor
-```
-
-```
-slider.addTarget(self, action:”sliderValueChanged:”, forControlEvents: .ValueChanged)
-func sliderValueChanged(slider: UISlider) {
-	print(“\(slider.value)”)
-}
-```
-
-## UISegmentedController
-```
-var segmentedController = UISegmentedControl(items: [“iPhone”, “iPad”, “iPod”])
-
-segmentedControl.addTarget(self, action: “segmentedControlValueChanged:”, forControlEvents: .ValueChanged)
-
-func segmentedControlValueChanged(sender: UISegmentedControl) {
-	let index = sender.selectedSegmentIndex
-	let title = sender.titleForSegmentAtindex(index)
-}
-```
-
-
-## Navigation
+#### Navigation
 ```
 let nav = UINavigationController(rootViewController:)
 ```
 
-### titleview
+- titleview
 ```
 let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
 imageView.contentMode = .ScaleAspectFit
-imageView.image = UIImage(named:”Logo”)
+imageView.image = UIImage(named:"Logo")
 navigationItem.titleView = imageView
 ```
 
-### BarButtonItem
+- BarButtonItem
 ```
 //action function
 func performAdd(sender: UIBarButtonItem) {
 }
 
 //title
-navigationItem.rightBarButtonItem = UIBarButtonItem(title: “Add”, style: .Plain, target: self, action: “performAdd:”)
+navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "performAdd:")
 
 //systemItem
-navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: “performAdd:”)
+navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "performAdd:")
 
 //custom view
 let switch = UISwitch()
@@ -648,12 +756,12 @@ switch.on = true
 navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
 ```
 
-### push viewController
+- push viewController
 ```
 self.navigationController.pushViewController(detailViewController, animated:true)
 ```
 
-## UITabBar
+#### UITabBar
 ```
 let c1 = MyViewController()
 let c2= MyViewController()
@@ -670,111 +778,8 @@ override init(nibName: String,  bundle:NSBundle) {
 }
 ```
 
-## UIImageView
-```
-let image = UIImage(named:“”)
-imageView.contentMode = .ScaleAspectFit
-```
 
-## UITextField
-```
-let textField = UITextField(frame: CGRect(x:0, y: 0,width: 200, height: 31))
-textField.borderStyle = .RoundedRect
-textField.contentVerticalAlignment = .Center
-textField.textAlignment = .Center
-textField.placeholder = “Enter your text here….”
-textField.text = “Siri”
-textField.delegate = self
-
-//UITextFieldDelegate
-	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-		let text = textField.text as NSString
-		let wholeText = text.stringByReplacingCharactersInRange(range, withString:string)
-		return true
-	}
-	func textFieldShoudlReturn(textField: UITextField) -> Bool {
-		return true
-	}
-```
-
-UITextField右侧显示¥符号
-```
-let left = UILabel()
-left.text = NSNumberFormatter.currencySymbol//$符号
-textField.leftView = left
-textField.leftViewMode = UITextFieldViewMode.Always
-```
-
-
-## UITextView
-```
-let textView = UITextView(frame: view.bounds)
-textView.text = “Some text goes here …”
-textView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-textView.font = UIFont.systemFontOfSize(16)
-
-//UITextViewDelegate
-//UIKeyboard
-
-NotificaitionCenter.defaultCenter().addObserver(self, selector: “handleKeyboardDidShow:”, name: UIKeyboardDidShowNotification, object: nil)
-NotificaitionCenter.defaultCenter().addObserver(self, selector: “handleKeyboardWillHide:”, name: UIKeyboardWillHideNotification, object: nil)
-
-let defaultContentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-
-func handleKeyboardDidShow(notification: NSNotification) {
-	let keyboardRectAsObject = notification.userInfo![UIKeyboardFrameEnduserInfoKey] as NSValue
-
-	var keyboardRect = CGRectZero
-	keyboardRectAsObject.getValue(&keyboardRect)
-
-	textView!.contentInset = UIEdgeInsets(top: defaultContentInset.top, left: 0, buttom: keyboardRect.height, right: 0)
-}
-
-func handleKeyboardWillHide(notification: NSNotification) {
-	text.contentInset = defaultContentInset
-}
-```
-
-## Textkit
-```
-NSTextStorage* textStorage = [[NSTextStorage alloc]  initWithString:@“”];
-NSLayoutManager* layoutManager = [[NSLayoutManager alloc] init];
-[textStorage addLayoutManager:layoutManager];
-NSTextContainer* textContainer = [[NSTextContainer alloc] initWithSize:rect.size];
-[layoutManager addTextContainer:textContainer];
-
-textView = [[UITextView alloc] initWithFrame:textViewRect textContainer:_textContainer];
-
-[textView.textStorage beginEditing];
-NSDictionary* attrsDic = @{NSTextEffectAttributeName:NSTextEffectLetterpressStyle};    //凸版效果
-NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:@“” attributes:attrsDic];
-[textStorage setAttributedString:attrStr];
-[self markWord:@"我" inTextStorage:textStorage];
-[textView.textStorage endEditing];
-
-
-
--(void) markWord:(NSString *)word inTextStorage:(NSTextStorage *)textStorage{
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:word options:0 error:nil];
-    NSArray* matches = [regex matchesInString:_textView.text options:0 range:NSMakeRange(0, [_textView.text length])];
-
-    for(NSTextCheckingResult* match in matches){
-        NSRange matchRange = [match range];
-        [textStorage addAttribute:NSBackgroundColorAttributeName value:[UIColor redColor] range:matchRange];
-    }
-}
-
-//动态字体
-self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-这样设置之后，文本控件就会以用户设定的字体大小及粗细显示
-在系统字体修改时，系统会给运行中的程序发送UIContentSizeCategoryDidChangeNotification通知
-[[NSNotificationCenter defaultCenter] addObserver:self 
-	selector:@selector(preferredContentSizeChanged:) 
-	name:UIContentSizeCategoryDidChangeNotification 
-	object:nil]; 
-```
-
-## UIScrollView
+#### UIScrollView
 ```
 let scrollView = UIScrollView(frame: view.bounds)
 scrollView.addSubview(imageView)
@@ -786,7 +791,9 @@ UIScrollViewDelegate
 	scrollViewDidEndDecelerating
 	scrollViewDidEndDragging:willDecelerate:
 ```
-### page
+
+- page
+
 ```
 scroll.pagingEnabled = true
 scroll.contentSize = CGSize(width:Int, height:Int)
@@ -828,12 +835,13 @@ scrollView.pagingEnabled = YES;
 [self.window addSubview:scrollView];
 ```
 
-## UIWebView
+#### UIWebView
+
   WebKit
   loadHTMLString:baseURL
   loadData:MIMEType:textEncodingName:baseURL
 
-  NSString *htmlPath = [[NSBundle mainBundle] pathForResource: @“index” ofType:@“html”];
+  NSString *htmlPath = [[NSBundle mainBundle] pathForResource: @"index" ofType:@"html"];
   NSURL *bundleUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] bundlePath]];
   NSError *erro = nil;
 
@@ -850,11 +858,11 @@ scrollView.pagingEnabled = YES;
   webview加载完成html之后调用,  webview访问加载的html中的js
   webview stringByEvaluatingJavaScriptFromString: //由webview执行这句javascript
   (void) webViewDidFinishLoad:(UIWebView*) webView{
-   NSLog(@“%@”, [webView stringByEvaluatingJavaScriptFromString: @“document.body.innerHTML”]);
+   NSLog(@"%@", [webView stringByEvaluatingJavaScriptFromString: @"document.body.innerHTML"]);
   }
 
   html中js访问oc代码
-  <button onclick='showDialog("JS to iOS 对象”)'>调用iOS对象</button>
+  <button onclick='showDialog("JS to iOS 对象")'>调用iOS对象</button>
   function showAndroidDialog(msg) {
   	var myJSONObject = new Object();
   	myJSONObject.title = 'HelloWorld';
@@ -894,16 +902,16 @@ scrollView.pagingEnabled = YES;
 
 ## System
 
-## 读取文件
+#### 读取文件
 ```
 NSBundle *bundle = [NSBundle mainBundle];
-NSString *plistPath = [bundle pathForResource:@“events" ofType:@"plist"];
+NSString *plistPath = [bundle pathForResource:@"events" ofType:@"plist"];
 //获取属性列表文件中的全部数据
 NSArray *array = [[NSArray alloc] initWithContentsOfFile:plistPath];
 self.events = array;  
 ```
 
-### 添加Reminder
+#### 添加Reminder
 ```
 NSDate *date = self.datePicker.date;
 UILocalNotification *note = [[UILocalNotification alloc] init];
@@ -913,7 +921,7 @@ note.fireDate = date;
 [[UIApplication sharedApplication] scheduleLocalNotification:note];
 ```
 
-### 随机数
+#### 随机数
 ```
 int x = arc4random() % 100;			[0,100)包括0，不包括100
 int y = (arc4random() % 501) + 500;		[500,1000]，包括500，包括1000
@@ -924,16 +932,16 @@ int y = (arc4random() % 501) + 500;		[500,1000]，包括500，包括1000
     return (int)(from + (arc4random() % (to – from + 1)));
 }
 ```
-## Resources
+#### Resources
 new->Resources->Settings.bundle
 系统Setting里就多一项
 ```
 NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-[defaults stringForKey:@“”];
-if([defaults boolForKey”@“”]){}
+[defaults stringForKey:@""];
+if([defaults boolForKey"@""]){}
 ```
 
-### 反射
+#### 反射
 ```
 Class viewControllerKlass = NSClassFromString(@"xxxxViewController");
 NSAssert(viewControllerKlass, @"Class should not be nil!");
@@ -941,7 +949,7 @@ NSAssert([viewControllerKlass isSubclassOfClass:[UIViewController class]], @"Cla
 UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibName:nil bundle:nil];
 ```
 
-### iOS应用的5种状态LifeCycle
+#### iOS应用的5种状态LifeCycle
 not running: 没有运行或者被系统终止   
 Inactive:      正在进入前台，不能接收事件
 Active:        能接收事件
@@ -957,7 +965,8 @@ application:didDecodeRestorableStateWithCoder	恢复时调用，恢复上次保�
 
 
 ## Hardware
-### Touch
+
+####  Touch
 覆盖UIResponder的touchesBegan等方法就可以接受touch
 
 ```
@@ -975,7 +984,7 @@ application:didDecodeRestorableStateWithCoder	恢复时调用，恢复上次保�
 }
 ```
 
-### Gesture
+#### Gesture
 ```
 UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc]  initWithTarget:self  action:@selector(doubleTap:)];
 doubleTapRecognizer.numberOfTapsRequired = 2;
@@ -1004,7 +1013,7 @@ UIGestureRecognizerDelegate
 }
 ```
 
-### Camera
+#### Camera
 ```
 let imagePicker = UIImagePickerController()
 imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext
@@ -1057,7 +1066,7 @@ animation.toValue = endPath
 
 ```
 //开始动画
-[UIView beginAnimations:@“doflip” context:nil]
+[UIView beginAnimations:@"doflip" context:nil]
 //动画时长
 [UIView setAnimationDuration:1]
 //动画curve
