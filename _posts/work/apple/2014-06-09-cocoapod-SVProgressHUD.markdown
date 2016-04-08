@@ -6,9 +6,9 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
 ---
-[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
+>[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
+><small>目录:[cocoapod](/2014/06/09/cocoapod-cocoapod)</small>
 
 # install
 

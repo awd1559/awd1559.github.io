@@ -1,0 +1,401 @@
+---
+layout:     post
+title:      "rails"
+subtitle:   " \"rails\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - web
+    - ruby
+---
+# install (2015.6)
+
+#### install on windows
+www.rubyinstaller.org
+gem source -r https://rubygems.org/
+gem source -a https://ruby.taobao.org
+gem install rails
+
+bundle install 时候会出问题，需要devkit
+www.rubyinstaller.org
+自解压devkit
+ruby rk.rb into
+ruby rk.rb install
+
+
+nokogiri无法找到
+nokogiri不支持ruby 2.2
+gem uninstall nokogiri
+download Nokogiri 1.6.6.2
+gem install —local ….gem
+
+
+#### install on mac
+
+安装xcode-command-line tool
+安装ruby (也可以使用Homebrew安装)
+curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm install 2.2.2
+
+//将2.2.2设为默认
+rvm 2.2.2 —default  
+ruby -v
+gem -v
+gem source -r https://rubygems.org/             //remove source
+gem source -a https://ruby.taobao.org           //add source
+gem sources -l
+
+//安装rails
+sudo gem install rails
+
+//列出所有已安装的gem的说明
+gem server
+localhost:8808
+
+
+[guides](guides.ruby-china.org)
+[doc](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
+
+# create project
+rails new mytest -d mysql
+cd mytest
+rails server
+
+# config
+config in Gemfile:
+```
+gem 'rails', '4.2.1'
+gem 'sqlite3'
+gem 'mysql2'
+```
+
+config database in file config/database.yml
+
+//初始化代码
+config/initializers/*.rb
+//config precompile asserts
+config/initializers/asserts.rb
+  Rails.application.config.assets.precompile += %w(*.js *.css)
+  
+//enviroments config
+config/environments/development.rb
+config/environments/production.rb
+
+
+# route
+//将列出所有的route
+rake routes
+
+config routes in file: config/routes.rb
+
+//默认访问
+root to: 'home#index'   
+
+
+resources :books
+namespace :rbac do
+  resources :roles
+end
+
+
+# controller
+rails g controller api/v11/base —no-assets     //不生成coffeescript, javascript等
+rails g controller home index bye 			//生成home控制器index, bye方法
+
+对于参数
+params.require(:book).permit(:name, :author, :description)   //为了安全，去除不需要的参数
+
+
+# model
+rails g model people name:string		//生成model, migration文件
+rails g scaffold people name:string       //生成migration文件，同时还有控制器，view,test,assets等
+
+
+
+#### migration
+rails g migration create_student		//生成空迁移
+def change
+	create_table :students do |t|
+end
+
+rails g migration add_price_to_student price:decimal	   //修改字段
+def change
+	add_column :students, :price, :decimal, limit:2
+end
+
+rails g migration remove_price_from_student 
+def change
+	remove_column :student, :price, :string
+end
+
+rails g migration AddTeachRefToStudent user:references      (belongs_to teach, teach_id)
+def change
+	add_reference :student, :teach
+end
+
+rails g migration CreateJoinTableCustomerProduct customer product   //包含JoinTable字样
+def change
+	create_join_table :customers, :products do |t|
+end
+
+
+def change
+  add_column :products, :price, :decimal, precision: 5, scale: 2
+  add_reference :products, :supplier, polymorphic: true, index: true
+end
+  
+limit: 设置string/text/binary/integer类型字段的最大值 
+precision: 设置decimal类型字段的精度，即整数位数
+scale: 设置的decimal类型字段小数点后位数
+polymorphic: 是否为belongs_to关联添加type字段,多态关联
+null:是否允许该字段的值为null
+
+
+create_table :products do |t|
+	t.string :nane, null:false
+end
+create_join_table :products, :categories do |t|
+	t.index :product_id
+	t.index :category_id
+end
+change_table :products do |t|
+	t.remove :description, :name
+	t.string :part_number
+	t.index :part_number
+	t.rename :upccode, :upc_code
+end
+
+
+#### seed
+users = User.create([
+    {
+        email:'test-user-00@mail.com',
+        name:'test-user-00',
+        admin:false
+    },
+    {
+        email:'test-user-01@mail.com',
+        name:'test-user-01',
+        admin:false
+    }
+                    ])
+rake db:seed
+
+
+rake
+	rake db:create  RAILS_ENV=‘development’ 	//根据database.yml生成数据库
+	rake db:migrate  RAILS_ENV=‘development’  	//提交migration
+	rake db:seed
+	rake db:drop
+
+
+#### ActiveRecord
+app/model/book.rb
+class Book < ActiveRecord::Base 		//默认对应于数据中的books表
+	self.table_name = “BOOK”    	//指定表名
+	self.primary_key = “book_id”	//默认为id字段
+end
+
+CRUD
+创建
+user = User.create(name: “David”, age: 33)
+
+user = User.new
+user.name = “David”
+user.age = 33
+
+user = User.new do |u|
+	u.name = “David”
+	u.age = 33
+end
+
+user.save	//保存到数据库
+
+
+读取
+users = User.all
+user = User.first
+david = User.find_by(name: ‘David’)
+users = User.where(name: ‘David’, age: 33).order(‘created_at DESC’)
+详见查询
+
+
+更新
+user = User.find_by(name: ‘David’)
+user.name = ‘Dave’
+user.save
+
+user = User.find_by(name: ‘David’)
+user.update(name: ‘Dave’)
+
+删除
+user = User.find_by(name: ‘David’)
+user.destroy
+
+
+查询
+验证
+class Person < ActiveRecord::Base
+	validates :name, presence:true
+end
+
+
+//合法性检查,错误信息在p.errors.messages中
+Persion.create(name: nil).valid?
+
+p = Person.new
+p.valid?
+p.errors.messages
+p.errors[:name].any?		//name 属性的合法性检查信息，
+
+validates :name,  acceptance: true		//接受条款
+has_many :books validates_associated :books  //同时验证关联对象book的合法性
+validates :email, confirmation: true		//两次输入相同
+							//属性值不能包含
+validates :subdomain, exclusion: {in: %w(www jp), message: %{value} is reserved}
+							//属性值是否匹配
+validates :legacy_code, format: {with: /\A[a-zA-Z]+\z/, message: “only allows letters}
+							//属性值只能包含
+validates :size, inclusion: { in: %w(small medium large), message: “%{value} is not valid}
+validates :name, length: { minimum: 2 }             //>=2
+validates :bio, length: { maximum: 500 }            //<=500
+validates :bio, length: { in: 6..20 }                   //6<=length<=20
+validates :bio, length: {  is: 6 }			 //=6
+validates :points, numericality: true		 //数字
+validates :points, numericality: { only_integer: true }  
+
+validates :name, :login, :email, presence:true 	 //是否为空
+class Item < ActiveRecord::Base			//验证关联对象是否存在
+	belongs_to :order
+	validates :order, presence: true
+class Order < ActiveRecord::Base			 //在关联中指定:inverse_of
+	has_many :items, inverse_of: :order
+
+validates :email, uniqueness: true			//唯一
+
+validates_with MyValidator
+class MyValidator < ActiveModel::Validator
+	def validate(record)
+		if record.first_name ==‘’
+			record.errors[:base] << “error message”    //整个对象水平上的error
+			record.errors[:name] = “”;
+			record.errors.add(:name, “invalid name”)
+	end
+end
+
+回调
+before_validation :ensure_login_has_a_value
+def ensure_login_has_a_value
+	if login.nil? 
+		self.login = email unless email.blank?
+	end
+end
+
+创建对象
+	•	before_validation
+	•	after_validation
+	•	before_save
+	•	around_save
+	•	before_create
+	•	around_create
+	•	after_create
+	•	after_save
+更新对象
+	•	before_validation
+	•	after_validation
+	•	before_save
+	•	around_save
+	•	before_update
+	•	around_update
+	•	after_update
+	•	after_save
+销毁对象
+	•	before_destroy
+	•	around_destroy
+	•	after_destroy
+
+关联
+class Customer < ActiveRecord::Base
+  has_many :orders, dependent: :destroy
+end
+ 
+class Order < ActiveRecord::Base
+  belongs_to :customer
+end
+
+@order = @customer.orders.create(order_date: Time.now)
+	
+查询
+Client.find(10)
+Client.find([1, 10, 12])
+Client.take
+Client.take(2)
+Client.first
+Client.first(10)
+Client.last
+Client.last(4)
+
+	
+Client.find_by name: ‘Lifo’		=>	Client.where(name: ‘Lifo’).take
+Client.where(“orders_count = ‘2’ ”)
+Client.where(“orders_count = ?”, params[:orders])
+Client.where(“created_at >= :start_date AND created_at <= :end_date”, 
+		{start_date:params[:start_date],  end_date:params[:end_date]} )
+
+Client.where(‘locked’: true)
+Client.where(‘locked’ => true)
+Post.where(author: author)
+Client.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
+Client.where(orders_count: [1,3,5])
+Post.where.not(author: author)
+
+
+Client.order(:created_at)
+Client.order(“created_at”)
+Client.order(created_at: :desc)
+Client.order(“created_at ASC”)
+Client.order(orders_count: :acs, created_at: :desc)
+
+Client.select(“viewable_by, locked”)
+Client.select(:name).distinct
+
+Client.limit(5)
+Client.limit(5).offset(30)
+
+
+
+
+# ruby其他web框架
+================
+rake 	- Sinatra - Padrino
+	- Grape                  	[适合REST]
+Groliath					[纤程]
+Cramp
+merb
+rango
+
+ruby server
+	apache
+	mongrel
+	unicorn
+	rainbow
+
+
+
+
+语法：
+<%= ruby 语句%>
+<%  3.times.do %>
+	shuchu
+<% end %>
+<% -%>  去掉紧随其后的换行符
+
+@time = Time.now
+<%= link_to "Goodbye!", :action => "goodbye" %>
+
+
+
+
+

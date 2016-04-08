@@ -6,9 +6,9 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
 ---
-[RealmSwift](https://github.com/realm/realm-cocoa)
+>[RealmSwift](https://github.com/realm/realm-cocoa)
+><small>目录:[cocoapod](/2014/06/09/cocoapod-cocoapod)</small>
 
 # install
 

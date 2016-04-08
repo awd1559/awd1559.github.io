@@ -1,0 +1,94 @@
+---
+layout:     post
+title:      "php"
+subtitle:   " \"php\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - web
+    - php
+---
+# app
+- Discuz
+- Drupal
+- Joomla
+- phpMyAdmin
+- phpwind-mobile
+- wordpress
+
+
+
+# framework
+- cakephp
+- CodeIgniter
+	zip
+- laravel
+- phaIcon  
+	c扩展
+	git clone install
+	例子Yaf
+- symfony2
+	composer
+- thinkphp
+	国产
+- yii
+	zip + yiic
+
+
+
+# pera
+pear
+sudo php /usr/lib/php/install-pear-nozlib.phar
+sudo pear config-set php_ini /private/etc/php.ini
+sudo pecl config-set php_ini /private/etc/php.ini
+sudo pear upgrade-all
+
+pear install  packagenaem   #安装某package
+pear download packagenaem #下载不安装
+pear remote-list   #pear网站上所有package
+pear list #列出已安装package
+pear list-upgrades #列出可升级的package
+pear upgrade packagename #升级
+pear upgread-all #升级
+pear uninstall packagename  #删除
+
+
+sudo pear install ch
+安装到如下目录
+/usr/lib/php/pear
+
+
+修改/etc/php.ini中include_path=".:/php/includes/:/usr/lib/pear"
+pear install HTML_AJAX
+require_once("HTML/AJAX.php");
+
+
+# php
+php
+环境
+mac 自带apache
+/etc/apache/httpd.cnf  DocumentRoot
+/资料库/WebServer/Documents
+
+
+#php 5.4 内置服务器
+php -t public -S localhost:4000 
+php -S 0.0.0.0:4000               可供远程机器访问
+
+
+
+
+func_get_args() 返回函数参数数组
+func_num_args() 返回函数参数个数
+
+
+对于数组
+key($arr)
+current($arr)
+next($arr)
+end($arr)
+
+array_values($arr)
+array_keys($arr)
+in_array(‘item’, $arr)

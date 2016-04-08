@@ -1,0 +1,41 @@
+---
+layout:     post
+title:      "python"
+subtitle:   " \"web:python\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - web
+    - python
+---
+PIL 
+from PIL import Image
+from PIL import ImageDraw
+
+#打开image
+image = Image.open("test.jpg")
+
+#创建image
+width = 100
+height = 100
+bgcolor = (255, 255, 255) #white
+image = Image.new('RGB', (width,height), bgcolor)
+
+#获得draw对象
+draw = ImageDraw.Draw(image)
+
+#画线
+start = (x1,y1)
+end = (x2, y2)
+draw.line((start, end), fill=255)
+
+#画文字
+fontsize = 20
+font = ImageFont.truetype("test.ttf", fontsize)
+fontcolor = (0, 0, 0)
+draw.text((0,0), 'test', font=font, fill=fontcolor)
+
+#保存
+image.save("save.jpg", 'JPEG')
+

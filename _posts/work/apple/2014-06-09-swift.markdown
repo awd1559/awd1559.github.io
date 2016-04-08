@@ -370,15 +370,15 @@ controller.addTextFieldWithConfigurationHandler({(textField: UITextField) in
 })
 
 //action
-let actionEmail = UIAlertAction(title: "email", style:.Default, handler: {[weak self](paramAction:UIAlertAction) in
+let actionEmail = UIAlertAction(title: "email", style:.Default){[weak self] action in
   if let textFields = self!.controller?.textFields {
     let theTextFields = textFields as [UITextField]
     let userName = theTextFields[0].text
   }
-})
+}
 controller.addAction(actionEmail)
 
-self.presentViewController(controller, animated: true, completion: nil)label
+self.presentViewController(controller, animated: true, completion: nil)
 var label = UILabel(frame: CGRect(x:20, y: 100, width: 100, height: 23))
 label.adjustsFontSizeToFitWidth = true
 label.text = "iOS programming Cookbook"
@@ -392,45 +392,6 @@ label.font = UIFont.boldSystemFontOfSize(14)
 ```
 var switch = UISwitch(frame: CGRect(x: 100, y: 100, width: 0, height: 0))
 ```
-
-
-#### UISearchController
-
-```
-MainViewController : UITableViewController<UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
-  UISearchController* searchController;
-  ResultsTableController* resultsTableController;
-
-viewDidLoad
-  resultsTableController = ResultsTableController alloc init;
-  resultsTableController.tableView.delegate  = self;
-
-  searchController = UISearchController alloc initWithSearchResultsController:resultViewController
-  searchController.delegate = self;
-  
-  searchController.searchBar sizeToFit
-  searchController.searchBar.delegate = self;		//UISearchBarDelegate
-  self.tableView.tableHeaderView = searchController.searchBar;
-
-#pragma mark UISearchBarDelegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-  [searchBar resignFirstResponder];
-}
-
-#pragma mark UISearchControllerDelegate
-- (void)presentSearchController:(UISearchController *)searchController {}
-- (void)willPresentSearchController:(UISearchController *)searchController {}
-- (void)didPresentSearchController:(UISearchController *)searchController {}
-- (void)willDismissSearchController:(UISearchController *)searchController {}
-- (void)didDismissSearchController:(UISearchController *)searchController {}
-
-#pragma mark UISearchResultsUpdating
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
-
-
-ResultsTableController : UITableController
-```
-
 
 - custom
 ```
@@ -449,6 +410,47 @@ func switchIsChanged(sender: UISwitch) {
 }
 ```
 
+#### UISearchController
+
+```
+class ResultsTableController: UITableViewController {}
+
+class MainViewController : UITableViewController, UISearchResultsUpdating
+  var searchController: UISearchController!
+  var resultsTableController = ResultsTableController()
+
+func viewDidLoad() {
+  resultsTableController.tableView.dataSource = self
+  searchController = UISearchController(searchResultsController:resultsTableController)
+  searchController.searchResultsUpdater = self
+  searchController.searchBar.sizeToFit()
+  tableView.tableHeaderView = searchController.searchBar
+
+  searchController.dimsBackgroundDuringPresentation = false
+  searchController.hidesNavigationBarDuringPresentation = false
+  let x = searchController.searchBar.frame.origin.x
+  let y = searchController.searchBar.frame.origin.y
+  let w = searchController.searchBar.frame.size.width
+  searchController.searchBar.frame = CGRect(x: x, y: y, width: w, height: 44.0)
+}
+
+//MARK: UISerachResultsUpdating
+func updateSearchResultsForSearchController(searchController: UISearchController) {
+  if searchController.searchBar.text == nil || searchController.searchBar.text!.isEmpty{
+    searchlist = data
+    tableView.reloadData()
+    return
+  }
+        
+  let searchString = searchController.searchBar.text!
+    if searchlist.count > 0 {
+      searchlist.removeAll()
+    }
+  searchlist = data.filter{$0.containsString(searchString)}
+  resultsTableController.filteredProducts = searchlist
+  resultsTableController.tableView.reloadData()
+}
+```
 
 #### UIPickerView
 ```
@@ -900,7 +902,109 @@ scrollView.pagingEnabled = YES;
   }
 ```
 
+#### Appearance
+
+
+```
+//UINavigationBar
+UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
+		
+//UITabBar
+UITabBar.appearance().tintColor = UIColor.whiteColor()
+let attributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+UITabBarItem.appearance().setTitleTextAttributes(attributes, forState:.Selected)
+UITabBar.appearance().barTintColor = UIColor.whiteColor()
+
+//UISearchBar
+UISearchBar.appearance().tintColor = UIColor.whiteColor()
+
+//UITextField
+UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).setCornerRadius(14.0)
+UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).alpha = 0.6
+UITextField.appearance().tintColor = UIColor.whiteColor()
+
+//UITextView    
+UITextView.appearance().tintColor = UIColor.whiteColor()
+
+//UIPageControl
+UIPageControl.appearance().pageIndicatorTintColor = UIColor.whiteColor()
+UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.grayColor()
+```
+
+#### Storyboard/xib
+
+```
+let storyboard = UIStoryboard(name: "Main", bundle: nil)
+let content = storyboard.instantiateViewControllerWithIdentifier("contentViewController")
+
+let nib = UINib(nibName: "cell", bundle: nil)
+```
+
+
 ## System
+
+#### Notification
+
+```
+NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(), name:"pushmessage", object:nil)
+NSNotificationCenter.defaultCenter().postNotificationName("pushmessage", object:nil)
+
+deinit {
+  NSNotificationCenter.defaultCenter().removeObserver(self)
+}
+```
+
+#### KVO
+Key-Value-Coding
+Key-Value-Observe
+
+```
+class DataModel: NSObject {
+	var name:String = ""
+	var price:Float	= 0.0
+	init() {
+		super.init()
+		addObserver(self, forKeyPath:"price", options:[.New, .Old], context:nil)
+		addObserver(self, forKeyPath:"name", options:[.New, .Old], context:nil)
+	}
+	
+	//handler
+	override func observeValueForKeyPath(keyPath: String?, ofObject object:AnyObject?, change:[String : AnyObject]?, context:UnsafeMutablePointer<Void>) {
+	    if keyPath == "name" {
+	        self.label.text = [self.data valueForKey:@"name"];
+	    }
+	}
+	
+	deinit {
+		removeObserver(self, forKeyPath:"name")
+		removeObserver(self, forKeyPath:"price")
+	}
+}
+var data = DataModel()
+data.setValue("tom", forKey:"name")
+data.setValue("10.0", forKey:"price")
+
+data.valueForKey("name")
+```
+
+#### Device version 
+
+```
+if Float(UIDevice.currentDevice().systemVersion) >= Float(8.0) {
+  let types:UIUserNotificationType = [UIUserNotificationType.Sound, UIUserNotificationType.Badge, UIUserNotificationType.Alert]
+  let notificationSettings = UIUserNotificationSettings(forTypes: types, categories:nil)
+  UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+} else {
+  let types:UIUserNotificationType = [.Badge, .Sound, .Alert]
+  let application = UIApplication.sharedApplication()
+            
+  application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: types, categories:nil))
+            
+  UIApplication.sharedApplication().registerForRemoteNotifications()
+}
+```
 
 #### 读取文件
 ```

@@ -6,8 +6,10 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
 ---
+>[SDWebImage]()
+><small>目录:[cocoapod](/2014/06/09/cocoapod-cocoapod)</small>
+
 Using UIImageView+WebCache category with UITableView
 Just #import the UIImageView+WebCache.h header, and call the sd_setImageWithURL:placeholderImage: method from the tableView:cellForRowAtIndexPath: UITableViewDataSource method. Everything will be handled for you, from async downloads to caching management.
 #import <SDWebImage/UIImageView+WebCache.h>

@@ -6,9 +6,9 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - cocoapod
 ---
-[FMDB](https://github.com/ccgus/fmdb)
+>[FMDB](https://github.com/ccgus/fmdb)
+><small>目录:[cocoapod](/2014/06/09/cocoapod-cocoapod)</small>
 
 # install
 
