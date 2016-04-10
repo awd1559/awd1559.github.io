@@ -1,0 +1,64 @@
+Gemfile group
+对依赖进行分组，可以对整租进行操作
+
+
+gem 'nokogiri'
+gem 'wirble', :group => :development
+
+group :test do
+  gem 'faker'
+  gem 'rspec'
+end
+
+group :test, :development do
+  gem 'capybara'
+  gem 'rspec-rails'
+end
+
+gem 'cucumber', :group => [:cucumber, :test]
+
+group :development, optional: true do
+   gem "my_gem"
+   gem "my_other_gem"
+end
+
+$ bundle install --without test development
+$ bundle install —with development
+
+
+Bundler.require(:default, :another_group, Rails.env) 获取default组中和another_group组中的gem，放入到Rails.env中
+Bundler.require(:default, Rails.env) 获取默认group中gem，放入到Rails.env中
+
+
+
+配置url route
+config/routes.rb
+
+配置数据库
+config/database.yml
+
+rake db:create  RAILS_ENV='development'
+rake db:migrate RAILS_ENV=production
+
+
+
+
+
+
+
+//modeling
+
+validates_presence_of :title, :description, :image_url
+validates_numericality_of :price
+validates_uniqueness_of :title
+validates_format_of :image_url,
+                    :with      => %r{\.(git|jpg|png)$}i,
+					:message => 'must be a URL for GIF, JPG or PNG image.'
+
+validate :price_must_be_at_least_a_cent
+
+protected
+  def price_must_be_at_least_a_cent
+    errors.add(:price, 'should be at least 0.01') if price.nil? || price < 0.01
+  end
+

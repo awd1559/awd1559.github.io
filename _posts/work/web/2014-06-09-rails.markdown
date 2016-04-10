@@ -9,6 +9,7 @@ tags:
     - web
     - ruby
 ---
+
 # install (2015.6)
 
 #### install on windows
@@ -58,10 +59,52 @@ localhost:8808
 [guides](guides.ruby-china.org)
 [doc](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
 
+
+rails new <projectname>
+rails <g>enerate
+rails <c>onsole
+rails <s>erver
+
+rails g assets <some>
+
+rails g controller home index
+rails g model student name:string
+rails g migration
+rails g resource
+rails g scaffold
+
+
+rails g assets <some>
+#create app/assets/javascripts/some.coffee
+#create app/assets/stylesheets/some.scss
+
+rails g controller home index
+#create app/controllers/home_controller.rb
+#route   get 'home/index'
+#create  app/views/home/index.html.erb
+
+
+rails g model student name:string
+#create    db/migrate/timestamp_create_students.rb
+#create    app/models/student.rb
+ 
+rails g migration AddStudentNo no:string
+#create    db/migrate/timestamp_add_student_no.rb
+
+
+rails g resource people name:string
+create    db/migrate/20160408152224_create_people.rb
+create    app/models/person.rb
+create    app/controllers/people_controller.rb
+
+
+
 # create project
 rails new mytest -d mysql
 cd mytest
 rails server
+
+
 
 # config
 config in Gemfile:
@@ -385,15 +428,7 @@ ruby server
 
 
 
-语法：
-<%= ruby 语句%>
-<%  3.times.do %>
-	shuchu
-<% end %>
-<% -%>  去掉紧随其后的换行符
 
-@time = Time.now
-<%= link_to "Goodbye!", :action => "goodbye" %>
 
 
 
