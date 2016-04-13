@@ -13,7 +13,13 @@ tags:
 [ruby](https://www.ruby-lang.org/zh_cn/)
 [doc](http://ruby-doc.org/)
 
+
+# install
+
+[see rails install](/2014/06/09/rails)
+
 # basic
+
 #### 交互方式:
 ruby \
 puts "hhhh"
@@ -92,12 +98,14 @@ end
 
 line.sub(/reg_exp/, "replacement")
 
-+ 一个或多个
-* 零个或多个
-\d 数字
-\w 词
-\s 空格符、制表符、回车符
-. 任意字符
+|字符 |含义                 |
+|----|--------------------|
+|\+  |一个或多个           |
+|\*  |零个或多个           |
+|\d  |数字                |
+|\w  |词                  |
+|\s  |空格符、制表符、回车符 |
+|.   |任意字符             |
 
 
 
@@ -133,6 +141,12 @@ animals.each {|animal|
 ```
 
 
+```
+def myfunc(*args, &b)
+end
+* - 变数量的参数
+& - block
+```
 
 # class
 
@@ -226,6 +240,7 @@ end
 #### class methord
 method is public by default
 
+```
 class SongList
   def initialize
     @songs = Array.new
@@ -238,6 +253,8 @@ class SongList
   end
 end
 ```
+
+```
 class Example
   def instance_method
   end
@@ -246,8 +263,8 @@ class Example
 end
 ```
 
-//singleton
 ```
+#singleton
 class MyLogger
   private_class_method :new
   @@logger = nil
@@ -258,7 +275,18 @@ class MyLogger
 end
 ```
 
+```
+#Hash参数
 
+def create_search(name, params)
+end
+
+list.create_search("search this", {'genre' => 'jazz', 'duration_less_than' => 270})
+#无需使用{}传递hash，可写成如下格式:
+list.create_search('search this', 'genre' => 'jazz', 'duration_less_than' => 270)
+#使用symbol作为参数，又可写成如下格式：
+list.create_search('search this', :genre => :jazz, :duration_less_than => 270)
+```
 
 # module
 
@@ -276,13 +304,49 @@ end
 ```
 
 
-散列参数
-关键字参数
-def create_search(name, params)
+# gem
+
+```
+# list all installed gem
+gem server
+localhost:8808
+
+# list all installed gem in rails project
+gem list 
+gem list --local
+```
+
+# Gemfile
+
+Gemfile group
+对依赖进行分组，可以对整租进行操作
+
+
+gem 'nokogiri'
+gem 'wirble', :group => :development
+
+group :test do
+  gem 'faker'
+  gem 'rspec'
 end
 
-list.create_search("search this", {'genre' => 'jazz', 'duration_less_than' => 270})
-无需使用{}传递hash，可写成如下格式:
-list.create_search('search this', 'genre' => 'jazz', 'duration_less_than' => 270)
-使用symbol作为参数，又可写成如下格式：
-list.create_search('search this', :genre => :jazz, :duration_less_than => 270)
+group :test, :development do
+  gem 'capybara'
+  gem 'rspec-rails'
+end
+
+gem 'cucumber', :group => [:cucumber, :test]
+
+group :development, optional: true do
+   gem "my_gem"
+   gem "my_other_gem"
+end
+
+$ bundle install --without test development
+$ bundle install —with development
+
+
+Bundler.require(:default, :another_group, Rails.env) 获取default组中和another_group组中的gem，放入到Rails.env中
+Bundler.require(:default, Rails.env) 获取默认group中gem，放入到Rails.env中
+
+

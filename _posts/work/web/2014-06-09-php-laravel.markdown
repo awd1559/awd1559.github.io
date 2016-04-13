@@ -9,61 +9,34 @@ tags:
     - web
     - php
 ---
-## laravel
-Laravel
-基于composer包管理，composer.json；基于symfony
+>- [laravel](https://laravel.com)
+>- [golaravel](http://www.golaravel.com)
+>- [packagist](https://packagist.org)
+>- [packalyst](http://packalyst.com/)
+>- [Lumen](https://lumen.laravel.com)
+>- [Laracasts](https://laracasts.com)
+>- [Laravel.io](http://laravel.io/forum)
+>- [Laravel-news](https://laravel-news.com)
 
+# install
+
+```
+composer global require "laravel/installer"
+```
+
+```
+#create project 
 laravel new my_project_name
+
+#install depends packages
 composer install
-
-php artisan
-命令行
-php artisan list			#列出所有命令
-php artisan key:generate 		#生成key
-php artisan serve 			#开启服务器
-make:controller 
-make:event
-make:job	
-make:listener
-make:middleware
-make:migration			#create new migration file
-make:model
-make:provider
-make:request
-make:seeder
-
-migrate:install 			#等同于rails db:create
-migrate:refresh
-migrate:rollback
-migrate:status
-
-app:name
-cache:table
-db:seed			
-route:list				#列出所有route
-session:table				#在数据库中生成session表
-
-使用generators
-"require-dev": {
-    "way/generators": "~2.0"
-},
-就可以使用类似rails的命令
-generate:model
-generate:view
-generate:controller
-generate:seed
-generate:migration
-generate:resource
-generate:scaffold
+composer update
+```
 
 
-配置文件：config/app.php
-
-
-
-
-composer 国内镜像
-在composer.json中增加如下代码：
+```
+#composer cn mirror
+#in composer.json
 {
     "repositories": [
         {   
@@ -75,13 +48,166 @@ composer 国内镜像
         }   
     ]
 }
+```
 
-composer update -vvv
+# basic
 
-Route规则
-4.0: app/routes.php
-5.0: app/Http/routes.php
+```
+#list all commands
+php artisan
+php artisan list
 
+#generate key
+php artisan key:generate 
+
+#start server
+php artisan serve
+```
+
+
+```
+app:name          #change App namespace
+cache:table       #
+db:seed           #
+route:list        #list routes
+session:table     #create session table in database
+```
+
+# packages
+
+- [way/generators](https://packagist.org/packages/way/generators)
+
+```
+"require-dev": {
+    "way/generators": "~2.0"
+}
+```
+
+	# use laravel command like rails generate
+	generate:model
+	generate:view
+	generate:controller
+	generate:seed
+	generate:migration
+	generate:resource
+	generate:scaffold
+
+
+	#create migrate
+	#keword: create、add、delete、drop
+	generate:migration create_post_table	 
+	generate:migration create_post_table --fields="username:string(30):unique, age:integer:nullable:default(18)"
+	
+	generate:model Post
+	generate:view admin.reports.index
+
+	generate:seed users
+	generate:pivot orders users
+
+	#create modle, views, controller, migrate,seed
+	generate:resource post --fields="title:string, body:text"
+	generate:scaffold
+	generate:controller
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ----todo
+--------------------------------------------------
+
+
+	config file : config/app.php
+
+
+```
 //基础
 Route::get(‘/’, function() { return ‘this string is returned’;});
 Route::post(‘foo/bar’, function() { return ‘sadfasdfasdf’ ;} );
@@ -89,7 +215,9 @@ Route::match([‘get’, ‘post’], ‘url’, function() {});
 Route::any();
 
 $url = url(‘for/bar’);
+```
 
+```
 //带参数
 Route::get('user/{id}', function ($id) {
     return 'User '.$id;
@@ -111,9 +239,9 @@ public function boot(Router $router)
 
     parent::boot($router);
 }
+```
 
-
-
+```
 //命名Route
 Route::get('user/profile', ['as' => 'profile', function () {
     //
@@ -125,14 +253,18 @@ Route::get('user/profile', [
 
 
 $redirect = redirect()->route(‘profile');
+```
 
+```
 ///////////////带参数route
 Route::get('user/{id}/profile', ['as' => 'profile', function ($id) {
     //
 }]);
 
 $url = route('profile', ['id' => 1]); 
+```
 
+```
 //route 组
 //middleware
 Route::group(['middleware' => 'auth'], function () {
@@ -144,7 +276,9 @@ Route::group(['middleware' => 'auth'], function () {
         // Uses Auth Middleware
     });
 });
+```
 
+```
 //namespaces
 Route::group(['namespace' => 'Admin'], function()
 {
@@ -162,24 +296,18 @@ Route::group(['domain' => '{account}.myapp.com'], function () {
         //
     });
 });
+```
 
-
+```
 //route 前缀
 Route::group(['prefix' => 'admin'], function () {
     Route::get('users', function () {
         // Matches The "/admin/users" URL
     });
 });
+```
 
-//csfr protection
-  //introduction
-  //excluding uris
-  //x-csrf-token
-  //x-xsrf-token
-//from method spoofing
-//throw 404
-
-
+```
 //命名路由器， filter & acton
 Route::get(‘user/profile’, array(‘as’ => ‘profile’, ‘before’ => ‘old’, ‘uses’ => ‘UserController@showProfile'));
 
@@ -194,20 +322,20 @@ Route::get(‘/‘,  function(){
 
 	return View:make(‘login’);	//<3>输出login.blade.php
 });
+```
 
-
+```
 Route::post(‘login’, function(){
 	$name = Input::get(‘username’);	//获得username框数值
 
 	Redirect::to(‘login’);		
 	Redirect::route(‘login’);	
 });
+```
 
 
-
-
-
-//Auth
+```
+//Auth
 if(Auth::attempt(array(‘username’ => $name, ‘password’ => $password)); //用户验证
 Auth::check()		//判断用户是否已经验证
 Auth::user()->email	//当前用户email
@@ -251,7 +379,10 @@ php artisan migrate:make final_table 
 	Schema::dropUnique($index)
 	Schema::dropIndex($index)
 	Schema::dropForeightn($index)
-	
+```
+
+
+```	
 //Model
 <?php 
 class Post extends Eloquent{
@@ -264,32 +395,35 @@ class Post extends Eloquent{
 	}
 }
 
-//query
+//query
 $posts = Post::all();   	//获取全部
 $post = Post::find(1);	//id == 1
 $post = Post::findOrFail(1);
 $post = Post:;where(‘votes’, ‘>’ 100)->firstOrFail();
 $posts = Post::where(‘votes’, ‘>’, 100)->take(10)->get();
 $count = Post::where(‘vote’, ‘<‘, 100)->count();
+```
 
 
-
+```
 //注册错误处理，
 App::error(function(ModelNotFoundException $e){
 	return Response::make(‘Not Found’, 404);
 });
+```
 
-
-
+```
 //insert / update
 $user = new User;
 $user->name = ‘John’;
 $user->save();
+```
 
-
+```
 $affectedRows = Post::where(‘votes’, ‘>’, 100)->update(array(’status’ => 2));		//在一组模型上更新
+```
 
-
+```
 //关系
 hasOne(‘Phone’);	//一对一
 belongsTo(‘User’);l	//逆向关系
@@ -299,28 +433,15 @@ belongsTo(‘Post’)		//逆向关系
 
 belongsToMany(‘Role’)	//多对多
 belongsToMany(‘User’)	//逆向关系
+```
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-################################################################
+################################################################
 balde.php模版
 ################################################################
 
+```
 //Form
 {{ Form::open(array(‘url' => ‘foo/bar') ) }}			//要提交到view的url
 {{ Form::open(array(‘route' => ‘route.name') ) }} 	//要提交到的route
@@ -337,11 +458,12 @@ echo Form::select(’size’, array(‘L’ => ‘Large’, ’S’ => ’Small�
 echo Form::submit(‘Click Me!’);
 
 {{ From::close() }}
+```
 
-
-
+```
 //HTML
-{{ HTML::link(’assets/images/favicon-32.png’,  [’size’=>’32*32’] )}}			此处都是指public目录下的资源
+//此处都是指public目录下的资源
+{{ HTML::link(’assets/images/favicon-32.png’,  [’size’=>’32*32’] )}}
 {{ HTML::style('assets/libraries/bootstrap/css/bootstrap.min.css') }}
 {{ HTML::script('assets/libraries/respond.min.js') }}
 {{ HTML::image(’image/example.jpg’, ’this is alt’) }}
@@ -354,18 +476,18 @@ echo Form::submit(‘Click Me!’);
 {{ HTML::nestedListing }}
 {{ HTML::attributes }}
 {{ HTML::attributeElement }}
+```
 
 
 
-
-
+```
 <a href="{{ route('dashboard') }}">Dashboard</a>
 <a href="{{ URL::to(‘user/login') }}" ——>view/user/login.blade.php
 <img src="{{ asset('assets/images/logo.png') }} "/>
+```
 
 
-
-
+```
 //语法
 @include(‘layout.header’) layout/header.blade.php
 
@@ -416,62 +538,39 @@ this is subview body content
 
 @while(true)
 @endwhile
+```
 
-
-
-################################################################
+################################################################
 帮助
 ################################################################
+
+```
 json_encode
 json_decode
 
 Response::json($data);
 Response::download($file);
-
+```
 
 
 ################################################################
-laraval new my-project//创建项目
-composer install //安装项目依赖包
-composer update
 
-php artisan key:generate    //创建key
+```
 php artisan migrate:make users_table //创建migrate文件
 php artisan migrate //按照migration文件修改数据库
 php artisan db:seed //插入数据库测试数据，seed文件中
 php artisan controller:make UserController
-php artisan bundle:install bundle-name
 
 //重置密码
 //需要User implements Remindableinterface
 php artisan auth:reminders-table
 php artisan auth:reminders-controller
+```
 
 
 
-Laravel Generator
-generate:migration create_post_table	//生成migrate文件
-	关键词：create、add、delete、drop
-generate:migration create_post_table --fields="username:string(30):unique, 									   age:integer:nullable:default(18)"
 
-
-generate:model Post		//app/model/Post.php
-generate:view admin.reports.index //app/view/admin/reports/index.blade.php
-
-generate:seed users             //app/database/seeds/UsersTableSeeder.php
-generate:pivot orders users     //user及order的连接表
-
-generate:resource post --fields="title:string, body:text"
-	//生成model,views,controller, migrate, seed,再migrate到数据库
-generate:scaffold
-generate:controller
-
-
-====================================================
-config/app.config
-	debug = true 打开调试
-
-
+```
 //自定义错误页面
 app/start/global.php
 App::error(function($exception, $code)
@@ -488,34 +587,13 @@ App::error(function($exception, $code)
             return Response::view('errors.default', array(), $code);
     }
 });
+```
 
 
 
 
-
-
-====================================================
-Laravel 可用package
-	http://packalyst.com/
-	https://packagist.org/
-加入composer.json
-
-====================================================
-laravel 开源项目
-driesvints.com
-fideloper.com
-invoice-ninja
-kk7.com
-LaBlog
-laravel-bookmark
-laravel-tricks
-Laravel.fr
-LaravelIO
-Queiroz
-slovenianGooner
-snipe-it
-wardrobe
-Route
+```
+Route
 Route::get(‘/’, function(){
 	return ‘string’;
 });
@@ -551,8 +629,10 @@ Route::group(['as' => 'admin::'], function () {
         // Route named "admin::dashboard"
     }]);
 });
+```
 
 
+```
 //Middleware
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
@@ -564,9 +644,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-
-
-
 //中间件Middleware
 php artisan make:middleware OldMiddleware
 app/Http/Middleware
+```
+

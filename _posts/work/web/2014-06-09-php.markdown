@@ -9,86 +9,103 @@ tags:
     - web
     - php
 ---
-# app
-- Discuz
-- Drupal
-- Joomla
-- phpMyAdmin
-- phpwind-mobile
-- wordpress
+
+# php
+
+#### basic
+
+mac,apache
+
+```
+/etc/apache/httpd.cnf  DocumentRoot
+/Library/WebServer/Documents
+```
+
+#php include a server since v5.4
+
+```
+php -t public -S localhost:4000 
+php -S 0.0.0.0:4000               #for remote access
+```
 
 
+# php func ref
 
-# framework
-- cakephp
-- CodeIgniter
-	zip
-- laravel
-- phaIcon  
-	c扩展
-	git clone install
-	例子Yaf
-- symfony2
-	composer
-- thinkphp
-	国产
-- yii
-	zip + yiic
+- func_get_args() 返回函数参数数组
+- func_num_args() 返回函数参数个数
 
 
+Array
 
-# pera
-pear
+- key($arr)
+- current($arr)
+- next($arr)
+- end($arr)
+
+- array_values($arr)
+- array_keys($arr)
+- in_array(‘item’, $arr)
+
+# [pear](http://pear.php.net/)
+
+#### install
+
+```
 sudo php /usr/lib/php/install-pear-nozlib.phar
 sudo pear config-set php_ini /private/etc/php.ini
 sudo pecl config-set php_ini /private/etc/php.ini
 sudo pear upgrade-all
+```
 
-pear install  packagenaem   #安装某package
-pear download packagenaem #下载不安装
-pear remote-list   #pear网站上所有package
-pear list #列出已安装package
-pear list-upgrades #列出可升级的package
-pear upgrade packagename #升级
-pear upgread-all #升级
-pear uninstall packagename  #删除
+#### usage
 
+```
+#install package
+pear install  packagenaem   
 
+#download package
+pear download packagenaem  
+
+pear remote-list 
+
+#list local packages
+pear list
+#list upgradable packages
+pear list-upgrades
+
+pear upgrade packagename 
+pear upgrade-all
+pear uninstall packagename 
+```
+
+```
+#install to /usr/lib/php/pear
 sudo pear install ch
-安装到如下目录
-/usr/lib/php/pear
 
-
-修改/etc/php.ini中include_path=".:/php/includes/:/usr/lib/pear"
+in /etc/php.ini中include_path=".:/php/includes/:/usr/lib/pear"
 pear install HTML_AJAX
 require_once("HTML/AJAX.php");
+```
 
 
-# php
-php
-环境
-mac 自带apache
-/etc/apache/httpd.cnf  DocumentRoot
-/资料库/WebServer/Documents
+# framework
+- [cakephp v3.2](http://cakephp.org/)
+	[github](https://github.com/cakephp/cakephp)
+- [CodeIgniter v5](http://www.codeigniter.com/)
+	[github](https://github.com/bcit-ci/CodeIgniter)
+- [laravel](https://laravel.com/)
+- [phaIcon](https://phalconphp.com/zh/)  
+	c extension
+- [symfony](http://symfony.com/) 
+	depends on composer
+- [thinkphp](http://www.thinkphp.cn/)
+- [yii](http://www.yiiframework.com/) 
+	yiic
 
-
-#php 5.4 内置服务器
-php -t public -S localhost:4000 
-php -S 0.0.0.0:4000               可供远程机器访问
-
-
-
-
-func_get_args() 返回函数参数数组
-func_num_args() 返回函数参数个数
-
-
-对于数组
-key($arr)
-current($arr)
-next($arr)
-end($arr)
-
-array_values($arr)
-array_keys($arr)
-in_array(‘item’, $arr)
+# app
+- [Discuz](http://www.discuz.net/forum.php)
+- [Drupal v8](https://www.drupal.org/)
+- [Joomla v3](https://www.joomla.org/)
+- [phpMyAdmin v4.6](http://www.phpmyadmin.net/)
+- [phpwind v9](http://www.phpwind.net/)
+- [wordpress v4.5](https://wordpress.org/)

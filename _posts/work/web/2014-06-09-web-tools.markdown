@@ -9,7 +9,7 @@ tags:
     - web
 ---
 # [yeoman](http://yeoman.io)
-framework for web dev
+framework tool for web dev
 
 #### install
 ```
@@ -111,7 +111,7 @@ npm start #start start command in package.json
 
 
 # [Bower](http://bower.io/)
-package manager for web dev
+package manager for web frontend module
 
 #### install 
 ```
@@ -246,54 +246,106 @@ grunt serve
 
 
 
-# composer
+# [composer](https://getcomposer.org)
+
+for php 
+
+#### install & update
+
 ```
-composer require twbs/bootstrap
+mv composer.phar /usr/local/bin/composer
+chmod a+x composer
+
+#update composer 
+/usr/local/bin/composer self-update 
 ```
+
+```
+#install bootstrap
+composer require "twbs/bootstrap"   
+
+#global install laravel installer 
+composer global require "laravel/installer" 
+
+#install packages in composer.json
+composer install
+```
+
+#### composer.json
+[schema](http://docs.phpcomposer.com/04-schema.html)
+
+```
+{
+  "name":"",
+  "description": "",
+  "keywords":"",
+  "license":"",
+  "type":"",
+  "require":{
+    "php": ">=5.5.9",
+    "laravel/framework": "5.2.*"
+  },
+  "require-dev":{},
+  "autoload":{}
+}
+```
+
+|------------|-----------------------|
+|require     |needed composer package|
+|require-dev |                       |
+|autoload    |                       |
+|autoload-dev|                       |
+|scripts     |plugin scripts         |
+|config      |composer config        |
+
+
+
 
 
 # Database
 
-## Mysql
+#### Mysql
+
+```
 brew install mysql
 mysql.server start
+```
 
+#### mongol
 
-## mongol
+```
+mongod    //start mongo server
+mongo   //this is a javascript application, can use js in it
+```
+
+mongodb :27017
 use mongoldb: a good no sql database
 baidu、sina、ali是否支持mongod
 
 
-mongod    // this command start mongo server
-mongo   //this is a javascript application, can use js in it
-
-key-value database要找到一个普遍使用的数据库
-mongodb :27017
-  基于文档
-
-## redis
+#### redis
 redis  : 6379
   memcache in memory
   单进程
   丰富的数据结构
   单个缓存 > 1M
 
-## memcache
+#### memcache
 memcache 
   单个缓存 1M
 
 
-## mongoid
+#### mongoid
 mongoid
 rails 通过mongoid
 rails new mayor —skip-active-record
-gem ‘mongoid’
+gem 'mongoid'
 rails g mongoid:config
 
 
 
 
-web代码规范
+# web代码规范
 使用两个空格，不用tab
 嵌套元素应该缩进
 属性全部使用双引号，不用单引号
@@ -302,6 +354,7 @@ web代码规范
 IE兼容模式: <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 字符编码： <meta charset="UTF-8">
 
+```
 <!doctype html>
 <html lang="zh-CN">
 	<head>
@@ -316,7 +369,7 @@ IE兼容模式: <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	</head>
 	<body></body>
 </html>
-
+```
 
 
 
