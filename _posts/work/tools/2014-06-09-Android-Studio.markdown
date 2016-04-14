@@ -8,11 +8,19 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-Android Studio
+Android Studio keng
 先运行一次，启动时出现Fetching Android component iniformation
 不一定会获取成功
 打开studio/bin目录idea.properties
 最后一行添加disable.android.first.run=true
+
+
+keymap:
+symbols: cmd+shit+o
+structure: cmd+7 (like outline in eclipse)
+nav backward: cmd+[
+nav forward:  cmd+]
+run        :  cmd+r
 
 设置
 Command+,
@@ -22,10 +30,9 @@ Command+,
 行号：Editor—>Appearance—>Show Line numbers
 Tab和空格：Editor—>Appearance—>Show whitespaces
 自动import：Editor—>Auto import add unambiguous imports on the fly
-拼音检查：Inspections—>Spelling
+拼音检查：Editor->Inspections—>Spelling
 版本控制：Version Control—>Git
 插件：Plugins
-	Browse repositories 页面中，搜索插件并安装
 
 导入第三方库：
 import module

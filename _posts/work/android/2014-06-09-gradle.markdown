@@ -1,0 +1,100 @@
+---
+layout:     post
+title:      "Gadle"
+subtitle:   " \"Android Gradle\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Android
+---
+
+- [android-best-practices](https://github.com/futurice/android-best-practices)
+- [awesome-android](https://github.com/snowdream/awesome-android)
+- [awesome-android-libraries](https://github.com/wasabeef/awesome-android-libraries)
+- [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
+- [android-open-project](https://github.com/Trinea/android-open-project)
+
+
+
+
+
+常用的gradle on github
+
+# framework
+
+[xUtils](https://github.com/wyouflf/xUtils)
+
+[AndroidAnnotations](https://github.com/excilys/androidannotations)
+
+[android-52Kit](https://github.com/52inc/android-52Kit)
+
+
+# event bus
+
+[EventBus](/2014/06/09/gradle-eventbus)
+
+
+[otto](/2014/06/09/gradle-otto)
+
+
+# Font
+
+[Calligraphy](https://github.com/chrisjenx/Calligraphy)
+
+
+
+# ImageLoader
+
+[Android-Universal-Image-Loader](/2014/06/09/gradle-uimageloader)
+
+[glide](/2014/06/09/gradle-glide)
+
+[picasso](/2014/06/09/gradle-picasso)
+
+# JSON
+
+[Gson](/2014/06/09/gradle-gson)
+
+# Networking
+
+[volley](/2014/06/09/gradle-volley)
+
+[okhttp](/2014/06/09/gradle-okhttp)
+
+[android-async-http](https://github.com/loopj/android-async-http)
+
+[AndroidAsync](https://github.com/koush/AndroidAsync)
+
+[ion](https://github.com/koush/ion)
+
+# ORM
+
+[greenDAO](/2014/06/09/gradle-greendao)
+[ActiveAndroid](https://github.com/pardom/ActiveAndroid)
+
+
+
+# misc
+
+[butterknife](/2014/06/09/gradle-butterknife)
+
+
+
+[dagger](/2014/06/09/gradle-dagger)
+
+widget for picking a date from a calendar view - by square
+[android-times-square](https://github.com/square/android-times-square)
+
+
+test - by square
+[assertj-android](https://github.com/square/assertj-android)
+
+
+
+
+
+http client  - by square
+[okhttp](https://github.com/square/okhttp)
+
+
