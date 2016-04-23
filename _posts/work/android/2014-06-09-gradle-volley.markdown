@@ -10,6 +10,8 @@ tags:
 ><small>[volley](https://android.googlesource.com/platform/frameworks/volley)</small>
 ><small>目录:[gradle](/2014/06/09/gradle)</small>
 
+[train](http://developer.android.com/intl/zh-cn/training/volley/index.html)
+
 # install
 ```
 compile 'com.android.volley:volley:1.0.0'
@@ -19,6 +21,8 @@ compile 'com.mcxiaoke.volley:library:1.0.19'
 
 
 git clone https://android.googlesource.com/platform/frameworks/volley
+
+import as module to Android Studio
 
 <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -115,15 +119,19 @@ StringRequest stringRequest = new StringRequst(Request.Method.GET, url,
 mQueue.add(stringRequest);
 ```
 
-#### JSONRequest
-
 ```
-
-```
-
-#### JsonArrayRequest
-
-```
+ImageRequest request = new ImageRequest(url,
+  new Response.Listener<Bitmap>() {
+    @Override
+    public void onResponse(Bitmap bitmap) {
+      mImageView.setImageBitmap(bitmap);
+    }
+  }, 0, 0, null,
+  new Response.ErrorListener() {
+    public void onErrorResponse(VolleyError error) {
+      mImageView.setImageResource(R.drawable.image_load_error);
+    }
+  });
 ```
 
 #### JsonObjectRequest

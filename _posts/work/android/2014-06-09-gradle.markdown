@@ -25,7 +25,11 @@ tags:
 
 [xUtils](https://github.com/wyouflf/xUtils)
 
-[AndroidAnnotations](https://github.com/excilys/androidannotations)
+[AndroidAnnotations](/2014/06/09/gradle-androidannotations)
+
+[butterknife](/2014/06/09/gradle-butterknife)
+
+[dagger](/2014/06/09/gradle-dagger)
 
 [android-52Kit](https://github.com/52inc/android-52Kit)
 
@@ -36,6 +40,11 @@ tags:
 
 
 [otto](/2014/06/09/gradle-otto)
+
+[RxAndroid](/2014/06/09/gradle-rxandroid)
+
+
+
 
 
 # Font
@@ -62,6 +71,8 @@ tags:
 
 [okhttp](/2014/06/09/gradle-okhttp)
 
+[retrofit](/2014/06/09/gradle-retrofit)
+
 [android-async-http](https://github.com/loopj/android-async-http)
 
 [AndroidAsync](https://github.com/koush/AndroidAsync)
@@ -77,11 +88,7 @@ tags:
 
 # misc
 
-[butterknife](/2014/06/09/gradle-butterknife)
 
-
-
-[dagger](/2014/06/09/gradle-dagger)
 
 widget for picking a date from a calendar view - by square
 [android-times-square](https://github.com/square/android-times-square)
@@ -94,7 +101,24 @@ test - by square
 
 
 
-http client  - by square
-[okhttp](https://github.com/square/okhttp)
 
 
+# build.gradle
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+  }
+}
+
+apply plugin: 'android'
+
+android {
+  compileSdkVersion 17
+}
+
+dependencies {
+  
+}

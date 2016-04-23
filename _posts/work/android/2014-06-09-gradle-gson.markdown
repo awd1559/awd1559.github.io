@@ -113,3 +113,26 @@ private class MoneyInstanceCreator implements InstanceCreator<Money> {
   }
 }
 ```
+
+#### use annotations
+
+```
+public class User {
+  @SerializedName("id")
+  private int userId;
+
+  @SerializedName("cover_url")
+  private String coverUrl;
+
+  @SerializedName("full_name")
+  private String fullname;
+
+  @SerializedName("description")
+  private String description;
+}
+
+Gson gson = new Gson();
+
+String json = gson.toJson(user, User.class);
+User user = gson.fromJson(jsonString, User.class);
+```

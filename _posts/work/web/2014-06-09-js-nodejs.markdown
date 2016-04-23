@@ -7,7 +7,6 @@ author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - web
-    - js
 ---
 # [Node.js](https://nodejs.org/)
 
@@ -16,13 +15,19 @@ download install package from [Node.js](https://nodejs.org/)
 
 编写app.js
 
-npm install 
-npm start
-或者node app.js
-localhost:3000
+npm install # install depends node packages
+npm start	# at 0.0.0.0:3000
 
-nodejs 代码修改后必须重新启动才可以看到修改结果
-刷新不起作用，使用supervisor
+# run in webstorm
+Edit Configration -> Node.js
+
+Node interpreter: usr/local/bin/node
+JavaScript file:  bin/www
+
+
+change node.js code and refresh in browser
+will not works, use 'supervisor'
+but change template jade code, refresh is worked.
 
 
 # express
