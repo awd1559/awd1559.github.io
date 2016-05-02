@@ -55,7 +55,7 @@ http://railsinstaller.org/en
 gem install rails
 
 bundle install 时候会出问题，需要devkit
-www.rubyinstaller.org
+www.railsinstaller.org
 自解压devkit
 ruby rk.rb into
 ruby rk.rb install
