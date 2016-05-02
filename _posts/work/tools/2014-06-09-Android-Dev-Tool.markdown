@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "ai"
-subtitle:   " \"常用方法和快捷键\""
+title:      "ADT"
+subtitle:   " \"Android Dev Tool\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"

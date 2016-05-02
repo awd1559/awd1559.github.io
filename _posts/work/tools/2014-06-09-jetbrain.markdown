@@ -1,14 +1,20 @@
 ---
 layout:     post
-title:      "ai"
-subtitle:   " \"常用方法和快捷键\""
+title:      "JetBrain"
+subtitle:   " \"key\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-phpStorm
+
+# JetBrain 2016 License Server
+
+http://www.iteblog.com/idea/key.php
+
+
+# phpStorm
 ctrl+shift+o		项目中某文件
 ctrl+shift+n 		项目中某文件
 ctrl+f12			文件内某函数
