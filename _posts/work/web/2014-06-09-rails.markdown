@@ -48,16 +48,17 @@ sudo gem install rails
 
 ```
 
-# install ruby
-http://railsinstaller.org/en
+# install ruby & gem 
+http://rubyinstaller.org
 
 # install rails
 gem install rails
 
 bundle install 时候会出问题，需要devkit
-www.railsinstaller.org
+www.rubyinstaller.org
 自解压devkit
-ruby rk.rb into
+ruby rk.rb init
+ruby rk.rb review
 ruby rk.rb install
 
 
