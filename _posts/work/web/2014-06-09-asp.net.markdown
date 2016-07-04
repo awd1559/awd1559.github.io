@@ -101,8 +101,8 @@ public class PictureCategory
 
 ```
 
-////////////////////////////////
-//code first
+## code first
+```
 //默认将以类似Id结尾来命名的属性当作主键，如ID，Id，自动设置为主键
 //如果该属性是int类型，Code First会在数据库中默认将该列设置为自增长。
 
@@ -115,24 +115,21 @@ float   -> float
 bool, decimal, float等是值类型,不能为给他们分配Null值。
 
 List<>属性为一对多关系
+```
 
 
 
 
-//配置数据库
-1、使用Data Annotations配置
+#### Data Annotations
+```
 [Key]
 public int DestinationId { get; set; }
-
-
 
 [ForeignKey("DestinationId")]
 public Destination Destination { get; set; }
 
 [ForeignKey("Accommodation")]
 public int AccommodationId { get; set; }
-
-
 
 [MinLength(10),MaxLength(30)]
 public string Name { get; set; }
@@ -191,10 +188,11 @@ public class Address
 modelBuilder.ComplexType<Address>();
 
 [InverseProperty("PrimaryContactFor")] 
+```
 
 
-
-2、Fluent API
+#### Fluent API
+```
 public class BreakAwayContext : DbContext
 {
 	public DbSet<Destination> Destinations { get; set; }
@@ -220,32 +218,21 @@ public class BreakAwayContext : DbContext
 		base.OnModelCreating(modelBuilder);
 	}
 } 
+```
 
 
 
 
 
 
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-DbContext
+## DbContext
+```
 db.People.Add(new People(){ FirstName = ""; LastName = "";})
 db.People.FirstOrDefault()
 db.SaveChanges();
+```
 
-
-
-
-
-
-
-
-
-
-
+```
 [DisplayName("电子邮件地址")]
 public string Email {get;set;}
 
@@ -258,3 +245,4 @@ public string Email {get;set;}
 	@Html.EditorFor(model => model.name)
 	@Html.ValidationMessageFor(model => model.name)
 }
+```
