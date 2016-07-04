@@ -1,0 +1,269 @@
+---
+layout:     post
+title:      "win form"
+subtitle:   " \"win form\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - form
+---
+
+```
+textbox.AppendText("a"+ "\n");
+```
+
+# Menu
+```
+MenuStrip mainMenuStrip = new MenuStrip();
+mainMenuStrip.SuspendLayout();
+mainMenuStrip.BackColor = SystemColors.Blue;
+mainMenuStrip.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
+```
+
+```
+mainMenuStrip.Items.AddRange(new ToolStripItem[] {this.tsmiLock});
+mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+mainMenuStrip.Name = "menuStrip1";
+mainMenuStrip.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+mainMenuStrip.Size = new System.Drawing.Size(668, 27);
+mainMenuStrip.TabIndex = 0;
+mainMenuStrip.Text = "menuStrip1";
+```
+
+## Items
+```
+this.tsmiFile = new ToolStripMenuItem();
+tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {tsmiLock,tsmiExit});
+tsmiFile.Name = "tsmiFile";
+tsmiFile.Size = new System.Drawing.Size(58, 21);
+tsmiFile.Text = "文件(&F)";
+
+this.tsmiLock = new ToolStripMenuItem();
+this.tsmiLock.ToolTipText = "锁定不退出程序, 输入密码后恢复";
+this.tsmiLock.Click += new System.EventHandler(this.tsmiLock_Click);
+```
+
+
+
+
+# Tool
+```
+ToolStrip toolStrip1 = new ToolStrip();
+toolStrip1.SuspendLayout();
+
+ToolStripButton btnDesktop = new ToolStripButton();
+
+this.toolStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+this.toolStrip1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+	this.btnDesktop, this.btnHideOrShow, this.btnProfile,
+	this.btnPassword, this.tsmiConnect, this.btnExit});
+this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+this.toolStrip1.Location = new System.Drawing.Point(0, 27);
+this.toolStrip1.Name = "toolStrip1";
+this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
+this.toolStrip1.Size = new System.Drawing.Size(668, 31);
+this.toolStrip1.TabIndex = 1;
+this.toolStrip1.Text = "toolStrip1";
+```
+
+## Items
+```
+this.btnDesktop.Image = global::Demo.Properties.Resources.desktop;
+this.btnDesktop.ImageTransparentColor = System.Drawing.Color.Magenta;
+this.btnDesktop.Name = "btnDesktop";
+this.btnDesktop.Size = new System.Drawing.Size(60, 28);
+this.btnDesktop.Text = "桌面";
+this.btnDesktop.Click += new System.EventHandler(this.btnDesktop_Click);
+```
+
+# TreeView
+```
+this.treeView1 = new TreeView();
+this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+
+this.treeView1.Nodes.Clear();
+TreeNode root = new TreeNode("root");
+root.Tag = n;
+TreeNode subNode = new TreeNode("sub");
+root.Nodes.Add(subNode);
+this.treeView1.Nodes.Add(root);
+
+private void treeView1_DoubleClick(object sender, EventArgs e) 
+{
+	this.treeView1.SelectedNode.Tag
+}
+```
+
+# TabControl
+```
+TabControl tabForms = new TabControl();
+this.tabForms.SuspendLayout();
+
+this.tabForms.Height = 23;
+this.tabForms.DrawMode = TabDrawMode.OwnerDrawFixed;
+this.tabForms.Padding = new System.Drawing.Point(CLOSEIMAGESIZE, CLOSEIMAGESIZE);
+this.tabForms.DrawItem += new DrawItemEventHandler(this.TabForms_DrawItem);
+this.tabForms.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TabForms_MouseDown);
+this.tabForms.TabPages.Clear();
+
+
+this.tabForms.Controls.Add(this.tabPage1);
+this.tabForms.Dock = System.Windows.Forms.DockStyle.Top;
+this.tabForms.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+this.tabForms.ItemSize = new System.Drawing.Size(80, 25);
+this.tabForms.Location = new System.Drawing.Point(192, 83);
+this.tabForms.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+this.tabForms.Name = "tabForms";
+this.tabForms.Padding = new System.Drawing.Point(2, 1);
+this.tabForms.SelectedIndex = 0;
+this.tabForms.Size = new System.Drawing.Size(476, 142);
+this.tabForms.TabIndex = 6;
+this.tabForms.SelectedIndexChanged += new System.EventHandler(this.tabForms_SelectedIndexChanged);
+```
+
+## Items
+```
+TabPage tabPage1 = new TabPage();
+this.tabPage1.Location = new System.Drawing.Point(4, 29);
+this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+this.tabPage1.Name = "tabPage1";
+this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+this.tabPage1.Size = new System.Drawing.Size(468, 109);
+this.tabPage1.TabIndex = 0;
+this.tabPage1.Text = "tabPage1";
+this.tabPage1.UseVisualStyleBackColor = true;
+
+//add item
+TabPage tabPage = new TabPage();
+tabPage.Name = name + subName;
+tabPage.Text = text;
+tabPage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+
+this.tabForms.TabPages.Add(tabPage);
+this.tabForms.SelectedTab = tabPage;
+```
+
+
+## Splitter
+```
+Splitter splitter1 = new Splitter();
+```
+
+
+
+
+
+
+```
+class Applicaiton {
+	public static string uuid = Guid.NewGuid().ToString();
+
+	private static ArrayList frmList;//// 已打开表单集合
+	public static ArrayList FrmLsit
+	{
+		get { return frmList; }
+		set { frmList = value; }
+	}
+
+	private static ArrayList tabList; //// 已打开Tab选项卡
+	public static ArrayList TabList
+	{
+		get { return tabList; }
+		set { tabList = value; }
+	}
+
+	private static Form activedFrm;
+	public static Form ActivedFrm
+	{
+		get { return activedFrm; }
+		set { activedFrm = value; }
+	}
+}
+```
+
+
+
+
+# Database
+
+
+
+
+# Xml
+```
+using System.Xml;
+
+string xmlContent = System.IO.File.ReadAllText(file_path);
+XmlDocument doc = new XmlDocument();
+doc.LoadXml(xmlContent);
+XmlNode root = xmlDoc.SelectSingleNode("ROOT");
+XmlNodeList list = root.ChildNodes;
+XmlElement element;
+foreach (XmlNode node in list)
+{
+	element = (XmlElement)node;
+	if (element.GetAttribute("name").Equals(param))
+	{
+		value = element.GetElementsByTagName("value")[0].InnerText;
+		break;
+	}
+}
+```
+
+
+# Linq to Xml
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<note>
+  <conf>
+    <to>infozero</to>
+    <from>lerroy</from>
+    <heading>测试信息</heading>
+    <body>第一条测试信息</body>
+    <title name="我的第一条消息">from myself</title>
+  </conf>
+  <conf>
+    <to>infozero@163.com</to>
+    <from>text</from>
+    <heading> 时刻提醒我 </heading>
+    <body>这是一条测试信息！</body>
+    <title name="我的第二条消息">from others</title>
+  </conf>
+</note>
+```
+
+```
+using System;
+using System.Linq;
+using System.Xml.Linq;
+
+XDocument doc = XDocument.Load("demo.xml");
+var text = from t in doc.Descendants("conf")                    //定位到节点 
+	.Where(w => w.Element("to").Value.Contains('@'))   			//若要筛选就用上这个语句 
+	select new
+	{
+		to = t.Element("to").Value,
+		froms = t.Element("from").Value,
+		head = t.Element("heading").Value,
+		body = t.Element("body").Value,
+		title = t.Element("title").Attribute("name").Value   	//注意此处用到 attribute 
+	};
+
+foreach (var a in text)
+{
+	this.textBox1.AppendText("to:" + a.to + "\n");
+	this.textBox1.AppendText("froms:" + a.froms + "\n");
+	this.textBox1.AppendText("head:" + a.head + "\n");
+	this.textBox1.AppendText("body:" + a.body + "\n");
+	this.textBox1.AppendText("title:" + a.title + "\n");
+}
+```
+
+
+
+# Json.NET
+
