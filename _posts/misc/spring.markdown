@@ -1,0 +1,188 @@
+#### Spring template engines
+- (freemaker)[http://freemarker.org/docs/index.html]
+- (mustache)[http://mustache.github.io/]
+- (velocity)[http://velocity.apache.org/engine/devel/user-guide.html]
+- (groovy templates)[http://docs.groovy-lang.org/latest/html/documentation/template-engines.html]
+- (thymeleaf)[http://www.thymeleaf.org/]
+
+
+
+#### 文件系统
+- applicationContext.xml
+  
+- dispatcher-servlet.xml
+  url mapping to Controller
+  controsller use view 
+
+  定义映射
+  <bean id="urlMapping">
+    <property name="mapping">
+      <props> 
+        <prop key="helloWorld.do">helloWorldController</prop> 
+      </props> 
+    </property>
+  </bean>
+
+  <!--定义视图--> 
+  <bean id="viewResolver" >
+    <property name="viewClass"> 
+      <value>org.springframework.web.servlet.view.InternalResourceView</value> 
+    </property>
+  </bean>
+
+  <!--定义控制器--> 
+  <bean id="helloWorldController" class="com.myHelloWorld.action.HelloWorldController"> 
+    <property name="helloWorld"> 
+      <value>HelloWorld</value> 
+    </property> 
+    <property name="viewPage"> 
+      <value>/jsp/helloWorld.jsp</value> 
+    </property> 
+  </bean> 
+
+
+
+
+- web.xml
+
+
+```
+<servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+```
+htm后缀的url映射到dispatcher
+
+
+
+# sql server
+download jar file from (microsoft)[http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774]
+
+mvn install:install-file -Dfile=sqljdbc41.jar -Dpackaging=jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc41 -Dversion=4.1
+
+
+<dependency>
+	<groupId>com.microsoft.sqlserver</groupId>
+	<artifactId>sqljdbc41</artifactId>
+	<version>4.1</version>
+</dependency>
+
+
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=spring;integratedSecurity=false
+spring.datasource.username=sa
+spring.datasource.password=123456789
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+
+
+
+# velocity
+
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-velocity</artifactId>
+</dependency>
+```
+
+```
+#resources/application.properties
+server.port=8080
+logging.level.org.apache.velocity=DEBUG
+
+spring.velocity.cache=false
+spring.velocity.properties.velocimacro.library=global.vm
+spring.velocity.toolbox-config-location=toolbox.xml
+spring.velocity.properties.input.encoding=UTF-8
+spring.velocity.properties.output.encoding=UTF-8
+```
+
+```
+#resources/toolbox.xml
+#import MathTool
+<?xml version="1.0"?>
+<toolbox>
+	<tool>
+  		<key>math</key>
+  		<scope>application</scope>
+  		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+</toolbox>
+```
+```
+#resources/templates/global.vm
+#define macro
+#macro(sayHello $youName)
+	Hello <strong> $youName</strong>
+#end
+```
+
+```
+@Controller
+public class MainController {
+	@RequestMapping("/index")
+	public String index(Map<String,Object> map){
+		map.put("name", "value");
+
+		return "index";
+	}
+}
+```
+
+```
+#resources/templates/index.vm
+```
+
+
+
+# depandency
+
+| -------------------------------------- | ------------------ |
+|spring-boot-starter                     |core, log, YAML
+|spring-boot-starter-actuator            |监控和管理应用
+|spring-boot-starter-amqp                |spring-rabbit,高级消息队列
+|spring-boot-starter-aop                 |spring-aop, AspectJ
+|spring-boot-starter-batch               |HSQLDB
+|spring-boot-starter-cloud-connectors    |Cloud Fundary, Heroku
+|spring-boot-starter-data-elasticsearch  |spring-data-elesticsearch
+|spring-boot-starter-data-gemfire        |spring-data-gemfire
+|spring-boot-starter-data-jpa            |spring-data-jpa, spring-orm, Hibernate
+|spring-boot-starter-data-mongodb        |
+|spring-boot-starter-data-rest           |
+|spring-boot-starter-data-solr           |
+|spring-boot-starter-freemarker          |
+|spring-boot-starter-groovy-templates    |
+|spring-boot-starter-hateoas             |
+|spring-boot-starter-hornetq             |
+|spring-boot-starter-integration         |
+|spring-boot-starter-jdbc                |
+|spring-boot-starter-jersey              |Jersey RESTFul web
+|spring-boot-starter-jta-atomikos        |分布式事务
+|spring-boot-starter-jta-bitronix        |分布式事务
+|spring-boot-starter-mail                |
+|spring-boot-starter-mobile              |
+|spring-boot-starter-mustache            |
+|spring-boot-starter-redis               |
+|spring-boot-starter-security            |
+|spring-boot-starter-social-facebook     |
+|spring-boot-starter-social-linkedin     |
+|spring-boot-starter-social-twitter      |
+|spring-boot-starter-test                |
+|spring-boot-starter-thymeleaf           |template
+|spring-boot-starter-velocity            |template
+|spring-boot-starter-web                 |tomcat, spring-webmvc
+|spring-boot-starter-websocket           |
+|spring-boot-starter-ws                  |web service
+|spring-boot-starter-actuator            |指标和监控
+|spring-boot-starter-remote-shell        |远程ssh shell
+
+
+
+# command
+
+mvn package #create jar
+mvn spring-boot:run #listen on 8080
+
+gradle build #create jar
+gradle bootRun #listen on 8080

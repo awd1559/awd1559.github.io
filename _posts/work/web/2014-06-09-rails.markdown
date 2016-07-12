@@ -49,7 +49,7 @@ sudo gem install rails
 ```
 
 # install ruby & gem 
-http://rubyinstaller.org
+[rubyinstaller](http://rubyinstaller.org)
 
 # install rails
 gem install rails

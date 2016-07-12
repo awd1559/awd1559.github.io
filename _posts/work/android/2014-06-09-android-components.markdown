@@ -1202,5 +1202,139 @@ resolver.delete
 
 # App Widgets
 
+```
+//AndroidManifest.xml
+<application>
+  <receiver android:name="AppWidget">
+    <intent-filter>
+      <action android:name="android.appwidget.action.APPWIDGET_UPDATE"></action>
+    </intent-filter>
+    <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+  </receiver>
+</application>
+```
+
+```
+//res/xml.widget_info.xml
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth = "294dp"
+    android:minHeight = "72dp"
+    android:updatePeriodMillis = "86400000"
+    android:initialLayout = "@layout/appwidgetlayout"
+    >
+</appwidget-provider>
+```
+
+```
+//layout/appwidgetlayout.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent">
+  <TextView 
+    android:id="@+id/txtapp" 
+    android:text="test" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:background="#ffffff"></TextView>
+  <Button 
+    android:id="@+id/btnSend" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:text="Send"></Button>
+</LinearLayout>
+```
+
+```
+public class AppWidget extends AppWidgetProvider {
+  onDeleted //删除一个AppWidget时调用
+  onDisabled//最后一个appWidget被删除时调用
+  onEnabled //AppWidget的实例第一次被创建时调用
+  onReceive //接受广播事件
+  onUpdate  //到达指定的更新时间或者当用户向桌面添加AppWidget时被调用
+}
+
+
+public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
+{
+  Intent intent = new Intent();
+  intent.setAction(broadCastString);
+ 
+  //设置pendingIntent的作用
+  PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+  RemoteViews remoteViews  = new RemoteViews(context.getPackageName(),R.layout.appwidgetlayout);
+        
+ 
+  //绑定事件
+  remoteViews.setOnClickPendingIntent(R.id.btnSend, pendingIntent);
+         
+  //更新Appwidget
+  appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
+}
+
+public void onReceive(Context context, Intent intent)
+{
+  if (intent.getAction().equals(broadCastString))
+  {               
+    //只能通过远程对象来设置appwidget中的控件状态
+    RemoteViews remoteViews  = new RemoteViews(context.getPackageName(),R.layout.appwidgetlayout);
+ 
+    //通过远程对象将按钮的文字设置为”hihi”
+    remoteViews.setTextViewText(R.id.btnSend, "hihi");   
+            
+    //获得appwidget管理实例，用于管理appwidget以便进行更新操作
+    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+           
+    //相当于获得所有本程序创建的appwidget
+    ComponentName componentName = new ComponentName(context,AppWidget.class);
+           
+    //更新appwidget
+    appWidgetManager.updateAppWidget(componentName, remoteViews);
+  }
+  super.onReceive(context, intent);
+}
+
+```
+
 # Processes&Threads
+
+```
+//work thread
+public void onClick(View v) {
+  new Thread(new Runnable() {
+    public void run() {
+      final Bitmap bitmap = loadImageFromNetwork(“http://example.com/image.png");
+      //在非UI线程中，不能直接改变UI属性
+      mImageView.post(new Runnable() {
+        public void run() {
+          mImageView.setImageBitmap(bitmap);
+        }
+      });
+    }
+  }).start();
+}
+```
+
+```
+//Using AsyncTask
+public void onClick(View v) {
+    new DownloadImageTask().execute("http://example.com/image.png");
+}
+
+//<传入参数，onProgressUpdate参数，onPostExecute参数>
+private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+  /** The system calls this to perform work in a worker thread and
+   * delivers it the parameters given to AsyncTask.execute() */
+  protected Bitmap doInBackground(String... urls) {
+    return loadImageFromNetwork(urls[0]);
+  }
+    
+  /** The system calls this to perform work in the UI thread and delivers
+   * the result from doInBackground() */
+  protected void onPostExecute(Bitmap result) {
+    mImageView.setImageBitmap(result);
+  }
+}
+```
+
 

@@ -9,7 +9,7 @@ tags:
     - web
     - python
 ---
-PIL 
+PIL(import Pillow instead)
 from PIL import Image
 from PIL import ImageDraw
 
@@ -39,3 +39,13 @@ draw.text((0,0), 'test', font=font, fill=fontcolor)
 #保存
 image.save("save.jpg", 'JPEG')
 
+
+# pip
+## on windows
+Python/Script/easy_install.exe pip
+
+## on mac
+sudo python get-pip.py
+
+## use pip
+pip install Pillow
