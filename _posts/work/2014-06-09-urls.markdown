@@ -37,9 +37,15 @@ tags:
 - [KanColleViewer](https://github.com/Zharay/KanColleViewer)
 - [KanColleViewer](https://github.com/Grabacr07/KanColleViewer)
 
+
 ### Java
 
-- [Java](#)
+- [FreeMind](http://sourceforge.net/projects/freemind/)
+- [XMind](https://github.com/xmindltd/xmind)
+
+### ActionScript
+
+- [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton)远程教育
 
 ### QT
 
@@ -207,6 +213,10 @@ tags:
 - [purecss-icono](https://github.com/mseri/purity)
 
 
+### js
+
+- [tableexport](http://jquery-plugins.net/tableexport-jquery-plugin-to-export-html-tables)
+
 
 
 ### backbone
@@ -234,12 +244,214 @@ underscore
 
 
 - [deku](https://github.com/anthonyshort/deku) another framework
-- [riotjs](http://riotjs.com/]  react like ui lib
+- [riotjs](http://riotjs.com/)  react like ui lib
 
 - [relax](https://github.com/relax/relax) cms on react,redux, GraphQL
 - [Picard](https://github.com/Automattic/Picard) wordpress theme
 
 
-### Angular
+### AngularJS
 
+- [ngmodules](https://ngmodules.org/)
 - [ng-admin](https://github.com/marmelab/ng-admin)
+- [taigaio](https://github.com/taigaio)
+
+study
+- [angularmvctutorial](https://github.com/bumblebeeman/angularmvctutorial)      angularjs in asp.netmvc
+
+
+### Ember.js
+
+- [EmberAddons](https://www.emberaddons.com/)
+- [discourse](https://github.com/discourse/discourse) rails + emberjs
+- [ember-crm](https://github.com/Eric-Guo/ember-crm) 可参考的项目，rails+ember
+
+
+
+
+### Bootstrap
+
+- [designmodo/Flat-UI](https://github.com/designmodo/Flat-UI)
+- [fbootstrapp](https://github.com/prasad83/fbootstrapp)
+- [Jumpstart UI](https://jumpstartthemes.com/)  收费
+- [bootmetro](https://github.com/aozora/bootmetro)
+
+- [bootstrap-material-design](https://github.com/FezVrasta/bootstrap-material-design)
+- [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
+- [bootswatch](https://github.com/thomaspark/bootswatch)
+- [jquery-ui-bootstrap](https://github.com/jquery-ui-bootstrap/jquery-ui-bootstrap)
+- [BOOTSTRA.386](https://github.com/kristopolous/BOOTSTRA.386)
+- [startbootstrap-sb-admin-2](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2)
+- [Bootstrap-Admin-Theme](https://github.com/VinceG/Bootstrap-Admin-Theme)
+- [geo-bootstrap](https://github.com/divshot/geo-bootstrap)
+- [jQuery-Mobile-Bootstrap-Theme](https://github.com/commadelimited/jQuery-Mobile-Bootstrap-Theme)
+- [startbootstrap-freelancer](https://github.com/BlackrockDigital/startbootstrap-freelancer)
+- [hierapolis](https://github.com/lab2023/hierapolis)
+- [devoops](https://github.com/nnmware/devoops)
+
+
+- [bootsnipp](http://bootsnipp.com)拖拽生成 html
+- [stylebootstrap](http://stylebootstrap.info/)定制工具
+- [bootstrap-magic](https://github.com/pikock/bootstrap-magic)theme generator made by angularjs
+- [bootswatch](https://github.com/thomaspark/bootswatch)free theme download
+- [BootTheme](http://www.boottheme.com/)
+- [Lavish](http://www.lavishbootstrap.com/) 根据图片生成主题
+- [PaintStrap](http://paintstrap.com/) 根据已经有的配色方案生成主题
+
+
+### asp mvc
+- [aspnet](https://github.com/aspnet)
+- [Orchard](https://github.com/OrchardCMS/Orchard) cms
+- [OrchardNoCMS](https://github.com/nicholaspei/OrchardNoCMS)
+- [SocialGoal](https://github.com/MarlabsInc/SocialGoal)
+- [SmartStoreNET](https://github.com/smartstoreag/SmartStoreNET)
+- [nopCommerce](https://github.com/nopSolutions/nopCommerce)
+study
+- [MusicStore](https://github.com/aspnet/MusicStore)
+- [TagHelperStarterWeb](https://github.com/DamianEdwards/TagHelperStarterWeb)
+- [AspNet5SQLite](https://github.com/damienbod/AspNet5SQLite)
+- [Umbraco-CMS](https://github.com/umbraco/Umbraco-CMS)
+
+### java ee
+
+- [Clinical](https://github.com/AgnaldoJaws/ClinicalSystem-Java-Jsp-BootStrap)
+- [Open eSignForms](http://open.esignforms.com/)
+thinkgem-jeesite
+
+
+### Rails
+
+- [ruby-china](https://github.com/ruby-china/ruby-china)
+- [railscasts-china](https://github.com/pragmaticly/railscasts-china)
+- [awesomes](https://github.com/awesomes-cn/awesomes)
+- [learnrubyandrails.com](http://learnrubyandrails.com/)
+- [partake](https://github.com/sadne/partake)
+- [writings](https://github.com/chloerei/writings)
+- [rubycommitters](http://rubycommitters.org/)    Padriono+Slim
+- [Octopress](https://github.com/imathis/octopress)  Jekyll升级版本，轻量级ruby web框架
+- [diaspora](https://github.com/diaspora/diaspora)    社交网络
+项目，任务和时间管理类Ruby on Rails应用程序
+- [Notes](http://velakor.com/?page_id=6)
+- [Tracks](http://www.getontracks.org/)
+- [ClockingIT](http://www.clockingit.com/)
+- [Redmine ](http://www.redmine.org/)
+CMS和博客类Ruby on Rails应用程序
+- [Radiant CMS](http://radiantcms.org/)
+- [typo](http://blog.typosphere.org/)
+- [Mephisto](http://www.mephistoblog.com/)
+- [XLsuite CRM | CMS](http://xlsuite.org/)
+ 相册类Ruby on Rails应用程序
+- [Gullery ](http://nubyonrails.com/pages/gullery)
+电子商务类Ruby on Rails应用程序
+- [Substruct](https://code.google.com/archive/p/substruct/)
+- [Spree](https://spreecommerce.com/)
+- [Substruct](https://code.google.com/archive/p/substruct/)
+- [EcomPages](http://www.hugedomains.com/domain_profile.cfm?d=ecompages&e=com)
+社交网络，社区类Ruby on Rails应用程序
+- [EchoWaves](http://www.echowaves.com/)
+- [Community Engine](http://communityengine.org/)
+- [Openmind](http://openmind.sourceforge.net/default.html)
+- [Mailr](http://mailr.org/)
+
+
+### ruby
+
+- [Homebrew](https://github.com/Homebrew/brew)
+- [jekyll](https://github.com/jekyll/jekyll)
+- [CocoaPods](https://github.com/CocoaPods/CocoaPods)
+- [ruby](https://github.com/ruby/ruby)
+
+
+
+### laravel
+
+- [driesvints](https://driesvints.com/) 2016
+- [october](https://github.com/octobercms/october)
+- [BootstrapCMS](https://github.com/BootstrapCMS/CMS)
+- [laravel-tricks](https://github.com/CodepadME/laravel-tricks) 2015
+- [laravel-bookmark](https://github.com/yhbyun/laravel-bookmark)
+- [fideloper](http://fideloper.com/)
+- [LaBlog](https://github.com/LaBlog/LaBlog)
+- [laravelio](https://github.com/svenhaveman/laravelio)
+- [wardrobe](https://github.com/wardrobecms/wardrobe)
+- [geq-blog](https://github.com/andersonmadeira/geq-blog)
+- [snipe-it](https://github.com/snipe/snipe-it)
+
+
+### Node.js
+
+- [awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs)
+
+
+- [nodeclub](https://github.com/cnodejs/nodeclub) use Node.js & MongoDB http://cnodejs.org
+https://github.com/zensh/jsgen
+- [starry](https://github.com/sadne/starry) http://starry.so
+- [NodeOS](http://node-os.com/)
+- [Noduino](https://github.com/sbstjn/noduino)
+- [Node-WebKit](https://github.com/nwjs/nw.js)
+- [PDFKit](http://pdfkit.org/)
+- [Log.io](http://logio.org/)
+- [Nodecast](https://github.com/mauimauer/nodecast)
+- [Leapcast](https://github.com/dz0ny/leapcast)
+- [Nexe](https://github.com/jaredallard/nexe)
+- [Hyro](http://jawerty.github.io/Hyro/)
+- [Haroopad](http://pad.haroopress.com/)
+- [TiddlyWiki5](http://tiddlywiki.com/)
+- [Balloons.IO](https://github.com/rickyrauch/Balloons.IO)
+
+
+- [reactivex](http://reactivex.io/)
+- [RxJS](https://github.com/Reactive-Extensions/RxJS)
+
+- framework
+- [koa](https://github.com/koajs/koa)
+- [thinkjs](https://github.com/75team/thinkjs)
+- cms
+- [keystone](https://github.com/keystonejs/keystone)
+- [apostrophe](https://github.com/punkave/apostrophe)
+- forum
+- [NodeBB](https://github.com/NodeBB/NodeBB)
+blog
+- [hexo](https://github.com/hexojs/hexo)
+
+
+
+
+### python
+
+- [odoo](https://github.com/odoo/odoo)
+- [taigaio](https://github.com/taigaio)
+
+
+
+
+# Game
+
+- [pomelo](https://github.com/NetEase/pomelo) 网易game server for Node.js
+- [wagic](https://github.com/WagicProject/wagic)  c++ game engine play card games against an AI on Android/iOS/PSP/Window/Mac/Linux
+- [TrinityCore](https://github.com/TrinityCore/TrinityCore) MMORPG＝Boost MySql， openssl，
+- [Mangos](https://github.com/mangos)   完整的魔兽服务器
+- [openbor](https://github.com/rofl0r/openbor)     
+
+### php
+
+- [2Moons](http://code.google.com/p/2moons/) 太空背景策略游戏
+
+- [World of phaos](http://worldofphaos.com/)RPG
+- [World of phaos src](http://sourceforge.net/projects/phaosrpg/)
+ 
+- [Devana](http://devana.eu/blog/)策略游戏，经济、外交、军事任务
+- [Devana src](http://sourceforge.net/projects/devana/)
+
+# Misc
+
+- [acat](https://github.com/01org/acat)intel霍金开源系统
+
+- [mbed](https://github.com/mbedmicro/mbed) arm 系统
+
+
+－ 音乐开源工具
+
+- [CASH Music](https://cashmusic.org/)
+- [Phonascus](http://www.lenmus.org/en/phonascus/intro)    学习乐理 Launchpad网站开发
+- [Audacity](https://github.com/audacity/audacity)
