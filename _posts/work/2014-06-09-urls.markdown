@@ -71,14 +71,6 @@ tags:
 - [koala](https://github.com/oklai/koala/) less, sass and coffeescript compilation
 - [oschina](https://github.com/oschina)
 
-
-# Web
-
-#### Ruby
-
-#### php
-
-
 # Mobiles
 
 #### Android
@@ -202,7 +194,11 @@ tags:
 
 
 # Web
+
 - [tastejs/todomvc](https://github.com/tastejs/todomvc)
+- [yeoman generators](http://yeoman.io/generators/)
+- [npmjs](https://www.npmjs.com)
+- [bower](http://bower.io/search/)
 
 #### icons
 
@@ -355,6 +351,8 @@ CMS和博客类Ruby on Rails应用程序
 
 #### ruby
 
+- [rubygems](https://rubygems.org)
+- [TaoBaoGem](https://ruby.taobao.org)
 - [Homebrew](https://github.com/Homebrew/brew)
 - [jekyll](https://github.com/jekyll/jekyll)
 - [CocoaPods](https://github.com/CocoaPods/CocoaPods)
@@ -363,6 +361,10 @@ CMS和博客类Ruby on Rails应用程序
 
 
 #### laravel
+
+- [Laravel API](http://laravel.com/api/5.0/)
+- [Packagist](https://packagist.org)
+- [laracasts](https://laracasts.com)
 
 - [driesvints](https://driesvints.com/) 2016
 - [october](https://github.com/octobercms/october)
@@ -443,6 +445,16 @@ blog
 - [Devana src](http://sourceforge.net/projects/devana/)
 
 # Misc
+
+#### python
+
+- [pip](https://pip.pypa.io/en/stable/)
+- [pypi](https://pypi.python.org/pypi)
+
+#### Perl
+- [PsySH](http://psysh.org)
+- [PEAR](http://pear.php.net)
+- [PECL](http://pecl.php.net)
 
 - [acat](https://github.com/01org/acat)intel霍金开源系统
 
