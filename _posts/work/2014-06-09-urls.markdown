@@ -10,7 +10,7 @@ tags:
 ---
 >[winform](#)
 >><small>[icsharpcode](https://github.com/icsharpcode)</small>
->><small>[SharpDevelop](https://github.com/icsharpcode/SharpDevelop)<small> - ide for .net</small>small>
+>><small>[SharpDevelop](https://github.com/icsharpcode/SharpDevelop)<small> - ide for .net</small>
 
 
 
