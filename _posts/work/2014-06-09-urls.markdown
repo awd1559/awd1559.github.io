@@ -10,26 +10,236 @@ tags:
 ---
 
 
-### Forms
+# Forms
 
-- [WinForm](#WinForm)
-  - [icsharpcode](https://github.com/icsharpcode)
-  - [SharpDevelop](https://github.com/icsharpcode/SharpDevelop) ide for .net
-
-- [Wpf](#Wpf)
-- [Java](#JavaForm)
-- [QT](#QTForm)
-- [Mac](#MacForm)
-
-### Web
-- [Ruby](#Ruby)
-- [php](#php)
-
-### Mobiles
-
-
----
 ### WinForm
-> UI costomize components and open source projects
 
-* [MaterialSkin](https://github.com/IgnaceMaes/MaterialSkin)
+- [icsharpcode](https://github.com/icsharpcode)
+- [SharpDevelop](https://github.com/icsharpcode/SharpDevelop) ide for .net
+- [MaterialSkin](https://github.com/IgnaceMaes/MaterialSkin)
+- [winforms-modernui](https://github.com/peters/winforms-modernui)
+- [Krypton](https://github.com/ComponentFactory/Krypton)
+- [paint.net](http://www.getpaint.net/download.html)
+
+
+### Wpf
+
+- [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
+- [ReactiveUI](https://github.com/reactiveui/ReactiveUI)
+- [MaterialDesignInXamlToolkit](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit)
+- [mui](https://github.com/firstfloorsoftware/mui)
+- [Fluent.Ribbon](https://github.com/fluentribbon/Fluent.Ribbon)
+- [Prism](https://github.com/PrismLibrary/)
+- [Dragablz](https://github.com/ButchersBoy/Dragablz)
+- [AdmiralRoom](https://github.com/huoyaoyuan/AdmiralRoom)
+- [WPF-Task-Dialog](https://github.com/yadyn/WPF-Task-Dialog)
+- [WPFConverters](https://github.com/kentcb/WPFConverters)
+- [KanColleViewer](https://github.com/Zharay/KanColleViewer)
+- [KanColleViewer](https://github.com/Grabacr07/KanColleViewer)
+
+### Java
+
+- [Java](#)
+
+### QT
+
+- [QT](#)
+
+### Mac
+
+- [CotEditor](https://github.com/coteditor/CotEditor) swift
+- [iTerm2](https://github.com/gnachman/iTerm2)
+- [macdown](https://github.com/MacDownApp/macdown)
+- [mozilla](https://github.com/mozilla)
+- [sequel-pro](https://github.com/sheldon/sequel-pro)		mysql client
+- [Quicksilver](https://github.com/quicksilver/Quicksilver) control your mac with keyboard
+- [AudioKit](https://github.com/audiokit/AudioKit) audio processing
+- [Inkpad](https://github.com/sprang/Inkpad) Vector illustration app for the iPad
+- [dshb](https://github.com/beltex/dshb) osx system monitor in swift
+- [Frameless](https://github.com/stakes/Frameless) chromeless web browser in swift
+
+- [SpriteBuilder](https://github.com/spritebuilder/SpriteBuilder)
+- [textmate](https://github.com/textmate/textmate)
+- [OpenEmu](https://github.com/OpenEmu/OpenEmu) Retro video game emulation for macOS
+- [homebrew](https://github.com/Homebrew/legacy-homebrew)
+- [koala](https://github.com/oklai/koala/) less, sass and coffeescript compilation
+- [oschina](https://github.com/oschina)
+
+
+# Web
+
+### Ruby
+
+### php
+
+
+# Mobiles
+
+### Android
+
+- [BuildingBlocks](https://github.com/tangqi92/BuildingBlocks)  quickly and easily take to build their own applications
+- [AmazeFileManager](https://github.com/arpitkh96/AmazeFileManager)
+- [Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture)
+- [android-delicious](https://github.com/lexs/android-delicious)
+- [Android-Jigsaw-Puzzle](https://github.com/julesbond007/Android-Jigsaw-Puzzle)
+- [AntennaPod](https://github.com/AntennaPod/AntennaPod)
+- [Coding-Android](https://github.com/ToReview/Coding-Android)
+- [ChaseWhisplyProject](https://github.com/tvbarthel/ChaseWhisplyProject)
+- [clean-status-bar](https://github.com/emmaguy/clean-status-bar)
+- [ECMobile_Android](https://github.com/GeekZooStudio/ECMobile_Android)
+
+- [git-osc-android](https://git.oschina.net/oschina/git-osc-android)
+- [gnucash-android](https://github.com/codinguser/gnucash-android)
+- [iOSSF](https://github.com/gaosboy/iOSSF)
+- [InstaMaterial](https://github.com/frogermcs/InstaMaterial)
+- [iosched](https://github.com/google/iosched)
+- [JNote](https://github.com/Jhuster/JNote)
+- [jianshi](https://github.com/wingjay/jianshi)
+- [KJFrameForAndroid](https://github.com/kymjs/KJFrameForAndroid)
+- [kanxue-android-app](https://github.com/kanxue-team/kanxue-android-app)
+- [keepassdroid](https://github.com/bpellin/keepassdroid)
+
+- [MaterialUp](https://github.com/jariz/MaterialUp)
+- [MousePaint](https://github.com/android-cjj/MousePaint)
+- [minicat](https://github.com/mcxiaoke/minicat)
+- [muzei](https://github.com/romannurik/muzei) live wallpaper
+- [android-app](https://git.oschina.net/oschina/android-app)
+- [palettehelper](https://github.com/hzsweers/palettehelper)
+- [photup](https://github.com/chrisbanes/photup)
+- [play-android](https://github.com/play/play-android)
+- [PocketHub](https://github.com/pockethub/PocketHub)
+- [QuickAndroid](https://github.com/alafighting/QuickAndroid) framework
+- [QuickNews](https://github.com/tigerguixh/QuickNews)
+- [rubychina4android](https://github.com/gonjay/rubychina4android)
+- [SAF](https://github.com/fengzhizi715/SAF)
+- [seadroid](https://github.com/haiwen/seadroid)
+- [sgtpuzzles](https://github.com/chrisboyle/sgtpuzzles)
+- [shuba](https://github.com/liuguangqiang/shuba)
+- [Signal-Android](https://github.com/WhisperSystems/Signal-Android)
+- [simpletask-android](https://github.com/mpcjanssen/simpletask-android)
+- [SimplifyReader](https://github.com/SkillCollege/SimplifyReader)
+- [superCleanMaster](https://github.com/joyoyao/superCleanMaster)
+- [TeamTalk](https://github.com/mogujie/TeamTalk)
+- [Telecine](https://github.com/JakeWharton/Telecine)
+- [TopNews](https://github.com/Rano1/TopNews)
+- [Tower](https://github.com/DroidPlanner/Tower)
+- [TurtlePlayer](https://github.com/eddturtle/TurtlePlayer) music player
+- [Twidere-Android](https://github.com/TwidereProject/Twidere-Android)
+- [v2ex-android](https://git.oschina.net/greatyao/v2ex-android)
+- [v2ex-daily-android](https://github.com/kyze8439690/v2ex-daily-android)
+- [vanilla](https://github.com/kreed/vanilla) music player
+- [wakao-app](https://github.com/yongbo000/wakao-app) 哇靠百科
+- [wakao-server](https://github.com/yongbo000/wakao-server)
+- [wechat](https://github.com/motianhuo/wechat)
+- [WaniKani-for-Android](https://github.com/xiprox/WaniKani-for-Android)
+- [WordPress-Android](https://github.com/wordpress-mobile/WordPress-Android)
+- [XhsWelcomeAnim](https://github.com/w446108264/XhsWelcomeAnim)
+- [ZhihuPaper](https://github.com/cundong/ZhihuPaper)
+
+- [News-Android-App](https://github.com/owncloud/News-Android-App.git)
+- [OpenFlappyBird](https://github.com/deano2390/OpenFlappyBird)
+- [Opengur](https://github.com/Kennyc1012/Opengur)
+- [OpenLibra-Material](https://github.com/saulmm/OpenLibra-Material)
+- [Piclice](https://github.com/yaa110/Piclice)
+- [HomeMirror](https://github.com/HannahMitt/HomeMirror)
+- [LiveView-Answer-it](https://github.com/MakinGiants/LiveView-Answer-it)
+- [HackerNews](https://github.com/bishopmatthew/HackerNews)
+- [ele_demo](https://github.com/tigerguixh/ele_demo)
+- [eoecn](https://github.com/eoecn/android-app)
+- [Etar-Calendar](https://github.com/xsoh/Etar-Calendar)
+- [FileExplorer](https://github.com/MiCode/FileExplorer)
+- [Financius](https://github.com/mvarnagiris/Financius)
+- [FlappyCow](https://github.com/cubei/FlappyCow)
+- [Flym](https://github.com/FredJul/Flym)
+- [FlyRefresh](https://github.com/race604/FlyRefresh)
+- [FoldingNavigationDrawer-Android](https://github.com/tibi1712/FoldingNavigationDrawer-Android)
+- [fossdroid](fossdroid.com) free and open source android apps
+- [FreeCsdn](https://github.com/studiotang/FreeCsdn)
+- [freegemas-gdx](https://github.com/saltares/freegemas-gdx)
+
+### kotlin
+- [banjen-android-banjo-tuner](https://github.com/MakinGiants/banjen-android-banjo-tuner)
+- [android-kotlin-samples](https://github.com/irontec/android-kotlin-samples)
+- [Bandhook-Kotlin](https://github.com/antoniolg/Bandhook-Kotlin)
+- [tudounotepad](https://github.com/geminiwen/tudounotepad)
+
+### swift
+- [Surge](https://github.com/mattt/Surge)   swift lib using Accelerate framework
+- [Dollar](https://github.com/ankurp/Dollar)   a functional tool-belt
+- [SwiftTask](https://github.com/ReactKit/SwiftTask) Promise + progress + pause + cancel + retry for Swift.
+- [HanekeSwift](https://github.com/Haneke/HanekeSwift) a lightweight generic cache for iOS
+- [Cartography](https://github.com/robb/Cartography) A declarative Auto Layout DSL for Swift
+- [Sleipnir](https://github.com/railsware/Sleipnir) BDD-style framework for Swift
+- [Quick](https://github.com/Quick/Quick) a behavior-driven test framework
+- [androidtool-mac](https://github.com/mortenjust/androidtool-mac) screenshots, video recording, app installation for iOS and Android
+- [Swift](https://github.com/carlbtrn/Swift) code snap
+
+### iOS
+- [edhita](https://github.com/tnantoka/edhita) text editor for iOS in swift
+- [JokeClient-Swift](https://github.com/YANGReal/JokeClient-Swift) 糗事百科
+- [CNode-iOS](https://git.oschina.net/lijy91/CNode-iOS)
+- [ZhiHuDaily-Swift](https://git.oschina.net/xycm/ZhiHuDaily-Swift)
+- [OSChina-iOS](https://git.oschina.net/lijy91/OSChina-iOS)
+- [V2ex-Swift](https://git.oschina.net/finb/V2ex-Swift)
+- [Yep](https://github.com/CatchChat/Yep)
+- [firefox-ios](https://github.com/mozilla/firefox-ios)
+
+- [awesome-ios](https://github.com/vsouza/awesome-ios)
+- [awesome-ios-ui](https://github.com/cjwirth/awesome-ios-ui)
+- [open-source-ios-apps](https://github.com/dkhamsing/open-source-ios-apps)
+- [SXNews](https://github.com/dsxNiubility/SXNews)   模仿网易新闻
+- [Coding-iOS](https://github.com/Coding/Coding-iOS)		coding-ios客户端
+- [TMusic](https://github.com/LeslieJia/TMusic)		音乐播放器
+- [nimbus](https://github.com/jverkoey/nimbus)    框架
+- [Potatso](https://github.com/shadowsocks/Potatso)
+- [valio](https://github.com/soffes/valio)
+
+
+# Web
+- [tastejs/todomvc](https://github.com/tastejs/todomvc)
+
+### icons
+
+- [angular-material-icons](https://github.com/klarsys/angular-material-icons)
+- [font-awesome](https://github.com/FortAwesome/Font-Awesome)
+- [ionicons](https://github.com/driftyco/ionicons)
+- [material-design-icons](https://github.com/google/material-design-icons)
+- [purecss-icono](https://github.com/mseri/purity)
+
+
+
+
+### backbone
+
+- [backplug](http://backplug.io/)
+- [backbone-doc](http://www.css88.com/doc/backbone/)
+
+require
+underscore
+
+
+### react.js
+
+- [awesome-react](https://github.com/enaqx/awesome-react)
+- [react.rocks](https://react.rocks)
+
+- [material-ui](https://github.com/callemall/material-ui)
+- [boron](https://github.com/yuanyan/boron) a collection of dialog
+- [halogen](https://github.com/yuanyan/halogen) loading spinners
+- [react-timesheet](https://github.com/yuanyan/react-timesheet)
+- [nuclearmail](https://github.com/ianobermiller/nuclearmail)
+- [sound-redux](https://github.com/andrewngu/sound-redux)
+- [react-sweeper](https://github.com/cjohansen/react-sweeper)
+- [talk-os](https://github.com/jianliaoim/talk-os) jianliao.com
+
+
+- [deku](https://github.com/anthonyshort/deku) another framework
+- [riotjs](http://riotjs.com/]  react like ui lib
+
+- [relax](https://github.com/relax/relax) cms on react,redux, GraphQL
+- [Picard](https://github.com/Automattic/Picard) wordpress theme
+
+
+### Angular
+
+- [ng-admin](https://github.com/marmelab/ng-admin)
