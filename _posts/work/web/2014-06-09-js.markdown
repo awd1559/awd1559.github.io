@@ -48,6 +48,7 @@ app.controller("HelloController", ['$scope', '$http', function($scope, $http){
 
 ```
 
+
 ```
 <html ng-app="app">
   <body>
@@ -68,12 +69,14 @@ app.controller("HelloController", ['$scope', '$http', function($scope, $http){
 
 
 
-
+```
 <div ng-controller="MyController">
   <input ng-model="expr" type="text" placeholder="enter an expression" />
   <h2>{{ parseValue }}</h2>
 </div>
+```
 
+```
 app.controller('MyController', function($scope, $parse){
 	$scope.$watch('expr', function(newVal, oldVal, scope){
 	  if (newValue !== oldValue) {
@@ -82,7 +85,7 @@ app.controller('MyController', function($scope, $parse){
 	  }
 	});
 });
-
+```
 
 
 
@@ -174,16 +177,16 @@ angular.module('myApp')
 ```
 
 
-#### [backbone](http://backbonejs.org/)
+# [backbone](http://backbonejs.org/)
 [source code on github](https://github.com/jashkenas/backbone)<br>
 
-#### [emberjs](http://emberjs.com/)
+# [emberjs](http://emberjs.com/)
 [source code on github](https://github.com/emberjs/ember.js)<br>
 
-#### [jquery](https://jquery.com/)
+# [jquery](https://jquery.com/)
 [source code on github](https://github.com/jquery/jquery)<br>
 
-#### [meteor](https://www.meteor.com/)
+# [meteor](https://www.meteor.com/)
 [source code on github](https://github.com/meteor/meteor/)<br>
 
 	//install
@@ -192,7 +195,7 @@ angular.module('myApp')
 	meteor create <name>
 	meteor add tabs:bootstrap
 
-#### [ionic2](http://ionicframework.com)
+# [ionic2](http://ionicframework.com)
 [github](https://github.com/driftyco/ionic)
 
 	Apache cordova: <br>
@@ -221,16 +224,16 @@ ionic emulate android
 ```
 
 
-#### [react](https://facebook.github.io/react/)
+# [react](https://facebook.github.io/react/)
 [source code on github](https://github.com/facebook/react)
 
-#### [spine](http://spinejs.com/)
+# [spine](http://spinejs.com/)
 [source code on github](https://github.com/spine)
 
 	Lightweight MVC library
 
 
-#### [egret](http://www.egret.com/)
+# [egret](http://www.egret.com/)
 [source code on github](https://github.com/egret-labs)
 html5 game engine
 创建项目
