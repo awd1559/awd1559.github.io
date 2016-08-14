@@ -21,10 +21,14 @@ tags:
 # basic
 
 #### 交互方式:
+
+```
 ruby \
 puts "hhhh"
 ctrl+d
+```
 
+```
 irb
 >irb --simple-prompt --noecho
 >> for i in 1..4
@@ -33,12 +37,13 @@ irb
 >> def do_some()
 >>     puts "Hi"
 >> end
+```
 
-
-RDoc
+```
+//RDoc
 ri : 阅读RDoc格式的Ruby文档
 ri File
-
+```
 
 #### variable
 
@@ -91,12 +96,15 @@ for i in 0...songs.length
 end
 ```
 
-#### Regular Expression
+#### Regular 
+
+```
 /reg_exp/
 if line =~ /reg_exp/
 end
 
 line.sub(/reg_exp/, "replacement")
+```
 
 |字符 |含义                 |
 |----|--------------------|
@@ -318,9 +326,9 @@ gem list --local
 
 # Gemfile
 
-Gemfile group
-对依赖进行分组，可以对整租进行操作
-
+```
+//Gemfile group
+//对依赖进行分组，可以对整租进行操作
 
 gem 'nokogiri'
 gem 'wirble', :group => :development
@@ -344,9 +352,10 @@ end
 
 $ bundle install --without test development
 $ bundle install —with development
+```
 
-
-Bundler.require(:default, :another_group, Rails.env) 获取default组中和another_group组中的gem，放入到Rails.env中
-Bundler.require(:default, Rails.env) 获取默认group中gem，放入到Rails.env中
-
+```
+Bundler.require(:default, :another_group, Rails.env) //获取default组中和another_group组中的gem，放入到Rails.env中
+Bundler.require(:default, Rails.env) //获取默认group中gem，放入到Rails.env中
+```
 
