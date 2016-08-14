@@ -75,6 +75,10 @@ tags:
 
 #### Android
 
+- [awesome-android](https://github.com/JStumpp/awesome-android)
+- [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
+- [Apktool](https://github.com/iBotPeaches/Apktool)
+
 - [BuildingBlocks](https://github.com/tangqi92/BuildingBlocks)  quickly and easily take to build their own applications
 - [AmazeFileManager](https://github.com/arpitkh96/AmazeFileManager)
 - [Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture)
@@ -252,6 +256,7 @@ tags:
 - [reactjs for nuget](reactjs.net)nuget reactjs for asp.net mvc4/5
 
 - [antd]()
+- [react-component](https://github.com/react-component)
 - [melon](https://github.com/react-melon/melon)
 - [material-ui](https://github.com/callemall/material-ui)
 - [uskin](https://github.com/icecreamliker/uskin)
@@ -456,7 +461,7 @@ blog
 - [TrinityCore](https://github.com/TrinityCore/TrinityCore) MMORPG＝Boost MySql， openssl，
 - [Mangos](https://github.com/mangos)   完整的魔兽服务器
 - [openbor](https://github.com/rofl0r/openbor)     
-
+- [TrinityCore](https://github.com/TrinityCore/TrinityCore)
 #### php
 
 - [2Moons](http://code.google.com/p/2moons/) 太空背景策略游戏
@@ -468,6 +473,12 @@ blog
 - [Devana src](http://sourceforge.net/projects/devana/)
 
 # Misc
+
+
+
+- [wireapp](https://github.com/wireapp)
+- [awesome-list](https://github.com/sindresorhus/awesome)
+
 
 #### python
 

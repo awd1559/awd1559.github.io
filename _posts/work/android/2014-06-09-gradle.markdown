@@ -23,15 +23,22 @@ tags:
 
 # framework
 
-[xUtils](https://github.com/wyouflf/xUtils)
-
 [AndroidAnnotations](/2014/06/09/gradle-androidannotations)
 
 [butterknife](/2014/06/09/gradle-butterknife)
 
 [dagger](/2014/06/09/gradle-dagger)
 
-[android-52Kit](https://github.com/52inc/android-52Kit)
+[droidparts](https://github.com/yanchenko/droidparts)
+[android-common](https://github.com/litesuits/android-common)
+[SAF](https://github.com/fengzhizi715/SAF)
+[Android-Next](https://github.com/mcxiaoke/Android-Next)
+[UltimateAndroid](https://github.com/cymcsg/UltimateAndroid)
+[android-priority-jobqueue](https://github.com/yigit/android-priority-jobqueue)
+[anvil](https://github.com/zserge/anvil)
+[Rosie](https://github.com/Karumi/Rosie)
+[Conductor](https://github.com/bluelinelabs/Conductor)
+[Android-ZBLibrary](https://github.com/TommyLemon/Android-ZBLibrary)
 
 
 # event bus
