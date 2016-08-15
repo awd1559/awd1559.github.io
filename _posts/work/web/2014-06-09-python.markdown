@@ -7,7 +7,6 @@ author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - web
-    - python
 ---
 PIL(import Pillow instead)
 from PIL import Image

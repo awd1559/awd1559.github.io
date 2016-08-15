@@ -6,7 +6,7 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - Res
+    - info
 ---
 
 
@@ -226,6 +226,7 @@ tags:
 
 #### require
 
+
 #### underscore
 
 
@@ -255,7 +256,7 @@ tags:
 
 - [reactjs for nuget](reactjs.net)nuget reactjs for asp.net mvc4/5
 
-- [antd]()
+- [antd](http://ant.design/)
 - [react-component](https://github.com/react-component)
 - [melon](https://github.com/react-melon/melon)
 - [material-ui](https://github.com/callemall/material-ui)
