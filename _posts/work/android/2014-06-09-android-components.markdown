@@ -221,7 +221,7 @@ scheme://host:port/path
 #### Pending Intent
 
 
-# Comment Intent
+# Common Intent
 
 #### Alarm Clock
 

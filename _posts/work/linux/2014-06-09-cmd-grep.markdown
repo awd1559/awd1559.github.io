@@ -6,8 +6,7 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - linux
-    - shell
+    - linux shell
 ---
 grep
 grep -n '\.5s' datafile	#输出符合模式的行，包含.5s的行

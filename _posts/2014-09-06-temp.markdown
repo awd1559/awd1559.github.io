@@ -30,3 +30,26 @@ php -S localhost:8888 router.php
 - dialog
 - message alert
 
+
+
+[pace](https://github.com/HubSpot/pace)
+	page loader progress bar
+
+
+[fadeloader](https://github.com/periplox/jquery.fadeloader)
+
+
+[SpinKit](https://github.com/tobiasahlin/SpinKit)
+
+
+[xheditor](http://xheditor.com/)
+
+
+[spin.js](http://spin.js.org/)
+[github](https://github.com/fgnass/spin.js)
+
+
+[aspnet boilerplate](http://www.aspnetboilerplate.com)
+
+
+

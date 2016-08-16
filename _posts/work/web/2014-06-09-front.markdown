@@ -108,16 +108,18 @@ npm run build
 #### [angular-material](https://github.com/angular/material)
 
 ```
-  //install
-  bower install angular-material
-  //build
-  npm install
-  gulp build
-  //view the doc
-  gulp docs
-  cd dist/docs
-  php -S 
+//install
+bower install angular-material
+//build
+npm install
+gulp build
+//view the doc
+gulp docs
+cd dist/docs
+php -S 
 ```
+
+
 
 #### [angular-ui](https://angular-ui.github.io/)
 
@@ -1062,6 +1064,152 @@ YAHOO.util.Event = {
 //调用函数
 YAHOO.util.Event.addEventListener();
 ```
+
+
+
+# jquery
+
+#### basic
+
+```
+$(document).ready(function() {});
+//简写
+$().ready(function() {});
+$(function(){});
+
+
+
+(function(wp, $){
+  … ...
+})(wp, jQuery);
+```
+
+#### extensions
+
+```
+jQuery.extend = jQuery.fn.extend = function(){};
+jQuery.extend($.extend) 和jQuery.fn.extend($.fn.extend)是同一个函数 
+jQuery库中，有些方法是通过调用jQuery.extend，有些是通过jQuery.fn.extend
+
+jQuery.extend中，typeof jQuery = "function"
+jQuery.extend相当于为function类添加静态方法extend
+jQuery被赋值给$，所以可以使用$.extend()
+```
+
+```
+使用$.extend,  扩展自定义的对象
+var myself = {name: "jack"};
+$.extend(myself, {
+  setName:function(n){this.name = n;}
+});
+myself.setName("tom");  //使用
+```
+
+//扩展全局函数
+
+```
+//jQuery扩展全局函数
+jQuery.foo = function(){};
+$.foo();  //使用
+
+//全局函数
+$.extend({
+  foo:function(){},
+  bar:function(){}
+});
+$.foo(); $.bar()  //使用
+
+//封装到awd对象中
+$.awd = {
+foo:function() {},
+bar:function() {}
+};
+$.awd.foo();
+$.awd.bar();
+
+
+
+//添加jQuery对象方法
+$.fn.xyz = function(){
+  this.text("sss");
+};
+$('div').xyz();
+$('#message').xyz();
+```
+
+
+```
+1类级别的插件开发
+1.1定义一个全局函数
+jQuery.foo = function(){}
+1.2使用extend定义全局函数 
+jQuery.extend({
+  foo:function(){},
+  bar:function(){}
+});
+
+
+1.3使用命名空间定义函数
+jQuery.plugin = {
+  foo:function(){}
+}
+
+$(function(){
+  $.foo();
+});
+
+
+2对象级别的插件开发
+(function($){
+  $.fn.extend({
+    foo3:function() {
+      alert('对象级别插件extend方式1');
+    },
+    bar3:function() {
+      alert('对象级别插件extend方式2');
+    }
+  })
+})(jQuery);
+
+(function($){
+  $.fn.foo4 = function() {
+    alert('对象级别插件fn方式');
+  }
+})(jQuery);
+
+
+
+//接收参数来控制插件的行为
+(function($){
+$.fn.bar4 = function(options) {
+var defaults = {aaa:'1',bbb:'2'};
+var opts = $.extend(defaults, options);
+alert('参数值:aaa:'+opts.aaa+';bbb:'+opts.bbb);
+}
+})(jQuery);
+
+//提供公有方法访问插件的配置项值
+(function($){
+$.fn.foo5 = function(options) {    
+var opts = $.extend({}, $.fn.foo5.defaults, options);
+alert('参数值:aaa:'+opts.aaa+';bbb:'+opts.bbb);
+}
+$.fn.foo5.defaults = {aaa:'1',bbb:'2'};
+})(jQuery);
+
+//提供公有方法来访问插件中其他的方法
+(function($){
+$.fn.bar5 = function(options) {
+$.fn.bar5.alert(options);
+}
+$.fn.bar5.alert = function(params) {
+alert(params);
+}
+})(jQuery);
+```
+
+
+
 
 
 

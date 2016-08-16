@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Android 目录"
+title:      "Android Graphics"
 subtitle:   " \"Android Graphics: should merge into android-animation\""
 date:       2014-06-09 12:00:00
 author:     "awd"

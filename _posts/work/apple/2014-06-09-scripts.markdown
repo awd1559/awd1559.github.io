@@ -6,7 +6,7 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - apple
+    - Apple
 ---
 利用AppleScript实现流程自动化
 不要求大小写

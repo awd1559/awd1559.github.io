@@ -72,10 +72,10 @@ gem install —local ….gem
 
 # info
 
-[guides v4.1中文](http://guides.ruby-china.org/)
-[guides v4.2.6](http://guides.rubyonrails.org/)
-[rails doc v4.1.0](http://doc.rubyfans.com/rails/api/v4.1.0/)
-[guides on github](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
+- [guides v4.1中文](http://guides.ruby-china.org/)
+- [guides v4.2.6](http://guides.rubyonrails.org/)
+- [rails doc v4.1.0](http://doc.rubyfans.com/rails/api/v4.1.0/)
+- [guides on github](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
 
 
 
@@ -107,9 +107,10 @@ gem 'mysql2'
 #### init
 
 ```
-config/initializers/*.rb
-//config precompile asserts
-config/initializers/asserts.rb
+#config/initializers/*.rb
+
+#config precompile asserts
+#config/initializers/asserts.rb
   Rails.application.config.assets.precompile += %w(*.js *.css)
   
 //enviroments config
