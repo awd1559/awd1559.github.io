@@ -30,7 +30,10 @@ php -S localhost:8888 router.php
 - dialog
 - message alert
 
+[echart](http://echarts.baidu.com/)
+[github](https://github.com/ecomfe/echarts)
 
+[uedit](http://ueditor.baidu.com/website/)
 
 [pace](https://github.com/HubSpot/pace)
 	page loader progress bar
@@ -52,4 +55,8 @@ php -S localhost:8888 router.php
 [aspnet boilerplate](http://www.aspnetboilerplate.com)
 
 
+[weflow](https://weflow.io/)
+
+
+[avalon]()
 
