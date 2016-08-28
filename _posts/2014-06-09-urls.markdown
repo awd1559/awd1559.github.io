@@ -217,7 +217,14 @@ tags:
 
 - [tableexport](http://jquery-plugins.net/tableexport-jquery-plugin-to-export-html-tables)
 
+- [echart](http://echarts.baidu.com/)
+[github](https://github.com/ecomfe/echarts)
 
+
+- [uedit](http://ueditor.baidu.com/website/)
+- [xheditor](http://xheditor.com/)
+
+- [avalon](http://avalonjs.coding.me/)
 
 #### backbone
 
@@ -295,6 +302,7 @@ study
 
 #### Bootstrap
 
+- [UIKit](http://getuikit.com/)
 - [designmodo/Flat-UI](https://github.com/designmodo/Flat-UI)
 - [fbootstrapp](https://github.com/prasad83/fbootstrapp)
 - [Jumpstart UI](https://jumpstartthemes.com/)  收费
@@ -330,6 +338,13 @@ study
 - [SocialGoal](https://github.com/MarlabsInc/SocialGoal)
 - [SmartStoreNET](https://github.com/smartstoreag/SmartStoreNET)
 - [nopCommerce](https://github.com/nopSolutions/nopCommerce)
+
+framework 
+- [Taurus.MVC](https://github.com/cyq1162/Taurus.MVC)
+- [Aries](https://github.com/cyq1162/Aries)
+- [Dapper]()
+- [PetaPoco]()
+
 study
 - [MusicStore](https://github.com/aspnet/MusicStore)
 - [TagHelperStarterWeb](https://github.com/DamianEdwards/TagHelperStarterWeb)

@@ -16,7 +16,7 @@ tags:
 ```
 install xcode-command-line tool
 
-# install ruby
+//install ruby
 
 # by homebrew
 sudo brew install ruby 

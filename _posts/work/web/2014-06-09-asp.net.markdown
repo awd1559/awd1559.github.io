@@ -27,22 +27,22 @@ BOOL CPrintCtrl::IsInvokeAllowed(DISPID dispid)
 
 # entity framework
 
-http://docs.efproject.net/
+[doc](http://docs.efproject.net/)
 
-## add Entity Framework
+#### add Entity Framework
 	tools -> Library Package Manager -> NGut
 
-## app.config
+#### config
 ```
 //after setup section
 <connectionStrings>
-    <add name="SQLServerContext" providerName="System.Data.SqlClient" connectionString="Server=(local);Database=spring;Trusted_Connection=true;UId=sa;Pwd=SAsa123" />
+    <add name="SQLServerConnection" providerName="System.Data.SqlClient" connectionString="Server=(local);Database=Demo;Trusted_Connection=true;UId=sa;Pwd=SAsa123" />
 </connectionStrings>
 
 //mysql, not tested
 <connectionStrings>
-	<add name="MySQLContext" providerName="MySql.Data.MySqlClient" 
-		connectionString="server=localhost;User Id=admin;password=test;database=BloggingContext;Character Set=utf8;" />
+	<add name="MySQLConnection" providerName="MySql.Data.MySqlClient" 
+		connectionString="server=localhost;User Id=admin;password=test;database=Demo;Character Set=utf8;" />
 </connectionStrings>
 
 //SQLServer 2012 LocalDb
@@ -54,7 +54,7 @@ http://docs.efproject.net/
 <add name="SqliteConnection" connectionString="data source=SqliteTest.db" providerName="System.Data.SQLite.EF6" />
 ```
 
-## Modaling
+#### Modaling
 ```
 class SpringContext : DbContext
 {
@@ -100,7 +100,7 @@ public class PictureCategory
 
 ```
 
-## code first
+#### code first
 ```
 //默认将以类似Id结尾来命名的属性当作主键，如ID，Id，自动设置为主键
 //如果该属性是int类型，Code First会在数据库中默认将该列设置为自增长。
@@ -249,7 +249,7 @@ public class BreakAwayContext : DbContext
 ```
 
 
-## Migrations
+#### Migrations
 ```
 Application_Start() {
     System.Data.Entity.Database.SetInitializer <SpringContext>(new DropCreateDatabaseIfModelChanges<SpringContext>());
@@ -289,7 +289,7 @@ PM>Update-Database
 
 
 
-## DbContext
+#### DbContext
 ```
 db.People.Add(new People(){ FirstName = ""; LastName = "";})
 db.People.FirstOrDefault()
@@ -311,22 +311,97 @@ public string Email {get;set;}
 }
 ```
 
+# Dapper
+package: dapper, mysql.data
+
+```
+using MySql.Data.MySqlClient;
+ using Dapper;
+
+private MySqlConnection GetMySqlConnection(bool open = true, bool convertZeroDatetime = false, bool allowZeroDatetime = false) 
+{ 			
+	string cs = "Server=localhost;Database=thetest;Uid=root;Pwd=1qazxsw2;"; 	
+	var csb = new MySql.Data.MySqlClient.MySqlConnectionStringBuilder(cs); 	
+	csb.AllowZeroDateTime = allowZeroDatetime; 
+	csb.ConvertZeroDateTime = convertZeroDatetime; 			
+	var conn = new MySql.Data.MySqlClient.MySqlConnection(csb.ConnectionString); 			
+
+	if (open) 
+		conn.Open(); 			
+
+	return conn;
+ } 
+
+using (var connection = GetMySqlConnection()) 
+{ 	
+	var orders = connection.Query<Order>("select id, item from orders"); 	
+	ViewBag.message = orders.First().item;
+}
+
+public class Order
+{ 	public int id { get; set;} 	
+	public string item { get; set; } 
+}
+```
+
+# Petapoco
+package: petapoco, mysql.data
+
+```
+<configuration>
+  <connectionStrings>     
+  	<add name="Connection" connectionString="User Id=root;host=127.0.0.1;Database=thetest;password=1qazxsw2;port=3306;persist security info=True;character set=utf8;" providerName="MySql.Data.MySqlClient" />   
+  </connectionStrings> 
+</configuration> 
+
+
+var db = new PetaPoco.Database("Connection");
+string message = "";
+
+//get orders
+var orders = db.Query<Order>("SELECT * FROM orders");
+foreach (var a in orders)
+ { 	
+	message += a.id.ToString() + " - " + a.item + "\ n"; 
+} 
+ViewBag.message = message;
+
+
+//
+long count = db.ExecuteScalar<long>("select count(*) from orders"); 
+ViewBag.message = count.ToString();
+
+
+public class Order 
+{ 
+	public long id { get; set; } 	
+	public long staf_id { get; set; } 	
+	public string item { get; set; } 	
+	public double price { get; set; } 	
+	public string description { get; set; } 	
+	public DateTime create_at { get; set; } 
+}
+```
+
 
 ## Controller
-如果找不到Controller的Action,则执行System.Web.Mvc.Controller.HandleUnknownAction,
-默认响应HTTP 404
-可替换
 
+System.Web.Mvc.Controller.HandleUnknownAction,可替换
+
+```
 public class HomeController : Controller 
 {
+	//默认响应HTTP 404
     protected override void HandleUnknownAction(string actionName)
     {
 	Response.Redirect("http://www.baidu.com");
     }
 }
+```
 
 
 
+```
 //http://localhost/Home/Default
 [ActionName("Default")]
 public ActionResult Index()
@@ -334,8 +409,9 @@ public ActionResult Index()
     return View();
     =>寻找/Views/Home/Default.cshtml
 }
+```
 
-
+```
 return File(Server.MapPath("~/Images/orderedList0.png"), "image/png");
 =>返回项目目录中的图片
 
@@ -345,20 +421,20 @@ return File(fileContent, "application/pdf", "Report.pdf");
 
 return File(fileContent, "text/plain", Server.UrlPathEncode("中文.txt"));
 =>中文文件名
+```
 
-
-
+```
 public ActionResult TestForm(ViewModel vm){
 {
     if(!ModelState.IsValid)
     {
-	return View();
+		return View();
     }
     if(ModelState["Email"].Errors.Count > 0)
     {
-	ModelError error = ModelState["Email"].Errors[0];
-	var message = error.ErrorMessaage;
-	var exp = error.Exception;
+		ModelError error = ModelState["Email"].Errors[0];
+		var message = error.ErrorMessaage;
+		var exp = error.Exception;
     }
 
     return Redirect("/");
@@ -370,14 +446,15 @@ public ActionResult UpdateProfile([Bind(Exclude = "LastLoginTime")] Member membe
 	//=>白名单 Include:只有
 	//=>黑名单 Exclude:除此之外
 }
+```
 
 
 
 
 
+#### Action Filter
 
-# Action Filter
-
+```
 public class ShoppingCartInfoAttribute : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -388,12 +465,14 @@ public class ShoppingCartInfoAttribute : ActionFilterAttribute
 
 [ShoppingCartInfoAttribute]
 public AcionResult Index()
+```
 
 
 
 
+# Razor
 
-# Razor 
+``` 
 @DateTime.Now
 @(User.Identity.Name + Model.MemberLevel)
 @(ViewBag.IsEnabled ? "启用" : "停用")
@@ -411,11 +490,11 @@ public AcionResult Index()
     var name = "Will";
     var message = "hello" + name;
 }
+```
 
 
-
-
-_Layout.cshtml
+```
+//_Layout.cshtml
 @RenderPage("~/Views/Shared/_Header.cshtml")
 @Html.Partial("_Header");
 @RenderBody()
@@ -423,8 +502,9 @@ _Layout.cshtml
 @section footer {
 
 }
+```
 
-
+```
 App_Code/UIHelper.cshtml(MVC4 布局页)
 @helper ShowUnitPrice(int price) 
 {
@@ -444,12 +524,12 @@ App_Code/UIHelper.cshtml(MVC4 布局页)
 }
 
 @UIHelper.ShowUnitPrice(Model.price)
+```
 
 
 
 
-
-
+```
 @Html.BeginForm()	=> <form>
 @Html.EndForm()		=> </form>
 @Html.Label()		=> <lable>
@@ -465,22 +545,22 @@ App_Code/UIHelper.cshtml(MVC4 布局页)
 @Html.Id()		=> 特定Item的id
 @Html.Name()		=> 特定Item的name
 @Html.Value()		=> 特定Item的value
+```
 
 
 
 
-
-
+```
 IDictionary<string, object> attr = new Dictionary<string, object>();
 attr.Add("size", "32");
 attr.Add("style", "color:red;");
 
 @Html.TextBox("name", "Value", attr);
 =><input id="name" name="name" size="32", style="color:red;" type="text" value="Value" />
+```
 
 
-
-
+```
 public static class ImageHelpers
 {
     public static MvcHtmlString Img(this HtmlHelper helper, string url, string alternateText, string title)
@@ -491,10 +571,14 @@ public static class ImageHelpers
 
 @using namespace
 @Html.Img("url", "alt", "title")
+```
 
 
 
-## TagBuilder
+
+#### TagBuilder
+
+```
 public static class ImageHelpers
 {
     public static MvcHtmlString ImageLink(this HtmlHelper helper, string actionName, string imageUrl, string alternateText, object routeValues, object linkHtmlAttributes, object imageHtmlAttributes) 
@@ -521,10 +605,11 @@ public static class ImageHelpers
 }
 
 
-# TagBuilder
+//TagBuilder
 AddCssClass()
 GenerateId()
 MergeAttribute()
 SetInnerText()
 ToString()
 
+```
