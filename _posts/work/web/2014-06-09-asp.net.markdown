@@ -315,32 +315,47 @@ public string Email {get;set;}
 package: dapper, mysql.data
 
 ```
-using MySql.Data.MySqlClient;
- using Dapper;
+<configuration>
+  <connectionStrings>
+    <add name="Connection" connectionString="Server=localhost;Database=thetest;Uid=root;Pwd=1qazxsw2;" providerName="MySql.Data.MySqlClient" />
+  </connectionStrings>
+</configuration>
+  
 
-private MySqlConnection GetMySqlConnection(bool open = true, bool convertZeroDatetime = false, bool allowZeroDatetime = false) 
-{ 			
-	string cs = "Server=localhost;Database=thetest;Uid=root;Pwd=1qazxsw2;"; 	
-	var csb = new MySql.Data.MySqlClient.MySqlConnectionStringBuilder(cs); 	
-	csb.AllowZeroDateTime = allowZeroDatetime; 
-	csb.ConvertZeroDateTime = convertZeroDatetime; 			
-	var conn = new MySql.Data.MySqlClient.MySqlConnection(csb.ConnectionString); 			
+using MySql.Data.MySqlClient;
+using Dapper;
+
+private MySqlConnection GetMySqlConnection(bool open = true, bool convertZeroDatetime = false, bool allowZeroDatetime = false)
+{			
+	string cs = "Server=localhost;Database=thetest;Uid=root;Pwd=1qazxsw2;";	
+	var csb = new MySql.Data.MySqlClient.MySqlConnectionStringBuilder(cs);
+	csb.AllowZeroDateTime = allowZeroDatetime;
+	csb.ConvertZeroDateTime = convertZeroDatetime;
+	var conn = new MySql.Data.MySqlClient.MySqlConnection(csb.ConnectionString);	
 
 	if (open) 
-		conn.Open(); 			
+		conn.Open();			
 
 	return conn;
- } 
+}
 
-using (var connection = GetMySqlConnection()) 
-{ 	
-	var orders = connection.Query<Order>("select id, item from orders"); 	
+using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
+{
+	conn.Open();	
+	var dog = conn.Query<Dog>("select * from Employee ").ToList();
+	Console.WriteLine(dog[0].Birthday);
+}
+
+using (var connection = GetMySqlConnection())
+{
+	var orders = connection.Query<Order>("select * from orders");	
 	ViewBag.message = orders.First().item;
 }
 
 public class Order
-{ 	public int id { get; set;} 	
-	public string item { get; set; } 
+{	
+	public int id { get; set;}	
+	public string item { get; set; }
 }
 ```
 
@@ -349,38 +364,108 @@ package: petapoco, mysql.data
 
 ```
 <configuration>
-  <connectionStrings>     
-  	<add name="Connection" connectionString="User Id=root;host=127.0.0.1;Database=thetest;password=1qazxsw2;port=3306;persist security info=True;character set=utf8;" providerName="MySql.Data.MySqlClient" />   
-  </connectionStrings> 
-</configuration> 
+  <connectionStrings>    
+  	<add name="Connection" connectionString="User Id=root;host=127.0.0.1;Database=thetest;password=1qazxsw2;port=3306;persist security info=True;character set=utf8;" providerName="MySql.Data.MySqlClient" /> 
+  </connectionStrings>
+</configuration>
+```
 
+#### Database
 
+```
 var db = new PetaPoco.Database("Connection");
-string message = "";
+var db = new PetaPoco.Database("User Id=root;host=127.0.0.1;Database=thetest;password=1qazxsw2;", "MySql.Data.MySqlClient");
+```
 
-//get orders
-var orders = db.Query<Order>("SELECT * FROM orders");
-foreach (var a in orders)
- { 	
-	message += a.id.ToString() + " - " + a.item + "\ n"; 
-} 
-ViewBag.message = message;
+#### Mapping Model
 
+```
+[PetaPoco.TableName("orders")]
+[PetaPoco.PrimaryKey("id")]
+[PetaPoco.ExplicitColumns]
+public class Order
+{
+	[PetaPoco.Column("article_id")] 
+	public long id { get; set; }
 
-//
-long count = db.ExecuteScalar<long>("select count(*) from orders"); 
-ViewBag.message = count.ToString();
+	[PetaPoco.Ignore]
+	public long SomeCalculatedFieldPerhaps { get; set; }
 
-
-public class Order 
-{ 
-	public long id { get; set; } 	
-	public long staf_id { get; set; } 	
-	public string item { get; set; } 	
-	public double price { get; set; } 	
-	public string description { get; set; } 	
-	public DateTime create_at { get; set; } 
+	[PetaPoco.ResultColumn]		//apply to join result 
+	public long comment_count { get; set; }
 }
+```
+
+#### Select
+
+```
+var orders = db.Query<Order>("SELECT * FROM orders").ToList();
+db.SingleOrDefault<Order>("WHERE id=@0", 123);
+```
+
+
+#### Insert
+
+```
+db.Insert(order);
+```
+
+#### Update
+
+```
+db.Update(order);
+db.Update<Order>("set title=@0 where id=@1", "new title", 123);
+```
+
+#### Delete
+
+```
+db.Delete(order);
+db.Delete<Order>("where id=@0", 123);
+```
+
+#### Transactions
+
+```
+using (var scope=db.Transaction)
+{
+    // Do transacted updates here
+    // Commit
+    scope.Complete();
+}
+```
+
+#### Misc
+
+```
+long count = db.ExecuteScalar<long>("select count(*) from orders");
+
+//SqlBuilder
+var sql = PetaPoco.Sql.Builder
+    .Append("SELECT * FROM articles")
+    .Append("WHERE article_id=@0", id)
+    .Append("AND date_created<@0", DateTime.UtcNow);
+sql.Append("AND date_created>=@0", start_date.Value);
+sql.Append("AND date_created<=@0", end_date.Value);
+sql.Append("AND date_created>=@start AND date_created<=@end", 
+			new { start=DateTime.UtcNow.AddDays(-2), end=DateTime.UtcNow });
+
+
+var sql=PetaPoco.Sql.Builder()
+            .Select("*")
+            .From("articles")
+            .Where("date_created < @0", DateTime.UtcNow)
+            .OrderBy("date_created DESC");
+
+var a=db.Query<Order>(sql);
+```
+
+#### Helper 
+
+```
+db.IsNew(order);	//
+db.Save(order);		//insert or update
+db.Exists<Order>(23)
 ```
 
 
