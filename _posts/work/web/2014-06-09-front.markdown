@@ -958,50 +958,6 @@ copy = numbers[..]   #var copy = numbers.slice(0);
 
 # javascript
 
-#### 浏览器对象
-
-- window
-- history
-
-```
-history.go(-2)
-history.go(3)
-```
-
-- location
-
-```
-location.replace(“http://www.baidu.com”);
-location.href=“myPage.html"
-```
-
-- navigator
-- screen
-- document
-- datetime
-
-```
-var time = new Date();
-time.toUTCString();
-time.toLocaleString();
-time.getTimezoneOffset();
-time.toLocaleTimeString();
-time.toTimeString();
-time.toLocaleDateString();
-time.toDAteString();
-```
-
-
-#### Dom函数
-
-
-#### lambda函数、匿名函数
-
-```
-$(document).ready(function() {});
-```
-
-
 #### call方式
 
 ```

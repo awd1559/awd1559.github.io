@@ -42,8 +42,24 @@ tags:
 [aspnet boilerplate](http://www.aspnetboilerplate.com)
 
 
-[weflow](https://weflow.io/)
 
 
+
+
+
+
+
+
+
+
+
+
+
+[avalon](http://avalonjs.coding.me/)
+[github](https://github.com/RubyLouvre/avalon)
+
+
+A multi-platform .NET UI framework (formerly known as Perspex)
+[Avalonia](https://github.com/AvaloniaUI/Avalonia)
 
 
