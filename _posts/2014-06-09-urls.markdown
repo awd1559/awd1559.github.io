@@ -246,6 +246,7 @@ start kit
 - [create-react-app](https://github.com/facebookincubator/create-react-app)
 
 npm, no bootstrap, no jquery, no webpack, no server
+
 ```
 npm install -g create-react-app
 create-react-app hello-world
@@ -269,6 +270,7 @@ gulp build
 - [react-starter-kit](https://github.com/bodyno/react-starter-kit)
 
 babel, webpack, express, karma
+
 ```
 git clone https://github.com/bodyno/react-starter-kit.git
 cd react-starter-kit
@@ -279,6 +281,7 @@ npm start
 - [aspnet-starter-kit](https://github.com/kriasoft/aspnet-starter-kit)
 
 aspcore, babel, webpack, 
+
 ```
 npm install -g generator-aspnetcore
 yo aspnetcore
