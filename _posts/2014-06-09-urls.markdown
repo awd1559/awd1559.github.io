@@ -242,10 +242,71 @@ tags:
 - [awesome-react](https://github.com/enaqx/awesome-react)
 
 start kit
+
+- [create-react-app](https://github.com/facebookincubator/create-react-app)
+
+npm, no bootstrap, no jquery, no webpack, no server
+```
+npm install -g create-react-app
+create-react-app hello-world
+npm start
+npm run build
+```
+
+
+- [generator-react-gulp-browserify](https://github.com/randylien/generator-react-gulp-browserify)
+
+babel, browser, gulp, npm, jquery, bootstrap
+
+```
+sudo npm install -g generator-react-gulp-browserify
+yo react-gulp-browserify
+gulp watch
+gulp build
+```
+
+
 - [react-starter-kit](https://github.com/bodyno/react-starter-kit)
+
+babel, webpack, express, karma
+```
+git clone https://github.com/bodyno/react-starter-kit.git
+cd react-starter-kit
+npm install
+npm start
+```
+
+- [aspnet-starter-kit](https://github.com/kriasoft/aspnet-starter-kit)
+
+aspcore, babel, webpack, 
+```
+npm install -g generator-aspnetcore
+yo aspnetcore
+npm install
+npm run 
+node run publish 	#deploy your app to Azure App Service
+```
+
+- [react-aspnet-boilerplate](https://github.com/pauldotknopf/react-aspnet-boilerplate)
+
+bootstrap, webpack, babel
+
+```
+npm install -g generator-react-aspnet-boilerplate
+yo react-aspnet-boilerplate
+yo react-aspnet-boilerplate:empty-template
+cd src/React
+npm install
+gulp
+dotnet restore
+dotnet ef database update
+dotnet run
+```
+
 
 
 components 1
+
 - [antd](http://ant.design/)
 - [react-component](https://github.com/react-component)
 - [melon](https://github.com/react-melon/melon)
@@ -254,12 +315,14 @@ components 1
 - [react-ui](https://github.com/Lobos/react-ui)
 
 componets 2
+
 - [Belle](http://nikgraf.github.io/belle/)
 - [MUI](https://github.com/muicss/mui)
 - [elemental-ui](http://elemental-ui.com/)
 - [react-widget](https://github.com/jquense/react-widgets)
 
 components 3
+
 - [react.rocks](https://react.rocks) 	examples
 - [ireact](http://iReact.cn) 			components examples
 - [microjs](http://microjs.com/) 		components examples
@@ -268,6 +331,7 @@ components 3
 - [react-timesheet](https://github.com/yuanyan/react-timesheet)
 
 components by facebook
+
 - [facebook-draft-js](https://facebook.github.io/draft-js/)
 - [facebook-fixed-datatable](https://facebook.github.io/fixed-data-table/)
 - [native-common-components](https://github.com/beefe/doc/blob/master/react-native/common-components.md)
@@ -275,6 +339,7 @@ components by facebook
 
 
 site examples 
+
 - [nuclearmail](https://github.com/ianobermiller/nuclearmail)	gmail rest example
 - [sound-redux](https://github.com/andrewngu/sound-redux) 		Soundcloud client
 - [react-sweeper](https://github.com/cjohansen/react-sweeper) 	Minesweeper game
@@ -284,6 +349,7 @@ site examples
 
 
 frameworks
+
 - [reactjs for nuget](https://reactjs.net/)nuget reactjs for asp.net mvc4/5
 - [deku](https://github.com/anthonyshort/deku) another framework
 - [riotjs](http://riotjs.com/)  react like ui lib

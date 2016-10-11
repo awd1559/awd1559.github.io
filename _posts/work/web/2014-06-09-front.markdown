@@ -468,18 +468,6 @@ angular.module('myApp')
 - [source code on github](https://github.com/facebook/react)
 
 
-#### create-react-app
-
-```
-npm install -g create-react-app
-create-react-app hello-world
-npm start
-npm run build
-```
-
-
-
-
 #### basic useage 
 
 ```
