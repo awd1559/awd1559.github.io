@@ -92,12 +92,12 @@ require_once("HTML/AJAX.php");
 	[github](https://github.com/cakephp/cakephp)
 - [CodeIgniter v5](http://www.codeigniter.com/)
 	[github](https://github.com/bcit-ci/CodeIgniter)
-- [laravel](https://laravel.com/)
+- [laravel](/2014/06/09/php-laravel)
 - [phaIcon](https://phalconphp.com/zh/)  
 	c extension
 - [symfony](http://symfony.com/) 
 	depends on composer
-- [thinkphp](http://www.thinkphp.cn/)
+- [thinkphp](/2014/06/09/php-thinkphp)
 - [yii](http://www.yiiframework.com/) 
 	yiic
 
@@ -107,4 +107,4 @@ require_once("HTML/AJAX.php");
 - [Joomla v3](https://www.joomla.org/)
 - [phpMyAdmin v4.6](http://www.phpmyadmin.net/)
 - [phpwind v9](http://www.phpwind.net/)
-- [wordpress v4.5](https://wordpress.org/)
+- [wordpress v4.5](/2014/06/09/php-wordpress)

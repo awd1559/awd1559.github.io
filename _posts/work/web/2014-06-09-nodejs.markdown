@@ -1,0 +1,432 @@
+---
+layout:     post
+title:      "nodejs"
+subtitle:   " \"nodejs\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - web
+---
+# [Node.js](https://nodejs.org/)
+download installer from [Node.js](https://nodejs.org/)
+
+
+#### run in webstorm
+
+- Edit Configration -> Node.js
+- Node interpreter: usr/local/bin/node
+- JavaScript file:  bin/www
+
+```
+use 'supervisor' to monitor node code changes
+change jade template files will refresh on browser
+```
+
+# [npm](https://www.npmjs.com)
+nodejs package manage
+
+#### install
+download installer from [Node.js](https://nodejs.org/)
+
+#### usage
+```
+npm -l #display the npm command full usage
+npm <cmd> -h #display the npm <cmd> help info
+
+npm install [package] #install package to directory<node_modules>
+npm update [package]
+npm uninstall [package]<version>
+npm view [package]
+
+npm publish <tagball>
+npm publish <folder>
+
+npm start
+npm stop
+
+npm list #list package in directory: node_modules
+npm version
+```
+
+#### package.json
+```
+npm init #create a simple package.json
+npm install #install dependencies in package.json
+npm start #start start command in package.json
+```
+
+```
+{
+  "name":"",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js"
+  ... ...
+}
+```
+
+|name        | description or sample value                 |
+| ---------- | ------------------------------------------- |
+|name        |the name of this npm package                 |
+|version     |version                                      |
+|description |description                                  |
+|main        |main javascript file                         |
+|keyword     |["Node.js","AngularJS",]                     |
+|homepage    |"https://github.com"                         |
+|engines     |{"node": ">=0.10.x"}                         |
+|repository  |{"type": "git","url": "https://*.git"}       |
+|dependencies|{"redis": "~0.10.x","nodemailer": ">=0.6.x",}|
+|scripts     |{"start": "node app.js"}                     |
+
+
+
+
+# [Bower](http://bower.io/)
+package manager for web frontend module
+
+#### install 
+```
+npm install -g bower 
+```
+
+#### usage
+```
+bower install bootstrap #download bootstrap to directory: bower_components
+
+bower search <package>
+bower install <package>
+bower uninstall <package>
+bower update <package>
+bower list        #list package hierarchy in directory: bower_components
+
+bower help
+bower init        #create a simple bower.json
+```
+[packages](http://bower.io/search/)
+
+#### bower.json
+```
+bower init #create a simple bower.json
+bower install #install dependencies in bower.json
+```
+
+
+
+
+
+
+
+# [yeoman](http://yeoman.io)
+framework tool for web dev
+
+#### install
+```
+npm install -g yo
+#yo depends on bower, grunt, gulp
+npm install -g bower grunt-cli gulp
+```
+
+#### generators
+```
+#install generator
+npm install -g generator-webapp
+npm install -g generator-angular
+npm install -g generator-gulp-webapp
+```
+
+[generators](http://yeoman.io/generators/)
+
+- gulp-angular
+- gulp-webapp
+- mobile
+- webapp
+- angular
+- angular-fullstack
+- react-fullstack
+
+
+#### usage
+```
+#bootstrap, sass, modernizr
+yo webapp  #use grunt
+yo gulp-webapp  #use gulp
+
+#sass, bootstrap, grunt
+yo angular
+yo angular —coffee
+yo angular:controller myController
+yo angular:directive myDirective
+yo angular:filter myFilter
+yo angular:service myService
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# [gulp](http://gulpjs.com/)
+[中文](http://www.gulpjs.com.cn/)
+
+#### install
+```
+npm -g install gulp
+npm -g install gulp-cli
+#install to directory: node_modules/gulp
+npm install gulp
+
+npm init
+npm install --save-dev gulp #save "devDependencies" in file package.json
+```
+
+#### gulpfile.js
+```
+var gulp = require('gulp');
+
+gulp.task('default', function() {
+  // place code for your default task here
+});
+gulp.task('styles', ['default'], function() {  
+  return gulp.src('src/styles/main.scss')
+    .pipe(sass({ style: 'expanded' }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(minifycss())
+    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(notify({ message: 'Styles task complete' }));
+});
+
+```
+
+run the task
+
+>gulp           #run default task
+>gulp --task    #list task hierarchy
+
+
+#### [plugin](http://gulpjs.com/plugins/)
+编译sass  gulp-ruby-sass
+Autoprefix: gulp-autoprefixer
+压缩css gulp-minify-css
+JSHint    gulp-jshint
+拼接    gulp-concat
+丑化    gulp-uglify
+图片压缩  gulp-imagemin
+live reload gulp-livereload
+    gulp-cache    只有修改过的图片会进行压缩
+    gulp-notify
+    gulp-sourcemaps
+
+
+# [grunt](http://www.gruntjs.net)
+
+#### install
+```
+npm install -g grunt-cli
+npm install -g grunt
+
+npm install --save-dev grunt 
+```
+
+
+#### Gruntfile
+Gruntfile.js or Gruntfile.coffee
+
+```
+'use strict';
+module.exports = function(grunt) {
+  grunt.initConfig({
+    clean: {
+      src: ['dist']
+    },
+    uglify: {
+      options: {
+        banner: '<%= banner %>'
+      },
+      dist: {
+        src: '<%= concat.dist.dest %>',dest: 'dist/ba-<%= pkg.name %>.min.js'
+      },
+    }
+  })
+}
+```
+
+到项目grunt项目的根目录：
+npm install  //安装依赖项目， 根据package.json(必须有内容)
+grunt
+grunt serve
+
+
+
+
+
+
+
+
+
+
+# babel 		//translation
+
+```
+npm i -g babel-cli
+npm i --save-dev babel-core
+npm i --save-dev babel-eslint
+npm i --save-dev babel-loader
+npm i --save-dev babel-preset-react
+npm i --save-dev babel-preset-es2015
+npm i --save-dev babel-preset-stage-0 
+```
+
+```
+//.babelrc
+{
+  "presets": ["react", "es2015", "state-0"],
+  "plugins": []
+}
+```
+
+```
+babel index.js   //output to std
+```
+
+
+# webpack
+
+```
+npm i -g webpack
+//package entry.js and all used resource into bundle.js
+webpack entry.js bundle.js    
+
+//entry.js
+//need: npm install css-loader style-loader
+//或者在config文件中配置loader
+require("!style!css!./style.css");		
+document.write("It worked");
+document.write(require("./content.js"));
+
+//content.js
+module.exports = "it works from content.js";
+```
+
+```
+//use default config file
+//webpack.config.js		
+var webpack = require('webpack');
+
+module.exports = {
+  	entry: __dirname + "/app/main.js",
+  	output: {
+    	path: __dirname + "/public",
+    	filename: "bundle.js"
+  	},
+
+  	module: {
+    	loaders: [
+    		// => "jade" loader is used for ".jade" files
+    		{ test: /\.jade$/, loader: "jade" },
+
+    		// => "style" and "css" loader is used for ".css" files
+	    	{ test: /\.css$/, loader: "style!css" },	
+
+        	// Alternative syntax:
+        	{ test: /\.css$/, loaders: ["style", "css"] }
+    	]
+  	},
+  	plugins: [
+    	new webpack.BannerPlugin('This file is created by awd')
+  	]
+};
+```
+
+```
+//see progress with colors
+webpack --progress --colors
+//and watch files changes   
+webpack --progress --colors --watch
+npm i -g webpack-dev-server
+webpack-dev-server --progress --colors
+```
+
+
+
+
+
+
+# express
+
+```
+npm i -g express
+npm i -g express-generator
+express test_express               //create project
+cd test_express
+npm install
+npm start
+```
+
+```
+var app = express();
+
+//设置模版引擎
+app.set('views', path.join(__dirname, 'views'))
+app.set(‘view engine’, ‘html’);
+app.set(‘view engine’, ‘ejs’);
+app.set(‘view engine’, ‘jade’);
+
+
+//路由 
+app.get(‘/’, routes.index);
+app.get(‘/login’, routes.login);
+app.post(‘/login’, routes.doLogout);
+
+/ab?cd    匹配abcd, acd，0个或1个b字符
+/ab+cd    至少一个b
+/ab*cd    0个或多个各种字符
+
+
+//使用名称
+var index = require('./routes/index');
+app.use('/', index);
+
+//routes/index.js
+var express = require('express');
+var router = express.Router();
+router.get('/', function(req, res, next){
+  res.render('index', {title:'传过去值'});
+});
+
+
+//res方法
+res.download()
+res.end()
+res.jsoin()
+res.jsonp()
+res.redirect()
+res.send()
+res.sendFile()
+res.sendStatus()
+```
+
+
+
+
+
+
+# koa
+
+# supervisor
+nodejs 代码修改后必须重新启动才可以看到修改结果
+supervisor可以在修改代码后自动重启
+npm install -g supervisor
+使用supervisor app.js 启动服务器
+	会遇到supervisor不停重启的错误问题
+
+
