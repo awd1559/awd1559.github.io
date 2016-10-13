@@ -307,9 +307,7 @@ npm i -g webpack
 webpack entry.js bundle.js    
 
 //entry.js
-//need: npm install css-loader style-loader
-//或者在config文件中配置loader
-require("!style!css!./style.css");		
+require("./style.css");		
 document.write("It worked");
 document.write(require("./content.js"));
 
