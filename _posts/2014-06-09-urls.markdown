@@ -245,7 +245,7 @@ start kit
 
 - [create-react-app](https://github.com/facebookincubator/create-react-app)
 
-npm, no bootstrap, no jquery, no webpack, no server
+npm, react-scripts, webpack, webpack-dev-server, bootstrap
 
 ```
 npm install -g create-react-app
@@ -255,40 +255,17 @@ npm run build
 ```
 
 
-- [generator-react-gulp-browserify](https://github.com/randylien/generator-react-gulp-browserify)
+- [react-starter-kit](https://github.com/kriasoft/react-starter-kit)
 
-babel, browser, gulp, npm, jquery, bootstrap
-
-```
-sudo npm install -g generator-react-gulp-browserify
-yo react-gulp-browserify
-gulp watch
-gulp build
-```
-
-
-- [react-starter-kit](https://github.com/bodyno/react-starter-kit)
-
-babel, webpack, express, karma
+babel, webpack, express, bootstrap
 
 ```
-git clone https://github.com/bodyno/react-starter-kit.git
-cd react-starter-kit
+git clone -o react-starter-kit -b master --single-branch https://github.com/kriasoft/react-starter-kit.git MyApp
+cd MyApp
 npm install
 npm start
 ```
 
-- [aspnet-starter-kit](https://github.com/kriasoft/aspnet-starter-kit)
-
-aspcore, babel, webpack, 
-
-```
-npm install -g generator-aspnetcore
-yo aspnetcore
-npm install
-npm run 
-node run publish 	#deploy your app to Azure App Service
-```
 
 - [react-aspnet-boilerplate](https://github.com/pauldotknopf/react-aspnet-boilerplate)
 

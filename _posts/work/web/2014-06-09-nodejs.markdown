@@ -325,20 +325,19 @@ var webpack = require('webpack');
 module.exports = {
   	entry: __dirname + "/app/main.js",
   	output: {
-    	path: __dirname + "/public",
+    	path: __dirname + "/build",
     	filename: "bundle.js"
   	},
+    resolve: {
+      extensions: ["", ".js", ".jsx", ".jade"]
+    },
 
   	module: {
     	loaders: [
-    		// => "jade" loader is used for ".jade" files
-    		{ test: /\.jade$/, loader: "jade" },
-
-    		// => "style" and "css" loader is used for ".css" files
-	    	{ test: /\.css$/, loader: "style!css" },	
-
-        	// Alternative syntax:
-        	{ test: /\.css$/, loaders: ["style", "css"] }
+    		{ 
+          test: /\.jade$/, 
+          loader: "jade" 
+        }
     	]
   	},
   	plugins: [
@@ -357,8 +356,73 @@ webpack-dev-server --progress --colors
 ```
 
 
+#### Loaders
+
+'''
+npm i style-loader css-loader --save-dev
+
+{
+  test:/\.css$/,
+  loaders:['style','css'],
+  exclude:'node_modules'
+}
+```
 
 
+
+```
+npm i react react-dom --save-dev
+npm i babel-cli babel-loader --save-dev
+npm i babel-preset-es2015 babel-preset-react --save-dev
+{
+  test:/\.jsx?$/,
+  loaders:['babel?presets[]=es2015&presets[]=react'],
+  exclude:"/node_modules/"
+}
+```
+
+
+
+#### Plugins
+
+```
+npm install html-webpack-plugin
+
+new HtmlWebpackPlugin()
+
+new HtmlWebpackPlugin({//根据模板插入css/js等生成最终HTML
+  favicon:'./src/img/favicon.ico', //favicon路径
+  filename:'/view/index.html',    //生成的html存放路径，相对于 path
+  template:'./src/view/index.html',    //html模板路径
+  inject:true,    //允许插件修改哪些内容，包括head与body
+  hash:true,    //为静态资源生成hash值
+  minify:{    //压缩HTML文件
+    removeComments:true,    //移除HTML中的注释
+    collapseWhitespace:true    //删除空白符与换行符
+  }
+})
+```
+
+```
+new webpack.optimize.UglifyJsPlugin({    //压缩代码
+    compress: {
+        warnings: false
+    },
+    except: ['$super', '$', 'exports', 'require']    //排除关键字
+}),
+```
+
+#### webpack-dev-server
+
+```
+npm install webpack-dev-server --save-dev
+
+//package.json
+"dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
+
+npm run dev   //localhost:8080
+
+```
 
 
 # express
