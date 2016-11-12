@@ -19,6 +19,9 @@ tags:
 - message alert
 
 
+零云-积木式云平台
+[corethink]()
+[OpenCMF]()
 
 
 
@@ -61,5 +64,20 @@ tags:
 
 A multi-platform .NET UI framework (formerly known as Perspex)
 [Avalonia](https://github.com/AvaloniaUI/Avalonia)
+
+
+
+java rbac
+[anycmd](http://git.oschina.net/anycmd/anycmd)
+
+
+Modular Object-Oriented Dynamic Learning Environment
+[Moodle](https://moodle.org/)
+
+论坛系统
+[Flarum](http://flarum.org/)
+
+
+
 
 
