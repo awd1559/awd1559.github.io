@@ -11,3 +11,33 @@ tags:
 atom
 
 # keymap
+ctrl+shift+p    
+ctrl+p          open file in current project
+ctrl+enter      new line
+
+
+# config
+
+theme: Atom Material, One Dark
+
+
+# plugins
+
+- misc
+
+> **atom-beautify**
+> - support: Arduino, c/c++/c#, CSS/HTML/JavaScript/JSON, Java,  php, ruby, SQL
+> - ctrl+alt+b
+> - Packages -> Atom Beautify
+
+
+
+- markdown
+
+> **markdown-preview**
+> - ctrl+shift+m:   trigger preview mode
+
+- php
+
+> ****
+> -
