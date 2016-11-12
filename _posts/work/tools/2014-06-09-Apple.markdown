@@ -32,7 +32,7 @@ Option + Command + - :  缩小鼠标处
 Option + Command + =:  放大鼠标处
 
 窗口控制
-Command+`切换同一个程序中的多个窗口
+Command+`   切换同一个程序中的多个窗口
 Command+m最小化窗口
 Command+w关闭窗口
 Command+Control+f 全屏
@@ -53,3 +53,15 @@ IOS快捷键
 windows键对应：	Mac键盘
 win				⌘
 alt                            	option
+
+
+# brew
+
+brew 故障
+cd /usr/local
+git status
+
+git reset --hard && git clean -df
+
+brew doctor
+brew update

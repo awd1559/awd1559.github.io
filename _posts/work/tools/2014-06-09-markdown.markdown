@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "ai"
+title:      "markdown"
 subtitle:   " \"常用方法和快捷键\""
 date:       2014-06-09 12:00:00
 author:     "awd"

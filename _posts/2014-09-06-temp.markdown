@@ -81,3 +81,85 @@ Modular Object-Oriented Dynamic Learning Environment
 
 
 
+resources
+
+[链接:1](http://pan.baidu.com/s/1o6HT4fC) 密码: tjor
+[链接:2](http://pan.baidu.com/s/1dD8cz4H) 密码: 2ekn
+[链接:3](http://pan.baidu.com/s/1bnD6hVD) 密码: qglq
+[链接:4](http://pan.baidu.com/s/1hq8CqY4) 密码: y9qn
+
+[android源码](http://yunpan.cn/QaUQDxk36jgj3) （提取码：7188）
+
+
+
+
+
+
+# 新工具
+
+2011年4月，IBM发布maqetta，HTML5可视化工具
+
+Sketch: 新的矢量UI设计工具，取代PS和AI
+
+xScope for Mac是一个集测量、校准和检查图形和布局于一身的功能强大的工具
+
+
+HYPE3，收费软件
+app原型的基础过场
+
+Frameless，免费开源软件
+a full - screen web browser
+
+AxueRP
+快速原型设计工具
+android模版
+web组件
+AxueRP库大全
+有Mac、Win 版
+
+
+Setch
+只有Mac版
+矢量素材制作工具
+安装插件，sketch->plugins->reveal plugins in finder->解压缩到该文件夹
+
+
+Mockups
+最好的线框设计图
+有Mac、Win版
+
+
+KeyNote
+交互动画设计
+使用组建库
+
+
+
+
+
+
+
+
+移动App原型设计
+1、POP（Prototyping on Paper）
+![pop](/img/in-post/work-tools-pop.png)
+2、Pencil Project 
+![pencil](/img/in-post/work-tools-pencil.png)
+5、Moqups
+![moqups](/img/in-post/work-tools-moqups.png)
+6、UXPin
+![uxpin](/img/in-post/work-tools-uxpin.png)
+7、Omnigraffle
+![Omnigraffle](/img/in-post/work-tools-omnigraffle.png)
+8、JustinMind
+![JustinMind](/img/in-post/work-tools-justinmind.png)
+9、FluidUI
+![FluidUI](/img/in-post/work-tools-fluidui.png)
+10、Protoshare
+![Protoshare](/img/in-post/work-tools-protoshare.png)
+11、 Wireframe
+![Wireframe](/img/in-post/work-tools-wireframe.png)
+12、InVision
+![InVision](/img/in-post/work-tools-invision.png)
+14、iPlotz 
+![iPlotz ](/img/in-post/work-tools-iplotz.png)

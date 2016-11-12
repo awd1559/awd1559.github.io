@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "ai"
+title:      "sublime"
 subtitle:   " \"常用方法和快捷键\""
 date:       2014-06-09 12:00:00
 author:     "awd"
@@ -9,14 +9,65 @@ tags:
     - tools
 ---
 sublime
-ctrl+p		项目中某文件
-ctrl+r		文件中某函数
 
-ctrl+L 选择整行
+# keymap
+ctrl+p			goto file in current project
+ctrl+r			goto function in current file
+ctrl+x 			delete line
+ctrl+shift+d	duplicate current line
+ctrl+l			select current line		
 
-
-command+k,command+b	打开关闭侧边栏
+cmd+k,cmd+b	 	trigger side bar
 command+option+1 	single view
 command+option+2  	two    view
 
 
+
+
+# install package control
+
+```
+//ctrl-` or View -> Show Console
+
+
+//sublime 2
+import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')
+
+
+//sublime 3
+import  urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+
+
+```
+
+#config
+
+```
+"draw_white_space": "all",
+"font_size": 19,
+"hot_exit": false,
+"ignored_packages":
+[
+	"Vintage"
+],
+"open_files_in_new_window": false,
+"remember_open_files": false,
+"word_wrap": true
+```
+
+
+# build system
+
+Tools -> Build System -> New Build System
+
+//php
+{
+	"cmd": ["php", "$file"],
+	"file_regex": "php$",
+	"selector": "test.php"
+}
+
+
+
+
+# plugin packages

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "ai"
+title:      "vi"
 subtitle:   " \"常用方法和快捷键\""
 date:       2014-06-09 12:00:00
 author:     "awd"
@@ -65,7 +65,7 @@ NERDTree - 文件目录树工具 实现文件导航
 Plugin ‘scrooloose/nerdtree'
 配置：
 	let NERDTreeWinPos = “left”
-	
+
 :NERDTreeToggle
 
 YouCompleteMe - 自动补全
@@ -78,8 +78,3 @@ vim powerline
 
 tagbar 显示文件结构
 tagbar
-
-
-
-
-
