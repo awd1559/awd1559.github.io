@@ -8,13 +8,13 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - info
 ---
-[公司列表](/2014/06/09/公司列表/)
-[应用列表](/2014/06/09/应用列表/)
-[游戏列表](/2014/06/09/游戏列表/)
-[软件列表](/2014/06/09/软件列表/)
-[音乐列表](/2014/06/09/音乐列表/)
-[设备列表](/2014/06/09/设备列表/)
-[书单](/2014/06/09/书单/)
+- [公司列表](/2014/06/09/公司列表/)
+- [应用列表](/2014/06/09/应用列表/)
+- [游戏列表](/2014/06/09/游戏列表/)
+- [软件列表](/2014/06/09/软件列表/)
+- [音乐列表](/2014/06/09/音乐列表/)
+- [设备列表](/2014/06/09/设备列表/)
+- [书单](/2014/06/09/书单/)
 
 # cocos2d-x
 - 捕鱼达人
@@ -66,209 +66,236 @@ tags:
 
 
 # Android游戏引擎
-artemis entity
-artemis 是一个主要为游戏设计的高性能实体管理系统
-它独立于任何引擎，全部用java书写，总大小26k
-http://gamadu.com/artemis/
-svn checkout http://gameadu.com/svn/artemis/
 
-emini
-物理引擎和粒子引擎
-http://www.emini.at/
+> **artemis entity**
+>
+> - artemis 是一个主要为游戏设计的高性能实体管理系统
+> - 它独立于任何引擎，全部用java书写，总大小26k
+> - http://gamadu.com/artemis/
+> - svn checkout http://gameadu.com/svn/artemis/
 
-
-android libgdx experiments   libgdx试验
-http://code.google.com/p/android-libgdx-experiments/
-svn checkout http://android-libgdx-experiments.googlecode.com/svn/trunk/ android-libgdx-experiments-read-only
-
-bluegin                     
-android c++引擎。基于Flixel引擎，使用Cinder框架绘制opengl,并且包含一个pc的测试程序，支持本地调试。
-https://github.com/safetydank/bluegin
-
-yoghurgum
-跨平台2d游戏引擎,
-在android上使用opengles来进行渲染，支持Windows Mobile 6
-使用C++编写
-svn checkout http://yoghurtgum.googlecode.com/svn/trunk/ yoghurtgum-read-only
+> **emini**
+>
+> - 物理引擎和粒子引擎
+> - http://www.emini.at/
 
 
-Gamine
-个人开发的开源3D引擎
-http://gamine.sourceforge.net
-http://sourceforge.net/projects/gamine/files/
+> **android libgdx experiments**
+>
+> - http://code.google.com/p/android-libgdx-experiments/
+> - svn checkout http://android-libgdx-experiments.googlecode.com/svn/trunk/ android-libgdx-experiments-read-only
+
+> **bluegin**
+>
+> -android c++引擎。基于Flixel引擎，使用Cinder框架绘制opengl,并且包含一个pc的测试程序，支持本地调试。
+> - https://github.com/safetydank/bluegin
+
+> **yoghurgum**
+> - 跨平台2d游戏引擎,
+> - 在android上使用opengles来进行渲染，支持Windows Mobile 6
+> - 使用C++编写
+> - svn checkout http://yoghurtgum.googlecode.com/svn/trunk/ yoghurtgum-read-only
 
 
-e3roid-2d
-基于OpenglES的2D游戏引擎
-http://code.google.com/p/e3roid/
-svn checckout http://e3roid.googlecode.com/svn/trunk/ e3roid-read-only
+> **Gamine**
+>
+> - 个人开发的开源3D引擎
+> - http://gamine.sourceforge.net
+> - http://sourceforge.net/projects/gamine/files/
 
 
-Alien3D
-http://code/google.com/p/alien3d/
-
-Catcake
-跨平台的java 3D图形引擎
-http://code.google.com/p/catcake
-
-jPCT
-基于OpenGL技术的3D图形引擎
-http://www.jpct.net/jpct-ae/
+> **e3roid-2d**
+>
+> - 基于OpenglES的2D游戏引擎
+> - http://code.google.com/p/e3roid/
+> - svn checckout http://e3roid.googlecode.com/svn/trunk/ e3roid-read-only
 
 
-libgdx
-http://code.google.com/p/libgdx
+> **Alien3D**
+>
+> - http://code/google.com/p/alien3d/
 
-AndEngine
-http://www.andengine.org
-http://code.google/com/p/andengineexamples/
+> **Catcake**
+>
+> - 跨平台的java 3D图形引擎
+> - http://code.google.com/p/catcake
 
-LGame
-国人个人开发的java游戏引擎
-http://code.google.com/p/loon-simple
-
-Rokon
-Android 2D 游戏引擎, 物理引擎为Box2D
-http://code/google.com/p/rokon
-
-Angle
-Android 2D游戏引擎
-http://code/google.com/p/angle/
+> **jPCT**
+>
+> - 基于OpenGL技术的3D图形引擎
+> - http://www.jpct.net/jpct-ae/
 
 
-le3d engine
+> **libgdx**
+>
+> - http://code.google.com/p/libgdx
+
+> **AndEngine**
+>
+> - http://www.andengine.org
+> - http://code.google/com/p/andengineexamples/
+
+> **LGame**
+>
+> - 国人个人开发的java游戏引擎
+> - http://code.google.com/p/loon-simple
+
+> **Rokon**
+>
+> - Android 2D 游戏引擎, 物理引擎为Box2D
+> - http://code/google.com/p/rokon
+
+> **Angle**
+>
+> - Android 2D游戏引擎
+> - http://code/google.com/p/angle/
+
+
+> **le3d engine**
 
 
 # 游戏引擎
-TheoWorlds flash
-OpenBOR 横版动作引擎 
-2DFM
 
-RMXP
-Game Maker
+> **[TheoWorlds](http://www.theoworlds.com/)
+>
+> - OpenBOR 横版动作引擎 
+> - 2DFM
 
-SDL
-libSDL-android
+> **RMXP**
+>
+> - RPG Game Make XP
 
-side scrolling game 
+> **SDL**
+>
+> - libSDL-android
 
-Underworld - Free Online Multiplayer Game
-http://www.dimensionex.net/underworld/
+# side scrolling game 
 
+- [Underworld - Free Online Multiplayer Game](http://www.dimensionex.net/underworld/)
 
-Crossfire - The Multiplayer Adventure Game
-http://crossfire.real-time.com/
+- [Crossfire - The Multiplayer Adventure Game](http://crossfire.real-time.com/)
 
-
-M.U.G.E.N
-http://elecbyte.com
-
-
-Arianne RPG 引擎 sourceforge.net  standhal
-https://stendhalgame.org
+- [M.U.G.E.N](http://elecbyte.com)
 
 
-netease pomelo 
-git上开源，基于node.js express，rpg服务框架
-
-
-魔兽私服
-TrinityCore is a MMORPG Framework based mostly in c++
-
-
-大宇
-轩辕剑
-大富翁
-仙剑
-gamebox 引擎
+- [Arianne RPG 引擎](https://stendhalgame.org) 
+> - sourceforge.net 
+> - standhal
 
 
 
-
-目标软件
-overmax引擎
-天骄
-傲视三国
-秦殇
+- netease pomelo
+> - git上开源
+> - 基于node.js express
+> - rpg服务框架
 
 
+> **魔兽私服**
+>
+> - TrinityCore is a MMORPG Framework based mostly in c++
 
-gamebryo 引擎
-上古卷轴 IV
-辐射 3
-战锤 online
-仙境传说2
+- 大宇
+- 轩辕剑
+- 大富翁
+- 仙剑
+- gamebox 引擎
 
 
 
 
-棋牌6603
-
-疯狂医生 台湾
-
-真人快打
-never die
-
-steampunk 蒸汽迷城
-
-智龙迷城 Puzzle & Dragons
-GungHo Online 🇯🇵
-
-果冻塔防 jelly Defense
-Infinite Dreams Inc 波兰
-
-
-倒水解谜
-一笔画
-疯狂喷气机
-Super Stickman
-Sonic the SEGA of America
-
-
-玩过的好游戏
-超级救火队  GFX 3D Engine
-功夫熊猫 we want boom
-疯狂老爷爷
-恐怖庄园的秘密
-开心笑笑了
-跳跃忍者 NinJump
-找你妹2014
-Shoot Bubble
-BMX boy (Runner Game)
-登山塞车
-
-激光解谜
-爱丽丝快跑
-3D曲棍球
-冲啊母鸡
-图腾跑酷   X-Runner
-Orborun
+- 目标软件
+- overmax引擎
+- 天骄
+- 傲视三国
+- 秦殇
 
 
 
-45度, 台湾， 仙剑奇侠传  Dos时代
-平行909度， 日本， 太空战士
-主观视角， 日本，勇者斗恶龙
+- gamebryo 引擎
+- 上古卷轴 IV
+- 辐射 3
+- 战锤 online
+- 仙境传说2
 
 
-金庸群侠传
-太阁立志传
 
 
-Doom
-红色警戒
+- 棋牌6603
+
+- 疯狂医生 台湾
+
+- 真人快打
+- never die
+
+- steampunk 蒸汽迷城
+
+- 智龙迷城 Puzzle & Dragons
+- GungHo Online 🇯🇵
+
+- 果冻塔防 jelly Defense
+- Infinite Dreams Inc 波兰
 
 
-# 风云
-- 风魂引擎
+- 倒水解谜
+- 一笔画
+- 疯狂喷气机
+- Super Stickman
+- Sonic the SEGA of America
+
+
+# 玩过的好游戏
+- 超级救火队  GFX 3D Engine
+- 功夫熊猫 we want boom
+- 疯狂老爷爷
+- 恐怖庄园的秘密
+- 开心笑笑了
+- 跳跃忍者 NinJump
+- 找你妹2014
+- Shoot Bubble
+- BMX boy (Runner Game)
+- 登山塞车
+
+- 激光解谜
+- 爱丽丝快跑
+- 3D曲棍球
+- 冲啊母鸡
+- 图腾跑酷   X-Runner
+- Orborun
+
+
+
+- 45度, 台湾， 仙剑奇侠传  Dos时代
+- 平行909度， 日本， 太空战士
+- 主观视角， 日本，勇者斗恶龙
+
+
+- 金庸群侠传
+- 太阁立志传
+
+
+- Doom
+- 红色警戒
+
+
+# 风云 风魂引擎
 - 梦幻西游
 - 大话西游
 
 
+# Unreal引擎
+- TERA (韩国)
+- 剑灵  (韩国)
 
-＃经典Java游戏
-http://paranimage.com/10-classic-java-mobile-games/
-http://www.williamlong.info/download/mobilegames.zip
+- 1999 Unreal 竞技场发布 PS2平台
+- 2003 Unreal II
+- 2004 Unreal 竞技场2004
+- 2005 锦标赛2 XBox
+- 2006 战争机器(UE3)
+- 2007 UT3
+
+# 经典Java游戏
+- [10-classic-java-mobile-games](http://paranimage.com/10-classic-java-mobile-games/)
+- [mobilegames](http://www.williamlong.info/download/mobilegames.zip)
 - 俄罗斯方块 Tetris
 - 超级泡泡龙 Super Bubble Bobble
 - 超级马里奥 Super Mario Bros

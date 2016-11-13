@@ -37,3 +37,26 @@ app临时编译位置
 
 shift+Option(alt) : 设置预览
 ctrl + Option : 预览
+
+
+# plugins
+
+- auto-importer: quickly import headers 
+- CocoaControls: browse, search, integrate, clone controls in http://cocoacontrols.com
+- CocoaPodUI:			CocoaPods GUI
+- CodePilot:				快速查找文件、函数、符号
+- ~~FuzzyAutocomplete:		函数自动提示，可从函数中间开始~~
+- KKHighlightRecentPlugin:	高亮显示最近选中的文件
+- ~~OFPlugin:				方便添加OpenFrameworks addons~~
+- ~~OMColorSense			显示UIColor~~
+- OpenInSublimeText
+- OpenTerminal
+- ~~SuggestedColors			Interface Builder中显示颜色选择下拉菜单~~
+- SwiftCodeSnippets		自动下载SwiftCodeSnip
+- SwipeGestureSwitcher		代码编辑框中使用手势
+- XCActionBar			使用action完成Xcode中的所有命令
+- xcfui					fui: find unused inport
+- ~~XcodeWay				navigating 到不同的文件夹~~
+- ~~XFunnyEditor			在背景显示一张图片~~
+- XLCXcodeAssist			provide suggestion implementation for missing objective-c methods
+- XToDo				收集代码中的TODO, FIXME, ???

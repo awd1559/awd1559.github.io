@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "设备列表"
-subtitle:   " \"设备列表, smart device\""
+title:      "世界电影杂志"
+subtitle:   " \"世界电影杂志\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
@@ -22,7 +22,8 @@ tags:
 1992.3 布奇卡西迪和日舞小子
 1996.4 三色
 1997.1 理智与情感
-1998.3 1998. 4 泰坦尼克号
+1998.3 
+1998.4 泰坦尼克号
 1998.6 樱桃的滋味
 1999.1 good will hurting
 2006.1 迷失东京
