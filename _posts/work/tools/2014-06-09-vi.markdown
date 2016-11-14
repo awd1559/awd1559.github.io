@@ -8,6 +8,10 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
+
+# install 
+
+```
 brew install vim
 brew install ctags
 brew install cscope
@@ -18,33 +22,45 @@ sudo vim /etc/paths
 在代码根目录运行：
 	ctags -R
 	cscope -Rbq
+```
 
+# config 
 
-使用配置脚本
-https://github.com/spf13/spf13-vim
+use [script1](https://github.com/spf13/spf13-vim)
+
+```
 curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+```
 
-或者配置脚本
-https://github.com/amix/vimrc
+use [script2](https://github.com/amix/vimrc)
+
+```
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
+```
 
-插件
-安装Vundle
-https://github.com/VundleVim/Vundle.vim
+# plugins
+
+#### Vundle 
+
+install [Vundle](https://github.com/VundleVim/Vundle.vim)
+
+```
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
 
 启动vim，运行:PluginInstall 		//安装Vundle中的插件
 
 
 
-Pathogen
+#### Pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 
-插件列表
-
+#### useful plugin list
+```
 ctrlp
 https://github.com/kien/ctrlp.vim
 let g:ctrlp_map = '<c-p>'		"ctrl+p 触发文件搜索
@@ -54,27 +70,34 @@ let g:ctrlp_working_path_mode = 'ra'		"搜索目录
 c - directory of current file
 r  - nearest that contains one of these dir or files : .git .hg .svn
 a - like c, but only if the current working dir  
+```
 
-
+```
 mru  - most recent used file
 https://github.com/vim-scripts/mru.vim
 :MRU
+```
 
-
+```
 NERDTree - 文件目录树工具 实现文件导航
 Plugin ‘scrooloose/nerdtree'
 配置：
 	let NERDTreeWinPos = “left”
 
 :NERDTreeToggle
+```
 
+```
 YouCompleteMe - 自动补全
 Plugin 'Valloric/YouCompleteMe'
+```
 
-
-
+```
 powerline - 状态栏
 vim powerline
+```
 
+```
 tagbar 显示文件结构
 tagbar
+```

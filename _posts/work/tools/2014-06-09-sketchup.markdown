@@ -8,24 +8,28 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-space 	select
-q		Rotate
-e 		Eraser
-r  		Rectangle
-t		Tape Measuure
-o 		Orbit
-p 		Pull
-a		Arc
-s		Scale
-f		Offset
-g 		Component
-h		Hand/Pan
-l		Line
-z		Zoom
-c		Circle
-b		Brush
-m		Move
 
+------- | -------------- | 
+space   | select         |
+q	    | Rotate         |
+e 	    | Eraser         |
+r       | Rectangle      |
+t	    | Tape Measuure  |
+o 		| Orbit          |
+p 		| Pull           |
+a		| Arc            |
+s		| Scale          |
+f		| Offset         |
+g 		| Component      |
+h		| Hand/Pan       |
+l		| Line           |
+z		| Zoom           |
+c		| Circle         |
+b		| Brush          |
+m		| Move           |
+
+
+# plugins
 
 Preference - Extensions - install Extensions *.rbz
 

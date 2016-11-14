@@ -11,6 +11,8 @@ tags:
 sublime
 
 # keymap
+
+```
 ctrl+p			goto file in current project
 ctrl+r			goto function in current file
 ctrl+x 			delete line
@@ -20,7 +22,7 @@ ctrl+l			select current line
 cmd+k,cmd+b	 	trigger side bar
 command+option+1 	single view
 command+option+2  	two    view
-
+```
 
 
 

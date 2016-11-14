@@ -8,56 +8,64 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-OS X键盘总结：
-⌘——Command ()
-⌃ ——Control
-⌥——Option (alt)
-⇧——Shift
-⇪——Caps Lock
-fn——功能键就是fn
+# KeyDefine
+
+- ⌘——Command ()
+- ⌃ ——Control
+- ⌥——Option (alt)
+- ⇧——Shift
+- ⇪——Caps Lock
+- fn——功能键就是fn
 
 
 
 
-OS X快捷键
-屏幕截屏
-Command + Shift + 3:全屏捕捉到桌面
-Command + Shift + 4:屏幕部分捕捉到桌面
-Control + Command + Shift + 3: 全屏捕捉到剪贴板
-Control + Command + Shift + 4: 部分屏幕捕捉到剪贴板
+# keymap
 
-屏幕放大
-Option + Command + 8 : 放大/缩小鼠标处
-Option + Command + - :  缩小鼠标处
-Option + Command + =:  放大鼠标处
+> **屏幕截屏**
+>
+> - Command + Shift + 3:全屏捕捉到桌面
+> - Command + Shift + 4:屏幕部分捕捉到桌面
+> - Control + Command + Shift + 3: 全屏捕捉到剪贴板
+> - Control + Command + Shift + 4: 部分屏幕捕捉到剪贴板
 
-窗口控制
-Command+`   切换同一个程序中的多个窗口
-Command+m最小化窗口
-Command+w关闭窗口
-Command+Control+f 全屏
+> **屏幕放大**
+>
+> - Option + Command + 8 : 放大/缩小鼠标处
+> - Option + Command + - :  缩小鼠标处
+> - Option + Command + =:  放大鼠标处
 
-
-Misc
-Control + 空格 ： Spotlight
-Control + Shift + 空格 :手写输入法
-Command + Delete： 删除项目
+> **窗口控制**
+>
+> - Command+`   切换同一个程序中的多个窗口
+> - Command+m最小化窗口
+> - Command+w关闭窗口
+> - Command+Control+f 全屏
 
 
+> **Misc**
+>
+> - Control + 空格 ： Spotlight
+> - Control + Shift + 空格 :手写输入法
+> - Command + Delete： 删除项目
 
-IOS快捷键
-截图： home + power
-三个手指：放大缩小
 
 
-windows键对应：	Mac键盘
-win				⌘
-alt                            	option
+> **IOS**
+>
+> - 截图： home + power
+> - 三个手指：放大缩小
+
+------------- | -------- |
+windows键对应  | Mac键盘   |
+win			  |	⌘        |
+alt           |	option   |
 
 
 # brew
 
-brew 故障
+```
+//brew 故障
 cd /usr/local
 git status
 

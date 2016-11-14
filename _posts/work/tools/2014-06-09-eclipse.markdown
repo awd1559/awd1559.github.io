@@ -8,52 +8,29 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-eclipse
 
-ctrl+shift+r 打开项目中文件
-ctrl+o         文件中函数定位
-ctrl+shift+f  格式化代码
+# keymap
 
-Eclipse快捷使用
-==========================================
-Alt + / 设定快捷键
-Ctrl+Shift+F 代码自动排版
-Ctrl + F11 快速执行程序
-Ctrl+Shift+O 自动输入类别
-Ctrl+/ 增加选定文字的注释
-Ctrl+\ 取消选定文字的注释
-Ctrl+F8 切换视图
+-------------- | ---------------------------- |
+ctrl+shift+r   | open file in project         |
+ctrl+o         | goto function in current file|
+ctrl+shift+f   | format                       |
+Alt + /        | set keybinding               |
+Ctrl+Shift+f   | fommat                       |
+Ctrl + F11     | fast run                     |
+Ctrl+Shift+o   | auto input category          |
+Ctrl+/         | add comment                  |
+Ctrl+\         | cancel comment               |
+Ctrl+ F8       | switch view                  |
+Ctrl+ d        | delete current line          |
+Ctrl+ m        | max current window           |
+Ctrl+Shift+r   | open Resource                |
+Ctrl+Shift+o   | fix auto import              |
+
+# error fix
 
 Eclipse 提示rt.jar中访问限制(Access restriction)
 在Window - Preferences
 Java - Compiler - Errors/Warnings
 Deprecated and restricted API。把Forbidden reference (access rules): 的规则由默认的Error改为Warning即可。
 
-
-
-
-Eclipse常用快捷键
-==========================================
-A+/ 编辑辅助
-C+O 大纲
-C+/ 注释
-C+D 删除当前行
-C+M 窗口最大化
-C+K CTRL+SHIFT+K 快速向下和向上查找选定内容
-CTRL+SHIFT+T 查找工作空间构建路径中的Java类文件
-CTRL+SHIFT+R open Resource
-CTRL+SHIFT+G 查找类、方法和属性的引用
-CTRL+SHIFT+O 快速生成import
-CTRL+SHIFT+F 格式化代码
-ALT+SHIFT+W 快速定位浏览器视图的位置
-
-Ctrl+F6/Ctrl+Shift+F6 切换到下一个/上一个编辑器。
-Ctrl+F7/Ctrl+Shift+F7 切换到下一个/上一个view。
-Ctrl+F8/Ctrl+Shift+F8 切换到下一个/上一个透视图。
-
-C+L 定位到当前编辑器的某一行
-A+左方向、A+右方向
-F3 代码跳转
-F4 类继承关系
-Ctrl+/(小键盘) 折叠当前类中的所有代码
-Ctrl+*(小键盘) 展开当前类中的所有代码

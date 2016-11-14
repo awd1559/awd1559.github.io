@@ -8,31 +8,35 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-Android Studio keng
-先运行一次，启动时出现Fetching Android component iniformation
-不一定会获取成功
-打开studio/bin目录idea.properties
-最后一行添加disable.android.first.run=true
 
+# error fix
 
-keymap:
-symbols: cmd+shit+o
-structure: cmd+7 (like outline in eclipse)
-nav backward: cmd+[
-nav forward:  cmd+]
-run        :  cmd+r
+first run, show 'Fetching Android component iniformation' failed
 
-设置
-Command+,
-主题：Appearance—>Theme->Darcula
-字体：Editor—>Color & Font —> Size —> 16
-编码：File Encodings—>
-行号：Editor—>Appearance—>Show Line numbers
-Tab和空格：Editor—>Appearance—>Show whitespaces
-自动import：Editor—>Auto import add unambiguous imports on the fly
-拼音检查：Editor->Inspections—>Spelling
-版本控制：Version Control—>Git
-插件：Plugins
+open studio/bin/idea.properties
+```
+disable.android.first.run=true
+```
+
+# keymap
+- symbols: cmd+shit+o
+- structure: cmd+7 (like outline in eclipse)
+- nav backward: cmd+[
+- nav forward:  cmd+]
+- run        :  cmd+r
+- setting : cmd+,
+- search everywhere: double shift
+
+# menu 
+- Theme：Appearance—>Theme->Darcula
+- Font：Editor—>Color & Font —> Size —> 16
+- Encoding：File Encodings—>
+- Line Number：Editor—>Appearance—>Show Line numbers
+- Tab：Editor—>Appearance—>Show whitespaces
+- auto import：Editor—>Auto import add unambiguous imports on the fly
+- spelling check：Editor->Inspections—>Spelling
+- git：Version Control—>Git
+- Plugins：Plugins
 
 导入第三方库：
 import module
@@ -61,15 +65,13 @@ targetSdkVersion:程序运行时起作用
 
 
 
-从ADT导入工程到Android Studio
-ADT版本必须在22及以上
-Eclipse工程—>Export->Generate Gradle Build Files
-生成build.gradle文件
-Android Stuidio
-Import Project
-################################################################
+# ADT->Android Studio
 
-
+> - ADT版本必须在22及以上
+> - Eclipse工程—>Export->Generate Gradle Build Files
+> - 生成build.gradle文件
+> - Launch Android Stuidio
+> - Import Project
 
 
 
@@ -79,4 +81,7 @@ Import Project
 
 使用EmptyActivity创建，可避免content_main.xml等layout文件
 
-double shift : search everywhere
+
+
+
+
