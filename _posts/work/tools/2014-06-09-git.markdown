@@ -66,3 +66,7 @@ git status | check current project status |
 
 - git submodule init
 - git submodule update
+
+> git log
+
+> git diff item1 item2

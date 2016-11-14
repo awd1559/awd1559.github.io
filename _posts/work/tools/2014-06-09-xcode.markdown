@@ -8,27 +8,37 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - tools
 ---
-# 快捷键
-Open Quickly 			        ctrl+shift+o	打开项目文件
-Standard Editor>Show Document Items  cmd+p          文件中函数跳转
-Reveal in Project Navigator                 cmd+shift+j  在Project中显示文件
-*.m*.h切换 ⌘+⌃ +↓or↑
-option + 右键 查看符号的文档
+# keymap
+Standard Editor>Show Document Items 
 
-cmd + .  暂停模拟器
+------------------- | ---------------------- |
+Open Quickly        | ctrl+shift+o           |
+cmd + p             | function jump in file  |
+cmd+shift+j         | Reveal in Project Navigator   |
+⌘+⌃ +↓or↑           | *.m*.h切换  |
+option + 左键        | show doc |
+cmd + .             | 暂停模拟器 |
+⌘+⌃ +←or→           | 前进后退文本文件 |
+⌃+i                 | 自动排版代码 | 
+⌘+[or]              | 左右缩进 | 
+⌘+/                 | 注释 |
 
-前进后退文本文件⌘+⌃ +←or→
-自动排版代码 ⌃+i
-左右缩进 ⌘+[or]
-注释 ⌘+/
-查看名称定义，进入头文件 ⌘+鼠标左键
-查看名称api文档 ⌥+鼠标左键
 
+# comment
+
+```
+/// test
+/// - new line with list mark
+/// - parameter x:Int the x location
+/// - parameter y:Int the y location
+///这之后填写什么都不会在xcode工具中显示了，只能看
+```
 
 # doc位置
-/Application/Xcode.app/Contents/Developer/Documentation/DocSets
-app临时编译位置
-/Users/awd/Library/Developer/Xcode/DerivedData
+
+- /Application/Xcode.app/Contents/Developer/Documentation/DocSets
+- app临时编译位置
+- /Users/awd/Library/Developer/Xcode/DerivedData
 
 # 预览sb、xib：
 左上角preview
@@ -36,6 +46,7 @@ app临时编译位置
 
 
 shift+Option(alt) : 设置预览
+
 ctrl + Option : 预览
 
 

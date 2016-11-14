@@ -237,6 +237,18 @@ npm install -g grunt
 npm install --save-dev grunt 
 ```
 
+#### scripts
+
+```
+var gulp = require('gulp');
+var sass =  require('gulp-ruby-sass');
+
+gulp.task('sass', function(){
+	return sass('source/file.scss').on('error', sass.logError)
+		.pipe(gulp.dest())
+});
+```
+
 
 #### Gruntfile
 Gruntfile.js or Gruntfile.coffee

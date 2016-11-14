@@ -171,10 +171,13 @@ orders for looking cmd:
        | cmd                     |
 ------ | ----------------------- |
 ps     | current shell thread    |
+ps aux | show all thread         |
 pstree | show thread tree        |
 id     | current user            |
 env    | show shell env value    |
 set    | show or set shell value |
+tail -f| follow                  |
+ssh    | ssh root@some.example.com| 
 
 
 > scripts
