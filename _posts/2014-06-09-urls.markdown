@@ -158,6 +158,7 @@ tags:
 - [fossdroid](fossdroid.com) free and open source android apps
 - [FreeCsdn](https://github.com/studiotang/FreeCsdn)
 - [freegemas-gdx](https://github.com/saltares/freegemas-gdx)
+- [SimpleWeather](​https://github.com/tinggengyan/SimpleWeather)
 
 #### kotlin
 - [banjen-android-banjo-tuner](https://github.com/MakinGiants/banjen-android-banjo-tuner)

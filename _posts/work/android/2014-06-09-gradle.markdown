@@ -129,3 +129,21 @@ android {
 dependencies {
   
 }
+
+
+# misc
+
+> **[](​https://github.com/mikepenz/AboutLibraries)**
+
+```
+​
+compile('com.mikepenz:aboutlibraries:5.7.1@aar') {
+    transitive = true
+}
+new LibsBuilder()
+    .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+    .withAboutIconShown(true)
+    .withAboutVersionShown(true)
+    .withAboutDescription("中文的说明问阿健老是打击.<br /><b>You can style 中文老师的 :D</b>")
+    .start(this);
+```

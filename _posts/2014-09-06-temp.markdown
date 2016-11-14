@@ -177,5 +177,6 @@ GNOME GUADEC2015
 推理之门
 
 
-[windows、linux兼容国产开源内核项目](www.longene.org)
+- [windows、linux兼容国产开源内核项目](www.longene.org)
 
+- [linux hardward infomation](http://www.nongnu.org/dmidecode/)
