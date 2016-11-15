@@ -663,6 +663,402 @@ switch_to
 ```
 
 
+# IO
+
+```
+IO管理
+====================================================
+三种总线类型
+数据总线
+地址总线
+控制总线
+
+struct resourc		//IO地址的一个范围
+{
+	const char *name;
+	unsigned long start, end;
+	unsigned long flags;
+	struct resource *parent, *sibling, *child;
+};
+
+全局变量
+ioport_resource
+iomem_resource
+
+
+
+
+
+字符设备
+struct device_struct {
+	const char * name;
+	struct file_operations * fops;
+};
+static struct device_struct chrdevs[MAX_CHRDEV];
+register_chrdev();			//注册字符设备
+块设备
+static struct {
+	const char *name;
+	struct block_device_operations *bdops;
+} blkdevs[MAX_BLKDEV];
+register_blkdev();			//注册块设备
+
+
+struct block_device				//块设备描述符
+{
+	struct list_head	bd_hash;	//bdev_hash
+	atomic_t		bd_count;	//引用计数
+	struct inode *		bd_inode;	
+	dev_t			bd_dev;
+	const struct block_device_operations *bd_op;	//
+}
+static struct list_head bdev_hashtable;		//block_device块设备描述符hash表
+bd_acquire(inode)
+	-bdget	//从bdev_hash表中找到一个block_device
+		//否则从bdev_cache的slab中初始化一个
+
+
+
+
+
+缓冲区管理
+------------------------------------------------------
+struct buffer_head {
+	/* First cache line: */
+	struct buffer_head *b_next;	//解决hash_table中的hash冲突
+	struct buffer_head **b_pprev;
+
+	unsigned long b_blocknr;
+	unsigned short b_size;
+	unsigned short b_list;
+	kdev_t b_dev;
+
+	atomic_t b_count;		//引用计数
+	kdev_t b_rdev;			
+	unsigned long b_state;		//位图
+
+	struct buffer_head *b_next_free;/* lru/free list linkage */ // link int unused_list
+	struct buffer_head *b_prev_free;
+	struct buffer_head *b_this_page;/* circular list of buffers in one page */
+	struct buffer_head *b_reqnext;	/* request queue */
+
+	char * b_data;
+	struct page *b_page;
+	void (*b_end_io)(struct buffer_head *bh, int uptodate);	//IO完成时调用的函数
+ 	void *b_private;					//函数参数
+
+	unsigned long b_rsector;	/* Real buffer location on disk */
+	wait_queue_head_t b_wait;
+
+	struct list_head     b_inode_buffers;	/* doubly linked list of inode dirty buffers */
+};
+
+全局队列
+struct buffer_head *lru_list[NR_LIST];
+struct buffer_head * unused_list;		//未使用的缓冲区首部
+						//未使用的buffer_head先放回unused_list;过多后放回slab
+
+
+全局hash表
+struct buffer_head **hash_table;
+
+
+
+
+
+
+
+
+
+
+
+
+
+页高速缓存page cache
+----------------------------------------
+缓存一切基于page的对象，包括:
+普通文件的数据
+内存映射文件的数据
+直接(跳过vfs)从块设备文件上读取的数据
+包含已经交换到磁盘上的用户态进程数据的页
+IPC共享先行区
+
+在页和页上操作的方法之间建立联系的主要数据结构为address_space对象
+每个address_space对象在普通的内核对象(owner，属主)和属主所在的页上操作的一组方法之间建立起一条链
+owner大概有(inode, page, )
+
+struct address_space {
+	struct list_head	clean_pages;
+	struct list_head	dirty_pages;
+	struct list_head	locked_pages;		//三个列表头,address_space的own的所有page
+	unsigned long		nrpages;		//总页数
+	struct address_space_operations *a_ops;
+	struct inode		*host;		/* owner: inode, block_device */owner 通常是一个inode
+	struct vm_area_struct	*i_mmap;	/* list of private mappings */
+	struct vm_area_struct	*i_mmap_shared; /* list of shared mappings */
+	spinlock_t		i_shared_lock;  /* and spinlock protecting it */
+	int			gfp_mask;	/* how to allocate the pages */
+}
+
+
+
+全局hash表
+struct page **page_hash_table; 	//page_hash(宏得到hash槽)
+add_page_to_hash_queue		//页放入page cache hashtable
+
+add_page_to_inode_queue		//放入page cache对象address_space的clean_pages队列
+remove_page_from_inode_queue
+
+
+find_get_page(mapping, offset)	//从page_hash_table中找到一个页
+add_to_page_cache(page)		//放入page_hash_table
+
+find_or_create_page		//如果不存在, alloc_page
+
+remove_inode_page		//从page cache中删除一个page
+
+
+缓冲区高速缓存
+------------------------------------------------
+缓冲区放在名为缓冲区页(buffer pages)的专门页中，在一个单独缓冲区页中的所有缓冲区必须有相同的大小
+
+grow_buffers		//分配buffer pages  见P494
+	-grow_dev_page
+		-find_or_create_page
+		-create_buffers
+getblk
+	-get_hash_table		//从hash中找
+	-grow_buffers		//增加buffer
+	-free_more_memory	//如果不能增加，就释放内存
+	
+
+
+
+写脏缓冲区到磁盘-连个内核线程
+bdflush
+	write_some_buffers
+		-get_bh
+		-
+kupdate
+```
+
+```
+IO读写
+
+
+全局变量
+struct blk_dev_struct {
+	/*
+	 * queue_proc has to be atomic
+	 */
+	request_queue_t		request_queue;   	//请求队列
+	queue_proc		*queue;			//函数
+	void			*data;
+};
+struct blk_dev_struct blk_dev[MAX_BLKDEV];
+
+
+struct request_queue
+{
+	struct request_list	rq;
+	int nr_requests;
+
+	atomic_t nr_sectors;
+	struct list_head	queue_head;
+	elevator_t		elevator;	
+
+	request_fn_proc		* request_fn;
+	wait_queue_head_t	wait_for_requests; 	//tasks 
+};
+
+
+struct hd_struct		//硬盘的信息，用于磁盘初始化与分区检查 
+{
+	long start_sect;
+	long nr_sects;
+}
+
+struct gendisk			
+{
+}
+全局变量
+struct gendisk *gendisk_head;
+
+device_init
+	-blk_dev_init		//初始化request队列， blkdev_request
+				//初始化全局请求数组blk_dev
+	-sti			//
+	-net_dev_init		//
+
+
+devfs_register_blkdev
+	-register_blkdev	//在blkdevs数组中为块设备注册block_device_operations
+
+
+hd_init
+	-blk_init_queue		//初始化一个blk_dev数组中的request_queue
+	-add_gendisk		//放入hd_gendisk
+	-init_timer		//
+	-hd_geninit		//
+		-hd_geninit
+
+
+
+floppy_init
+```
+
+# Paging
+
+```
+线性地址的格式:
+=================================================
+
+|	10位		|	10位		|	12位		|
+------------------------------------------------
+页目录表index	|	页表index	|	页内偏移	|
+------------------------------------------------
+
+
+cr3:当前进程的页目录表基址
+
+include/asm-i386/page.h
+定义
+pte_t	//页表项
+pmd_t	//页中间表项,用于三层分页
+pgd_t 	//页目录表项
+
+pgprot_t//页面保护结构,页表项的低12位
+
+一个page结构代表一个物理页面
+所有page保存在mem_map指针链表中
+
+pte_t的前20位就是页的起始物理地址，也是该page结构在mem_map中的索引
+
+
+=================================================
+include/asm-i386/processor.h
+在start_thread中卫当前进程指定代码段、数据段、堆栈段，以绕过Intel的段式内存管理 
+问：c代码中如何让结构和cpu寄存器相映射
+
+include/asm-i386/segment.h
+					index TI RPL
+__KERNEL_CS 0x10	00010 0  00		//gdt第2项的索引
+__KERNEL_DS 0x18	00011 0  00		//gdt第3项的索引
+__USER_CS 0x23		00100 0  11		//gdt第4项的索引
+__USER_DS 0x23		00101 0  11		//gdt第5项的索引
+数据段和堆栈段是混在一起的
+
+arch/i386/kernel/head.S
+初始的GDT内容:
+ENTRY(gdt_table)
+	B0~B32	基地址全是0
+	L0~L19	段的上限全是0xfffff
+	G=1	段长单位均为4KB
+	D=1	对四个段的访问都是32位指令
+	P=1	四个段都在内存
+KERNEL_CS、KERNEL_DS的DPL为0
+USER_CS、USER_DS的DPL为3
+=================================================
+
+_pa()  //内核中根据虚拟地址得到物理地址
+如__pa(next-pgd)得到下一进程的页目录表物理地址，放入cr3中
+
+因为内核是从物理地址的0x0000开始的
+所以va<=>pa 转化可以通过  -/+ 0xC000 0000(PAGE_OFFSET) 来完成
+
+PAGE_OFFSET		20
+PAGE_SHIFT		12
+PMD_SHIFT		22
+=====================================================
+
+
+页式存储管理中，如果要将内存换出到硬盘，只要按页交换即可
+段式管理，却要整段交换
+
+VM86模式，模拟80286，依然采取段式内存映射
+LDT只在VM86模式中使用
+
+
+在elf格式的可执行文件中，ld总是从0x8000000开始安排程序的"代码段"
+========================================================
+
+head.S
+========================================================
+boot时以pg0、pg1两个页表，代表8M的空间
+
+.org 0x1000
+ENTRY(swapper_pg_dir) 	//初始页目录表
+						//在用户空间和内核空间分别映射两张页表(pg0, pg1)
+
+.org 0x2000				//初始的两个页表，管理8M空间
+ENTRY(pg0)
+
+.org 0x3000
+ENTRY(pg1)
+
+ENTRY(empty_zero_page)	//初始化时使用,使用ZERO_PAGE引用
+						//也做BIOS和命令行传入的参数暂存地
+						//引用参数的地址见PARAM  【arch/i386/kernel/setup.c】
+						
+						
+						
+
+1)开启分页机制
+2)以一个符号地址为绝对转移指令，ip即在系统空间取指令
+
+将系统堆栈设在ENTRY(stack_start), 即在swapper (init_task_union)进程描述符的高地址处
+
+========================================================
+
+
+```
+
+
+page-cache
+
+```
+页面高速缓存(page cache)
+================================================================
+所有页面都放到一个hashtable中: page_hash_table,2.6不再使用这种管理方式,而是通过基树检索
+page->next_hash, page->pprev_hash处理hash冲突
+
+
+address_space
+{
+	sruct inode *host;		//如果非null，该高速缓存与inode相关，否则swapper关联
+	... ...
+	struct list_head clean_pages;	//这个队列中的页面均与inode相关
+	struct list_head dirty_pages;	//
+	struct list_head locked_pages;	//page通过page->list加入这三个队列
+	struct address_space_oprations *a_ops; 
+	... ...
+}
+add_to_page_cache()      //将page加入address_space->clean_pages
+	-add_page_to_inode_queue()
+
+页面高速缓存(page cache)：预读磁盘数据到页面，暂时保留长期不用的页面
+页面高速缓存对象:addresss_space
+这些缓存的页面对应于普通文件、块设备、交换分区
+
+
+page LRU list
+==============================================================
+mm/page_alloc.c中定义两个全局变量:inactive_list, active_list
+页面通过page->lru在这两个list中保存
+refill_inactive() 	//将页面从active_list尾部移动到inactive_list中，保证active_list中页面数量是inactive_list中页
+面数量的2/3
+
+
+
+
+
+系统中所有正在使用的页面都存放在页面高速缓存中? page->lru
+mark_page_accessed(page)
+	-active_page(page)
+		-add_page_to_active_list()  //将page->lru加入全局active_list队列中
+
+```
+
 # gcc 
 
 # api
