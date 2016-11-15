@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "linux"
-subtitle:   " \"all about linux\""
+subtitle:   " \"all about linux usage\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
@@ -15,14 +15,14 @@ tags:
 
 > - 逐行扫描
 > - 匹配则执行命令
-> - 匹配而未制定命令，则打印该行到屏幕
+> - 匹配而未指定命令，则打印该行到屏幕
 
 ```
 awk option '/patten/{action}' filenames
 awk '/Sally/{print $1, $2}' datafile //print column 1 & 2
 ```
 
-内置变量：
+内置变量  |          |                |
 value    | comment | default         |
 -------- | ------- | --------------- |
 ORS      |输入记录的分隔符(行分隔符) |换行符
@@ -168,7 +168,8 @@ orders for looking cmd:
 > redirect
 > who > file
 
-       | cmd                     |
+
+cmd    |        comment          |
 ------ | ----------------------- |
 ps     | current shell thread    |
 ps aux | show all thread         |
@@ -178,12 +179,13 @@ env    | show shell env value    |
 set    | show or set shell value |
 tail -f| follow                  |
 ssh    | ssh root@some.example.com| 
+top    | info about processes |
 
 
 > scripts
 
 ```
-#!/bin/bash     #第一行
+#!/bin/bash     #first line
 * ? [ ]         #用于文件名通配符
 < > 2> >> |     #用于IO重定向和管道
 
@@ -591,7 +593,6 @@ void perror(const char* msg)	//输出以msg开头的错误信息，错误信息�
 ```
 
 
-# kernel
 
 
 

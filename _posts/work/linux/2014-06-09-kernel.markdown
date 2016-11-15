@@ -1,0 +1,826 @@
+---
+layout:     post
+title:      "kernel"
+subtitle:   " \"all about linux kernel source code\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - linux
+---
+
+# boot
+
+```
+//0.11 boot
+1、 利用Int 13读磁盘Sector，加载Setup、加载System模块
+2、 Setup
+	a、 Bios中顿保存硬件信息，覆盖BootSector
+	b、 将System模块移动到内存0处
+	c、 加载临时idt、gdt
+	d、 开A20，初始化 级联的8259芯片
+	e、 进入保护模式，
+			mov ax， 0X0001
+			lmsw ax
+	f、跳到System的head中执行，jmp 0， 8
+3、head
+	a、重设idt，共256项
+	b、重设gdt
+	c、将main地址入栈
+	d、加载页目录到地址0处
+4、main
+````
+
+
+```
+--------------------
+Setup		0x9200	|
+--------------------
+BootSector  0x9000	|
+--------------------
+					|
+--------------------
+System		0x1000	|
+--------------------
+```
+
+# init
+
+```
+start_kernel
+	->setup_arch
+		->setup_memory_region		//读e820图
+		->setup_memory			//
+			->find_max_pfn		//找到max_pfn
+			->find_max_low_pfn	//找到max_low_pfn
+			->init_bootmem(max_low_pfn, min_low_pfn)	
+							//初始化引导内存管理器的位图数据
+				->init_bootmem_core(contig_page_data, )
+					-pgdat_list = contig_page_data;
+					-memset(bdata->node_bootmem_map, 0xff, mapsize);
+			->reserve_bootmem		//保留一些必要的引导内存
+				->reserve_bootmem_core	
+
+		->paging_init
+			->pagetable_init		//初始化页表
+			->load_cr3(swapper_pg_dir); 	//加载页表地址到cr3
+			->__flush_tlb_all		//刷新tlb
+			->kmap_init			
+			->zone_sizes_init		
+				->free_area_init(long zone_size[3])	//初始化伙伴算法列表
+					->build_zonelists		//从哪个zone开始分配
+									//以上内存只能从引导内存分配器中分配
+									//alloc_bootmem_*->__alloc_bootmem
+		->register_memory
+			->request_resource		//初始化多个*_resource列表
+
+
+```
+
+
+
+
+# mem
+
+```
+//引导内存分配器			
+//setup_arch,检测内存分布，初始化内存分配位图
+//每一个节点有一个bootmem_data,包含已分配页面的位图等
+struct bootmem_data
+{
+	unsigned long node_boot_start;	//起始物理地址
+	unsigned long node_low_pfn;	//结束地址
+	void *node_bootmem_map;		//已分配页面和空闲页面的位图
+	unsigned long last_offset;	//最后一次分配所在页面的偏移
+	unsigned long last_pos;		//最后一次分配是的页面帧
+}
+
+mem_init		//销毁引导内存分配器的数据
+```
+
+```
+//物理内存分配
+//伙伴算法管理空闲块
+struct free_area_t
+{
+	struct list_head	free_list;	//head of page->list
+	unsigned long		*map;		//表示伙伴状态的位图
+}
+```
+
+```
+//虚拟内存块描述符
+struct vm_struct
+{
+	unsigned long flags;
+	void * addr;			//块的起始地址
+	unsigned long size;		//块的大小
+	struct vm_struct * next;
+}
+
+//全局变量
+struct vm_struct * vmlist;
+get_vm_area()			//线性查找vmlist列表
+
+vmalloc()		//在连续的虚拟地址空间分配内存
+	get_vm_area
+vmalloc_dma()		//
+vmalloc_32()		//
+```
+
+#### swap
+
+```
+交换page到交换分区(swap)
+=================================================================
+当page cache中存在max_mapped个页面(shrink_cache)时，swap_out()被启动，将页面换出。
+
+全局struct mm_struct *swap_mm = &init_mm
+
+
+alloc_pages->__alloc_pages->balance_classzone
+free_more_memory->try_to_free_pages
+kswapd->kswapd_balance->kswapd_balance_pgdat
+	-try_to_free_pages_zone
+		-shrink_caches
+			-shrink_cache
+				-swap_out
+
+swap_out->swap_out_mm->swap_out_vma
+	->swap_out_pgd->swap_out_pmd
+	->try_to_swap_out
+		-PageSwapCache		//查看页面是否在swap cache中，page->mapping = swapper_space
+		-get_swap_page		//获得交换区的一个交换槽
+		-add_to_swap_cache	//放入swap cache
+		-set_pte		//将交换槽信息写入pte
+		
+
+当mm->swap_address=TASK_SIZE，说明该进程已经被完全的搜索了一遍
+
+
+
+交换区描述
+==============================================================
+struct swap_info_struct swap_info[MAX_SWAPFILES];
+truct swap_info_struct
+{
+	... ...
+	kdev_t swap_device;		//该交换区所使用的设备
+	struct dentry *swap_file;	//交换区挂载的dentry
+	struct vfsmount *swap_vfsmnt;
+	unsigned short *swap_map;	//交换区中页面槽的位图，槽使用者的引用计数
+	... ...
+}
+多个交换区有优先级，最优先交换区存放在全局变量sturct swap_list_t swap_list,通过swap_into_struct->next在swap_info数组
+中寻找
+
+1、每个交换区在磁盘上划出大量页面大小的槽，第一个槽存放交换区信息
+2、在页面换出时，相应页表项pte中存放交换槽的信息：交换槽在swap_info中的下标、交换槽在swap_info->swap_map中的偏移量，
+   即在pte中存入swp_entry_t
+   pte_to_swp_entry()
+   swp_entry_to_pte()
+
+   在x86中，
+   swp_entry_t的
+   第0位:  _PAGE_PRESENT
+   1-6位:  标识swap_info数组下标的类型，由宏SWAP_TYPE()返回该值
+   第7位:  _PAGE_PROTNONE
+   8-31位: 代表交换文件内的页号，即swap_map中的偏移，共24位，交换分区最大2*24*4K=64G, SWAP_OFFSET()返回该值
+
+   SWP_ENTRY(type, offset)，生成一个swp_entry_t
+
+寻找可用的交换槽
+get_swap_page()		//从swap_list中的交换区开始寻找可用的交换槽,寻找type
+	-scan_swap_map()//寻找在swap_map寻找可用的offset
+   
+swap_free()		//释放交换槽
+
+
+
+交换高速缓存(swap cache)
+===============================================================
+全局交换高速缓存描述struct swap_cache_info
+swap cache总是使用swapper_space作为page->mapping的地址空间
+add_to_swap_cache()	//将页面放入swap cache
+	-add_to_page_cache_unique	//将page放到page cache
+
+
+
+
+handle_pte_fault->do_swap_page
+lookup_swap_cache(entry)	//
+read_swap_cache_async		//
+```
+
+
+#### slab
+
+```
+kmem_cache_t* kmem_cache_create();				//创建高速缓冲
+int kmem_cache_destroy (kmem_cache_t * cachep);			//销毁
+void * kmem_cache_alloc (kmem_cache_t *cachep, int flags);	//使用
+kmem_cache_free();
+
+
+高端内存映射
+--------------------------------------
+kmap		//永久映射
+kunmap
+kmap_atomic	//临时映射
+kunmap_atomic
+
+
+
+slab
+===============================================================
+将内核中经常使用的对象放在告诉缓存中，保持对象在初始的状态
+所有对象由kmem_cache_s管理
+
+全局struct kmem_cache_t cache_cache
+kmem_cache_s
+{
+	... ...
+	struct list_head slabs_full;				//slab_t放入三个列表中的一个
+	struct list_head slabs_partial;
+	struct list_head slabs_free;
+	void (*ctor)(void *, kmem_cache_t *, unsigned long);	//对象的构造函数
+	void (*dtor)(void *, kmem_cache_t *, unsigned long);	//对象的析构函数
+	char   name[CACHE_NAMELEN];				//高速缓存的名字
+	struct list_head	next;				//在cache_cache中的连接
+
+	unsigned int objsize;			//slab中对象的大小
+	unsigned int num;			//每个slab中包含的对象个数
+	... ...
+}
+
+
+
+kmem_cache_create(name, size, offset, flag, ctor, dtor)		
+				//创建命名的对象集,从slab的offset开始存放起
+				//每个对象的大小
+				//用ctor函数初始化对象
+				//用dtor函数销毁使用过的对象
+	-kmem_cache_alloc	//从cache_cache中分配一个keme_cache_s
+	-kmem_cache_estimate	//计算对象数量
+		保存(slab_t, n*(object + kmem_bufctl_t)
+
+kmem_cache_free			//释放对象，返回给高速缓存
+kmalloc					//寻找满足所需内存大小的高速缓存，从中存分配一块内存
+kfree					//释放kmalloc分配的内存
+
+
+slab描述符
+slab_s
+{
+	... ...
+	struct list_head list;	//放入kmem_cache_t的slabs_full, slabs_free,slabs_partial队列中的一个
+	void *s_mem;			//slab中第一个对象的起始地址
+	kmem_bufctl_t free;		//bufctls数组,存储空闲对象的位置
+}
+
+
+
+
+系统维护两个由小内存缓冲区所构成的高速缓存集
+
+```
+
+
+# filesytem
+
+```
+全局super_blocks列表	(fs/supper.c)	所有supper_block通过s_list连接起来管理
+
+supper_block
+{
+	... ...
+	struct list_head	s_list;
+	kdev_t			s_dev;
+	
+	struct file_system_type	*s_type;
+	struct super_operations	*s_op;
+	struct dquot_operations	*dq_op;
+	
+	struct dentry		*s_root;
+	struct list_head	s_dirty;			//inodes list
+	struct list_head	s_locked_inodes;	
+	struct list_head	s_files;			//
+
+	struct block_device	*s_bdev;
+	
+	union {
+		.. ..
+		struct ext2_sb_info	ext2_sb;
+		struct ext3_sb_info	ext3_sb;
+		.. ..
+	}u;
+	... ...
+}
+```
+
+#### VFS
+
+```
+VFS
+-----------------------------------------------------------------------
+sys_read
+	current->file->f_op->read();
+
+
+超级块对象
+-------------------------------------------------
+struct supper_block
+{
+	struct list_head 	s_list;		//把supper_block连接在一起,全局super_blocks
+	kdev_t			s_dev;
+	struct list_head	s_dirty;	//脏inode节点, link by inode->i_list
+}
+
+
+
+索引节点对象
+------------------------------------------------
+struct inode
+{
+	struct list_head	i_hash;
+	struct list_head	i_list;		//放在全局列表中
+	struct list_head	i_dentry;	//每个inode可能存在多个目录项
+}
+索引节点对文件是唯一的，随文件存在而存在。
+
+
+全局列表	//link by inode->i_list
+inode_in_use	//inode.i_count > 0; 页面不脏;的inode存在于这个列表中
+inode_unused	//inode.i_count - 0; 页面不脏;的inode存在于这个列表中
+anon_hash_chain	//inodes with NULL i_sb;
+sb->i_dirty	//脏inode
+
+全局hash表
+static struct list_head *inode_hashtable;//inode->i_hash解决hash冲突
+
+
+
+file对象
+-------------------------------------------------------
+描述进程怎样与打开的文件交互，文件对象爱你个在文件被打开时创建
+struct file
+{
+	struct list_head	f_list;
+	sturct dentry*		f_dentry;
+	struct vfsmount*	f_vfsmnt;
+	struct file_operations*	f_op;
+	unsigned int 		f_count;	//引用计数
+}
+
+全局列表 	//link by file->f_list
+free_list	//"未使用"file对象列表，可作为file对象的cache, file->f_count = 0;
+anon_list	//"在使用"但未分配给超级块的file对象，file->f_count = 1;
+sb->s_files	//"在使用"已分配给超级块的file对象
+
+
+
+目录项对象
+-------------------------------------------------------
+路径中的每一部分都对应于一个dentry对象
+存在于名为dentry_cache的slab中
+struct dentry
+{
+	struct inode*		d_inode;
+	struct dentry*		d_parent;
+	struct list_head 	d_hash;		//link in dentry_hash
+	struct list_head 	d_lru;		//link in 未使用队列
+	struct list_head 	d_child;	//link in 父目录项
+	struct list_head 	d_subdirs;	//子目录项列表
+	struct list_head 	d_alias;	//link in inode
+	struct qstr 		d_name;		//文件名
+	unsigned char		d_iname;	//短文件名
+}
+
+全局列表		//dentry->d_list
+inode->i_dentry		//在使用的，link by dentry->d_alias，一个inode可能有多个dentry
+dentry_unused;		//未使用的LRU列表, link by dentry->d_lru
+负状态
+
+
+
+全局hash表
+dentry_hashtable
+
+
+进程相关结构
+--------------------------------------------------------
+struct fs_struct			//表示进程与文件系统交互所需信息,task->fs
+{
+	atomic_t 	count;
+	struct dentry*	root;
+	struct dentry*	pwd;
+	struct dentry*	altroot;
+	struct vfsmount*rootmnt;
+	struct vfsmount*pwdmnt;
+	struct vfsmount*altrootmnt;
+}
+
+struct files_struct			//表示进程当前打开的文件,task->files
+{
+	atomic_t	count;
+	struct file**	fd;
+	struct file**	fd_array;
+}
+
+
+
+文件系统类型对象
+--------------------------------------------------------
+struct file_system_type
+{
+	super_block* (*)()	read_super;	//读取该文件系统超级块的方法
+}
+
+全局
+static struct file_system_type *file_systems;
+register_filesystem();			//将file_system_type放入全局列表file_systems中，每个文件系统不能有相同文件名
+
+
+已安装的文件系统对象
+------------------------------------------------------
+struct vfsmount
+{
+	struct list_head mnt_hash;
+	struct vfsmount *mnt_parent;
+	struct dentry *mnt_mountpoint;
+	struct dentry *mnt_root;
+	struct super_block *mnt_sb;
+	struct list_head mnt_mounts;	//子文件系统的列表
+	struct list_head mnt_child;	//link in 父文件系统的mnt_mounts;
+	struct list_head mnt_list;
+}
+
+全局列表
+
+全局hashtable
+mount_hashtable;	//vfsmount->mnt_hash解决hash冲突
+
+
+
+
+
+
+路径名查找
+-------------------------------------------------------------
+struct nameidata {
+	struct dentry *dentry;
+	struct vfsmount *mnt;
+	struct qstr last;
+	unsigned int flags;
+	int last_type;
+};
+
+path_init
+path_walk
+path_release
+
+__user_walk;(char* name, nameidata* nd)		//作为wrap函数，被很多系统调用使用
+	-getname;	//从用户空间获得数据
+	-path_lookup
+		-path_init
+			-walk_init_root
+		-path_wakk
+	-putname;
+
+传到path_init的name是一个文件路径
+path_init()根据name是从根目录开始还是从当前目录开始，初始化nd->mnt, nd->dentry,指定搜索的起始位置
+	如果从根目录开始，调用walk_init_root
+	如果从相对目录开始，nd->mnt = current->fs->pwdmnt; nd->dentry = current->fs->pwd
+path_walk()
+	-link_path_walk
+		-permission	//inode检查MAY_EXEC权限
+		-follow_dotdot	//查看上层目录
+				//开始搜索目录
+		-cached_lookup	
+			-d_lookup	//dentry_hashtable
+		-real_lookup	
+			-d_alloc	//从dentry_cache分配一个目录项，初始化
+			-parent->d_inode->i_op->lookup(parent->d_inode, dentry)
+					//通过父节点inode读取dentry
+					//即ext2_lookup
+			
+
+文件系统的安装
+-------------------------------------------------------------------------
+struct namespace {
+	atomic_t		count;
+	struct vfsmount *	root;
+	struct list_head	list;
+	struct rw_semaphore	sem;
+};
+
+
+三个mount函数
+sys_mount			//系统调用
+	copy_mount_options
+	do_mount
+		do_remount
+		do_loopback	//建立/dev/loop0与普通文件之间的关系，命令losetup
+		do_move_mount
+		do_add_mount
+mount_root			//init进程->prepare_namespace->mount_root
+	devfs_make_root
+	create_dev("/dev/root",);
+	rd_load_disk
+	mount_block_root
+kern_mount			//安装特殊文件系统
+	do_kern_mount
+
+1、安装根文件系统
+start_kernel->mnt_init
+	init_rootfs
+		-register_filesystem("rootfs")
+	init_mount_tree
+		-do_kernel_mount
+			-type = get_fs_type
+			-mnt = alloc_vfsmnt
+			-sb = 	get_sb_bdev	这里复杂,常规文件系统
+				get_sb_single	
+				get_sb_nodev	无设备文件系统
+				-path_lookup
+				-fs_type->read_super
+				-path_release
+
+2、安装一般文件系统
+sys_mount
+	do_mount
+
+卸载文件系统
+umount
+
+
+__setup("root=", root_dev_setup);
+	root_dev_setup
+
+```
+
+
+
+# gcc 
+
+# api
+
+> 部分内容属于2.6
+
+#### 进程管理
+
+```
+set_task_state(task, state);		//设置任务状态
+	set_current_state(state);
+
+for_each_process(task)	//遍历任务队列
+next_task(task)
+prev_task(task)
+
+kernel_thread();	//创建内核线程
+```
+
+#### 进程调度
+
+```
+set_tsk_need_resched();		//set task->need_resched
+clear_tsk_need_resched();	//clear task->need_resched
+need_resched();			//判断
+```
+
+#### system call
+
+#### 中断
+
+```
+request_irq()		//注册总段处理程序
+free_irq()		//
+
+local_irq_disable();	//
+local_irq_enable();	//
+
+unsigned long flags;
+local_irq_save(flags);	//禁止中断
+... ...
+local_irq_restore(flags);	//中断恢复到原状态
+
+
+disable_irq(irq);		//禁止控制器上指定的中短线，等待当前中断完成
+disable_irq_nosync(irq);	//不等待当前中断完成
+enable_irq(irq);		//
+synchronize_irq(irq);		//等待特定的中断处理程序退出
+
+irqs_disabled();		//特定中断线是否禁止
+in_interrupt();			//是否处于中断上下文
+in_irq()			//内核确实正在执行中断处理程序
+```
+
+#### 下半部
+
+```
+struct softirq_action
+{
+	void	(*action)(struct softirq_action *);
+	void	*data;
+};
+
+
+struct tasklet_struct
+{
+	struct tasklet_struct *next;
+	unsigned long state;
+	atomic_t count;
+	void (*func)(unsigned long);
+	unsigned long data;
+};
+```
+
+
+
+#### 内核同步
+#### 定时
+#### 内存管理
+struct page* alloc_page();		//分配一页
+struct page* alloc_pages();		//分配多页
+
+unsigned long __get_free_page		//分配一页
+unsigned long __get_free_pages		//分配多页
+
+__free_pages(struct page* page, order);
+free_page(unsigned long addr);
+free_pages(unsigned long addr, order);
+
+
+void* page_address(struct page* page);	//逻辑地址
+
+void * kmalloc (size_t size, int flags);	//分配指定大小的内存,从size-N的slab中获得内存
+void kfree (const void *objp);
+
+
+void * vmalloc (unsigned long size);		//分配虚拟地址连续的内存
+void vfree(void * addr);
+```
+
+
+
+
+
+#### 虚拟文件
+
+
+
+
+#### 块IO
+
+
+
+#### 进程地址空间
+
+
+
+#### 页高速缓存
+
+
+
+#### 模块
+
+
+
+#### kobject sysfs
+
+
+
+# misc
+
+#### asm
+
+```
+switch_to
+
+从终端或异常处理程序返回，如果当前内核控制路径只有一个，则返回用户态
+如果有其他的请求，则继续执行请求
+如果没有请求，处理当前进程未处理的信号，并代表当前进程继续在内核态执行
+ret_from_intr			//终止中断处理程序
+	//在ebx中装入当前进程描述符的地址,ret_from_sys_call要求
+	//ret_from_exception
+	
+ret_from_exception		//终止除0x80异常外的所有异常
+	//从cs和eflags寄存器中判断是否运行在用户态
+	//如果在内核态, ret_from_sys_call
+	//否则被中断的内核控制路径重新开始
+	
+ret_from_sys_call		//ebx中是current的地址
+	//检查need_resched
+	jne reschedule		//需要调度
+	cmpl $0, 8(%ebx) 	//检查sigpending字段
+	jne signal_return
+	jmp restore_all		//如果无未处理信号,恢复硬件环境
+	
+reschedule:
+	call schedule
+	jmp ret_from_sys_call
+	
+
+signal_return:
+	
+ret_from_fork			//
+```
+
+regs
+
+```
+gdt和idt
+==================================================
+1、每一项为8字节
+2、最多有8K个描述符，即最大为64K
+   因为选择子是16位的(其中13位可用)，最多只能指到2*13 = 8192项描述符
+3、i386最多有256个中断和异常，所以idt最大为8*256=2K
+4、系统只有一个gdt，一个idt
+5、GDTR：指出gdt的基址
+6、IDTR：指出idt的基址
+
+ldtr和tr
+==================================================
+ldtr和tr中的只是16位的选择子
+ldtr从gdt中选择相应的项作为当前进程的ldt的起始地址
+tr从gdt中选择相应的项作为当前进程的tss
+
+
+
+
+efalg中的vm位只能在保护方式下由32位的iret指令(若当前的特权级=0)
+或在任何特权级下由任务切换设置。
+
+
+控制寄存器
+cr0：机器控制状态位
+cr1：保留
+cr2：页故障线性地址
+cr3：页目录表基地址
+
+PL：特权级，共4个特权级，较高的特权级在数字上小于较低的特权级
+RPL：请求特权级，由选择子的最低两位确定
+DPL：描述符特权级，一个任务能够访问该描述符(及与该描述符相联系的段)的最低特权级
+CPL：当前特权级，当前正在执行的任务的特权级，等于正被执行的代码段的特权级，cs的最低两位
+EPL:有效特权级，RPL和CPL中较低的特权级
+
+一个段选择子装入cs寄存器即发生控制转移：
+若控制转移从低特权级到高特权级，必须通过门
+若jmp指令产生段间转移，只能在同一特权级的段间跳转
+若call指令，可在同一特权级的段间，也可到高特权级(通过门)段间跳转
+同一任务内处理的中断，规则与call相同
+任务CPL与引用门的选择子的RPL必须同时小于等于DPL
+
+任务切换可又Call，Jmp或Int指令完成
+
+中断和异常(包括软件中断指令)也都要保存断电，而且要保存标志寄存器，如果在用户程序中发生中断和异常，则发生特权变化，所以也要保
+存用户级的堆栈指针
+
+
+
+
+控制转移的详细过程
+1、用jmp指令转移到同一特权级
+2、
+```
+
+#### gcc
+
+```
+inline是gcc的扩展
+__inline__ 含义与inline相同
+__asm__  含义与asm相同
+__attribute__
+
+
+
+long long int 类型是gcc增加的
+
+
+
+```
+
+#### bios
+
+```
+i386加电时，cs = 0xffff， ip=0，这个地址就是Bios所在的地址
+Bios读取磁盘的第一个扇区(MBR),到0x7c00处，并执行
+
+BIOS内存分布
+==================================================
+oxA0000即640KB以上都用于图形接口卡和BIOS本身
+oxA0000即640KB一下为系统的基本内存
+从0x100000即1MB开始为“高内存”
+
+```
+
+### binfmt
+
+```
+static struct linux_binfmt *formats;	//全局(exec.c)
+... ...
+static struct linux_binfmt aout_format;	//(fs/binfmt_aout.c)
+static struct linux_binfmt elf_format;	//(fs.binfmt_elf.c)
+... ...
+//通过register_binfmt()连接到formats;
+```
