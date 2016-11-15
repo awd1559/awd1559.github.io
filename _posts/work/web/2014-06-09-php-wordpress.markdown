@@ -1045,3 +1045,95 @@ wp-includes/detault-filters.php
 add_filter($filter_name, $myfunction)
 apply_filter($tilter_name, $args_to_myfunction);
 
+
+
+
+
+
+
+
+
+
+
+
+显示Next Page>>
+<div class=“navigation”>
+	<?php posts_nav_link(); ?>
+</div>
+posts_nav_link(‘ in between’, ‘ before’, ‘ after’);
+问题：如何自定义pagination 
+
+
+
+输出category列表ul<li></li>ul
+wp_list_categories();
+wp_list_categories(‘sort_column=name&optioncount=1&hierarchial=0’);
+sort_column=name  - 把分类按字符顺序排列
+optioncount=1          - 显示每个分类含有的日志数
+hierarchial=0            - 不按照层次结构显示分类
+问题：自定义
+
+
+显示pages列表， ul<li></li>ul
+wp_list_pages();
+wp_link_page();
+
+wp_get_archives();  => <li></li>
+get_links_list();  已经废弃，使用wp_list_bookmarks();
+
+
+
+
+wp_register();  => 输出admin链接
+wp_loginout()  => 未登录输出登录链接，已登陆输出登出链接
+
+
+//评论
+comments_template();   ==> comments.php
+<?php foreach($comments as $comment) : ?>
+	<?php comment_author_link(); ?>
+	<?php comment_text(); ?>
+<?php endforeach; ?>
+
+
+系统widget定义于wp-includes/default-widgets.php
+自定义widget
+class  Awd_Widget extends WP_Widget{
+	function __construct(){
+
+	}
+	
+	function widget($args, $instance) {
+		//前台调用显示
+	}
+
+	function update($new_instance, $old_instance) {
+		//后台保存
+	}
+
+	function form($instance) {
+		//admin 中显示widget，拖动
+	}
+}
+
+register_widget(‘Awd_Widget’);
+
+如何在widget函数中使用html
+自定义的widget出现在哪里
+
+
+$wpdb->get_col()
+$wpdb->get_row()
+
+
+nav menu
+register_nav_menus(arrray());
+
+
+
+调用代码
+get_calendar()
+get_category_post_list($num, $limit, $order=‘DESC’)
+
+
+

@@ -357,7 +357,8 @@ study
 
 #### Ember.js
 
-- [EmberAddons](https://www.emberaddons.com/)
+- [source code on github](https://github.com/emberjs/ember.js)
+- [addons](https://www.emberaddons.com/)
 - [discourse](https://github.com/discourse/discourse) rails + emberjs
 - [ember-crm](https://github.com/Eric-Guo/ember-crm) 可参考的项目，rails+ember
 

@@ -8,43 +8,447 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - web
 ---
+
+# basic
+
+```
+#!/usr/bin/python
+# -*- coding: utf-8 -*- 
+python所能表示的整数大小只受限于机器内存
+python使用Unicode编码
+
+
+2 ** 3 #幂乘
+
+
+if 1 == 2: 
+	print('One equals two')
+try:
+	...
+except getopt.GetoptError:
+	…
+```
+
+#### 模块
+
+```
+import math
+math.floor(32.9)
+int(math.floor(32.9))
+
+from math import sqrt   #math.sqrt
+sqrt(9)
+```
+
+#### 输入/输出
+
+```
+x = raw_input("your age will be: “)
+print(x)
+```
+
+#### 类型转换
+
+```
+>>>int("45")
+45
+>>>str(912)
+'912'
+```
+
+
+元祖和列表中并不存贮数据项，而是存放对象引用
+
+
+动态类型语言：在运行期才去确定数据类型
+
+强类型语言：必须进行强制转换
+
+python即是动态类型语言，也是强类型语言
+
+
+所有的函数都有一个内置的__doc__属性,返回函数源代码中定义的doc string
+
+
+
+#### Dictionary
+
+```
+d={"server":"localhostttt",
+   "dbname":"python", 
+   "passwd":"ok",
+   "ting":"k"
+  }
+print(d["server"])
+
+d["server"] = "modified" #update
+d["新增ID"] = "随时可以增加" #add
+del d["新增ID"] #delete
+d.clear() #clear all
+
+Dictionary是无序的
+Dictionary中的key大小写敏感，不能重复
+```
+
+#### List
+
+```
+li=['a','b','mp','lo','hu','ly','ing','po']
+list中的元素可以重复
+```
+
+#### Tuple
+
+
+
+
+#### 文件
+
+```
+//读/写
+input = open('data', 'r')
+output = open('/tmp/spam', 'w')
+input.close()
+output.write(s)
+
+
+//文件行处理
+while True:
+	line = input.readline()
+	if not line:break
+	process(line)
+
+
+//小文件行处理的常用方法
+for line in input.readlines():
+	process(line)
+
+
+//
+for line in input:
+	process(line)
+
+
+
+//一次性读取
+all_the_text = open('thefile.txt').read() #文本文件
+all_the_data = open('abinfile', 'rb').read() #二进制文件
+
+//或者 使用后关闭
+file_object = open('thefile.txt')
+try"
+	all_the_text = file_object.read()
+finally:
+	file_object.close()
+
+
+//每次读取二进制文件的100个字节的例子
+file_object = open('abinfile', 'rb')
+try:
+	while True:
+		chunk = file_object.read(100)
+		if not chunk:
+			break;
+		process(chunk)
+finally:
+	file_object.close()
+
+
+
+
+
+// 最方便的写方法
+open('thefile.txt', 'w').write(all_the_text) #写入文本到文本文件
+open('abinfile', 'wb').write(all_the_data) #写入数据到二进制文件
+
+
+StringIO对象完全兼容文件对象
+```
+
+#### 搜索
+
+```
+//从指定文件读取数据，然后写入指定文件
+#!/usr/bin/env python
+import os, sys
+nargs = len(sys.argv)
+if not 3 <= nargs <= 5:
+	print("usage: %s search_text replace_text [infile [outfile]]" % os.path.basename(sys.argv[0])
+else:
+	stext = sys.argv[1]
+	rtext = sys.argv[2]
+	input_file = sys.stdin
+	output_file = sys.stdout
+	if nargs > 3:
+		input_file = open(sys.argv[3])
+	if nargs > 4:
+		output_file = open(sys.argv[4], 'w')
+
+	for s in input_file:
+		output_file.write(s.replace(stext, rtext))
+	output.close()
+	input.close()
+
+#一次性替换
+output_file.write(input_file.read().replace(stext, rtext))
+
+
+读取指定行
+#根据行号，从文本文件中读出一行数据
+#linecache缓存指定文件的所有内容
+import linecache
+theline = linecache.getline(thefilepath, line_number)
+```
+
+
+
+```
+//计算文件行数
+#小文件
+count = len(open(thefilepath, 'rU').readlines())
+
+#大文件
+count = -1
+for count, line in enumerate(open(thefilepath, 'rU')):
+	pass
+count += 1
+```
+
+#### 处理单词
+
+```
+#文件中的每个单词
+for line in open(thefilepath):
+	for word in line.split():
+		process(word)
+
+#正则表达式的版本
+import re
+rw_word = re.compile(r"[\w'-]+")
+for line in open(thefilepath):
+	for word in re_word.finditer(line):
+		process(word.group(0))
+```
+
+
+#### 随机输入/输出
+
+```
+thefile = open('somebinfile', 'rb')
+thefile.seek(begin_position);
+buffer = thefile.read(record_size)
+
+
+
+import struct
+format_string = '81'
+thefile = open('somebinfile', 'r+b')
+record_size = struct.calcsize(format_string)
+record_numberb
+thefile.seek(record_size * record_number)
+buffer = thefile.read(record_size)
+fields = list(struct.unpack(format_string, buffer))
+```
+
+```
+#进行计算，并修改相关的字段
+buffer = struct.pack(format_string, *fields)
+thefile.seek(record_size * record_number)
+thefile.write(buffer)
+thefile.close()
+```
+
+
+
+
+#### zip
+
+```
+import zipfile
+z = zipfile.ZipFile("zipfile.zip", "r")
+for filename in z.namelist():
+	print("File:", filename)
+	bytes = z.read(filename)
+	print("has ", len(byteds), "bytes")
+
+
+//创建
+import zipfile, tempfile, os, sys
+handle, filename = tempfile.mkstemp('.zip')
+os.close(handle)
+z = zipfile.ZipFile(filename, 'w')
+z.writestr('hello.py', 'def f():return "hello world from " + __file__\n')
+z.close()
+sys.path.insert(0, filename)
+import hello
+print hello.f()
+os.unlink(filename)
+
+
+
+//将目录归档到tar文件
+import tarfile, os
+def make_tar(folder_to_backup, dest_folder, compression='bz2'):
+	if compression:
+		dest_ext = '.' + compression
+	else:
+		dest_ext = ''
+	arcname = os.path.basename(folder_to_backup)
+	dest_name = '%s.tar%s' % (arcname, dest_ext)
+	dest_path = os.path.join(dest_folder, dest_name)
+	if compression:
+		dest_cmp = ':' + cmpression
+	else:
+		dest_cmp = ''
+	out = tarfile.TarFile.open(dest_path, 'w' + dest_cmp)
+	out.add(folder_to_backup, arcname)
+	out.close()
+	return dest_path
+```
+
+#### c++ <<>> 方式的技巧
+
+```
+class IOManipulator(object):
+	def __int__(self, function = None):
+		self.function = function
+	def do(self, output):
+		self.function(output)
+	def do_endl(stream):
+		stream.output.write('\n')
+		stream.output.flush()
+	endl = IOManipulator(do_end);
+class OStream(object):
+	def __init__(self, output=None):
+		if output is None:
+			import sys
+			output = sys.stdout
+			self.output = output
+			self.format = '%s'
+	def __lshift__(self, thing):
+		'''当你使用<<操纵符并且左边操作对象是OStream时，Python会调用这个特殊方法'''
+		if isinstance(thing, IOManipulator):
+			thing.do(self)
+		else:
+			self.output.write(self.format % thing)
+			self.format = '%s'
+		return self
+def example_main():
+	cout = OStream()
+	count << "The average of " << 1 << "and " << 3 << " is " << (1+3)/2 << endl
+if __name__ == '__main__'
+	example_main()
+```
+
+
+
+#### 字典排序
+
+```
+def soredDictValues(adict):
+	keys = adict.keys()
+	keys.sort()
+	return [adict[key] for key in keys]
+```
+
+```
+#忽略大小写
+def case_insensitive_sort(string_list):
+	auxiliary_list = [(x.lower(), x) for x in string_list]
+	auxiliary_list.sort()
+	return [x[1] for x in auxiliary_list]
+
+
+
+def case_insensitive_sort(string_list):
+	return sorted(string_list, key=str.lower)
+
+```
+
+
+```
+#根据对象的属性排序
+def sort_by_attr(seq, attr):
+	intermed = [(getattr(x, attr), i, x) for i, x in enumerate(seq)]
+	intermed.sort()
+	return [x[-1] for x in intermed]
+def sort_by_attr_inplace(lst, attr):
+	lst[:] = sort_by_attr(lst, attr)
+
+```
+
+
+```
+5.4
+class hist(dict):
+	def add(seft, item, increment=1):
+		'''' 为item的条目增加计数 '''
+		self[item] = increment + self.get(item, 0)
+	def counts(self, reverse=False):
+		'''返回根据对应值排序的键的列表 '''
+		aux = [(self[k], k) for k in self]
+		aux.sort()
+		if reverse: aux.reverse()
+		return [k for v, k in aux]
+```
+ 
+ 
+# pip
+
+#### on windows
+
+```
+Python/Script/easy_install.exe pip
+```
+
+#### on mac
+
+```
+sudo python get-pip.py
+```
+
+#### use pip
+
+```
+pip install Pillow
+```
+
+# plugins 
+
+#### PIL
+
+
 PIL(import Pillow instead)
+
+```
 from PIL import Image
 from PIL import ImageDraw
 
-#打开image
+//打开image
 image = Image.open("test.jpg")
 
-#创建image
+//创建image
 width = 100
 height = 100
 bgcolor = (255, 255, 255) #white
 image = Image.new('RGB', (width,height), bgcolor)
 
-#获得draw对象
+//获得draw对象
 draw = ImageDraw.Draw(image)
 
-#画线
+//画线
 start = (x1,y1)
 end = (x2, y2)
 draw.line((start, end), fill=255)
 
-#画文字
+//画文字
 fontsize = 20
 font = ImageFont.truetype("test.ttf", fontsize)
 fontcolor = (0, 0, 0)
 draw.text((0,0), 'test', font=font, fill=fontcolor)
 
-#保存
+//保存
 image.save("save.jpg", 'JPEG')
+```
 
 
-# pip
-## on windows
-Python/Script/easy_install.exe pip
-
-## on mac
-sudo python get-pip.py
-
-## use pip
-pip install Pillow
