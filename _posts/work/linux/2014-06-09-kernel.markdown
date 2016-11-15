@@ -560,6 +560,108 @@ __setup("root=", root_dev_setup);
 ```
 
 
+# Tasks
+
+```
+全局变量
+
+#define init_task	(init_task_union.task)	//【include/asm-i386/processor.h】
+#define init_stack	(init_task_union.stack)
+
+struct task_struct * init_tasks[NR_CPUS] = {&init_task, };	//【kernel/sched.c】
+
+static LIST_HEAD(runqueue_head);	//runing task列表
+wake_up_process
+	-try_to_wake_up
+		-add_to_runqueue
+		
+
+
+static struct task_struct *task_struct_head;
+static unsigned int nr_task_struct;
+
+
+task_struct
+{
+	... ...
+	struct list_head *prev_task;	//link to init_task
+	struct list_head *next_task;
+	struct list_head *run_list;	//link to runqueue_head list
+	... ...
+	pid_t pid;
+	struct list_head thread_group; //线程组
+	... ...
+	struct task_struct *pidhash_next;//解决pidhash表中的冲突
+	struct task_struct **pidhash_pprev;
+	... ...
+	wait_queue_head_t wait_chldexit;	/* for wait4() */
+	... ...
+	struct rlimit rlim[RLIM_NLIMITS];
+
+	struct thread_struct thread;		//保存硬件tss中相关数据
+}
+
+do_fork
+	-alloc_task_struct		//分配2个页面做描述符和进程内核堆栈()
+
+
+SET_LINK	//把描述符放入链表中
+MOVE_LINK	//把描述符从链表中删除
+
+for_each_task(p)	//遍历进程
+
+
+可运行队列
+-----------------------------------------------------------------------
+struct list_head runqueue_head;		//全局，所有可运行进程的队列
+add_to_runqueue(p);			//将进程加入可运行队列
+del_from_runqueue(p);			//
+move_first_runqueue();			//将进程描述符移动到可运行队列的开头
+move_last_runqueue();			//将进程描述符移动到可运行队列的末尾
+
+
+
+
+pidhash
+-----------------------------------------------------------------------
+struct task_struct *pidhash[PIDHASH_SZ];//全局，
+pidhash[pid_hashfn(p->pid)];		
+find_task_by_pid(int pid);		//从pid得到struct task_struct
+hash_pid();				//在pidhash中插入进程
+unhash_pid();				//在pidhash中删除进程
+
+
+
+
+等待队列
+-----------------------------------------------------------------------
+struct wait_queue_head_t;	//等待队列头，每个等待队列一个队列头
+struct wait_queue_t		//等待队列中的元素，每个元素一个睡眠进程
+{
+	unsigned int flags;
+	struct *task_struct;
+	struct list_head task_list;
+}
+
+
+
+
+
+
+进程切换
+-----------------------------------------------------------------------
+进程切换只发生在内核态，执行进程切换之前，用户态进程使用的所有寄存器内容都已保存，如用户态堆栈指针ss和esp。
+Linux不是哦那个硬件文境切换，但强制为系统中每个不同的CPU创建一个TSS
+	cpu从用户态切换到内核态是，从tss中获取内核态堆栈地址
+	用户态访问I/O端口时，cpu访问tss中的I/O许可权位图
+struct tss_struct{}	描述tss结构
+task_struct->thread	保存进程的tss
+
+
+
+switch_to
+```
+
 
 # gcc 
 
@@ -784,6 +886,49 @@ EPL:有效特权级，RPL和CPL中较低的特权级
 2、
 ```
 
+```
+oxA0000即640KB以上都用于图形接口卡和BIOS本身
+oxA0000即640KB一下为系统的基本内存
+从0x100000即1MB开始为“高内存”
+BIOS读取第一个扇区内容到0x7c00处，并执行
+
+efalg中的vm位只能在保护方式下由32位的iret指令(若当前的特权级=0)或在任何特权级下由任务切换设置。
+
+gdt和idt
+每一项为8字节，最多有8K个描述符，即最大为64K
+因为选择子是16位的(其中13位可用)，最多只能指到8K个描述符
+i386最多有256个中断和异常，所以idt最大为8*256=2K
+系统只有一个gdt，一个idt
+
+ldtr和tr
+ldtr和tr中的只是16位的选择子
+ldtr从gdt中选择相应的项作为当前进程的ldt的起始地址
+tr从gdt中选择相应的项作为当前进程的tss
+
+控制寄存器
+cr0：机器控制状态位
+cr1：保留
+cr2：页故障线性地址
+cr3：页目录表及地址
+
+PL：特权级，共4个特权级，较高的特权级在数字上小于较低的特权级
+RPL：请求特权级，由选择子的最低两位确定
+DPL：描述符特权级，一个任务能够访问该描述符(及与该描述符相联系的段)的最低特权级
+CPL：当前特权级，当前正在执行的任务的特权级，等于正被执行的代码段的特权级，cs的最低两位
+EPL:有效特权级，RPL和CPL中较低的特权级
+
+一个段选择子装入cs寄存器即发生控制转移：
+若控制转移从低特权级到高特权级，必须通过门
+若jmp指令产生段间转移，只能在同一特权级的段间跳转
+若call指令，可在同一特权级的段间，也可到高特权级(通过门)段间跳转
+同一任务内处理的中断，规则与call相同
+任务CPL与引用门的选择子的RPL必须同时小于等于DPL
+
+任务切换可又Call，Jmp或Int指令完成
+
+中断和异常(包括软件中断指令)也都要保存断电，而且要保存标志寄存器，如果在用户程序中发生中断和异常，则发生特权变化，所以也要保存用户级的堆栈指针
+```
+
 #### gcc
 
 ```
@@ -823,4 +968,257 @@ static struct linux_binfmt aout_format;	//(fs/binfmt_aout.c)
 static struct linux_binfmt elf_format;	//(fs.binfmt_elf.c)
 ... ...
 //通过register_binfmt()连接到formats;
+```
+
+#### util
+
+```
+list_head寄宿在其他宿主数据结构中
+INIT_LIST_HEAD(ptr)初始化list_head
+
+举例说明
+=================================================
+typedef struct page
+{
+	struct list_head list;  	//page结构可以在这个队列中
+	struct list_head lru;		//page结构也可以在这个队列中
+	struct page* hash_next;		//hash队列
+}
+
+
+list_add(struct list_head *new, struct list_head *head);
+list_del(struct list_head *entry);
+
+list_entry(ptr, type, member);	//获得宿主结构的指针
+
+
+内核最大可以访问896M(MAXMEM)MAXMAM_PFN
+
+
+_end是内核映像的结束处，pfn为start_pfn
+
+start_kernel
+	-setup_arch
+		调用e820map,获得所有内存地址图
+		计算pfn，只有RAM可计算pfn
+		init_bootmem(start_pfn, max_low_pfn)
+			在start_pfn(_end)， 构建位图，记录所有的pfn，哪些是空洞，哪些不能动态分配
+		paging_init()
+			pagetable_init    	//扩充asm建立的页表，使用swapper_pg_dir做页目录表
+			flush_tbl_all		//将高速缓存的内容刷到内存
+			kmap_init			//内核中设置ige全局的pte_t指针kmap_pte,执行页面映射表中的一个表项，这个表项将动态地映射到不同的物理页面
+								//每当要访问一个属于“高内存”的物理页面时，
+								//就要先改变这个表项。
+								//函数kmap_init的作用主要就是设置指针kmap_pte
+			frea_area_init
+			men_init			
+				free_all_bootmem//bootmem位图中的数据不再需要
+			
+
+
+
+
+
+
+cpu_initialized全局位图，每个CPU在这个位图中都有对应的标志位
+
+资源request_resource
+两棵树
+iomem_resource
+ioport_resource
+
+一个数组
+rom_resources[] 
+	System ROM (BIOS) 0xF0000~0xFFFFF
+	Video ROM	  0xC0000~0xC7FFF
+
+
+page_cache_init分配空间建立起缓冲页面hash表page_hash_table
+以cpu编号为下标的数组init_tasks[]
+
+```
+
+
+
+
+```
+list.h
+LIST_HEAD(name)								//根据name创建链表表头
+INIT_LIST_HEAD(struct list_head *list);		//初始化表头节点
+
+list_for_each_entry(pos, head, member)		//
+
+list_add(struct list_head *new, struct list_head *head);
+list_add_tail(struct list_head *new, struct list_head *head);
+list_del(struct list_head *entry);
+
+
+IS_ERR
+PTR_ERR   //错误号和指针
+
+
+struct page *alloc_page(gfp_mask)					//分配1个页
+struct page *alloc_pages(gfp_mask, int order) 		//分配2order个页	
+unsigned long _get_free_page(gfp_mask)				//返回页首的逻辑地址
+unsigned long __get_free_pages(gfp_mask, order);	//
+unsigned long get_zeroed_page(gfp_mask);			//
+
+free_page(page)
+free_pages(unsigned long addr, unsigned int order);
+__free_page(page)
+__free_pages(struct page *page, unsigned int order);
+
+//alloc mm
+void *kmalloc(size_t size, gfp_t flags);			//连续物理地址
+void kfree(const void *objp);
+
+void *vmalloc(unsigned long size);					//连续虚拟地址,非连续物理地址
+void vfree(const void *addr);
+
+
+//struct cache in slab
+struct kmem_cache *kmem_cache_create (const char *name, size_t size, size_t align,
+	unsigned long flags, void (*ctor)(void *));
+	
+void *kmem_cache_alloc(struct kmem_cache *cachep, gfp_t flags);			//从cache中分配obj
+void kmem_cache_free(struct kmem_cache *cachep, void *objp);			//obj 放回cache
+
+void kmem_cache_destroy(struct kmem_cache *cachep);
+```
+
+#### object
+
+```
+节点
+------------------------------------------------------------
+struct pg_data_t {					//NUMA非一致内存访问
+	zone_t node_zones[MAX_NR_ZONES];
+	zonelist_t node_zonelists[GFP_ZONEMASK+1];
+	int nr_zones;
+	struct page *node_mem_map;
+	unsigned long *valid_addr_bitmap;
+	struct bootmem_data *bdata;
+	unsigned long node_start_paddr;			//节点的起始物理地址
+	unsigned long node_start_mapnr;			// index of start page in mem_map[]
+	unsigned long node_size;
+	int node_id;
+	struct pg_data_t *node_next;			//所有内存节点连在一起,放入pgdat_list
+}
+全局变量
+pg_data_t *pgdat_list;					//对于UMA结构的pc来说，列表中只有一个对象
+pg_data_t contig_page_data;
+
+
+
+管理区
+------------------------------------------------------------
+struct zone_t
+{
+	unsigned long free_pages;
+	unsigned long pages_min, pages_low, pages_high;
+	int need_balance;
+	
+	free_area_t	free_area[MAX_ORDER];
+	wait_queue_head_t*	wait_table;
+
+	struct pglist_data* 	zone_pgdat;		//指向节点结构
+	struct page*		zone_mem_map;		//管理区管理的page在mem_map中第一页的index
+	unsigned long 		zone_start_paddr;	//同node_start_paddr
+	unsigned long 		zone_start_mapnr;	//同node_start_mapnr
+}
+
+空闲页面小于pages_low, 伙伴分配器唤醒kswapd释放页面
+
+
+
+页面对象
+-----------------------------------------------------
+struct page
+{
+	struct list_head list;		/* ->mapping has some page lists. */
+					//用于free_area_t中
+					//用于address_space中
+	struct address_space *mapping;	//页所属于的address_space
+	unsigned long index;		//在mapping中的索引，已页大小为单位
+	struct page *next_hash;		//page_hash_table
+	struct page **pprev_hash;
+
+	atomic_t count;			//usage count
+	struct list_head lru;		//inactive_list or active_list
+	struct buffer_head * buffers;	/* Buffer maps us to a disk block. */
+
+}
+
+struct page **page_hash_table; 	//page_hash(宏得到hash槽)
+add_page_to_hash_queue		//页放入page cache hashtable
+
+add_page_to_inode_queue		//放入page cache对象address_space的clean_pages队列
+
+
+全局变量
+struct list_head inactive_list;
+struct list_head active_list;
+	add_page_to_active_list()
+	add_page_to_inactive_list()
+	del_page_from_active_list()
+	del_page_from_inactive_list()
+
+初始化mem_map[]		//paging_init
+
+
+
+
+页目录			//pagetable_init()初始化页表
+---------------------------------------
+task->mm->pgd
+
+pgd_alloc	pgd_free
+pmd_alloc	pmd_free
+pte_alloc	pte_free
+
+
+
+
+进程地址空间描述符
+-----------------------------------------------
+struct mm_struct
+{
+	struct vm_area_struct * mmap;		/* list of VMAs */
+	rb_root_t mm_rb;			//使用红黑树
+	struct vm_area_struct * mmap_cache;	/* last find_vma result */
+	pgd_t * pgd;				//目录表地址
+	atomic_t mm_users;			
+	atomic_t mm_count;			
+	int map_count;				/* number of VMAs */
+
+	struct list_head mmlist;		/* List of all active mm's.  These are globally strung
+						 * together off init_mm.mmlist, and are protected
+						 * by mmlist_lock
+						 */
+}
+每个进程有一个内存地址空间的描述符，线程共享一个mm_struct,
+新进程从mm_cachep的slab中分配一个描述符
+
+
+内存区域
+----------------------------------------------------------	
+struct vm_arae_struct
+{
+	struct mm_struct * vm_mm;	/* The address space we belong to. */
+	unsigned long vm_start;		/* Our start address within vm_mm. */
+	unsigned long vm_end;		/* The first byte after our end address within vm_mm. */
+
+	struct vm_area_struct *vm_next;
+
+	pgprot_t vm_page_prot;		/* Access permissions of this VMA. */
+	unsigned long vm_flags;		/* Flags, listed below. */
+
+	rb_node_t vm_rb;
+
+	struct vm_area_struct *vm_next_share;
+	struct vm_area_struct **vm_pprev_share;
+	struct vm_operations_struct * vm_ops;
+
+	struct file * vm_file;		/* File we map to (can be NULL). */
+}
 ```
