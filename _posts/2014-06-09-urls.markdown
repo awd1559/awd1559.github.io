@@ -186,6 +186,7 @@ tags:
 - [V2ex-Swift](https://git.oschina.net/finb/V2ex-Swift)
 - [Yep](https://github.com/CatchChat/Yep)
 - [firefox-ios](https://github.com/mozilla/firefox-ios)
+- [WordPress-iOS](https://github.com/wordpress-mobile/WordPress-iOS)
 
 - [awesome-ios](https://github.com/vsouza/awesome-ios)
 - [awesome-ios-ui](https://github.com/cjwirth/awesome-ios-ui)
