@@ -1,0 +1,60 @@
+---
+layout:     post
+title:      "Database"
+subtitle:   " \"tools\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - web
+---
+
+
+# Database
+
+#### Mysql
+
+```s
+brew install mysql
+mysql.server start
+```
+
+#### mongol
+
+```
+mongod    //start mongo server
+mongo   //this is a javascript application, can use js in it
+```
+
+mongodb :27017
+use mongoldb: a good no sql database
+baidu、sina、ali是否支持mongod
+
+
+#### redis
+redis  : 6379
+  memcache in memory
+  单进程
+  丰富的数据结构
+  单个缓存 > 1M
+
+#### memcache
+memcache 
+  单个缓存 1M
+
+
+#### mongoid
+mongoid
+rails 通过mongoid
+rails new mayor —skip-active-record
+gem 'mongoid'
+rails g mongoid:config
+
+
+
+
+
+
+
+
+

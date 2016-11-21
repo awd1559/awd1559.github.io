@@ -58,6 +58,69 @@ tags:
 ![iPlotz ](/img/in-post/work-tools-iplotz.png)
 
 
+# 开源建站程序
+
+#### 论坛系统
+- Discuz
+- phpWind
+- BBSwax	
+- 动网论坛	
+- LeedBBS
+
+#### CMS系统
+- 帝国	
+- 动易	
+- DedeCMS	
+- 科讯	
+- phpcms
+
+#### 博客系统
+- emlob		
+- PJblog		
+- z-blog		
+- Wordpress	
+- Textpattern
+
+#### 网店系统
+- ECShop	
+- shopEX	
+- iWebShop	
+- HiShop	
+- PHP商场系统
+
+#### 影音
+- 天空电影SKYUC	
+- 马克斯CMS	
+- 鼎太播客	
+- 云网影视	
+- ADN视频收藏
+
+#### SNS
+- 记事狗		
+- thinkSNS	
+- iwebsns	
+- Spacebuilder	
+- UCenter home
+
+#### 企业网站
+- 深喉咙php	
+- 易通CMSeasy		
+- ESPCMS	
+- SiteDynamic	
+- 凡诺
+
+#### 团购
+- 最土	
+- 天天	
+- 手拉手	
+- 美团	
+- Lht蓝海豚
+
+#### 移动框架
+- appcan
+- phonegap
+- jqueryMobile
+- Sencha
 
 
 微软开源项目部：陈阳

@@ -45,6 +45,19 @@ Array
 - array_keys($arr)
 - in_array(‘item’, $arr)
 
+# framework
+
+- [laravel](/2014/06/09/php-laravel)
+- [thinkphp](/2014/06/09/php-thinkphp)
+
+# app
+
+
+- [wordpress v4.5](/2014/06/09/php-wordpress)
+
+
+
+
 # [pear](http://pear.php.net/)
 
 #### install
@@ -87,24 +100,58 @@ require_once("HTML/AJAX.php");
 ```
 
 
-# framework
-- [cakephp v3.2](http://cakephp.org/)
-	[github](https://github.com/cakephp/cakephp)
-- [CodeIgniter v5](http://www.codeigniter.com/)
-	[github](https://github.com/bcit-ci/CodeIgniter)
-- [laravel](/2014/06/09/php-laravel)
-- [phaIcon](https://phalconphp.com/zh/)  
-	c extension
-- [symfony](http://symfony.com/) 
-	depends on composer
-- [thinkphp](/2014/06/09/php-thinkphp)
-- [yii](http://www.yiiframework.com/) 
-	yiic
 
-# app
-- [Discuz](http://www.discuz.net/forum.php)
-- [Drupal v8](https://www.drupal.org/)
-- [Joomla v3](https://www.joomla.org/)
-- [phpMyAdmin v4.6](http://www.phpmyadmin.net/)
-- [phpwind v9](http://www.phpwind.net/)
-- [wordpress v4.5](/2014/06/09/php-wordpress)
+
+# [composer](https://getcomposer.org)
+
+for php 
+
+#### install & update
+
+```
+mv composer.phar /usr/local/bin/composer
+chmod a+x composer
+
+#update composer 
+/usr/local/bin/composer self-update 
+```
+
+```
+#install bootstrap
+composer require "twbs/bootstrap"   
+
+#global install laravel installer 
+composer global require "laravel/installer" 
+
+#install packages in composer.json
+composer install
+```
+
+#### composer.json
+[schema](http://docs.phpcomposer.com/04-schema.html)
+
+```
+{
+  "name":"",
+  "description": "",
+  "keywords":"",
+  "license":"",
+  "type":"",
+  "require":{
+    "php": ">=5.5.9",
+    "laravel/framework": "5.2.*"
+  },
+  "require-dev":{},
+  "autoload":{}
+}
+```
+
+|------------|-----------------------|
+|require     |needed composer package|
+|require-dev |                       |
+|autoload    |                       |
+|autoload-dev|                       |
+|scripts     |plugin scripts         |
+|config      |composer config        |
+
+
