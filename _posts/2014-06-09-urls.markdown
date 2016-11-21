@@ -246,46 +246,8 @@ tags:
 start kit
 
 - [create-react-app](https://github.com/facebookincubator/create-react-app)
-
-npm, react-scripts, webpack, webpack-dev-server, bootstrap
-
-```
-npm install -g create-react-app
-create-react-app hello-world
-npm start
-npm run build
-```
-
-
 - [react-starter-kit](https://github.com/kriasoft/react-starter-kit)
-
-babel, webpack, express, bootstrap
-
-```
-git clone -o react-starter-kit -b master --single-branch https://github.com/kriasoft/react-starter-kit.git MyApp
-cd MyApp
-npm install
-npm start
-```
-
-
 - [react-aspnet-boilerplate](https://github.com/pauldotknopf/react-aspnet-boilerplate)
-
-bootstrap, webpack, babel
-
-```
-npm install -g generator-react-aspnet-boilerplate
-yo react-aspnet-boilerplate
-yo react-aspnet-boilerplate:empty-template
-cd src/React
-npm install
-gulp
-dotnet restore
-dotnet ef database update
-dotnet run
-```
-
-
 
 components 1
 
@@ -545,6 +507,7 @@ blog
 - [Mangos](https://github.com/mangos)   完整的魔兽服务器
 - [openbor](https://github.com/rofl0r/openbor)     
 - [TrinityCore](https://github.com/TrinityCore/TrinityCore)
+
 #### php
 
 - [2Moons](http://code.google.com/p/2moons/) 太空背景策略游戏
@@ -570,10 +533,6 @@ blog
 - [pip](https://pip.pypa.io/en/stable/)
 - [pypi](https://pypi.python.org/pypi)
 
-#### Perl
-- [PsySH](http://psysh.org)
-- [PEAR](http://pear.php.net)
-- [PECL](http://pecl.php.net)
 
 - [acat](https://github.com/01org/acat)intel霍金开源系统
 
