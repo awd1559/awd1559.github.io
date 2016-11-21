@@ -241,3 +241,12 @@ gradle build #create jar
 gradle bootRun #listen on 8080
 ```
 
+
+# java web in Eclipse
+
+```
+File -> New -> Project -> dynamic java web
+create server
+```
+
+
