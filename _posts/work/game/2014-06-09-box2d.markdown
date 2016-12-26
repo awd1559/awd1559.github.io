@@ -1,0 +1,154 @@
+---
+layout:     post
+title:      "Box2D"
+subtitle:   " \"Box2D\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - game
+---
+
+# Box2D
+
+```
+b2World* world = new b2World();
+```
+
+# b2Body
+```
+b2BodyDef
+    userData
+    position
+    angle
+    linearVelocity //线速度
+    angularDamping //角动阻尼
+    allowSleep
+    awake
+    fixedRotation
+    bullet
+    type
+    active
+    gravityScale
+b2Body* body = world->CreateBody(&bodyDef);
+```
+
+# b2Contact
+
+```
+//b2Contact:包含碰撞信息
+//两个b2Fixture,碰撞的地点
+
+//1)遍历碰撞列表，查看碰撞信息
+for(b2Contact* contact = world->GetContactList(); contact; contact = contact->GetNext())
+    contact->...
+
+//2)或者通过某个物体查看它的接触：
+for (b2ContactEdge* edge = body->GetContactList(); edge; edge = edge->next)
+    edge->contact->... //do something with the contact
+    
+
+//3)b2ContactListener
+    void BeginContact(b2Contact* contact);
+    void EndContact(b2Contact* contact);
+    void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
+    void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
+
+m_world->SetContactListener(this);
+```
+
+# b2Fixture
+
+```
+b2FixtureDef b2Fixture
+    shape
+    userData
+    friction        //摩擦力
+    restitution     //恢复系数
+    density         //密度
+    isSensor
+body->CreateFixture(b2FixtureDef*)
+body->CreateFixture(b2Shape*, density)
+
+b2Fixture* fixture = body->CreateFixture(...);
+```
+
+# b2Shape
+
+```
+b2EdgeShape
+    Set(b2Vec2, b2Vec2);
+b2CircleShape
+    m_radius
+b2PolygonShape
+    Set(vertices, vertexCount);
+    SetAsBox(hx, hy);
+    SetAsBox(hx, hy, center, angle);
+b2ChainShape
+    CreateLoop(vertices, count);
+    CreateChain(vertices, count);
+    SetPrevVertex(b2Vec2)
+    SetNextVertex(b2Vec2)
+```
+
+# b2Joint
+
+```
+b2JointDef b2Joint
+    type
+    userData
+    bodyA
+    bodyB
+    collideConnected
+b2Joint* joint = world->CreateJoint(&jointDef);
+
+joint type
+    e_revoluteJoint, //外卷 b2RevoluteJointDef b2RevoluteJoint
+    e_prismaticJoint, //平移 b2PrismaticJointDef b2PrismaticJoint
+    e_distanceJoint, // b2DistanceJointDef b2DistanceJoint
+    e_pulleyJoint, //滑轮 b2PulleyJointDef b2PulleyJoint
+    e_mouseJoint, // b2MouseJointDef b2MouseJoint
+    e_gearJoint, //齿轮 b2GearJointDef b2GearJoint
+    e_wheelJoint, // b2WheelJointDef b2WheelJoint
+    e_weldJoint, //焊接 b2WeldJointDef b2WeldJoint
+    e_frictionJoint, //摩擦 b2FrictionJointDef b2FrictionJoint
+    e_ropeJoint //绳索 b2RopeJointDef b2RopeJoint
+
+
+
+CC_DEGREES_TORADIANS 角度->弧度
+CC_RADIANS_TO_DEGREES 弧度->角度
+
+
+    b2RevoluteJointDef jd;
+    jd.bodyA = box;
+    jd.bodyB = ground;
+    jd.localAnchorA.Set(0.0f, 10.0f);
+    jd.localAnchorB.Set(0.0f, 30.0f);
+    jd.referenceAngle = 0.0f;
+    jd.motorSpeed = 0.5f * b2_pi;
+    jd.maxMotorTorque = 1e8f;
+    jd.enableMotor = true;
+    m_world->CreateJoint(&jd);
+```
+
+# summary
+
+```
+b2Body* body;
+b2BodyDef bodyDef;
+bodyDef.userData = ccsprite*;
+body = world->CreateBody(&bodyDef);
+
+b2Shape bodyBox;
+b2FixtureDef bodyBoxDef;
+bodyBoxDef.shape = &bodyBox;
+
+b2Fixture* bodyFixture = body->CreateFixture(&bodyBoxDef);
+
+
+
+
+b2Body、b2Fixture、b2Joint都有userData
+```
+

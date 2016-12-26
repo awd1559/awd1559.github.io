@@ -1,0 +1,64 @@
+---
+layout:     post
+title:      "libgdx"
+subtitle:   " \"libgdx\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - game
+---
+
+
+[libgdx](https://libgdx.badlogicgames.com/)
+[github](https://github.com/libgdx/libgdx)
+
+
+```
+class MyActiivty extends AndroidApplication {
+	initialize(new MyGame(), false);
+}
+
+class MyGame implements ApplicationListener
+	private SpriteBatch batch;
+	private Texture texture;
+	private TextureRegion region; 	//区域 
+
+	create()
+		batch = new SpriteBatch()
+		texture = new Texture(Gdx.files.internal("image1.jpg"));
+		region=new TextureRegion(texture, 30,80, 200,200); 
+
+	render()
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		batch.begin()
+		batch.draw(texture, 20, 10);
+		batch.draw(region,0,0); 
+		batch.end()
+```
+
+
+```
+sprite=new Sprite(texture, 80, 80, 400, 300); 
+sprite.setPosition(10, 10); //位置 
+sprite.setRotation(15);
+
+
+
+//舞台获取输入
+Gdx.input.setInputProcessor(stage);
+
+//create
+Stage stage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+stage.addActor();
+
+//render
+stage.act(Gdx.graphics.getDeltaTime());
+stage.draw();
+
+//寻找同台Actor
+Actor actor = this.parent.findActor("renwu");
+```
+
+
+

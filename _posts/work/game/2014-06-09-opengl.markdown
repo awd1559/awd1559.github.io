@@ -1,0 +1,519 @@
+---
+layout:     post
+title:      "OpenGL"
+subtitle:   " \"OpenGL\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - game
+---
+
+# config
+
+```
+在vs2005中配置glut，运行opengl
+解压glut-3.7.6-bin.zip得到glut.h、glut.dll、glut32.dll
+glut.h放到
+C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Include\gl
+glut.dll、glut32.dll放到
+C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Lib和system32
+
+打开vs2005，新建项目，然后选择Win32 Console Application
+在弹出的对话框左边点Application Settings，找到Empty project并勾上，选择Finish。
+然后向该工程添加一个代码文件，取名为“OpenGL.c”，注意用.c来作为文件结尾。
+在 Project Properties
+   ->Configuration Properties
+   ->Linker->Input->Additional Dependencies中添加opengl32.lib glu32.lib glaux.lib 
+
+
+遇到exit 重定义错误，如下处理：
+1. 找到“glut.h”文件
+2. 打开“glut.h”到146行，应该发现一行代码为“extern _CRTIMP void __cdecl exit(int);”,先注释掉
+3. 把这一行代码用“_CRTIMP __declspec(noreturn) void __cdecl exit(int);”代替。
+
+   
+
+
+```
+
+
+
+# shader
+
+#### Unity3D
+
+```
+Fixed function shader       ShaderLab
+Vertex and Fragment         Shader CG/HLSL
+Surface Shader          CG/HLSL
+
+//fixed shader
+_MainTex ("Base (RGB)", 2D) = "white" {} //2D类型材质参数
+_Color("Main color",Color) = (1,1,1,1) //定义Color参数，rgba
+
+
+Diffuse [_Color] //环境
+SetTexture[_MainTex]
+{
+    Combine texture * primary
+}
+```
+
+
+#### cocos2d-x shader 3.x
+```
+GLProgram *p = GLProgram::createWithFileName(“*.vsh”, “*.fsh”);
+    //从文件加载，需要link,updateUniforms
+    p->link();
+    p->updateUniforms();
+GLProgram *p = GLProgram::createWithByteArrays(vsh, fsh);
+
+
+s = GLProgramState::getOrCreateWithGLProgram(p);
+sprite->setGLProgramState(s);
+auto t1 = Director::getInstance()->getTextureCache()->addImage(“*.png");
+s->setUniformTexture("u_texture1", t1);
+auto t2 = Director::getInstance()->getTextureCache()->addImage(“*.png");
+s->setUniformTexture("u_texture1", t2);
+```
+
+
+#### cocos2d-x shader 2.x
+
+```
+CCGLProgram* pProgram = new CCGLProgram();
+setShaderProgram(pProgram);
+GLuint glProgram = pProgram->getProgram();
+//初始化
+pProgram->initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
+pProgram->initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename);
+
+//定义attribute
+getShaderProgram()->addAttribute(const char* attributeName, GLuint index)
+//定义uniform
+GLuint subLocation = glGetUniformLocation(getShaderProgram()->getProgram(), "substract");      //uniform vec4 substract;
+
+//传递uniform
+getShaderProgram()->updateUniforms()//内建uniform
+getShaderProgram()->setUniformLocationWith4fv(subLocation, sub_, 1);         //调用glUniform4fv
+                //也可直接使用glUniform系列函数，但gl系列函数无缓存，每次都提交到显卡
+传递attribute
+ccGLEnableVertexAttribs(GLuint index);        //glEnableVertexAttribArray(GLuint index);
+glVertexAttribPointer(GLuint index, ... GLvoid* ptr)
+
+//attribute的预定义index
+    kCCVertexAttribFlag_Position        //xyz
+    kCCVertexAttribFlag_Color           //rgba
+    kCCVertexAttribFlag_TexCoords       //uv
+    kCCVertexAttribFlag_PosColorTex     //以上三项
+
+vec4:xyzw、rgba、stpq
+
+
+
+
+//GLSL内建变量
+顶点着色器vsh，输出变量vec4 gl_Position
+片段着色器fsh, 输出变量vec4 gl_FragColor
+//内建attribute
+#define    kCCAttributeNameColor           "a_color"        attribute vec4 a_color
+#define    kCCAttributeNamePosition        "a_position"     attribute vec4 a_position
+#define    kCCAttributeNameTexCoord        "a_texCoord"     attribute vec2 a_texCoord
+//内建uniform
+m_uUniforms[kCCUniformPMatrix]      kCCUniformPMatrix_s     "CC_PMatrix"     //uniform mat4 CC_PMatrix;
+m_uUniforms[kCCUniformMVMatrix]     kCCUniformMVMatrix_s    "CC_MVMatrix"    //uniform mat4 CC_MVMatrix;
+m_uUniforms[kCCUniformMVPMatrix]    kCCUniformMVPMatrix_s   "CC_MVPMatrix"   //uniform mat4 CC_MVPMatrix;
+m_uUniforms[kCCUniformTime]         kCCUniformTime_s        "CC_Time"        //uniform vec4 CC_Time;
+m_uUniforms[kCCUniformSinTime]      kCCUniformSinTime_s     "CC_SinTime"     //uniform vec4 CC_SinTime;
+m_uUniforms[kCCUniformCosTime]      kCCUniformCosTime_s     "CC_CosTime"     //uniform vec4 CC_CosTime;
+m_uUniforms[kCCUniformRandom01]     kCCUniformRandom01_s    "CC_Random01"    //uniform vec4 CC_Random01;
+m_uUniforms[kCCUniformSampler]      kCCUniformSampler_s     "CC_Texture0"    //uniform sampler2D CC_Texture0;    
+                    kCCUniformAlphaTestValue    "CC_alpha_value"//uniform float CC_alpha_value;
+//内建shader见ccShaders.cpp
+
+vec4 texture2D(CC_Texture0, v_texCoord)????
+```
+
+
+
+
+# GLSL
+
+```
+限定符
+const     -  用于声明常量
+attribute– 应用程序传给顶点shader,描述每个顶点的属性
+        这个修饰符只能用在顶点shader中，在shader中它是一个只读变量。
+    addAttribute("a_position", GLuint index);
+uniform  – 应用程序传给shader,在shader中它是一个只读变量。
+    GLint glGetUniformLocation(GLuint program, const char* name);
+    glUniform1f(GLint location, value);
+varying  – 顶点shader和片断shader间传递的插值数据，在顶点shader中可写，在片断shader中只读。
+
+```
+
+
+```
+向量
+vec2     包含了2个浮点数的向量     
+vec3     包含了3个浮点数的向量     
+vec4     包含了4个浮点数的向量     
+ivec2     包含了2个整数的向量     
+ivec3     包含了3个整数的向量
+ivec4     包含了4个整数的向量
+bvec2     包含了2个布尔数的向量
+bvec3     包含了3个布尔数的向量
+bvec4     包含了4个布尔数的向量
+
+矩阵
+mat2     2x2浮点数矩阵
+mat3     3x3浮点数矩阵
+mat4     4x4浮点数矩阵
+
+采样器
+sampler2D     用于访问二维纹理
+smapler3D     用于访问三维纹理
+samplerCube     用于访问立方贴图纹理
+
+
+内嵌函数
+//数值计算
+abs(x)            绝对值
+ceil(x)            大于等于x的最小整数
+clamp(x,min,max)
+floor(x)        小于等于x的最大整数
+frac(x)            x的小数部分
+mix(x,y,s)        x+s*(y-x)
+mod(x,y)        x-floor(x/y)，x/y的余数
+sign(x)            正负号，返回-1，0或1
+smoothstep(min,max,x)    用hermite内插法，利用x计算介于min和max的数值
+step(y,x)        x>=y是返回1，否则返回0
+
+exp(x)            e的x幂
+exp2(x)            2的x幂
+sqrt(x)            x开方
+pow(x,y)        x的y幂
+log(x)
+log2(x)        
+inversesqrt(x)        1.0/sqrt(x)
+
+degree(x)        弧度转换成角度
+radians(x)        角度转弧度
+sin(x)
+cos(x)
+tan(x)
+acos(x)
+asin(x)
+atan(x)
+
+//向量
+length(x)            x向量的长度
+cross(x,y)            向量外积
+dot(x,y)            向量内积
+distance(x,y)            x,y的距离
+faceforward(n,i,ng)        -n*(sign(dot(i,ng)),ng永远对到i的反方向
+ftransfrom()            用fixed function pipeline的规则转换顶点位置
+normalize(x)            转成单位向量
+reflect(i,n)            反射，i是入射向量，n是物体表面向量
+refract(i,n,coeff)        折射，i是入射向量，n是物体表面向量,coeff折射系数
+
+//矩阵
+matrixCompMult(mat x, mat y)    非矩阵乘法，只把矩阵中的每个数值相乘
+outerProduct(c,r)        把向量c视为N*1矩阵，向量r视为1*N矩阵，计算乘积矩阵
+transpose(m)            计算转置向量
+
+texture1D(s,t)
+texture2D(s,t)
+texture3D(s,t)
+textureCube(s,t)
+shadow1D(s,t)
+shadow2D(s,t)
+
+//与填充像素有关，只在PixelShader中使用
+dFdx(x)                x所代表的内插器在屏幕坐标x方向上的变化量
+dFdy(x)                x所代表的内插器在屏幕坐标y方向上的变化量
+fwidth(x)            abs(dFdx(x)) + abs(dFdy(x))
+```
+
+
+#### GLSL API
+
+```
+http://www.opengl.org/sdk/docs/manglsl/xhtml/
+abs        绝对值
+acos        反余弦值
+all        测试非0值
+any        测试输入值中的任何非零值
+asin        返回输入值的反正弦值
+atan        返回输入值的反正切值
+atan2        返回y/x的反正切值
+ceil        返回大于或等于输入值的最小整数
+clamp        把输入值限制在[min, max]返回内
+clip        如果 输入向量中的任何元素小于0， 则丢弃当前像素
+cos        返回输入值的余弦
+cosh        返回输入值的双曲余弦
+cross        返回两个3D向量的叉积
+ddx        返回关于屏幕坐标x轴的偏导数
+ddy        返回关于屏幕坐标y轴的偏导数
+degrees        弧度到角度的转换
+determinant    返回输入矩阵的值
+distance    返回连个输入点间的距离
+dot        返回两个向量的点积
+exp        返回以e为底数，输入值为指数的指数函数值
+exp2        返回以2为底数，输入值为指数的指数函数值
+faceforward    检测多边形是否位于正面
+floor        返回小于等于x的最大整数
+fmod        返回a/b的浮点余数
+frac        返回输入值的小数部分
+frexp        返回输入值的尾数和指数
+fwidth        返回abs(ddx(x) + abs(ddy(x)))
+isfinite    如果输入值为有限值则返回true，否则返回false
+isinf        如果输入值为无限的则返回true
+isnan        如果输入值为NAN或QNAN则返回true
+ldexp        frexp的逆运算，返回x*2^exp
+len/lenth    返回输入向量的长度
+lerp        对输入值进行插值计算
+lit        返回光照向量(环境光，漫反射光，镜面高光，1)
+log        返回以e为底的对数
+log10        返回以10为底的对数
+log2        返回以2为底的对数
+max        
+min        
+modf        把输入值分解为整数和小数部分
+mul        返回输入举证相乘的积
+normalize    返回规范化的向量，定义为x/length(x)
+pow        返回输入值的指定次幂
+radians        角度到弧度的转换
+reflect        返回入射光线i对表面发现n的反射光线
+refract        返回在入射光线i，表面法线n，折射率为eta下的折射光线v
+round        返回最接近输入值的整数
+rsqrt        返回输入值平方根的倒数
+saturate    把输入值限制在[0,1]之间
+sign        计算输入值的符号
+sin        计算输入值的正弦值
+sincos        返回输入值的正弦和余弦值
+sinh        返回x的双曲正弦
+smoothstep    返回一个在输入值之间平稳变化的插值
+sqrt        返回输入值的平方根
+step        返回(x>=a)?1:0
+tan        返回输入值的正切值
+fanh        返回输入值的双曲线切线
+transpose    返回输入矩阵的转置
+tex1D*        1D纹理查询
+tex2D*        2D纹理查询
+tex3D*        3D纹理查询
+texCUBE*    立方纹理查询
+```
+
+
+
+# OpenES
+
+```
+glGenTextures    
+
+glGenVertexArrays(GLsizei n, GLuint *arrays);    //vertext array
+glBindVertexArray(array[]);            //绑定顶点
+
+glGenBuffers                //vertext buffer
+    GL_ARRAY_BUFFER
+    GL_ELEMENT_ARRAY_BUFFER
+    GL_PIXEL_PACK_BUFFER
+    GL_PIXEL_UNPACK_BUFFER
+    GL_COPY_READ_BUFFER
+    GL_COPY_WRITE_BUFFER
+    GL_TRANSFORM_FEEDBACK_BUFFER
+    GL_UNIFORM_BUFFER
+glBindBufffer
+glBufferData    
+
+glVertexAttribPointer(size, datatype, stride, pointer)
+    size:每项的
+    stride
+
+glEnableVertexAttribArray
+
+glEnableClientState(GL_VERTEX_ARRAY);
+```
+
+
+
+#### Shader
+fsh:
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+uniform sampler2D CC_Texture0;
+
+float time = CC_Time[1];
+gl_FragColor = v_fragmentColor * texture2D(CC_Texture0, (v_texCoord*1.5-0.75)*cos(time));
+vsh:
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
+attribute vec4 a_color;    
+
+gl_Position = CC_MVPMatrix * a_position;
+v_fragmentColor = a_color;
+v_texCoord = a_texCoord;
+
+
+# HLSL
+
+```
+float2, float4, float4*4,float3*3,float2*2
+float4 vVec = 1
+float4 vVec = float4(1,2,3,4);
+float4 vVec;
+vVec.x = 1;
+vVec.zw = float2(1,2);
+float4 vVec1 = vVec0;
+
+HLSL内建函数
+//数值计算
+abs(x)        绝对值
+ceil(x)        大于等于x的最小整数
+clamp(x,min,max)    
+saturate(x)    =clamp(x,0,1)
+distance(x,y)    向量距离
+dot(x,y)    向量内积
+exp(x)        e的x幂
+exp2(x)        2的x幂
+floor(x)    小于等于x的最大整数
+fmod(x,y)    x/y的余数
+frac(x)        x的小数部分
+frexp(x,exp)    x的尾数mantissa和指数exponent
+ldexp(x,exp)    x*(2的exp幂)
+lerp(x,y,s)    x+s*(y-x),用权重s来混合x，y
+modf(x,ip)    分解成整数和小数,modf(1.5,ip)返回0.5，ip=1；
+mul(x,y)    相乘
+pow(x,y)    x的y次幂
+round(x)    最接近x的整数
+rsqrt(x)    1.0/(x的开方)
+sqrt(x)        x的开方
+sign(x)        正负，返回-1,0或1
+smoothstep(min,max,x)    用hermite内插法，利用x计算介于min到max的数值
+step(y,x)    x大于等于y返回1，否则返回0；
+
+//矩阵操作
+length(x)    x向量的长度
+cross(x,y)    向量外积，必须传入三维向量
+determinant(m)    矩阵的determinant
+faceforward(n,i,ng)    -n*(sign(dot(i,ng)))，即把ng向着i的反方向
+normalize(x)        转成单位向量
+reflect(i,n)        反射，i是入射向量，n是物体表面向量，返回反射结果
+refract(i,n,coeff)    折射，i是入射向量，n是物体表面向量，coeff是折射系数
+transpose(m)        转置矩阵
+//贴图
+tex2D        读取贴图，GPU自动选择mipmap纹理
+tex2DBias    w值选择较大的还是较小的mipmap
+tex2Dlod    w值选择哪一层的mipmap
+tex2Dgrad    传入贴图缩放信息
+tex2Dproj    自动把贴图坐标除以w值
+tex1D(s,t)
+tex2D(s,t)
+tex3D(s,t)
+texCUBE(s,t)
+clip(x)        如果x<0，就不去填充这个像素
+ddx(x)        返回x所代表的内插器在屏幕坐标x方向上的变化量
+ddy(x)        返回x所代表的内插器在屏幕坐标y方向上的变化量
+fwidth(x)    abs(ddx(x)) + abs(ddy(x))
+asint(x)    浮点转换成整数
+asunt(x)    浮点转换成无符号整数
+asfloat(x)    整数转换成浮点
+```
+
+
+# misc
+
+```
+经过以下步骤：
+视图变换    视点变换  View
+模型变换                        
+投影变换(正投影、透视投影)      投影矩阵
+视口变换             ViewPort
+
+绘制
+
+视点变换
+相当于设置视点的位置和方向
+默认的时代按定位在坐标系的原点，指向Z负轴
+gluLookAt(eyex, y, z,       ->eye       视点的位置
+          centerx, y, z,    ->center    指向参考点
+          upx, y, z);       ->up        向上向量的方向 
+该函数定义视点矩阵，并用该矩阵乘以当前矩阵
+视点变换操作在模型变换操作之前发出
+
+模型变换
+在世界坐标系中进行
+默认，模型的中心定位于坐标系的中心
+glTranslate{fd}(x, y, z)        //平移
+glRotate{fd}(angle, x, y, z)    //旋转
+glScale{fd}(x, y, z)            //缩放
+
+视图和模型变换共同构成为模型视图矩阵
+
+透视投影
+分正投影、透视投影
+降低维数，即定义一个可视窗口，将窗口外多余部分裁剪掉
+
+透视投影
+glFrustum(left, 
+          right, 
+          bottom, 
+          top, 
+          near, 
+          far)          
+创建透视投影矩阵，用这个矩阵乘以当前矩阵
+近裁剪平面左下角(left, bottom， near)
+近裁剪平面右上角(right, top,   near)
+远裁剪平面Z负值--far,其他坐标自动计算
+
+
+gluPerspective(fovy,            视野在X-Z平面的角度,范围为(0，180)
+               aspect,          裁剪平面高宽比
+               zNear, zFar)     远近裁剪平面沿Z负轴到视点的距离
+
+
+
+正投影
+glOrtho(left, right, bottom, top, near, far)
+近裁剪平面左下角(left, bottom, -near)
+近裁剪平面右上角(right, top, -near)
+远裁剪平面左下角(left, bottom, -far)
+远裁剪平面右上角(right, top, -far)
+
+
+glOrtho2D(left, right, bottom, top)
+上一函数的特殊情况,用于二位图像投影到二维屏幕，near=-1, far=1
+
+视口变换
+glViewPort(x, y, width, height)
+(x, y)是视口在屏幕窗口坐标系中的左下角点坐标
+默认时，x，y在坐标原点，width，height为屏幕宽和高
+
+
+glLoadIdentity()
+载入单位矩阵
+将当前点移到屏幕中心
+屏幕中心是OpenGL的坐标原点
+X轴向右，Y轴向上，Z轴向外
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```

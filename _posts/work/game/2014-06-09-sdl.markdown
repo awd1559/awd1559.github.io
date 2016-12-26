@@ -1,0 +1,74 @@
+---
+layout:     post
+title:      "SDL"
+subtitle:   " \"SDL\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - game
+---
+
+```
+//code snip from [pingus](https://github.com/Pingus/pingus)
+if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK |SDL_INIT_EVERYTHING) == -1){		//init,最简单的SDL窗体
+	SDL_GetError()
+	SDL_Quit();
+}
+
+SDL_WasInit(SDL_INIT_AUDIO);	//audio是否init
+
+
+//Event
+//init
+try {
+    if ( SDL_Init(SDL_INIT_VIDEO == -1 ))
+        throw SDL_GetError();
+}
+catch ( const char* s ) {
+    std::cerr << s << std::endl;
+    return -1;
+}
+atexit(SDL_Quit);
+
+SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE);	//创建一个SDL的执行窗口
+
+//event loop
+bool gameOver = false;
+while( gameOver == false ){
+    SDL_Event gameEvent;
+    SDL_PollEvent(&gameEvent);
+    if ( &gameEvent != 0 ){
+        if ( gameEvent.type == SDL_QUIT ){				//窗口关闭
+            gameOver = true;
+        }
+        if ( gameEvent.type == SDL_KEYDOWN ){
+            if ( gameEvent.key.keysym.sym == SDLK_ESCAPE ){		//esc键
+                gameOver = true;
+            }
+        }
+    }
+}
+```
+
+```
+//windows
+SDL_Surface *SDL_SetVideoMode(int width, int height, int bitsperpixel, Uint32 flags);		//创建窗体
+SDL_Surface *SDL_LoadBMP(const char *file);							//加载bmp到内存
+int SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect);	//数据blit
+int SDL_Flip(SDL_Surface *screen);								//刷新屏幕
+
+
+
+
+SDL_WM_SetCaption();				//窗体标题
+SDL_WM_SetIcon()				//窗体icon
+```
+
+
+```
+SDL_EnableUNICODE(1)
+SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+```
+
+

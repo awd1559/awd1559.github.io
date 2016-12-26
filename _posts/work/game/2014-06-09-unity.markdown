@@ -1,0 +1,998 @@
+---
+layout:     post
+title:      "Unity"
+subtitle:   " \"Unity3D\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - game
+---
+
+# Basic
+
+
+#### 预定义
+```
+对象预定义组件变量
+Transform   transform
+Rigidbody   rigidbody
+Renderer    renderer
+Camera      camera(only on camera objects)
+Light       light
+Animation   animation
+Collider    collider
+详细见
+    http://docs.unity3d.com/Documentation/ScriptReference/Component.html
+    http://docs.unity3d.com/Documentation/ScriptReference/Behaviour.html
+    http://docs.unity3d.com/Documentation/ScriptReference/MonoBehaviour.html
+    
+//找到一个Component 
+GetComponent(Transform).Translate(0, 1, 0); //等同于
+transform.Translate(0, 1, 0);   
+
+Component otherScript = GetComponent(otherScript);  //otherScript.cs
+otherScript.DoSomtiong();
+
+//找一个GameObject 
+GameObject.Find("SomeGuy");
+    Camera.main     //主相机
+
+//找到所有相同类型
+HingeJoint[] hinges = FindObjectsOfType(typeof(HingeJoint)) as HingeJoint[];
+FindObjectsOfType(OtherScript); //所有附加了OtherScript脚本的Object
+
+```
+
+
+#### basic
+```
+//屏幕高宽
+Screen.width
+Screen.height
+//主摄像机
+Camera.main
+
+
+transform.Rotate(0, 5, 0);                  //绕Y轴旋转
+transform.Translate(0, 0, 2);               //向前移动
+transform.Rotate(0, 5 * Time.deltaTime,0);  //匀速
+
+light.range += 2.0 * Time.deltaTime;        //光照范围
+
+
+
+// 等一帧
+yield return 0;
+//等两秒
+yield return new WaitForSeconds (2);
+
+
+
+//将材质拆封成4块绘制
+public Texture tex;
+void OnGUI(){
+    if(Event.current.type.Equals(EventType.Repaint))
+    {
+        Graphics.DrawTexture( new Rect(200, 100, 128, 128),tex,new Rect(0.0f, 0.5f, 0.5f, 0.5f),0, 0, 0,0, null);
+        Graphics.DrawTexture( new Rect(200,250, 128, 128),tex,new Rect(0.0f, 0.0f, 0.5f, 0.5f),0, 0, 0,0, null);   
+        Graphics.DrawTexture( new Rect(350, 100, 128, 128),tex,new Rect(0.5f, 0.5f, 0.5f, 0.5f),0, 0, 0,0, null);
+        Graphics.DrawTexture( new Rect(350,250, 128, 128),tex,new Rect(0.5f, 0.0f, 0.5f, 0.5f),0, 0, 0,0, null);
+    }
+}
+```
+
+#### input
+
+```
+Input.GetAxis("Mouse X");
+Input.GetKey(KeyCode.LeftControl);
+Input.GetButton("Jump");
+Input.GetMouseButtonDown(0);
+Input.GetTouch
+    if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved){
+        Vector2 touchDelta = Input.GetTouch(0).deltaPosition;
+    }
+
+//屏幕方向
+Input.deviceOrientation == DeviceOrientation.Portrait
+                        .PortraitUpsideDown
+                        .LandscapeLeft
+                        .LandscapeRight
+                        .FaceUp
+                        .FaceDown
+                        .Unknown
+//设定
+Screen.orientation = ScreenOrientation.LandscapeLeft
+
+//重力感应
+分X Y Z三个方向的重力分量，取值范围是-1.0~1.0
+X轴：home按键在下手机面朝天向右旋转90度重力分量为+1.0  向左旋转90度重力分量为-1.0
+Y轴：home按键在上手机背朝自己重力分量为+1.0 home按键在下手机面朝自己重力分量为-1.0
+Z轴：手机面朝地面重力分量为+1.0 手机面朝天空重力分量为-1.0
+Input.acceleration.x
+
+
+
+
+FingerGestures.unitypackage基于v2.2
+scene中必须有Finger Gestures Initializer
+使用ToolBox脚本，必须有TB Input Manager脚本挂在scene中的一个空物体上
+直接使用onEnable(){FingerGes.onTap += ontap;}
+```
+
+#### routate
+```
+function Update()
+{
+    //移动模型,forward表示沿着自身z轴正方向移动
+    transform.Translate(Vector3.forwrad * Time.deltaTime);
+    //旋转模型,up表示沿着自身Y轴旋转
+    transform.Rotate(Vector3.up * Time.deltaTime); //匀速
+}
+
+
+transform.Rotate(v3 eulerAngles)
+transform.Rotate(v3 axis, angle)
+transform.RotateAround(v3 cnterpoint, v3 axis, float angle)
+transform.rotation = Quaternion.Euler(float x, y, z);
+
+//距离
+Vector3.Distance(oneVector, otherVector);
+
+//当前点为target
+Quaternion rotation = Quaternion.Euler(0, 30, 0) * target.rotation;        //沿taget的Y轴转30弧度
+Vector3 newPos = rotation * new Vector3(10, 0, 0);                        //沿target的X轴向前10米的位置
+
+
+Vector3 forward = transform.TransformDirection(Vector3.forward);//相对方向，forward此时为transform的z轴正方向
+rigidbody.AddForce(forward * 10);
+
+//z正轴慢慢旋转朝向camera
+Quaternion rotation = Quaternion.LookRotation(Camera.main.position - transform.position);
+transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+
+
+//朝向鼠标位置
+Transfrom barrel;
+barrel.LookAt(barrel.position + (Vector3(Input.mousePosition.x - Camera.main.WorldToScreenPoint(barrel.position).x, 0, Input.mousePosition.y - Camera.main.WorldToScreenPoint(barrel.position).y)).normalized); //Make the barrel look at the mouse
+```
+
+
+
+#### Find
+```
+//找到Scene中的对象
+GameObject.Find("Object/Sphere");
+
+//找到Component
+GetComponent("CharacterController") as CharacterController;
+GetComponent(Transform).Translate(0, 1, 0); //等同于 transform.Translate(0, 1, 0);
+
+Component otherScript = GetComponent(otherScript);    //otherScript.cs
+otherScript.DoSomtiong();
+
+//找到所有相同类型
+HingeJoint[] hinges = FindObjectsOfType(typeof(HingeJoint)) as HingeJoint[];
+FindObjectsOfType(OtherScript);    //所有附加了OtherScript脚本的Object
+
+//发送消息
+SendMessageUpwards（"MethordName"）        //本物体和父级物体
+SendMessage("Kill", value)                //执行GameObject上的所有MonoBehaviour上的Kill方法,参数为value
+BroadcastMessage("MethordName", value)    //本物体和子物体
+
+
+
+//跟随鼠标
+if(Input.GetMouseButtonDown(0)){
+    RaycastHit hit;
+    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+    Physics.Raycast(ray, out hit, 100);
+    transform.Translate(hit.point - transform.position);    //移动到鼠标位置
+    transfrom.LookAt(hit.point);                            //朝向鼠标
+}
+
+camera.ScreenPointToRay    //从摄像头到点的ray
+camera.ScreenToViewportPoint
+camera.ScreenToWorldPoint
+camera.ViewportPointToRay
+camera.ViewportToScreenPoint
+camera.ViewportToWorldPoint
+camera.WorldToScreenPoint
+camera.WorldToViewportPoint
+
+
+
+
+//沿着屏幕四角
+GUILayout.BeginArea (Rect (0,0,Screen.width,Screen.height));
+    GUILayout.BeginHorizontal ();
+        GUILayout.BeginVertical ();
+        GUILayout.Box("Test1");
+        GUILayout.FlexibleSpace();
+        GUILayout.Box("Test2");
+        GUILayout.EndVertical ();
+
+        GUILayout.FlexibleSpace();
+
+        GUILayout.BeginVertical ();
+        GUILayout.Box("Test3");
+        GUILayout.FlexibleSpace();
+        GUILayout.Box("Test4");
+        GUILayout.EndVertical ();
+       GUILayout.EndHorizontal ();
+GUILayout.EndArea();
+
+
+
+
+Texture2D tex   = Resources.Load("single/0");       //load Resources/single/0.*
+Object[] texAll = Resources.LoadAll("Textures");    //load Resources/Textures/*
+
+PlayerPref.GetInt(string key, value);
+PlayerPref.SetInt(string key, value);
+
+
+InvokeRepeating("methordName");
+```
+
+#### Light
+
+```
+light.range += 2.0 * Time.deltaTime;        //光照范围
+```
+
+
+#### AnimationCurve
+
+```
+//创建AnimationCurve
+Keyframe[] ks = new Keyframe[3];
+AnimationCurve curve = new AnimationCurve(ks);
+
+//左右循环
+anim.PreWrapMode = WrapMode.Loop;
+anim.postWrapMode = WrapMode.Once;
+
+//键
+Keyframe kf = new Keyframe(time, value);
+kf.inTangent = 45;
+kf.outTangent = 45;
+```
+
+#### GUI
+
+```
+OnGUI()
+{
+    GUI.Button(new Rect(10, 10, 100, 50), GUI.Content());
+    GUI.Label(new Rect(10, 40, 100,20), gui.tooltip);
+    GUI.Button(new Rect(10, 10, 100, 50),  icon);
+    
+    if(GUI.Button(new Rect(20, 40, 80, 20), "Level1")){
+        Application.LoadLevel(1);
+    }
+}
+```
+
+
+#### AssetLoader
+
+```
+AssetBundle.CreateFromFile          //从文件加载
+AssetBundle.CreateFromMemory(byte[])        //从内存加载
+WWW.assetBundle
+
+AssetBundle.Load()              //读取bundle，创建Asset对象
+Resources.Load()                //读取Resources目录
+AssetBundle.LoadAsync()
+AssetBundle.LoadAll()
+AssetBundle.Unload(false)           //释放AssetBundle
+AssetBundle.Unload(true)            //释放AssetBundle和Asset
+
+
+1、建立AssetBundle
+2、AssetBundle.load加载asset
+3、立即AssetBundle.Unload(false)释放AssetBundle文件本身的内存镜像
+  如果有Instantiate的对象，用Destroy进行销毁
+4、用完，调用Resources.UnloadUnusedAssets，释放Asset
+  如果需要，GC.Collect()
+
+
+
+
+
+
+//以下内容来自cookbook
+<1>Unity Default Resources,从Assets/Resources默认文件夹下读取
+//加载图片
+Texture2D externalImage = (Texture2D)Resources.Load("externalTexture"); //externalTexture.jpg 不用扩展名
+//txt文件
+TextAsset textAsset = (TextAsset)Resources.Load("textFileName");
+string textContent = textAsset.text;
+//声音
+[Requirecompnent (typeof (AudioSource))]
+audio.clip = (AudioClip)Resources.Load("soundtrack");
+if(!audio.isPlaying && audio.clip.isReadyToPlay)
+    audio.Play();
+//all
+Object[] texAll = Resources.LoadAll("Textures");//load Resources/Textures/*
+
+
+<2>manually storing files in Unity's Resources floder
+string url;
+url = "file:" + Application.dataPath;
+url = Path.Combine(url, "Resources");           //不是必须放在Resources默认目录下
+url = Path.Combine(url, "externalTexture.jpg");     //Asset/Resources/externalTexture.jpg绝对路径
+StartCoroutine(myLoad());               //新的线程
+
+private IEnumerator myLoad(){
+    yield return 0;
+    WWW www = new WWW (url);
+    yield return www;
+        Texture2D externalImage = www.texture;
+    string text = www.text;
+    AudioClip clip = www.GetAudioClip();
+}
+
+
+
+<3>downloading files from the internet
+string url = "http://www.packtpub.com/sites/default/files/packt_logo.png";
+StartCoroutine(myLoad());
+
+<4>保存数据：static properties
+public class Player{
+    public static string name = null;   //对象的static变量，只能在游戏运行期间，由多个对象共享
+}
+
+
+<5>保存数据：PlayerPrefs
+if(PlayerPrefs.HasKey("username"))  //判断
+PlayerPrefs.GetString("username");  //读取
+PlayerPrefs.DeleteAll();        //删除
+PlayerPrefs.SetString("username", value);
+
+```
+
+#### Vector3
+
+```
+Vector3.up; // 与 Vector3(0, 1, 0);相同
+someVector.Normalize();
+theDistance = Vector3.Distance(oneVector, otherVector);
+
+
+```
+
+#### 集成关系
+
+```
+//继承关系
+Object
+    Component
+        Behaviour
+            MonoBehaviour   //详细http://docs.unity3d.com/Documentation/ScriptReference/MonoBehaviour.html
+                Update      //每一帧
+                LateUpdate  //every frame, 
+                FixedUpdate //每个固定时间间隔
+                Awake
+                Start
+                Reset
+                OnMouseEnter
+                OnMouseOver
+                OnMouseExit
+                OnMouseDown
+                OnMouseUp
+    Material
+        ProceduralMaterial
+    Texture
+        Texture2D
+```
+
+#### 获取网络图片
+
+```
+getImage.cs
+public class GetImage : MonoBehaviour {
+    void OnGUI()
+    {
+        if(GUI.Button(new Rect(0,0,100,50),"Get Image"))
+        {
+            StartCoroutine(GetWebImage());
+        }
+    }
+
+    IEnumerator GetWebImage()
+    {
+        WWW myWWW = new WWW("http://localhost/cat.jpg");
+        yield return  myWWW;
+        renderer.material.mainTexture = myWWW.texture;
+    }
+}
+```
+
+
+#### 动态创建地形
+
+```
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class Tutor_1_CreateSimpleTerrain : MonoBehaviour {
+    void Start()
+    {
+        CreateTerrain();
+    }
+    public Terrain CreateTerrain()
+    {
+        TerrainData  terrainData = new TerrainData();
+        terrainData.heightmapResolution = 513;
+        terrainData.baseMapResolution = 513;
+        terrainData.size = new Vector3(50, 50, 50);
+        terrainData.alphamapResolution = 512;
+        terrainData.SetDetailResolution(32, 8);
+        GameObject obj = Terrain.CreateTerrainGameObject(terrainData);
+        AssetDatabase.CreateAsset(terrainData, "Assets/Tutorial/Tutor_1_SimpleTerrain.asset");
+        AssetDatabase.SaveAssets();
+        return  obj.GetComponent<</span>Terrain>();
+    }
+}
+
+
+//SplatMap高度
+public class Tutor_2_CreateTerrain_ModifyHeight : MonoBehaviour {
+    void Start()
+    {
+        CreateTerrain();
+    }
+    public Terrain CreateTerrain()
+    {
+        TerrainData  terrainData = new TerrainData();
+        terrainData.heightmapResolution = 513;
+        terrainData.baseMapResolution = 513;
+        terrainData.size = new Vector3(50, 50, 50);
+        terrainData.alphamapResolution = 512;
+        terrainData.SetDetailResolution(32, 8);
+        ModifyTerrainDataHeight(terrainData);
+        GameObject obj = Terrain.CreateTerrainGameObject(terrainData);
+        AssetDatabase.CreateAsset(terrainData,"Assets/Tutorial/Tutor_2_Terrain_ModifyHeight.asset");
+        AssetDatabase.SaveAssets();
+        return  obj.GetComponent<</span>Terrain>();
+    }
+    public void ModifyTerrainDataHeight(TerrainData terrainData)
+    {
+        int width = terrainData.heightmapWidth;
+        int height = terrainData.heightmapHeight;
+        float[,] array = new float[width,height];
+        print ("width:"+ width +" height:"+ height );
+        for(int i=0; i< width;i++)
+            for(int j=0; j< height;j++)
+            {
+                float f1 = i;
+                float f2 = width;
+                float f3 = j;
+                float f4 = height;
+                float baseV =  (f1/f2 + f3/f4)/2 *  1;
+                array[i,j] =baseV*baseV;
+            }
+        terrainData.SetHeights(0,0,array);
+    }
+}
+
+//利用AnimationCurve创建特殊曲线地形。
+//步骤：
+//1.创建一个新场景，并新建一个GameObject起名为Manager,新建一个名为Tutor_3_CreateTerrainWithAnimationCurve.cs的脚本并拖至Manager上。
+//2.粘贴并覆盖如下脚本至Tutor_3_CreateTerrainWithAnimationCurve里
+ 
+using UnityEngine;
+using System.Collections;
+
+public class Tutor_3_CreateTerrainWithAnimationCurve : MonoBehaviour {
+public AnimationCurve animationCurve;
+}
+//3.在Manager的Inspector面板里双击Animation Curve。在弹出曲线绘制界面后，绘制任意曲线
+
+
+```
+
+
+# Editor
+
+```
+//定制脚本在Inspector面板的界面
+public override void OnInspectorGUI(){
+    Test test = (Test)target;
+    test.mRectValue = EditorGUILayout.RectField("window axis", test.mRectValue);
+    test.texture = EditorGUILayout.ObjectField("add texture", test.texture, typeof(Texture), true) as Texture;
+    test.target = EditorGUILayout.ObjectField("target", test.target, typeof(Transform), true) as Transform;
+}
+```
+
+
+
+```
+//创建菜单
+public class MyWindowMenu : EditorWindow{
+
+    [MenuItem ("Window/MyMenu")]
+    static void Init(){
+        MyWindowMenu window = (MyWindowMenu)EditorWindow.GetWindow(typeof(MyWindowMenu));
+    }
+    void OnGUI(){}
+}
+```
+
+
+```
+//扩展Scene视图
+//Editor/MyEditor.cs
+
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+
+[CustomEditor(typeof(Test))]
+public class MyEditor : Editor {
+
+    void OnSceneGUI(){
+        Test test = (Test)target;
+        Handles.Label(test.transform.position+Vector3.up*2,
+            test.transform.name+" : " + test.transform.position.ToString());
+        Handles.BeginGUI();
+        GUILayout.BeginArea(new Rect(100, 100, 100, 100));
+        if(GUILayout.Button("Button1")){
+            Debug.Log ("test");
+        }
+        GUILayout.Label("Scene View");
+        GUILayout.EndArea();
+        Handles.EndGUI();
+    }
+}
+//任何有Test组件的GameObject被选中时都会在SceneView进行绘制
+```
+
+
+# shader
+
+#### fixed
+
+```
+_MainTex ("Base (RGB)", 2D) = "white" {}        //2D类型材质参数
+_Color("Main color",Color) = (1,1,1,1)          //定义Color参数，rgba
+
+
+Diffuse [_Color]        //环境
+SetTexture[_MainTex]
+{
+    Combine texture * primary
+}
+```
+
+
+#### Logo shine
+
+```
+//http://blog.sina.com.cn/s/blog_471132920101d8zf.html
+
+Shader "Custom/shader_color" {
+Properties {
+        _MainTex ("Texture", 2D) = "white" { }
+    }
+    SubShader
+    {
+        AlphaTest Greater .2
+        pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+       
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+           
+            struct v2f {
+                float4  pos : SV_POSITION;
+                float2  uv : TEXCOORD0;
+            };
+           
+            //顶点函数没什么特别的，和常规一样
+            v2f vert (appdata_base v)
+            {
+                v2f o;
+                   o.pos = mul(UNITY_MATRIX_MVP,v.vertex);
+                o.uv =    TRANSFORM_TEX(v.texcoord,_MainTex);
+                return o;
+            }
+           
+            //必须放在使用其的 frag函数之前，否则无法识别。
+            //核心：计算函数，角度，uv,光带的x长度，间隔，开始时间，偏移，单次循环时间
+            float inFlash(float angle,float2 uv,float xLength,int interval,int beginTime, float offX, float loopTime )
+            {
+                //亮度值
+                float brightness =0;
+               
+                //倾斜角
+                float angleInRad = 0.0174444 * angle;
+               
+                //当前时间
+                float currentTime = _Time.y;
+           
+                //获取本次光照的起始时间
+                int currentTimeInt = _Time.y/interval;
+                currentTimeInt *=interval;
+               
+                //获取本次光照的流逝时间 = 当前时间 - 起始时间
+                float currentTimePassed = currentTime -currentTimeInt;
+                if(currentTimePassed >beginTime)
+                {
+                    //底部左边界和右边界
+                    float xBottomLeftBound;
+                    float xBottomRightBound;
+
+                    //此点边界
+                    float xPointLeftBound;
+                    float xPointRightBound;
+                   
+                    float x0 = currentTimePassed-beginTime;
+                    x0 /= loopTime;
+           
+                    //设置右边界
+                    xBottomRightBound = x0;
+                   
+                    //设置左边界
+                    xBottomLeftBound = x0 - xLength;
+                   
+                    //投影至x的长度 = y/ tan(angle)
+                    float xProjL;
+                    xProjL= (uv.y)/tan(angleInRad);
+
+                    //此点的左边界 = 底部左边界 - 投影至x的长度
+                    xPointLeftBound = xBottomLeftBound - xProjL;
+                    //此点的右边界 = 底部右边界 - 投影至x的长度
+                    xPointRightBound = xBottomRightBound - xProjL;
+                   
+                    //边界加上一个偏移
+                    xPointLeftBound += offX;
+                    xPointRightBound += offX;
+                   
+                    //如果该点在区域内
+                    if(uv.x > xPointLeftBound && uv.x < xPointRightBound)
+                    {
+                        //得到发光区域的中心点
+                        float midness = (xPointLeftBound + xPointRightBound)/2;
+                       
+                        //趋近中心点的程度，0表示位于边缘，1表示位于中心点
+                        float rate= (xLength -2*abs(uv.x - midness))/ (xLength);
+                        brightness = rate;
+                    }
+                }
+                brightness= max(brightness,0);
+               
+                //返回颜色 = 纯白色 * 亮度
+                float4 col = float4(1,1,1,1) *brightness;
+                return brightness;
+            }
+           
+            float4 frag (v2f i) : COLOR
+            {
+                 float4 outp;
+                
+                 //根据uv取得纹理颜色，和常规一样
+                float4 texCol = tex2D(_MainTex,i.uv);
+       
+                //传进i.uv等参数，得到亮度值
+                float tmpBrightness;
+                tmpBrightness =inFlash(75,i.uv,0.25f,5f,2f,0.15,0.7f);
+           
+                //图像区域，判定设置为 颜色的A > 0.5,输出为材质颜色+光亮值
+                if(texCol.w >0.5)
+                        outp  =texCol+float4(1,1,1,1)*tmpBrightness;
+                //空白区域，判定设置为 颜色的A <=0.5,输出空白
+                else
+                    outp =float4(0,0,0,0);
+
+                return outp;
+            }
+            ENDCG
+        }
+    }
+}
+```
+
+
+# LIB
+
+#### 2dtoolkit
+
+2dtoolkit2.1
+创建tk2Camera
+创建spriteCollection
+spriteAnimation
+Font
+
+#### ngui
+
+v3.0.8   最新版:3.6.2(2014.5.31)
+导入package,包含以下目录:
+NGUI
+Examples
+Resource
+Scripts
+
+NGUI->Create->2D GUI
+参见网盘Unity的Note，适时间补充
+
+ngui和unity原生2d共存方案，见pc中项目
+
+ngui尺寸
+
+blindGUI使用的dll中函数过时
+Coherent UI 只有评估版package
+
+
+
+删除MainCamera
+创建 NGUI->ui wizard create you own ui
+
+先选择好图片，再create atlas
+
+
+v3.0.7
+主要可创建的对象为：
+create:
+    Sprite
+    Label
+    Texture
+    Unity 2D Sprite
+    Widget
+    Anchor
+    Panel
+    Scroll View
+    Grid
+    Table
+attach:
+    Collider
+    Button
+    Toggle
+    Slider
+    Scroll Bar
+    Progress Bar
+    Popup List
+    Input Field
+    Key Binding
+    Play Tween
+    Play Animation
+Tween:
+    Alpha
+    Color
+    Width
+    Height
+    Position
+    Rotation
+    Scale
+    Transform
+    Volume
+    Field of View
+    Orthographic Size
+---------------------------------------------------------------------
+Button:
+UISprite    UIButton,Box Collider,UIButtonScale:hover时缩放,UIPlaySound:点击播放声音
+    UILabel
+    UISprite 作为背景
+checkbox
+UIWidget    UIToggle：选择打勾UISprite,Box Collider, UIButton
+    UILabel TypeWriter:打字效果
+    UISprite　打勾
+    UISprite 背景 
+scroll bar:
+UISprite    UIScroll bar:选择前景/背景/Thumb, box collider, UIButton
+    UISprite    Box Collider, UIButton
+popup:
+UISprite    UIPopup List, Box Collider, UIButton
+
+
+
+#### DaikonForge[v1.0.10]
+Assets->DaikonForge->UI Wizard
+
+#### 2D ColliderGen[v1.3]
+
+和2dtoolkit或者Orthello一起使用
+
+
+
+
+#### Ferr2D Terrain Tool[v10]
+
+GameObject->Create Ferr2D Terrain
+    Physical 2D
+    Decorative 2D
+    Create Terrain Material
+shift+click:新增点
+ctrl+click: 删除点
+
+RagePixel:像素绘制【】
+Uni2D:2D骨骼动画 【v2.0】
+
+
+#### EasyTouch[v3.3]
+
+```
+Hedgehog Team->Add EasyTouch for C#
+编写c#代码
+    void OnEnable(){
+        EasyTouch.On_TouchStart += On_TouchStart;
+    }
+
+    void OnDisabled(){
+        EasyTouch.On_TouchStart -= On_TouchStart;
+    }
+
+    void On_TouchStart(Gesture gesture)
+    {
+        Debug.Log ("Touch in " + gesture.position);
+    }
+创建空对象Receiver,加入代码
+EasyButton
+EasyJoyStick
+```
+
+
+#### FingerGestures[v2.2]
+
+拖动FingerGestures/Prefabs/Finger Gestures Initializer到场景中
+新建cs文件，拖动到接收手势的对象上
+void OnEnable(){
+    FingerGestures.OnFingerDown += OnFingerDown;
+}
+void OnDisable(){
+    FingerGestures.OnFingerDown -= OnFingerDown;
+}
+
+
+iTween
+iTweenPath
+iTweenVisualEditor
+
+
+#### textFX[v2.5]
+
+Compont->TextFx->EffectManager
+    Font:可以是ttf，也可以是Bitmap font
+    Text:输入文字
+创建动画
+    Window->TextFxManager
+    增加Animation，增加Action
+动画高级
+
+使用Bitmap Font：
+    新建Material
+    拖Font Texture到Material上的main texture field
+    GUI->Text Shader
+BMFont使用方法：只在windows平台运行
+    Options->Font Settings, add  Font file
+    选择需要的字符
+    Options->Export Options
+    Options->Save bitmap font as 
+
+
+
+#### Xffect[v3]
+
+GameObject -> Create Other -> Xffect Object
+选中Effect Layer对象
+    添加Material
+    Emitter Configuration:取消is node life infinite，max nodes=20
+    定义旋转、位移、缩放等
+Xffect可以缩减特效图片的大小
+
+
+
+#### FX Maker[v1.22]
+
+IGSoft_Tools/sceneFXMaker为操作界面
+每一个对应的特效在目录IGSoft_Resources/Projects中
+
+unity访问android中的方法：
+AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+jo.Call("StartActivity0","first Activity"); //调用方法StartActivity0，参数"first Activity"
+
+//问题：改变手机方向，调用android的Unity程序会闪退
+
+
+
+#### PoolManager
+空对象添加Component->path-o-logic->SpawnPool,定义PoolName
+代码:
+public Transfrom prefab;
+private SpawnPool pool;
+void Start(){
+    Transform cube = PoolManager.Pools["poolname"].Spawn(prefab);
+    pool = PoolManager.Pools["poolname"];
+}
+
+void Update(){
+    Transform instance = pool[pool.Count - 1];
+    pool.Despawn(instance);
+    pool.Spawn(prefab, Vector3.one*5, transform.rotation);
+}
+
+#### MadLevel[v1.3]
+
+```
+http://redmine.madpixelmachine.com/projects/mad-level-manager/wiki
+Project->create->Level Configration, Level Configration 放入目录Resources/LevelConfig
+Activate This One:使用该Level Configration
+新建scene
+add：新增LevelScene，选择scene
+第一个选择Level场景设置type为other
+Level选择场景：
+Tools/Mad Level Manaager Initialize
+
+
+```
+
+
+#### Mobile Level Manager[v]
+拖prefabs/LevelManager
+修改GUISkin
+
+
+#### sqlitekit[使用playmaker1.7.7]
+
+
+#### Native 2D
+
+添加带Alpha通道的png，Inspector中选择sprite，编辑多sprinte
+选中多个sprite，拖到场景，则提示保存动画，泽东生成sprite动画
+添加collider，shift：增加控制点，ctrl：删除控制点
+
+#### Mecanim Animation System
+
+创建Avatar:
+select model->Inport Settings->Rig
+    Animaiton Type: Humanoid
+    Avatar Definition: Create From This Model
+    Keep Additional Bones: check
+    Click Configure button->调整->Done
+复制Avatar:
+select Model->Inport Settins->Rig
+    Animation Type: Humanoid
+    Avatar Definition : Copy from Other Avatar
+定义动画片段:
+    Animation Tab
+创建Animator Contoller：
+    project->create->Animator Controller
+Animator View:
+    右键->Create State,change name,  select motion
+    为model的Animator组件指定Controller
+
+# Tools
+
+#### keymap
+
+```
+Q 查看
+W 位移
+E 旋转
+R 缩放
+Z 坐标位置 Pivot轴心点位置 Center中心点位置
+X 坐标定位
+```
+
+#### decomp
+
+解开包:改后缀，解压缩
+代码在assets/bin/Data/Managed/Assembly-CSharp.dll
+IOS下只能看到变量名和方法名，看不到代码
+反编译dll文件
+windows:.NET Reflector 8:把dll拖到reflector
+mac:MonoDevelop
+Codeguard进行混淆
+Unity的Anti-Cheat.package 防止内存修改
+
+

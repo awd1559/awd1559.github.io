@@ -11,6 +11,7 @@ tags:
 
 # shell
 
+
 ## awk
 
 > - 逐行扫描
@@ -155,6 +156,11 @@ sed -e '/^north/h' -e '$G' datafile
 
 ## shell
 
+```
+cat /etc/shells  #得到所有可用的shell,  在mac上是shells文件，在其他系统中不定，可能为shell
+ps/pstree/ptree #mac中没有pstree和ptree
+```
+
 orders for looking cmd:
 - alias
 - shell keyword
@@ -167,6 +173,7 @@ orders for looking cmd:
 
 > redirect
 > who > file
+
 
 
 cmd    |        comment          |
@@ -182,52 +189,78 @@ ssh    | ssh root@some.example.com|
 top    | info about processes |
 
 
-> scripts
+> bash scripts
+
 
 ```
 #!/bin/bash     #first line
-* ? [ ]         #用于文件名通配符
+
+
+#通配符
+* ? [ ]         #用于文件名匹配
 < > 2> >> |     #用于IO重定向和管道
 
 echo how are you \<?\>
 echo "how are you <?>"  #通配符必须用反斜杠或引号输出
 
-var=value       #不能有空格
-declare var=value;  #declare内置函数定义局部变量
 
-export VAR=value    #export内置函数定义全局变量
-            #全局变量当脚本执行结束，退出子进程，依然存在
 
-echo $var       #$提取变量
+#变量
+var_name=var_value           #=号不能有空格
+declare var_name=var_value;  #declare定义局部变量
+export VAR=value             #export定义全局变量
+                             #全局变量当脚本执行结束，退出子进程，依然存在
 
-read name1 name2    #读取用户输入
+echo "the value: $var_name"  #$提取变量
+
+read name1 name2             #读取用户输入
 
 #命令行参数
 $scriptname arg1 arg2 arg3 ...
 #脚本中
 echo $1 $2 $3...    #命令行参数
-echo $*         #所有参数
-echo $#         #参数的个数
+echo $*             #所有参数
+echo $#             #参数的个数
 
-declare -a array_name=(word1 word2 word3...)        #定义数组
+
+$?      #最后一个命令的退出状态, 0为正常退出
+
+
+#定义数组
 declare -a fruit=(apples pears plums)
-echo ${fruit[0]}                    #读取数组
+#读取数组
+echo ${fruit[0]}
+echo ${fruit[*]}
+#数组
+set apples pears plums
+echo $1 $2 $3 # => apples pears plums
+shift
+echo $1 $2 $3 # => pears plums
+echo $*       # => pears plums
 
-var=`cmd`       #使用命令输出
-var=$(cmd)      #
-echo "Today is `date`"  #
-echo "Today is $(date)" #
+
+#使用命令输出内容
+var_name=`cmd`
+var_name=$(cmd)
+echo "Today is `date`"
+echo "Today is $(date)"
+
+#不支持直接运算
+num=`expr 5 + 5`                      #5+5，没有空格会发生错误
+
+
 
 #if...else
-if command          #命令
-if [[expression]]       #表达式求真
-if ((numeric expression))   #算术式求真
+if command                            #执行command命令并判断
+if [[expression]]                     #表达式求真
+if ((numeric expression))             #算术式求真
 then
     block of statements
 else
     block of statements
 fi
 
+#case
 case $color in
 blue)
     echo blue
@@ -241,26 +274,47 @@ green)
 esac
 
 
-$?      #最后一个命令的退出状态, 0为正常退出
+#while, until, for
+while command
+while [[expression]]
+while ((numeric expression))
+do
+done
+
+
+until command
+untile [[expression]]
+do
+done
+
+for
+variable in wd1 wd2 wd3
+do
+done
+
+
+
+#文件测试，注意空格
+if [ -f file ]   #文件存在，并且不是目录
+if [ -d dir ]    #文件存在，并且是个目录
+if [ -s file ]   #文件大小非0
+if [ -r file ]   #可读
+if [ -w file ]   #当前用户可写
+if [ -x file ]   #当前用户可执行该文件
+
 ```
 
 
 
 # code
 
-#### dir
+#### stat
+
 
 ```
-#include <sys/types.h>
-#include <sys/stat.h>
-
-int stat(const char* pathname, struct stat* buf);
-int fstat(int filedes, struct stat* buf);
-int lstat(const char* pathname, struct stat* buf);
-
-
+/*
 struct stat {
-	mode_t 	st_mode;	//file type & mode
+	mode_t 	st_mode;	//file type & mode(permissions)
 	ino_t	st_ino;		//inode number
 	dev_t	st_dev;		//device number
 	dev_t	st_rdev;	//device number for special files
@@ -275,56 +329,81 @@ struct stat {
 	long	st_blocks;	//number of 512-byte blocks allocated
 }
 
-------------------------
-文件类型				|
-------------------------|
-<sys/stat.h>			|
-------------------------|
-S_ISREG(st_mode)		|
-S_ISDIR(st_mode)		|
-S_ISCHR(st_mode)		|
-S_ISBLK(st_mode)		|
-S_ISFIFO(st_mode)		|
-S_ISLNK(st_mode)		|
-S_ISSOCK(st_mode)		|	
-------------------------
+stat.st_mode
 
---------------------------------	
-用户ID							|
--------------------------------	|
-实际uid		实际上是谁			|
-实际gid							|
--------------------------------	|
-有效uid		用于文件许可权检查	|
-有效gid							|
-添加gid							|
--------------------------------	|
-保存设置uid	由exec函数保存		|
-保存设置gid						|
---------------------------------
+文件类型标志包括：
+S_IFBLK：文件是一个特殊的块设备
+S_IFDIR：文件是一个目录
+S_IFCHR：文件是一个特殊的字符设备
+S_IFIFO：文件是一个FIFO设备
+S_IFREG：文件是一个普通文件（REG即使regular啦）
+S_IFLNK：文件是一个符号链接
+
+其他模式标志包括：
+S_ISUID：文件设置了SUID位
+S_ISGID：文件设置了SGID位
+S_ISVTX：文件设置了sticky位
+
+用于解释st_mode标志的掩码包括：
+S_IFMT：文件类型
+S_IRWXU：属主的读/写/执行权限，可以分成S_IXUSR, S_IRUSR, S_IWUSR
+S_IRWXG：属组的读/写/执行权限，可以分成S_IXGRP, S_IRGRP, S_IWGRP
+S_IRWXO：其他用户的读/写/执行权限，可以分为S_IXOTH, S_IROTH, S_IWOTH
+
+还有一些用于帮助确定文件类型的宏定义，这些和上面的宏不一样，这些是带有参数的宏，类似与函数的使用方法：
+S_ISBLK：测试是否是特殊的块设备文件
+S_ISCHR：测试是否是特殊的字符设备文件
+S_ISDIR：测试是否是目录（我估计find . -type d的源代码实现中就用到了这个宏）
+S_ISFIFO：测试是否是FIFO设备
+S_ISREG：测试是否是普通文件
+S_ISLNK：测试是否是符号链接
+S_ISSOCK：测试是否是socket 
+*/
+
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int stat(const char* pathname, struct stat* buf);
+int fstat(int filedes, struct stat* buf);
+int lstat(const char* pathname, struct stat* buf);
+
+
+struct stat buf;
+stat("test.c", &buf);
+printf("test.c file size = %lld\n", buf.st_size);
+printf("is dir: %s\n", S_ISDIR(buf.st_mode) ? "true" : "false");
+
+```
 
 
 
 
-======================================================================
-#include <unistd.h>
-int access(const char* pathname, int mode);	//成功返回0
-	mode
+#### access
+
+
+
+```
+/*
+当前用户是否对pathname有mode权限
+mode
 	R_OK	//读许可权
 	W_OK	//写许可权
 	X_OK	//执行许可权
 	F_OK	//文件是否存在
+*/
+
+#include <unistd.h>
+int access(const char* pathname, int mode);	//成功返回0
+
+```
 
 
+#### umask
 
-
-
-======================================================================
-#include <sys/types.h>
-#include <sys/stat.h>
-
-mode_t umask(mode_t cmask);	//返回旧屏蔽字，将cmask中指定的权限从后续的文件操作中去掉
-	cmask
+```
+/*
+cmask
 	S_IRUSR		//用户-读
 	S_IWUSR		//用户-写
 	S_IXUSR		//用户-执行
@@ -334,43 +413,64 @@ mode_t umask(mode_t cmask);	//返回旧屏蔽字，将cmask中指定的权限从
 	S_IROTH		//其他-读
 	S_IWOTH		//其他-写
 	S_IXOTH		//其他-执行
+*/
 
-
-======================================================================
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int chmode(const char* pathname, mode_t mode);
-int fchmod(int filedes, mode_t mode);
-	mode
+mode_t umask(mode_t cmask);	//返回旧屏蔽字，将cmask中指定的权限从后续的文件操作中去掉
+```
+
+
+#### chmod
+
+```
+/*
+mode
 	S_ISUID
 	S_ISGID
 	S_ISVTX
 	S_IRWXU	= S_IRUSR S_IWUSR S_IXUSR
 	S_IRWXG = S_IRGRP S_IWGRP S_IXGRP
 	S_IRWXO = S_IROTH S_IWOTH S_IXOTH
+*/
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int chmode(const char* pathname, mode_t mode);
+int fchmod(int filedes, mode_t mode);
+```
 
 
-======================================================================
+#### owner 
+
+```
+
 #include <sys/types.h>
 #include <unistd.h>
 
 int chown(const char* pathname, uid_t owner, gid_t group);
 int fchown(int filedes, uid_t owner, gid_t group);
 int lchown(const char* pathname, uid_t owner, gid_t group);
+```
 
-文件截断
-======================================================================
+
+#### turncate
+
+```
 #include <sys/types.h>
 #include <unistd.h>
 
-int truncate(const char* pathname, off_t length);
-int ftruncate(int filedes, off_t length);
+int turncate(const char* pathname, off_t length);
+int fturncate(int filedes, off_t length);
+```
 
 
 
+#### link, rename 
 
-======================================================================
+```
 #inlcude <unistd.h>
 int link(const char* existingpath, const char* newpath);
 
@@ -388,23 +488,23 @@ int rename(const char* oldname, const char* newname);
 #include <unistd.h>
 int symlink(const char* acutualpath, const char* sympath);	//创建链接
 int readlink(const char* pathname, char buf, int bufsize);	//组合了open，read，close
+```
 
 
+#### time
 
+```
 #include <sys/types.h>
 #include <utime.h>
 int utime(const char* pathname, const struct utimebuf times);	//文件的存取/修改时间
 ```
 
-#### IO
+
+#### open
 
 ```
-===============================================
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
-	oflag
+/*
+oflag
 	O_RDONLY	0	只读
 	O_WRONLY	1	只写
 	O_RDWR		2	读写
@@ -415,22 +515,37 @@ int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件
 	O_NOCTTY		若打开终端设备，则不将此设备分配为此进程的控制终端
 	O_NONBLOCK		若打开FIFO、块文件、字符文件，为此文件的本次打开操作和后续的IO操作设置非阻塞方式
 	O_SYNC			每次write都等到物理IO完成才返回，同步
+*/
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+int open(const char* pathname, int oflag, .../*, mode_t mods */);	//返回文件描述符
+```
 
-===============================================
+#### create
+
+```
 #include <sys/types.h>
 #include <sys/stat.h>
 #icnlude <fcntl.h>
 
 int creat(const char* pathname, mode_t mode);		//返回文件描述符
 open(pathname, O_WRONLY|O_CREAT|O_TRUNC, mode);		//等价于
+```
 
 
-===============================================
+#### close
+
+```
 #include <unistd.h>
 int close(int filedes);		//成功:0, 出错:-1
+```
 
-===============================================
+
+#### seek
+
+```
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -444,9 +559,11 @@ off_t currpos = lseek(fd, 0, SEEK_CUR);		//获取文件当前位置
 //如果文件为管道文件或FIFO，返回-1
 //lseek不引起文件IO
 //文件位移可以大于文件长度，对该文件的下一次写将延长文件，并留下空洞
+```
 
+#### read, write
 
-===============================================
+```
 #include <unistd.h>
 ssize_t read(int filedes, void *buff,  size_t nbytes);		//返回读到的字节数，0为文件尾
 
@@ -455,23 +572,25 @@ ssize_t read(int filedes, void *buff,  size_t nbytes);		//返回读到的字节�
 
 #include <unistd.h>
 ssize_t write(int filedes, const void* buff, size_t nbytes);	//返回已写的字节数
+```
 
 
-===============================================
+#### dup
+
+```
 #include <unistd.h>
 int dup(int filedes);	//返回当前最小的可用文件描述符
 			//等效于fcntl(filedes, F_DUPFD, 0);
 int dup2(int filedes, int filedes2);		//已filedes2指定新描述符的数值, 如果filedes2已经打开，先将其关闭
 			//等效于close(filedes2); fcntl(filedes, F_DUPFD, filedes2);
+```
 
 
+#### fcntl
 
-#include <sys/types.h>
-#include <unistd.h>
-#include <fcntl.h>
-
-int fcntl(int filedes, int cmd, ... /* int arg */);	
-	cmd
+```
+/*
+cmd
 	F_DUPFD		//复制现存的描述符， 		返回新文件描述符
 	F_GETFD		//获得/设置文件描述符标志	返回文件描述符标志
 	F_SETFD		
@@ -493,20 +612,26 @@ int fcntl(int filedes, int cmd, ... /* int arg */);
 	O_NONBLOCK	//非阻塞方式
 	O_YNC		//等待写完成
 	O_ASYNC		//异步IO
+*/
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int fcntl(int filedes, int cmd, ... /* int arg */);	
+```
 
 
+#### ioctl
 
-======================================================================================
+```
 #include <unistd.h>
 #include <sys/ioctl.h>
 
 int ioctl(int filedes, int request, ...);	
-
-
-
-
-======================================================================================
 ```
+
+
 
 
 #### signal
@@ -569,11 +694,9 @@ sigsuspend在原子操作中实现恢复信号屏蔽字,并且使进程睡眠
 ```
 
 
-#### temp
+#### error
 
 ```
-//错误处理
-===========================================================
 //<errno.h>中定义了变量errno
 
 #include <string.h>

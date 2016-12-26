@@ -1,0 +1,21 @@
+---
+layout:     post
+title:      "c programming language"
+subtitle:   " \"c \""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - info
+---
+static 函数仅对本文件可见
+如果在头文件中声明为static
+
+
+static 声明的变量或函数只在本文件中可见
+未声明为static 的变量或函数则为全局可见，在另一文件中可用extern 来声明引用
+
+
+常用方法
+if((line = readline(fd)) == null), 一定要将赋值用()包围起来，因为比较运算高于赋值运算
+注意line可以保存readline的正常返回值和错误值(如-1或EOF)

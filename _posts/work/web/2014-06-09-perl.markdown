@@ -1,0 +1,169 @@
+---
+layout:     post
+title:      "perl"
+subtitle:   " \"perl program language\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - web
+---
+
+# perl template
+
+
+```
+#!/usr/bin/perl
+#use strict;
+#use warnings;
+
+sub ow::speak {
+  print "a Cow goes moooo!\n";
+}
+sub Horse::speak {
+  print "a Horse goes neigh!\n";
+}
+sub Sheep::speak {
+  print "a Sheep goes baaaah!\n"
+}
+
+ow::speak;
+Horse::speak;
+Sheep::speak;
+
+print ";it is the last line”;
+```
+
+
+# basic
+
+#### foreach
+
+```
+@array=(1,2,3);
+$a=$array[0];     //读数组
+$array[5]=5;      //写数组，数组不设限制
+foreach $value(@array)
+{
+  print $value,"\n";
+}
+
+for(1...10)
+```
+
+```
+chop($var)  去掉$var的最后一位
+
+
+last break 
+next continue
+```
+
+#### hash
+```
+%data=("name"=>"John","age"=>20,"weight"=>60);
+$value=$data{"age"};
+
+while(($key,$value)=each%hash)
+{
+  print "$key,$value\n";
+} 
+```
+
+
+
+
+# open file 
+
+```
+open(FD,"info.txt")||die("Can not open the file!$!n");
+@line=<FD>;
+$line[0]
+close(FD);
+```
+
+
+
+
+
+# file 
+
+```
+//预定义的三个文件句柄:STDIN、STDOUT、STDERR
+open(filehandler, "file");
+open(filehandler, ">file"); //写打开
+open(filehandler, ">>file");  //文件末尾写入
+open(filehandler, "+<file");  //读写
+
+close(filehandler);
+
+unlink 'file';      //删除
+unlink 'file1', 'file2', 'file3';
+unlike <*.cpp>;
+
+rename "oldfilename", "newfilename";  //重命名
+
+#读
+$readline = <filehandler>;  //读,用<>包围文件句柄
+open(filereadhandler, "test.txt");
+while($readline = <filereadhandler>)
+{
+}
+
+#或者
+while(!eof(filereadhandler))
+{
+  read(filereadhandler, $buffer, 100, $lengthoffset);
+}
+
+
+#写
+open(filehandler, ">filewrite.txt");
+print filehandler ("this is a test\n");
+close(filehandler);
+
+
+#目录
+
+opendir(dirhandler, "test");
+@list = readdir(dirhandler);
+print @list;
+closedir(dirhandler);
+#或者
+opendir(dirhandler, "test");
+while($list = readdir(dirhandler))
+{
+  print "$list\n";
+}
+closedir(dirhandler);
+
+foreach $list (sort readdir(dirhandler))
+{
+  print "$list\n";
+}
+
+
+
+foreach 标量(清单)
+foreach $item(@array) {
+}
+foreach $keyname (keys %hash) {
+}
+
+next:结束本次循环
+last:结束循环
+redo:
+{
+  $n++;
+  redo if($n < 10000 )    #重复执行本程序块
+}
+```
+
+函数调用时，所有参数从左至右压入@_数组
+@_数组为传入函数的所有实参
+perl函数不检查参数的合法性，需程序自己处理
+perl函数的参数都是引用传递
+函数返回:
+  return();   #使用return函数返回，向量、数组或散列
+  默认返回最后一句
+
