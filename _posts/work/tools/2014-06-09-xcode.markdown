@@ -9,19 +9,34 @@ tags:
     - tools
 ---
 # keymap
+
 Standard Editor>Show Document Items 
 
 ------------------- | ---------------------- |
 Open Quickly        | ctrl+shift+o           |
-cmd + p             | function jump in file  |
-cmd+shift+j         | Reveal in Project Navigator   |
-⌘+⌃ +↓or↑           | *.m*.h切换  |
-option + 左键        | show doc |
-cmd + .             | 暂停模拟器 |
-⌘+⌃ +←or→           | 前进后退文本文件 |
-⌃+i                 | 自动排版代码 | 
-⌘+[or]              | 左右缩进 | 
-⌘+/                 | 注释 |
+⌘ + p               | function jump in file  |
+⌘ + ⇧ + j           | Reveal in Project Navigator   |
+⌘ + ⌃ + ↓ or ↑      | *.m*.h切换  |
+⌥ + leftkey         | show doc |
+⌘ + .               | 暂停模拟器 |
+⌘ + ⌃ + ← or →      | 前进后退文本文件      |
+⌃ + i               | 自动排版代码          | 
+⌘ + [ or ]          | 左右缩进              | 
+⌘ + ⌃ + w           | 关闭当前文本文件       |
+⌘ + /               | 注释                 |
+⌘ + ⌥ + 2-6         | 在右侧检测器间跳转     |
+⌘ + ⌥ + 0           | 显示／隐藏右侧检测器    |
+⌘ + ⇧ + Y           | 显示／隐藏debugger     |
+⌘ + ⇧ + o           | 快速打开项目中的文件    |
+⌘ + 1 - 8           | 显示／隐藏左侧Navigator |
+⌘ + 1 - 8           | 在左侧Navigator间跳转 |
+
+
+
+# 禁止Indexing
+```
+defaults write com.apple.dt.XCode IDEIndexDisable 1
+```
 
 
 # comment

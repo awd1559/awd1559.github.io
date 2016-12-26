@@ -1,0 +1,20 @@
+---
+layout:     post
+title:      "Flash"
+subtitle:   " \"常用方法和快捷键\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - tools
+---
+
+
+
+Ctrl+Shift+V原地粘贴
+基本矩形(图形) 通过右键+分离 分离成普通形状
+形状转换为元件(图形)
+引导层
+被引导层
+补间动画	元件
+形状动画	形状

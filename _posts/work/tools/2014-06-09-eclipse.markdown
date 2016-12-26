@@ -26,6 +26,9 @@ Ctrl+ d        | delete current line          |
 Ctrl+ m        | max current window           |
 Ctrl+Shift+r   | open Resource                |
 Ctrl+Shift+o   | fix auto import              |
+F3             | code goto                    |
+F4             | code Hierarchies             |
+
 
 # error fix
 

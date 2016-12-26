@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "apple使用"
+title:      "Apple"
 subtitle:   " \"常用方法和快捷键\""
 date:       2014-06-09 12:00:00
 author:     "awd"
@@ -62,14 +62,20 @@ win			  |	⌘        |
 alt           |	option   |
 
 
-# brew
+# Homebrew
 
 ```
-//brew 故障
-cd /usr/local
-git status
+brew help
 
-git reset --hard && git clean -df
+brew search [TEXT]
+brew info  [FORMULA]
+brew install [FORMULA]
+brew update 
+brew upgrade [FORMULA]
+brew uninstall [FORMULA]
 
+brew config
 brew doctor
-brew update
+```
+
+
