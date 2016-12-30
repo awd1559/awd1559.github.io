@@ -8,6 +8,326 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - info
 ---
+
+# history
+1983年，ANSI C 或者 ANSI/ISO C开始编制
+gcc -Wall 包含部分lint功能。
+
+
+
+
+# Basic
+
+
+基本数据类型
+int
+float
+double
+char
+
+long     max min ctypes.h
+short
+signed
+unsigned
+
+转义字符表
+\n
+\r
+\t
+\b
+\f
+\\
+\'
+\"
+\ddd 三位8进制ddd对应ASCII码字符
+\xhh 两位16进制hh对应ASCII码字符
+
+
+
+类型转换 
+上升
+强制类型转换失败的例子， 对于(void*)
+
+
+typedef long int Quantity;
+typedef unsigned size_t;
+Quantity q = 0;
+typedef struct
+
+
+#### preprocessor directive
+
+
+```
+#define NAME      replacement
+
+#define cube(x)   ((x)*(x)*(x))
+宏不受参数类型限制
+没有函数调用
+增加代码量
+##:宏扩展时实参应替换形参，加上双引号。
+
+#ifdef
+#ifndef
+#else
+#endif
+#undef
+
+#if 0
+#else
+#endif
+
+#include
+include文件路径查找
+
+
+预定义宏
+__STDC__：是否为标准c
+__FILE__：源文件名称
+__LINE__：当前行号
+__DATE__：被编译的日期，月/日/年
+__TIME__：被编译的时间，时：分：秒
+
+```
+
+
+
+
+#### statement
+expression: 
+
+算数运算符：+ - * / = % ++ --
+relation operator: == != < > <= >=
+logic operator: ! && ||
+bit operator: & | ~ ^ >> <<
+conditional operator:  (? :)
+
+selection statement: if switch
+iteration statement: while for do
+jump statement: break continue
+
+运算符优先级
+
+
+#### comment
+
+```
+//
+
+/**/
+
+/* Name: filename.c
+   Athor: 
+ */
+
+/*********************
+ * Name: filename.c  *
+ * Author:           *
+ *********************/
+
+ #if 0
+ /*  */    /*处理注释嵌套*/
+ #endif
+```
+
+
+
+
+
+
+
+
+
+# array
+
+一维数组
+int a[MAX];
+MAX在编译期确定，MAX可以使用#define。或者使用malloc解决。
+a是指针类型
+a[i]是基础类型
+
+
+二维数组
+int x[2][3] = {{1,2,3}, {4,5,6}};
+int x[2][3] = {1,2,3,4,5,6};
+int x[][3]
+
+字符数组和字符串
+作为字符串必须以'\0结尾'
+char str0[] = "student";
+char str1[] = {"student"};
+char str2[] = {'s', 't', 'u', 'd', 'e', 'n', 't'};
+
+printf("%s", str0);
+printf("%s", str1);
+printf("%s", str2);//wrong, no '\0'
+
+
+
+
+数组和指针
+数组参数 
+
+
+
+# struct
+
+
+
+
+
+
+
+
+# enum
+
+
+
+
+
+
+
+
+# union
+
+
+
+
+
+
+# pointer
+
+
+
+
+
+
+
+# function
+
+
+by val
+by pass
+pointer argument
+array argument
+int f(int a[]); int f(int a[][2]);
+int f(int *a);  int f(int **a);
+
+多参数函数
+
+# stdlib
+
+#### printf 函数
+
+putchar：一个字符
+
+%% => %
+
+1)类型
+
+格式字符	 | 意义 |
+d	| 以十进制形式输出带符号整数(正数不输出符号)
+o	| 以八进制形式输出无符号整数(不输出前缀0)
+x,X	| 以十六进制形式输出无符号整数(不输出前缀Ox)
+u	| 以十进制形式输出无符号整数
+f	| 以小数形式输出单、双精度实数
+e,E	| 以指数形式输出单、双精度实数
+g,G	| 以%f或%e中较短的输出宽度输出单、双精度实数
+c	| 输出单个字符
+s	| 输出字符串
+
+2)标志
+标 志	| 意义 |
+-	| 结果左对齐，右边填空格
++	| 输出符号(正号或负号)
+空格	| 输出值为正时冠以空格，为负时冠以负号
+#	| 对c、s、d、u类无影响；
+	  对o类，在输出时加前缀o；
+      对x类，在输出时加前缀0x；
+      对e、g、f 类当结果有小数时才给出小数点。
+
+
+3) 输出最小宽度
+用十进制整数来表示输出的最少位数。若实际位数多于定义的宽度，则按实际位数输出，若实际位数少于定义的宽度则补以空格或0。
+
+
+4) 精度
+精度格式符以“.”开头，后跟十进制整数。本项的意义是：如果输出数字，则表示小数的位数；如果输出的是字符，则表示输出字符的个数；若实际位数大于所定义的精度数，则截去超过的部分。
+
+
+5) 长度
+长度格式符为h、l两种，h表示按短整型量输出，l表示按长整型量输出。
+
+#### scanf  函数
+
+getchar: 一个字符
+
+其控制串由三类字符构成：
+1。格式化说明符； 
+2。空白符； 
+3。非空白符；
+
+
+（A）                格式化说明符
+
+格式字符           说明
+%a                 读入一个浮点值(仅C99有效) 
+%A                 同上 
+%c                 读入一个字符 
+%d                 读入十进制整数 
+%i                 读入十进制，八进制，十六进制整数 
+%o                 读入八进制整数 
+%x                 读入十六进制整数 
+%X                 同上 
+%c                 读入一个字符 
+%s                 读入一个字符串 
+%f                 读入一个浮点数 
+%F                 同上 
+%e                 同上 
+%E                 同上 
+%g                 同上 
+%G                 同上 
+%p                 读入一个指针 
+%u                 读入一个无符号十进制整数 
+%n                 至此已读入值的等价字符数 
+%[]                扫描字符集合 
+%%                 读%符号 
+                
+附加格式说明字符表
+修饰符                       说明
+L/l 长度修饰符               输入"长"数据 
+h 长度修饰符                 输入"短"数据 
+W 整型常数                   指定输入数据所占宽度 
+* 星号                       空读一个数据 
+hh,ll同上h,l但仅对C99有效。
+
+（B）         空白字符
+空白字符会使scanf()函数在读操作中略去输入中的一个或多个空白字符，空白符可以是space,tab,newline等等，直到第一个非空白符出现为止。
+（C）        非空白字符
+一个非空白字符会使scanf()函数在读入时剔除掉与这个非空白字符相同的字符。
+
+
+
+
+
+
+# Algorithms
+
+
+
+
+# books
+<the c program language> 1978
+《C语言程序设计：现代方法(第2版)》2007
+c语言编程常见问题解答
+c陷阱
+c和指针
+c专家编程
+a programmer's perpective
+
+
+
+# notice
 static 函数仅对本文件可见
 如果在头文件中声明为static
 
@@ -19,3 +339,5 @@ static 声明的变量或函数只在本文件中可见
 常用方法
 if((line = readline(fd)) == null), 一定要将赋值用()包围起来，因为比较运算高于赋值运算
 注意line可以保存readline的正常返回值和错误值(如-1或EOF)
+
+
