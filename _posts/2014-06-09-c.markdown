@@ -10,6 +10,7 @@ tags:
 ---
 
 # history
+
 1983年，ANSI C 或者 ANSI/ISO C开始编制
 gcc -Wall 包含部分lint功能。
 
@@ -19,34 +20,39 @@ gcc -Wall 包含部分lint功能。
 # Basic
 
 
-基本数据类型
-int
-float
-double
-char
+> **基本数据类型
+> - int
+> - float
+> - double
+> - char
 
-long     max min ctypes.h
-short
-signed
-unsigned
+> - long     max min ctypes.h
+> - short
+> - signed
+> - unsigned
 
-转义字符表
-\n
-\r
-\t
-\b
-\f
-\\
-\'
-\"
-\ddd 三位8进制ddd对应ASCII码字符
-\xhh 两位16进制hh对应ASCII码字符
+转义字符|意义|ASCII码值（十进制）       |
+\a  |响铃(BEL)                       |007
+\b  |退格(BS) ，将当前位置移到前一列    |008
+\f  |换页(FF)，将当前位置移到下页开头   |012
+\n  |换行(LF) ，将当前位置移到下一行开头 |010
+\r  |回车(CR) ，将当前位置移到本行开头   |013
+\t  |水平制表(HT) （跳到下一个TAB位置）  |009
+\v  |垂直制表(VT)                      |011|
+\\  |代表一个反斜线字符''\'             |092|
+\'  |代表一个单引号（撇号）字符          |039
+\"  |代表一个双引号字符                 |034|
+\?  |代表一个问号                      |063|
+\0  |空字符(NULL)                     |000|
+\ooo|1到3位八进制数所代表的任意字符     |三位八进制|
+\xhh|1到2位十六进制所代表的任意字符     | 二位十六进制
 
 
 
-类型转换 
-上升
-强制类型转换失败的例子， 对于(void*)
+> **TODO
+> - 类型转换 
+> - 上升
+> - 强制类型转换失败的例子， 对于(void*)
 
 
 typedef long int Quantity;
@@ -94,8 +100,8 @@ __TIME__：被编译的时间，时：分：秒
 
 
 #### statement
-expression: 
 
+expression: 
 算数运算符：+ - * / = % ++ --
 relation operator: == != < > <= >=
 logic operator: ! && ||
@@ -106,7 +112,8 @@ selection statement: if switch
 iteration statement: while for do
 jump statement: break continue
 
-运算符优先级
+> **TODO
+> - 运算符优先级
 
 
 #### comment
@@ -148,7 +155,7 @@ a[i]是基础类型
 
 
 二维数组
-int x[2][3] = {{1,2,3}, {4,5,6}};
+int x[2][3] = { {1,2,3}, {4,5,6} };
 int x[2][3] = {1,2,3,4,5,6};
 int x[][3]
 
@@ -316,16 +323,6 @@ hh,ll同上h,l但仅对C99有效。
 
 
 
-# books
-<the c program language> 1978
-《C语言程序设计：现代方法(第2版)》2007
-c语言编程常见问题解答
-c陷阱
-c和指针
-c专家编程
-a programmer's perpective
-
-
 
 # notice
 static 函数仅对本文件可见
@@ -339,5 +336,15 @@ static 声明的变量或函数只在本文件中可见
 常用方法
 if((line = readline(fd)) == null), 一定要将赋值用()包围起来，因为比较运算高于赋值运算
 注意line可以保存readline的正常返回值和错误值(如-1或EOF)
+
+
+# tools 
+
+in windowns use cygwin + codeblock.
+in windows use netbeans : configuration not simple.
+in linux use netbeans as IDE is simple.
+use Makefile + sublime is the best way.
+swift and OpenCV use cmake.
+
 
 
