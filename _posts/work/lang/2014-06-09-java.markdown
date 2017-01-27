@@ -1,0 +1,475 @@
+---
+layout:     post
+title:      "Java programming language"
+subtitle:   " \"Java\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - lang
+---
+
+# Basic
+
+#### Comment
+```
+/**			//在IntelliJ中输入/** 自动识别注视
+ */
+ javadoc -d dir packageName //提取packageName的注释道dir目录
+```
+
+
+#### 常量
+> - final 声明常量
+> - final 变量只能被赋值一次，不能再更改
+> - 常量一般使用大些
+> - 公共类常量: public static final, 如Math.PI, Math.E
+
+
+
+#### 变量
+> - 大小写敏感
+> - 逐一声明可提高可阅读性
+> - java.lang.Character.isjavaidentifierStart
+> - java.lang.Character.isjavaidentifierPart
+> - 不要使用未被初始化的变量
+> - 不区分声明与定义
+
+
+
+> - type
+
+---------|-------|------|------|----|
+primitive|numeric|byte  |8     |Byte
+         |       |short |16    |Short
+         |       |int   |32    |Integer
+         |       |long  |64    |Long
+         |       |char  |16bits|Float
+         |float-point|float |32|Double
+         |           |double|64|
+reference|       |class     |  |
+         |       |interface |  |
+         |       |array     |  |
+         |       |null      |  |Void
+         |       |bool      |  |Boolean
+
+
+
+自动类型转换
+以下自动转换无信息丢失,表达式中类型自动提升：
+char  => int
+byte  => short
+short => int
+int   => long 
+
+TODO:去找这张图core java page less than 59
+             char
+              ||
+              \/
+byte->short->int->long
+
+实现转换无信息丢失
+虚线转换有信息丢失
+
+强制转换
+int d = (int)9.99;
+不能在boolean和其它类型中进行强制转换
+
+
+
+
+#### 运算符
+
+```
++ - * / %
+++ --
+< > <= >= != && ||
+& | ~ ^
+>> 用符号为填充高位    >>> 用0填充高位
+<<   没有<<<
+```
+> - Java没有运算符重载
+
+TODO:优先级见core java page 59
+
+
+
+#### flow control
+
+```
+case "string": //since Java7
+for(int e: someArray)		//c#走得更远: foreach(var e in someArray)
+Label:
+	for
+		for
+			break Label; //goto Label
+```
+
+
+
+
+
+#### Array
+```
+int[] a = new int[3];
+int[] a = new int[]{ , , };
+int[] a = {, , ,};			//简写方式
+
+
+int a[] = {, , ,}; //不推荐
+int a[3]; //ERROR
+
+
+String[] stringArray = { "a", "b", "c", "d", "e" };  
+
+//create
+ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(stringArray)); 
+
+//contains
+Arrays.asList(stringArray).contains("a");  
+
+//connect
+int[] intArray = { 1, 2, 3, 4, 5 };  
+int[] intArray2 = { 6, 7, 8, 9, 10 }; 
+int[] combinedIntArray = ArrayUtils.addAll(intArray, intArray2);  
+
+
+int[] newArray = Arrays.copyOf(oldArray, oldArray.length);
+
+
+System.arraycopy(); //before Java6
+
+int[][] arr = new int[10][10];
+int[][] arr = { {2,2,2}, {1,1,1}, {3,3,3} };
+```
+
+> - newArray中多余元素填默认值
+> - 数组大小无法改变
+> - Java运行时确定数组大小 
+```
+int n;
+int arr = new int[n];
+```
+
+> - 推荐使用ArrayList<T>
+```
+void update(ArrayList list);
+ArrayList<SomeClass> list;
+update(list);	//不需要类型转换
+```
+
+#### Enum
+> - 继承自java.lang.Enum
+
+```
+enum Size {
+	SMALL, MEDIUM, LARGE
+};
+Size s1 = Size.SMALL;
+Size s2 = (Size)Enum.ValueOf(Size.class, "small");
+if(s1.equals(s2))//ERROR
+if(s1 == s2)
+```
+
+> - 可以有属性和方法
+
+```
+public enum Week {
+    MON(1), TUE(2), WED(3), THU(4), FRI(5), SAT(6) {
+        @Override
+        public boolean isRest() {
+            return true;
+        }
+    },
+    SUN(0) {
+        @Override
+        public boolean isRest() {
+            return true;
+        }
+    };
+ 
+    private int value;
+ 
+    private Week(int value) {
+        this.value = value;
+    }
+ 
+    public int getValue() {
+        return value;
+    }
+ 
+    public boolean isRest() {
+        return false;
+    }
+}
+```
+
+> - EnumSet, EnumMap
+
+```
+EnumSet<Week> weekSet = EnumSet.allOf(Week.class);
+EnumMap<Week, String> weekmap = new EnumMap(Week.class);
+weekmap.put(Week.MON, "星期一");
+```
+
+
+
+
+#### string
+
+```
+s.subString()//子串
+s1 + s2;//拼接
+s.equals(s2);
+s.equalsIgnore(s2);
+s.compareTo()
+```
+> - 字符串不可变
+
+
+
+#### Function
+
+//可变数量参数
+
+```
+print(String font, Object ... args); // => print(String font, Object args[]);
+```
+
+#### Struct
+
+> - Java没有Struct
+
+
+
+# Class
+> - 对象可以为Null，c++引用没有空
+> - static field: 所有实例共享一份
+
+
+
+```
+ArrayList<Integer> list = new ArrayList<>();
+list.add(3);	//list.add(new Integer(3));
+int n = list.get(3);//自动拆包
+```
+
+
+#### 构造函数
+> - 与类同名
+> - new 使用构造函数，只有这一种调用构造函数的方法
+> - 可以有多个构造函数， 没有final构造函数
+> - 没有返回值
+> - 在堆中构造
+> - final field在构造函数中初始化
+> - 如果没有构造函数，编译器自动生成一个，filed被默认值初始化(0, false, null)
+> - 如果有至少一个构造函数，默认构造函数不会生成
+
+> - 调用另一个构造函数
+```
+this( ... ... );//c++中不能调用另一个构造函数
+```
+> - 1.显式初始化
+```
+private int id = GUID();//先于构造函数执行
+```
+> - 2.初始化块
+```
+class SomeClass
+{
+	{... }//块先于构造函数
+	static {...} //静态初始化块，第一次使用时，执行一次
+}
+```
+
+
+> - 构造顺序
+> - 1.默认值，显式初始化
+> - 2.初始化块
+> - 3.父类构造函数
+> - 4.本类构造函数
+
+
+#### finalize
+> - Java支持垃圾回收，不支持析构
+> - finalize方法在gc清除obj之前调用
+> - 不要依赖finalize管理短缺资源
+
+
+#### clone
+> - clone()返回对象的复制
+
+```
+SomeClass copy = original;
+copy.update();// => original.update();
+
+SomeClass clone = original.clone();
+clone.update();
+```
+> - 实现Cloneable，自定义clone
+> - 使用序列化方法，效率低
+> - 数组类型均包含一个clone方法
+
+#### methods
+> - 不能更改非static fields
+> - 没有this参数
+> - 使用SomeClass.staticMethod()调用
+> - 可以overload任何方法
+
+# 继承
+> - Java所有继承为public
+> - super.method();//c++ SuperClass::Method()
+> - super:调用基类方法，调用基类构造函数
+> - this :调用本类方法，调用本类构造函数
+> - final类不能被继承
+> - final类中方法默认为final
+> - final方法不允许子类覆盖
+> - 不要将方法声明为虚方法
+> - 动态绑定, c++/c#中非特殊说明，函数不具有多态性
+```
+class Employee {
+	Employee getBody() {}
+}
+class Manager : Employee {
+	Manager getBody() {}
+}
+```
+> - 在继承层次中可以强制类型转换
+> - 最好不要使用强制类型转换的设计
+> - 强制类型转换不返回null，直接异常
+> - 所有类的基类Object
+> - @Override 覆盖超类方法
+
+#### 抽象类
+```
+abstract class Person{
+	public abstract string getD();
+}
+
+//c++
+class Person {
+	virtual string getD() = 0; //pure virtual function
+}
+```
+> - 只要有一个抽象方法，类就必须声明为抽象类
+> - 抽象方法在子类中实现
+
+
+####内部类
+> - 内部类可以访问类所在作用域的数据，包括private数据
+> - 内部类对其它类不可见
+> - 匿名内部类适合作callback
+> - 内部类可以访问父类field
+> - 内部类可定义于函数中，局部内部类
+> - 局部类不能mark public或者private 
+> - 局部类可访问final局部变量
+> - 内部类不能访问外层类field
+> - static 局部类
+
+# 反射
+```
+SomeClass s;
+Class c = SomeClass.class;
+Class c = s.getClass();
+c.getName();  //"SomeClass"
+
+String classname = "java.util.Date";
+Class c = Class.forName(className);
+Object s = c.newInstance();
+
+Field[] f = c.getFields();
+Method[] m = c.getMethods();
+Constructor[] con = c.getConstructors();
+
+Modifier:isPublic, isPrivate, isFinal
+```
+
+
+# Interface
+> - class 可以实现多个interface
+> - interface中所有方法为public，方法不能定义实现代码
+> - interface中可以定义常量，不能定义field变量, 自动为public static final
+```
+SomeClass implems SomeInterface {}
+SomeInerface i = new SomeClass();
+if(i instanceof SomeInterface) {}
+```
+> - Interface可以继承接口, extends
+> - 
+
+
+
+# 泛型
+```
+//generic class
+public class Pair<T> {}
+
+//generic method
+class SomeClass{
+	public static<T> T getM(T[]a) {}
+}
+String[] names = {,,};
+SomeClass.<String> getM(names);
+SomeClass.getM(names);	//自动推导
+```
+
+#### 类型限制
+```
+public static<T extends Compable> T min(T[]a){}
+
+<T extendsd InterfaceA & InterfaceB & SuperClass>
+```
+
+
+#### 泛型实现
+> - VM中没有泛型，只有普通类和普通方法
+> - Java泛型定义相对应的原始类型，C++中模版回代码膨胀
+> - 类型变量被擦除，替换为限定类型，如果没有限定类型，为Object
+
+
+
+# lambda
+
+
+
+# Lib
+
+#### BigDecimal BitInteger
+```
+BigInterger a = BigInteger.valueOf(100);
+a.add(b);
+```
+
+#### Input/Output
+```
+Scanner in = new Scanner(System.in);
+System.console.readLine();
+System.console.readPassword();
+
+Scanner in = new Scanner(new File("filename"));
+PrintWriter out = new PrintWriter("filename");
+
+```
+TODO: format in page71
+
+
+
+
+
+
+# [JavaFx](http://docs.oracle.com/javase/8/javase-clienttechnologies.htm)
+
+
+
+
+
+# [SWT](http://www.eclipse.org/swt/)
+
+
+
+
+
+
+# [Scene Builder](http://gluonhq.com/labs/scene-builder/)
+
+

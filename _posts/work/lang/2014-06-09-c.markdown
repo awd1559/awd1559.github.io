@@ -1,12 +1,12 @@
 ---
 layout:     post
 title:      "c programming language"
-subtitle:   " \"c \""
+subtitle:   " \"c\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - info
+    - lang
 ---
 
 # history
@@ -145,7 +145,7 @@ jump statement: break continue
 
 
 
-# array
+#### array
 
 一维数组
 int a[MAX];
@@ -177,7 +177,7 @@ printf("%s", str2);//wrong, no '\0'
 
 
 
-# struct
+#### struct
 
 
 
@@ -186,7 +186,7 @@ printf("%s", str2);//wrong, no '\0'
 
 
 
-# enum
+#### enum
 
 
 
@@ -195,14 +195,14 @@ printf("%s", str2);//wrong, no '\0'
 
 
 
-# union
+#### union
 
 
 
 
 
 
-# pointer
+#### pointer
 
 
 
@@ -210,7 +210,7 @@ printf("%s", str2);//wrong, no '\0'
 
 
 
-# function
+#### function
 
 
 by val
@@ -222,7 +222,78 @@ int f(int *a);  int f(int **a);
 
 多参数函数
 
+
+
+
+
 # stdlib
+
+
+#### I/O
+
+open
+openat
+create
+close
+lseek
+read
+write
+dup
+dup2
+sync
+fsync
+fdatasync
+fcntl
+ioctl
+
+
+#### file/DIR
+
+stat/fstat/lstat
+access/faccessat
+umask
+chmod/fchmod/fchmodat
+chown/fchown/fchownat/chown
+link/linkat/unlink/unlinkat/remove
+rename/renameat
+futimens/utimensat/utimes
+mkdir/mkdirat/rmdir
+chdir/fchdir/getcwd
+
+
+#### standard I/O
+
+
+#### system info
+
+#### process basic
+fork
+vfork
+exit
+wait
+waitpid
+wait3/wait4
+exec
+system
+
+#### process relation
+tcgetpgrp/tcsetpgrp/tcgetsid
+session
+
+#### signal
+
+
+#### thread
+#### trhead control
+#### deamon
+#### advanced I/O
+#### process 
+popen/pclose
+
+#### socket
+#### tty
+#### database
+
 
 #### printf 函数
 

@@ -9,8 +9,18 @@ tags:
     - game
 ---
 
+> on Linux
+
+```
+yum install SDL
+yum install SDL_devel.
+gcc -lSDL  main.c
+```
+
 ```
 //code snip from [pingus](https://github.com/Pingus/pingus)
+
+//init
 if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK |SDL_INIT_EVERYTHING) == -1){		//init,最简单的SDL窗体
 	SDL_GetError()
 	SDL_Quit();
@@ -20,17 +30,6 @@ SDL_WasInit(SDL_INIT_AUDIO);	//audio是否init
 
 
 //Event
-//init
-try {
-    if ( SDL_Init(SDL_INIT_VIDEO == -1 ))
-        throw SDL_GetError();
-}
-catch ( const char* s ) {
-    std::cerr << s << std::endl;
-    return -1;
-}
-atexit(SDL_Quit);
-
 SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE);	//创建一个SDL的执行窗口
 
 //event loop

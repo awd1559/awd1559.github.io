@@ -1,0 +1,676 @@
+---
+layout:     post
+title:      "c# programming language"
+subtitle:   " \"c#\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - lang
+---
+
+应用程序域是分离组件的一种方式
+有final，c++中缺少final， ch16
+attributes ch15
+assembly   ch19
+包含元数据，程序集中代码
+程序集分：私有程序集和共享程序集
+系统保障私有程序集不被其它软件使用
+只要把程序集放到对应的文件目录下，即完成安装，无需注册表
+异步：async， await ，since c-sharp5， ch13
+名称空间可以相互嵌套
+    company.project.*
+存在一个全局默认空间
+
+IDisposable接口代替Finalize
+释放对象直接使用的非托管资源
+
+
+
+# First Application
+```
+using System;
+namespace bread
+{
+    public class MyFirstClass
+    {
+        static void main()
+        {
+            Console.WriteLine(".....");
+            Console.ReadLine();
+            return;
+        }
+    }
+}
+csc First.cs
+```
+
+---|----------------------|----------------------|
+CLS|Common Language System|公共语言规范, 最低标准集 |
+
+垃圾回收：对象维护引用计数
+应用程序域：windows通过地址空间把进程分隔开来
+
+
+
+
+# Basic
+
+
+#### 变量
+
+> - 大小写敏感
+> - 必须在使用前初始化
+> - 类和结构的字段，如果没有显式初始化，默认为0
+> - 方法的局部变量必须在显式初始化，编译器会检查所有路径
+> - 可以使用var进行类型推断
+```
+var somevalue = 0; // ==> int somevalue = 0;
+```
+
+> - class 是关键字，@class 不是关键字，可以使用
+
+
+#### 常量
+
+> - 常量在声明时初始化，不能再更改
+```
+const int value = 200;
+value = 300; //ERROR
+```
+
+> - 常量值必须在编译时确定
+```
+int d = 100;
+const int value = d; //ERROR
+```
+
+> - 常量总是static的，不用也不能mark为static 
+> - readonly运行时常量, 可在static构造函数中初始化
+> - const 编译时常量
+
+
+
+#### 基本类型
+
+> - C/C++类型长度取决于平台
+> - C#,Java的类型长度与平台无关
+
+-------|--------------|----------------|
+sbyte  |System.SByte  |8位有符号整数    |
+short  |System.Int16  |16位有符号整数   |
+int    |System.Int32  |32位有符号整数   |
+long   |System.Int64  |64位有符号整数   |
+byte   |System.Byte   |8位无符号整数    |
+ushort |System.UInt16 |16位无符号整数   |
+uint   |System.UInt32 |32无符号整数     |
+ulong  |System.UInt64 |64位无符号整数   |
+float  |System.Single |32位单精度浮点数 |
+double |System.Double |64位单精度浮点数 |
+decimal|System.Decimal|128十进制数     |
+bool   |System.Boolean|               |
+char   |System.Char   |一个16位Unicode |
+objhect|System.Object |               |
+string |System.String |Unicode字符串   |
+
+
+
+```
+uint i = 1234U;
+long l = 1234L;
+ulong ul = 1234UL;
+```
+
+
+
+#### flow control
+
+> - case "string":
+
+> - foreach(int i in arrayOfInt)
+> - foreach(var i in someArray)
+
+```
+class Student {}
+
+class StudentEnumerator : IEnumerator
+{
+	public object Current{get;}
+	public bool MoveNext(){}
+	public void Reset();
+}
+
+class Clacc : IEnumerable
+{
+	IEnumerator GetEnumerator();
+}
+
+Student[] students = new Student[] {};
+Clacc clacc = new Clacc(students);
+foreach(Student s in clacc){}
+```
+
+
+
+
+#### Comment
+
+```
+///
+<c>代码</c>
+<code>多行代码</code>
+<example>标记代码示例</example>
+<exception></exception>
+<include></include>
+
+TODO: 还有很多很多
+```
+
+
+
+#### 预处理
+```
+#define
+##undef
+
+#if
+#elif
+#else
+#endif
+
+#warning
+#error
+
+#region
+#endregion
+
+#line 改变编译器在警告和错误信息中显示的文件名和行号
+
+#pragma 抑制或还原编译警告
+```
+
+
+
+
+#### Enum
+
+```
+public enum TimeOfDay{
+    Morning = 0,
+    Afternoon = 1,
+    Evening = 2
+}
+```
+
+
+#### 函数
+
+> - 参数传递
+
+```
+someMethod(SomeClass s)//传递指针，可以更改s中的字段，函数返回后有效
+swap(SomeClass a, SomeClass b)//传递指针，在函数中只交换了a，b复制的指针
+
+SomeFunction(ref int i)//将int作为引用
+SomeFunction(SomeClass s, out int i)//传出，多返回值, i 可以不初始化
+SomeFunction(int i, int optionalNum = 10)//参数默认值，必须放在最后
+SomeFunction(int i)//方法重载
+```
+
+
+#### 匿名类型
+
+```
+var captain = new {FistName = "", LastName = ""};
+var doctor  = new {FistName = "", LastName = ""};
+captain和doctor的类型相同
+```
+
+#### Struct
+
+> - struct是存储于stack上的值类型,超出作用域自动被删除
+> - struct不支持继承
+> - 结构作为函数参数，值传递，应该设为ref参数传递
+> - struct : System.ValueType : System.Object
+> - 所有结构都继承自System.Object，可以使用Object中的方法，可以重写ToString方法
+> - 禁止在结构内使用无参数的构造函数
+> - 使用new实例化
+
+
+
+# Class
+
+> - 类是存储于heap上的引用类型
+> - 使用new实例化
+
+可见性
+-------------------|--------------------------|
+public             |任何代码可以访问            |
+protected          |只有类和子类能访问          |
+internal           |只能在包含它的程序集中访问   |
+private            |只能在类中访问             |
+protected internal |只能在包含它的程序集和子类   |
+
+
+#### 构造函数
+
+> - 如果没有构造函数，编译器自动提供默认无参数的构造函数
+> - 如果提供构造函数，编译器不会自动提供默认的构造函数
+> - static构造函数，不能带任何参数，只执行一次，可在其中初始化类的static 字段和property。
+.Net运行库没有保证什么时候执行，也不能保证不同类的static构造函数的执行顺序，但是static构造函数将在类使用前执行一次，并且不再执行。
+可以同时存在无参数的实例构造函数和static构造函数。
+
+> - 从构造函数中调用其他构造函数
+```
+class Car extends Verical{
+    public Car(string desc, uint wheels){}
+    public Car(string desc): this(desc, 4){}
+    public Car(string desc): base(desc){}
+}
+其中this初始化器先于构造函数执行
+```
+
+```
+class SomeClass
+{
+    public SomeClass() : base()  //base()可以省略，除非带特定参数
+    {
+    }
+}
+```
+> - 先执行父类构造函数，默认为无参数构造函数
+> - 如果类没有明确的构造函数，编译器会自动生成一个无参数构造函数
+> - 如果类指定带参数构造函数，编译器不会再生成一个无参数构造函数
+> - 如果父类没有不带参数的构造函数，或者为private，编译错误。
+
+
+
+
+
+#### property
+> - 一个或一对方法，在客户端看来是一个字段
+
+```
+someObj.Height = 400;
+
+private int height;
+public int Height
+{
+    get{return height;}
+    set{height = value;}
+}
+```
+
+> - 可以省去get或set方法，只读与只写属性
+> - get和set可以mark private, protected
+> - 自动属性
+```
+public int Height {get; set;}
+```
+
+> - 自动属性不能设置只读或只写，但可以mark private，protected
+
+
+
+
+
+
+
+
+
+
+
+#### 部分类
+```
+partial class SomeClass{
+    public void Method1(){}
+}
+partial class SomeClass{
+    public void Method2(){}
+}
+```
+> - 可以分到两个cs文件
+> - attributes, xml comments, interface, generic all merged
+
+
+
+
+
+#### static类
+> - static class：如果只包含静态方法和属性
+> - 不能创建static class的实例
+
+
+
+#### 扩展
+> - 扩展方法是static方法
+```
+public class Money{}
+public static class MoneyExtension
+{
+    public static void AddAmount(this Money m, decimal amount)
+    {
+        m.Cash += amount;
+    }
+}
+Money m = new Money();
+m.AddAmont(100);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 继承
+
+> - 实现继承：类型派生于一个基类型
+> - 接口继承：类型只继承基类型的函数签名
+> - C#不支持多重实现继承，允许多重接口继承
+
+> - 结构不支持实现继承，支持接口继承
+> - 没有private继承，全部为public继承
+
+
+
+
+> - 虚方法
+```
+public virtual string VirtualMethod(){}
+```
+> - 可以在子类中重写
+> - 子类重写时，需要指定override
+> - 构造函数不能为虚方法，在java中所有函数都是虚拟的
+
+> - 字段和static函数不能为virtual，virtual只对函数有效，只对实例函数有效
+> - base.VirtualMethod()//调用基类虚函数
+
+> - 虚属性， 属性是函数对
+```
+public virtual string ForeName { get; set; }
+```
+
+
+
+> - 函数隐藏
+```
+class HisBaseClass
+{
+    public int MyGroovyMethod()
+    {
+        return 1;
+    }
+}
+class MyDerivedClass : HisBaseClass
+{
+    public new int MyGroovyMethod()//没有new会得到编译警告
+    {
+        return 0;
+    }
+}
+```
+
+> - 抽象类
+```
+abstract class Building
+{
+    public abstract decimal SomeMethod();
+}
+```
+> - 抽象类不能实例化，抽象函数不能直接实现，必须在子类中重写。
+> - 抽象函数式virtual的，不用声明。
+> - 只要有一个抽象函数，就必须声明为抽象类。
+
+> - Sealed
+> - sealed class FinalClass{}//不能被继承
+> - sealed方法不能被重写。
+
+
+
+
+
+
+#### System.Object
+> - 所有类的基类
+> - Equals() 默认对于值类型比较值，对于引用类型比较引用地址
+> - ReferenceEquals() static方法，只比较reference
+
+> - string1.Equals(string2);//引用类型，但是比较的是值
+
+> - Finalize()//类似于c++的析构函数
+
+
+
+
+
+
+
+
+# 泛型
+
+> - 泛型适用于类、接口、方法
+> - 实例化时不需要源码
+> - 泛型可以继承，必须重复父类的泛型接口，或者指定父类的类型，如
+```
+public class Derived<T> : Base<T> {}
+public class Derived<T> : Base<string> {}
+```
+
+> - 子类可以是泛型类，也可以不是泛型类
+> - 泛型类的static字段将对每一种类型有一份
+
+
+
+```
+var list = new ArrayList();
+list.Add(44); //boxing
+int li = (int)list[0];//unboxing
+
+//generic no boxing
+var list = new List<int>();
+list.Add(44);
+int li = list[0];
+```
+
+#### 默认值
+```
+T doc = default(T);//如果T是值类型，doc=0；如果T是引用类型，doc=null
+```
+#### 约束
+```
+public class DocmentManager<T> where T : IDocment {}
+```
+
+-----------------|-----------------------------------|
+ where T:struct  |结构约束，T必须需是值类型             |
+ where T:class   |T必须是引用类型                      |
+ where T:Foo     |T必须实现接口或继承于Foo             |
+ where T:new()   |构造函数约束，T必须需有一个默认构造函数 |
+ where T:T2      |类型T派生自类型T2                    |
+
+> - 可以合并多个约束
+
+
+
+
+
+#### 泛型结构
+```
+Nullable<int> x;
+x.Value = 3;
+if(x.HasValue)
+x = null;
+
+int? x; //简化写法Nullable<int> x;
+if(x == null) //简化写法if(x.HasValue)
+int y = x ?? 0;//default value
+```
+
+
+
+
+
+
+
+# delegate
+
+> - 定义一个委托等于定义一个新类
+```
+delegate void action(int x);//定义名为action的委托
+```
+
+```
+delegate string GetString();
+int x = 40;
+GetString s = x.ToString();
+s();
+```
+
+
+> - Action<T> : void返回类型的方法
+> - Action<in T>:带一个参数
+> - Action<in T1, in T2>:带两个参数
+> - Func<T>   : 有返回类型的方法
+> - Func<out T>:返回类型T，无参数
+> - Func<in T, out TResult>:返回类型为TResult，带一个参数，类型为T
+
+# lambda
+```
+Func<string, string> lam = param => "";
+Func<double, double, double> two = (x,y) => x*y;
+```
+
+
+# WeakReference
+弱reference允许创建和使用对象，但gc运行时就会收回对象并释放内存
+防止循环引用
+```
+WeakReference r = new WeakReference(new SomeClass());
+if(r.IsAlive){}
+```
+
+
+
+# string
+```
+Console.WriteLine("{n,m}", value);
+n为index
+m为宽度
+```
+
+{0, 3:C2}  //C为货币格式，精度为两位小数
+
+--|--------------------|
+C |本地货币             |
+D |十进制格式           |
+E |科学计数法           |
+F |固定浮点             |
+G |普通格式             |
+N |数字格式             |
+P |百分数格式           |
+X |十六进制格式，前导为0|
+
+@"c:\text"; //代表"c:\\text"
+@"""Hello"", good";     //"Hello", good
+
+格式化字符串见page258
+
+
+
+
+
+
+
+
+# RE
+```
+MatchCollection matches = Regex.Matches(text, pattern, RegexOptions.IgnoreCase);
+foreach(Match nextMatch in matches)
+{
+    Console.WriteLine(nextMatch.Index);
+}
+
+
+"ion\b": 以ion结尾
+table 9-5, page266
+```
+
+
+
+
+
+
+# 反射
+
+> - Type
+```
+Type type = type(Int32);
+Type type = intValue.GetType();	
+Type type = Type.GetType("System.Int32");
+Name:类型名
+FullName:名称空间类型名
+IsAbstract
+IsArray
+IsClass
+IsEnum
+IsInterface
+IsPointer
+IsPrimitive
+IsPublic、IsSealed、IsValueType
+```
+
+
+> - Method
+```
+MethodInfo[] methods = type.GetMethods();
+ConstructorInfo[] infos = type.GetConstructors();
+EventInfo[] events = type.GetEvents();
+FieldInfo[] fields = type.GetFields();
+MemberInfo[] members = type.GetMemebers();
+PropertyInfo[] propertys = type.GetProperties();
+```
+
+
+
+> - Assembly
+
+```
+Assembly assembly = Assembly.Load("SomeAssembly");
+Assembly assembly = Assembly.LoadFrom(@"C:\Program Fiels\SomeSoft\SomeAssembly");
+
+Type[] types = assembly.GetTypes();
+Attribute[] attributes = Assembly.GetCustomAttributes(assembly);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# lib
+
+
+
+
+
+
+
+
+
+
+
+

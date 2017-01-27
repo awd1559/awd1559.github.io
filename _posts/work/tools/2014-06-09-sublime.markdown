@@ -13,8 +13,8 @@ sublime
 # keymap
 
 ```
-ctrl+p			goto file in current project
-ctrl+r			goto function in current file
+ctrl+p			goto file
+ctrl+r			outline view
 ctrl+x 			delete line
 ctrl+shift+d	duplicate current line
 ctrl+l			select current line		
@@ -45,7 +45,7 @@ import  urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.insta
 #config
 
 ```
-"draw_white_space": "all",
+"draw_white_space": "selection",
 "font_size": 19,
 "hot_exit": false,
 "ignored_packages":
@@ -54,7 +54,10 @@ import  urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.insta
 ],
 "open_files_in_new_window": false,
 "remember_open_files": false,
-"word_wrap": true
+"word_wrap": true,
+"show_full_path": true,
+"drag_text": false
+
 ```
 
 
