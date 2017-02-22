@@ -16,14 +16,19 @@ tags:
 > - [npm](https://www.npmjs.com) included
 
 
-#### run in IDEA
+#### working in webstorm
 
 - Edit Configration -> Node.js
 - Node interpreter: usr/local/bin/node
 - JavaScript file:  bin/www
 
 ```
-use 'supervisor' to monitor node code changes
+npm install -g supervisor #monitor node code changes
+supervisor app.js
+
+//better use yomen
+//and now we have dva
+
 change jade template files will refresh on browser
 ```
 
@@ -66,9 +71,11 @@ yarn install
 
 
 
+# packages
 
 
-#### babel    //translation
+#### babel    
+> - translation
 
 ```
 npm i -g babel-cli
@@ -89,7 +96,7 @@ npm i --save-dev babel-preset-stage-0
 ```
 
 ```
-babel index.js   //output to std
+babel index.js   //output to std output
 ```
 
 
@@ -150,7 +157,7 @@ webpack-dev-server --progress --colors
 
 > - Loaders
 
-'''
+```
 npm i style-loader css-loader --save-dev
 
 {
@@ -204,7 +211,7 @@ new webpack.optimize.UglifyJsPlugin({    //压缩代码
 }),
 ```
 
-#### webpack-dev-server
+> - webpack-dev-server
 
 ```
 npm install webpack-dev-server --save-dev
@@ -294,7 +301,7 @@ res.sendStatus()
 
 #### koa
 
-# supervisor
+//supervisor
 nodejs 代码修改后必须重新启动才可以看到修改结果
 supervisor可以在修改代码后自动重启
 npm install -g supervisor
@@ -339,7 +346,8 @@ npm install -g supervisor
 # tools
 
 ##### [Bower](http://bower.io/)
-package manager for web frontend module
+> - package manager for web frontend module
+> - [packages](http://bower.io/search/)
 
 > - install 
 ```
@@ -347,19 +355,20 @@ npm install -g bower
 ```
 
 > - usage
+
 ```
 bower install bootstrap #download bootstrap to directory: bower_components
 
-bower search <package>
-bower install <package>
-bower uninstall <package>
-bower update <package>
-bower list        #list package hierarchy in directory: bower_components
+bower search [package]
+bower install [package]
+bower uninstall [package]
+bower update [package]
+bower list        //list package hierarchy in directory: bower_components
 
 bower help
-bower init        #create a simple bower.json
+bower init        //create a simple bower.json
 ```
-[packages](http://bower.io/search/)
+
 
 > - bower.json
 ```
@@ -374,7 +383,7 @@ bower install #install dependencies in bower.json
 
 
 #### [yeoman](http://yeoman.io)
-framework tool for web dev
+> - framework tool for web dev
 
 > - install
 ```
@@ -403,12 +412,13 @@ npm install -g generator-gulp-webapp
 
 
 > - usage
+
 ```
-#bootstrap, sass, modernizr
+//bootstrap, sass, modernizr
 yo webapp  #use grunt
 yo gulp-webapp  #use gulp
 
-#sass, bootstrap, grunt
+//sass, bootstrap, grunt
 yo angular
 yo angular —coffee
 yo angular:controller myController
@@ -430,9 +440,10 @@ yo angular:service myService
 
 
 #### [gulp](http://gulpjs.com/)
-[中文](http://www.gulpjs.com.cn/)
+> - [中文](http://www.gulpjs.com.cn/)
 
 > - install
+
 ```
 npm -g install gulp
 npm -g install gulp-cli
@@ -444,6 +455,7 @@ npm install --save-dev gulp #save "devDependencies" in file package.json
 ```
 
 > - gulpfile.js
+
 ```
 var gulp = require('gulp');
 
@@ -470,6 +482,7 @@ run the task
 
 
 > - [plugin](http://gulpjs.com/plugins/)
+
 编译sass  gulp-ruby-sass
 Autoprefix: gulp-autoprefixer
 压缩css gulp-minify-css
@@ -486,6 +499,7 @@ live reload gulp-livereload
 #### [grunt](http://www.gruntjs.net)
 
 > - install
+
 ```
 npm install -g grunt-cli
 npm install -g grunt
@@ -532,9 +546,6 @@ module.exports = function(grunt) {
 npm install  //安装依赖项目， 根据package.json(必须有内容)
 grunt
 grunt serve
-
-
-
 
 
 
@@ -1533,6 +1544,9 @@ copy = numbers[..]   #var copy = numbers.slice(0);
 
 
 # javascript
+
+
+
 
 #### call方式
 
