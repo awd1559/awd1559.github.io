@@ -100,11 +100,21 @@ babel index.js   //output to std output
 ```
 
 
+
+
+
+
+
+
+
+
+
 ##### webpack
+> - user Loaders to extract resources, package to static resources
 
 ```
 npm i -g webpack
-//package entry.js and all used resource into bundle.js
+//package entry.js and all its used resources into bundle.js
 webpack entry.js bundle.js    
 
 //entry.js
@@ -118,7 +128,22 @@ module.exports = "it works from content.js";
 
 ```
 //use default config file
-//webpack.config.js   
+//webpack.config.js
+var path = require('path');
+
+module.exports = {
+    entry: path.resolve(__dirname, 'test.js'),
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js',
+    }
+};
+```
+
+
+
+```
+//webpack.config.js
 var webpack = require('webpack');
 
 module.exports = {
@@ -158,7 +183,8 @@ webpack-dev-server --progress --colors
 > - Loaders
 
 ```
-npm i style-loader css-loader --save-dev
+//css loader
+yarn add style-loader css-loader --dev
 
 {
   test:/\.css$/,
@@ -170,13 +196,22 @@ npm i style-loader css-loader --save-dev
 
 
 ```
-npm i react react-dom --save-dev
-npm i babel-cli babel-loader --save-dev
-npm i babel-preset-es2015 babel-preset-react --save-dev
-{
-  test:/\.jsx?$/,
-  loaders:['babel?presets[]=es2015&presets[]=react'],
-  exclude:"/node_modules/"
+//reactjs jsx loader
+yarn add react react-dom --dev
+yarn add babel-loader --dev
+yarn add babel-preset-es2015 --dev
+yarn add babel-preset-react --dev
+
+//webpack.config.js
+resolve: {
+    extensions: ['.js', '.jsx']
+},
+module: {
+  loaders: [{
+    test:/\.js|jsx$/,
+    loaders:['babel-loader?presets[]=es2015&presets[]=react'],
+    exclude:"/node_modules/"
+  }]
 }
 ```
 
@@ -741,9 +776,45 @@ npm start
 npm run build
 ```
 
+> - webpack 
 
+```
+//reactjs jsx loader
+yarn add react react-dom --dev
+yarn add babel-loader --dev
+yarn add babel-preset-es2015 --dev
+yarn add babel-preset-react --dev
 
-~~ - [react-starter-kit](https://github.com/kriasoft/react-starter-kit)~~
+//webpack.config.js
+resolve: {
+    extensions: ['.js', '.jsx']
+},
+module: {
+  loaders: [{
+    test:/\.js|jsx$/,
+    loaders:['babel-loader?presets[]=es2015&presets[]=react'],
+    exclude:"/node_modules/"
+  }]
+}
+```
+
+```
+//app.js
+
+//html
+<html>
+<head>
+  <title>webpack+react</title>
+</head>
+<body>
+  <div id="root"></div>
+<script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>
+```
+
+> - ~~and the obsoleted~~
+> - [~~react-starter-kit~~](https://github.com/kriasoft/react-starter-kit)
 ```
 git clone -o react-starter-kit -b master --single-branch https://github.com/kriasoft/react-starter-kit.git MyApp
 cd MyApp
@@ -751,8 +822,8 @@ npm install
 npm start
 ```
 
-
-~~ - [react-aspnet-boilerplate](https://github.com/pauldotknopf/react-aspnet-boilerplate)~~
+> - ~~and the obsoleted~~
+> - [~~react-aspnet-boilerplate~~](https://github.com/pauldotknopf/react-aspnet-boilerplate)
 ```
 npm install -g generator-react-aspnet-boilerplate
 yo react-aspnet-boilerplate
@@ -773,9 +844,14 @@ dotnet run
 const App = React.createClass({});
 
 // 2. es6 的写法
-class App extends React.Component({});
+import React, { Component } from 'antd'
+class App extends Component{
+  render() {
+    return <div>Hello {this.props.name}</div>;
+  }
+}
 
-// 3. stateless 的写法（我们推荐的写法）
+// 3. stateless 的写法（antd推荐的写法）
 const App = (props) => ({});
 ```
 
@@ -830,59 +906,6 @@ const App = (props) => ({});
     );
   }, 50);
 </script>
-```
-
-#### commonjs
-
-```
-//package.json
-
-"dependencies": {
-    "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.0.0",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",
-    "watchify": "^3.7.0"
-  },
-"scripts": {
-    "build": "browserify ./index.js -t babelify -o bundle.js",
-    "start": "watchify ./index.js -v -t babelify -o bundle.js"
-  }
-```
-
-```
-'use strict';
-
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-var App = React.createClass({
-    getInitialState: function() {
-        return { count: 0 };
-    },
-    handleClick: function() {
-        this.setState({count: this.state.count + 1});
-    },
-    render: function() {
-        return <button onClick={this.handleClick}>
-                clicks: {this.state.count} 
-            </button>;
-    }
-});
-
-ReactDOM.render(<App />, document.getElementById('container'));
-```
-
-```
-//.babelrc
-{
-  "presets": ["react", "es2015"]
-}
-
-
-<script src="bundle.js"></script>
 ```
 
 
@@ -1545,6 +1568,30 @@ copy = numbers[..]   #var copy = numbers.slice(0);
 
 # javascript
 
+
+#### 模块
+
+> - imort module
+
+```
+//ES6 模块
+import MyModule from './MyModule.js';
+//CommonJS
+var MyModule = require('./MyModule.js');
+//AMD
+define(['./MyModule.js'], function (MyModule) { });
+```
+
+> - export module
+
+```
+//ES6
+//CommonJS
+//AMD
+
+export default list
+module.exports = list
+```
 
 
 
