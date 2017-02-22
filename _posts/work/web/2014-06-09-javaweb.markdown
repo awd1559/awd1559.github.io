@@ -9,26 +9,17 @@ tags:
     - web
 ---
 
+config spring project in eclipse
+install gradle
+install eclipse gradle plugin
 
 
-# maven on windows
-http://maven.apache.org/download.cgi
-unzip
-M2_HOME=D:\tools\maven
-PATH = %M2_HOME%/bin
-mvn -version
+Maven => pom.xml
+Gradle => build.gradle
 
 
-
-
-# gradle on windows
-http://gradle.org/download
-unzip
-GRADLE_HOME = D:\tools\gradle
-PATH = ;%GRADLE_HOME%\bin
-gradle -version
-
-
+# spring boot
+2014: v1.0.0
 
 # spring
 

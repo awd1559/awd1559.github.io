@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "web frontend"
-subtitle:   " \"javascript,css, html, framworks, sass, less, typescript, coffeescript\""
+title:      "javascript"
+subtitle:   " \"all about javascript typescript, coffeescript and nodejs, css, html, framworks, sass, less, \""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
@@ -9,20 +9,657 @@ tags:
     - web
 ---
 
+
+# [Node.js](https://nodejs.org/)
+> - brew install nodejs
+> - download installer from [Node.js](https://nodejs.org/)
+> - [npm](https://www.npmjs.com) included
+
+
+#### run in IDEA
+
+- Edit Configration -> Node.js
+- Node interpreter: usr/local/bin/node
+- JavaScript file:  bin/www
+
+```
+use 'supervisor' to monitor node code changes
+change jade template files will refresh on browser
+```
+
+#### usage
+```
+npm init #init package.json file
+npm -l #display the npm command full usage
+npm <cmd> -h #display the npm <cmd> help info
+
+npm install [package] #install package to directory<node_modules>
+npm update [package]
+npm uninstall [package]<version>
+npm view [package]
+
+npm publish <tagball>
+npm publish <folder>
+
+npm start
+npm stop
+
+npm list #list package in directory: node_modules
+npm version
+
+npm install #install packages in package.json 
+```
+
+
+```
+//yarn is good
+//yarn use package.json as npm
+yarn init         #init package.json file
+yarn add [package]
+yarn add [package]@[version]
+yarn add [package]@[tag]
+yarn remove [package]
+yarn update [package]
+yarn install
+```
+
+
+
+
+
+
+#### babel    //translation
+
+```
+npm i -g babel-cli
+npm i --save-dev babel-core
+npm i --save-dev babel-eslint
+npm i --save-dev babel-loader
+npm i --save-dev babel-preset-react
+npm i --save-dev babel-preset-es2015
+npm i --save-dev babel-preset-stage-0 
+```
+
+```
+//.babelrc
+{
+  "presets": ["react", "es2015", "state-0"],
+  "plugins": []
+}
+```
+
+```
+babel index.js   //output to std
+```
+
+
+##### webpack
+
+```
+npm i -g webpack
+//package entry.js and all used resource into bundle.js
+webpack entry.js bundle.js    
+
+//entry.js
+require("./style.css");   
+document.write("It worked");
+document.write(require("./content.js"));
+
+//content.js
+module.exports = "it works from content.js";
+```
+
+```
+//use default config file
+//webpack.config.js   
+var webpack = require('webpack');
+
+module.exports = {
+    entry: __dirname + "/app/main.js",
+    output: {
+      path: __dirname + "/build",
+      filename: "bundle.js"
+    },
+    resolve: {
+      extensions: ["", ".js", ".jsx", ".jade"]
+    },
+
+    module: {
+      loaders: [
+        { 
+          test: /\.jade$/, 
+          loader: "jade" 
+        }
+      ]
+    },
+    plugins: [
+      new webpack.BannerPlugin('This file is created by awd')
+    ]
+};
+```
+
+```
+//see progress with colors
+webpack --progress --colors
+//and watch files changes   
+webpack --progress --colors --watch
+npm i -g webpack-dev-server
+webpack-dev-server --progress --colors
+```
+
+
+> - Loaders
+
+'''
+npm i style-loader css-loader --save-dev
+
+{
+  test:/\.css$/,
+  loaders:['style','css'],
+  exclude:'node_modules'
+}
+```
+
+
+
+```
+npm i react react-dom --save-dev
+npm i babel-cli babel-loader --save-dev
+npm i babel-preset-es2015 babel-preset-react --save-dev
+{
+  test:/\.jsx?$/,
+  loaders:['babel?presets[]=es2015&presets[]=react'],
+  exclude:"/node_modules/"
+}
+```
+
+
+
+> - Plugins
+
+```
+npm install html-webpack-plugin
+
+new HtmlWebpackPlugin()
+
+new HtmlWebpackPlugin({//根据模板插入css/js等生成最终HTML
+  favicon:'./src/img/favicon.ico', //favicon路径
+  filename:'/view/index.html',    //生成的html存放路径，相对于 path
+  template:'./src/view/index.html',    //html模板路径
+  inject:true,    //允许插件修改哪些内容，包括head与body
+  hash:true,    //为静态资源生成hash值
+  minify:{    //压缩HTML文件
+    removeComments:true,    //移除HTML中的注释
+    collapseWhitespace:true    //删除空白符与换行符
+  }
+})
+```
+
+```
+new webpack.optimize.UglifyJsPlugin({    //压缩代码
+    compress: {
+        warnings: false
+    },
+    except: ['$super', '$', 'exports', 'require']    //排除关键字
+}),
+```
+
+#### webpack-dev-server
+
+```
+npm install webpack-dev-server --save-dev
+
+//package.json
+"dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
+
+npm run dev   //localhost:8080
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### express
+
+```
+npm i -g express
+npm i -g express-generator
+express test_express               //create project
+cd test_express
+npm install
+npm start
+```
+
+```
+var app = express();
+
+//设置模版引擎
+app.set('views', path.join(__dirname, 'views'))
+app.set(‘view engine’, ‘html’);
+app.set(‘view engine’, ‘ejs’);
+app.set(‘view engine’, ‘jade’);
+
+
+//路由 
+app.get(‘/’, routes.index);
+app.get(‘/login’, routes.login);
+app.post(‘/login’, routes.doLogout);
+
+/ab?cd    匹配abcd, acd，0个或1个b字符
+/ab+cd    至少一个b
+/ab*cd    0个或多个各种字符
+
+
+//使用名称
+var index = require('./routes/index');
+app.use('/', index);
+
+//routes/index.js
+var express = require('express');
+var router = express.Router();
+router.get('/', function(req, res, next){
+  res.render('index', {title:'传过去值'});
+});
+
+
+//res方法
+res.download()
+res.end()
+res.jsoin()
+res.jsonp()
+res.redirect()
+res.send()
+res.sendFile()
+res.sendStatus()
+```
+
+
+
+
+
+
+#### koa
+
+# supervisor
+nodejs 代码修改后必须重新启动才可以看到修改结果
+supervisor可以在修改代码后自动重启
+npm install -g supervisor
+使用supervisor app.js 启动服务器
+  会遇到supervisor不停重启的错误问题
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# tools
+
+##### [Bower](http://bower.io/)
+package manager for web frontend module
+
+> - install 
+```
+npm install -g bower 
+```
+
+> - usage
+```
+bower install bootstrap #download bootstrap to directory: bower_components
+
+bower search <package>
+bower install <package>
+bower uninstall <package>
+bower update <package>
+bower list        #list package hierarchy in directory: bower_components
+
+bower help
+bower init        #create a simple bower.json
+```
+[packages](http://bower.io/search/)
+
+> - bower.json
+```
+bower init #create a simple bower.json
+bower install #install dependencies in bower.json
+```
+
+
+
+
+
+
+
+#### [yeoman](http://yeoman.io)
+framework tool for web dev
+
+> - install
+```
+npm install -g yo
+#yo depends on bower, grunt, gulp
+npm install -g bower grunt-cli gulp
+```
+
+> - generators
+```
+#install generator
+npm install -g generator-webapp
+npm install -g generator-angular
+npm install -g generator-gulp-webapp
+```
+
+[generators](http://yeoman.io/generators/)
+
+- gulp-angular
+- gulp-webapp
+- mobile
+- webapp
+- angular
+- angular-fullstack
+- react-fullstack
+
+
+> - usage
+```
+#bootstrap, sass, modernizr
+yo webapp  #use grunt
+yo gulp-webapp  #use gulp
+
+#sass, bootstrap, grunt
+yo angular
+yo angular —coffee
+yo angular:controller myController
+yo angular:directive myDirective
+yo angular:filter myFilter
+yo angular:service myService
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### [gulp](http://gulpjs.com/)
+[中文](http://www.gulpjs.com.cn/)
+
+> - install
+```
+npm -g install gulp
+npm -g install gulp-cli
+#install to directory: node_modules/gulp
+npm install gulp
+
+npm init
+npm install --save-dev gulp #save "devDependencies" in file package.json
+```
+
+> - gulpfile.js
+```
+var gulp = require('gulp');
+
+gulp.task('default', function() {
+  // place code for your default task here
+});
+gulp.task('styles', ['default'], function() {  
+  return gulp.src('src/styles/main.scss')
+    .pipe(sass({ style: 'expanded' }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(minifycss())
+    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(notify({ message: 'Styles task complete' }));
+});
+
+```
+
+run the task
+
+>gulp           #run default task
+>gulp --task    #list task hierarchy
+
+
+> - [plugin](http://gulpjs.com/plugins/)
+编译sass  gulp-ruby-sass
+Autoprefix: gulp-autoprefixer
+压缩css gulp-minify-css
+JSHint    gulp-jshint
+拼接    gulp-concat
+丑化    gulp-uglify
+图片压缩  gulp-imagemin
+live reload gulp-livereload
+    gulp-cache    只有修改过的图片会进行压缩
+    gulp-notify
+    gulp-sourcemaps
+
+
+#### [grunt](http://www.gruntjs.net)
+
+> - install
+```
+npm install -g grunt-cli
+npm install -g grunt
+
+npm install --save-dev grunt 
+```
+
+> - scripts
+
+```
+var gulp = require('gulp');
+var sass =  require('gulp-ruby-sass');
+
+gulp.task('sass', function(){
+  return sass('source/file.scss').on('error', sass.logError)
+    .pipe(gulp.dest())
+});
+```
+
+
+> - Gruntfile
+Gruntfile.js or Gruntfile.coffee
+
+```
+'use strict';
+module.exports = function(grunt) {
+  grunt.initConfig({
+    clean: {
+      src: ['dist']
+    },
+    uglify: {
+      options: {
+        banner: '<%= banner %>'
+      },
+      dist: {
+        src: '<%= concat.dist.dest %>',dest: 'dist/ba-<%= pkg.name %>.min.js'
+      },
+    }
+  })
+}
+```
+
+到项目grunt项目的根目录：
+npm install  //安装依赖项目， 根据package.json(必须有内容)
+grunt
+grunt serve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ui-framework
 
 
 #### [antd](http://ant.design/)
 - [github](https://github.com/ant-design/ant-design)
 
+```
+//dva
+npm install dva-cli
+dva new myapp
+cd myapp
+npm antd --save
+npm antd-mobile --save
+npm babel-plug-import --save-dev
+npm start
+```
 
 ```
+//antd-init, not a good idea
 npm install -g antd
 npm install -g antd-init
 mkdir example && cd example
 antd-init
 npm start
 npm run build
+```
+
+自定义主题
+```
+//dva
+//.roadhogrc
+["import", [{"libraryName": "antd", "style": true}]]
+"theme": {
+  "primary-color": "#1DA57A",
+},
+"theme": "./theme.js",
+
+
+//antd-int
+//package.json
+"theme": {
+  "primary-color": "#1DA57A",
+},
+"theme": "./theme.js",
+
+//theme.js
+module.exports = () => {
+  return {
+    'primary-color': '#1DA57A',
+    'link-color': '#1DA57A',
+    'border-radius-base': '2px',
+  };
+};
 ```
 
 
@@ -64,6 +701,215 @@ php -S
 
 
 # js-framework
+
+# [react](https://facebook.github.io/react/)
+- [source code on github](https://github.com/facebook/react)
+
+#### start kit
+
+> - [dva](https://github.com/dvajs/dva)
+> - redux + react-router + redux-saga 
+> - is the best way to start a react+redux application
+> - auto load
+> - support TypeScript
+```
+npm install dva-cli
+dva new myapp
+cd myapp
+npm start
+```
+
+
+> - [create-react-app](https://github.com/facebookincubator/create-react-app)
+> - used in intellij IDEA
+
+```
+npm install -g create-react-app
+create-react-app hello-world
+npm start
+npm run build
+```
+
+
+
+~~ - [react-starter-kit](https://github.com/kriasoft/react-starter-kit)~~
+```
+git clone -o react-starter-kit -b master --single-branch https://github.com/kriasoft/react-starter-kit.git MyApp
+cd MyApp
+npm install
+npm start
+```
+
+
+~~ - [react-aspnet-boilerplate](https://github.com/pauldotknopf/react-aspnet-boilerplate)~~
+```
+npm install -g generator-react-aspnet-boilerplate
+yo react-aspnet-boilerplate
+yo react-aspnet-boilerplate:empty-template
+cd src/React
+npm install
+gulp
+dotnet restore
+dotnet ef database update
+dotnet run
+```
+
+
+#### basic useage 
+
+```
+// 1. 传统写法
+const App = React.createClass({});
+
+// 2. es6 的写法
+class App extends React.Component({});
+
+// 3. stateless 的写法（我们推荐的写法）
+const App = (props) => ({});
+```
+
+```
+<script src="react.js"></script>
+<script src="react-dom.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+  var App = React.createClass({
+    getInitialState: function () {
+      return { count: 0 };
+    },
+    handleClick: function () {
+      this.setState({
+        count: this.state.count + 1,
+      });
+    },
+    render: function () {
+      return (
+        <button onClick={this.handleClick}>
+          clicks: {this.state.count}
+        </button>
+      );
+    }
+  });
+  ReactDOM.render(
+    <App />, document.getElementById('container')
+  );
+</script>
+```
+
+#### harmony usage
+```
+<script src="react.js"></script>
+<script src="react-dom.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+  class ExampleApplication extends React.Component {
+    render() {
+      var elapsed = Math.round(this.props.elapsed  / 100);
+      var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+      var message = `React has been successfully running for ${seconds} seconds.`;
+
+      return <p>{message}</p>;
+    }
+  }
+  var start = new Date().getTime();
+  setInterval(() => {
+    ReactDOM.render(
+      <ExampleApplication elapsed={new Date().getTime() - start} />,
+      document.getElementById('container')
+    );
+  }, 50);
+</script>
+```
+
+#### commonjs
+
+```
+//package.json
+
+"dependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.0",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "watchify": "^3.7.0"
+  },
+"scripts": {
+    "build": "browserify ./index.js -t babelify -o bundle.js",
+    "start": "watchify ./index.js -v -t babelify -o bundle.js"
+  }
+```
+
+```
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var App = React.createClass({
+    getInitialState: function() {
+        return { count: 0 };
+    },
+    handleClick: function() {
+        this.setState({count: this.state.count + 1});
+    },
+    render: function() {
+        return <button onClick={this.handleClick}>
+                clicks: {this.state.count} 
+            </button>;
+    }
+});
+
+ReactDOM.render(<App />, document.getElementById('container'));
+```
+
+```
+//.babelrc
+{
+  "presets": ["react", "es2015"]
+}
+
+
+<script src="bundle.js"></script>
+```
+
+
+#### precompile
+```
+npm install -g babel-cli
+npm install babel-preset-react
+babel index.js --presets react --out-dir=build
+```
+
+```
+//index.js
+
+var App = React.createClass({
+  getInitialState: function() {
+    return { count: 0 };
+  },
+  handleClick: function() {
+    this.setState({count: this.state.count + 1});
+  },
+  render: function() {
+    return <button onClick={this.handleClick}>
+            clicks: {this.state.count} 
+            </button>;
+  }
+});
+
+ReactDOM.render(<App />, document.getElementById('container'));
+
+```
+
+```
+<script src="build/react.js"></script>
+<script src="build/react-dom.js"></script>
+<script src="build/index.js"></script>
+```
+
+
 
 # [angularjs](https://angularjs.org/)
 [source code on github](https://github.com/angular/angular.js)<br>
@@ -374,198 +1220,6 @@ npm install --save-dev my-cool-module
 import MyCoolModule from "npm:my-cool-module";
 ```
 
-
-
-
-
-# [react](https://facebook.github.io/react/)
-- [source code on github](https://github.com/facebook/react)
-
-#### start kit
-
-- [create-react-app](https://github.com/facebookincubator/create-react-app)
-
-npm, react-scripts, webpack, webpack-dev-server, bootstrap
-
-```
-npm install -g create-react-app
-create-react-app hello-world
-npm start
-npm run build
-```
-
-
-- [react-starter-kit](https://github.com/kriasoft/react-starter-kit)
-
-babel, webpack, express, bootstrap
-
-```
-git clone -o react-starter-kit -b master --single-branch https://github.com/kriasoft/react-starter-kit.git MyApp
-cd MyApp
-npm install
-npm start
-```
-
-
-- [react-aspnet-boilerplate](https://github.com/pauldotknopf/react-aspnet-boilerplate)
-
-bootstrap, webpack, babel
-
-```
-npm install -g generator-react-aspnet-boilerplate
-yo react-aspnet-boilerplate
-yo react-aspnet-boilerplate:empty-template
-cd src/React
-npm install
-gulp
-dotnet restore
-dotnet ef database update
-dotnet run
-```
-
-
-#### basic useage 
-
-```
-<script src="react.js"></script>
-<script src="react-dom.js"></script>
-<script src="browser.min.js"></script>
-<script type="text/babel">
-  var App = React.createClass({
-    getInitialState: function () {
-      return { count: 0 };
-    },
-    handleClick: function () {
-      this.setState({
-        count: this.state.count + 1,
-      });
-    },
-    render: function () {
-      return (
-        <button onClick={this.handleClick}>
-          clicks: {this.state.count}
-        </button>
-      );
-    }
-  });
-  ReactDOM.render(
-    <App />, document.getElementById('container')
-  );
-</script>
-```
-
-#### harmony usage
-```
-<script src="react.js"></script>
-<script src="react-dom.js"></script>
-<script src="browser.min.js"></script>
-<script type="text/babel">
-  class ExampleApplication extends React.Component {
-    render() {
-      var elapsed = Math.round(this.props.elapsed  / 100);
-      var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-      var message = `React has been successfully running for ${seconds} seconds.`;
-
-      return <p>{message}</p>;
-    }
-  }
-  var start = new Date().getTime();
-  setInterval(() => {
-    ReactDOM.render(
-      <ExampleApplication elapsed={new Date().getTime() - start} />,
-      document.getElementById('container')
-    );
-  }, 50);
-</script>
-```
-
-#### commonjs
-
-```
-//package.json
-
-"dependencies": {
-    "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.0.0",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",
-    "watchify": "^3.7.0"
-  },
-"scripts": {
-    "build": "browserify ./index.js -t babelify -o bundle.js",
-    "start": "watchify ./index.js -v -t babelify -o bundle.js"
-  }
-```
-
-```
-'use strict';
-
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-var App = React.createClass({
-    getInitialState: function() {
-        return { count: 0 };
-    },
-    handleClick: function() {
-        this.setState({count: this.state.count + 1});
-    },
-    render: function() {
-        return <button onClick={this.handleClick}>
-                clicks: {this.state.count} 
-            </button>;
-    }
-});
-
-ReactDOM.render(<App />, document.getElementById('container'));
-```
-
-```
-//.babelrc
-{
-  "presets": ["react", "es2015"]
-}
-
-
-<script src="bundle.js"></script>
-```
-
-
-#### precompile
-```
-npm install -g babel-cli
-npm install babel-preset-react
-babel index.js --presets react --out-dir=build
-```
-
-```
-//index.js
-
-var App = React.createClass({
-  getInitialState: function() {
-    return { count: 0 };
-  },
-  handleClick: function() {
-    this.setState({count: this.state.count + 1});
-  },
-  render: function() {
-    return <button onClick={this.handleClick}>
-            clicks: {this.state.count} 
-            </button>;
-  }
-});
-
-ReactDOM.render(<App />, document.getElementById('container'));
-
-```
-
-```
-<script src="build/react.js"></script>
-<script src="build/react-dom.js"></script>
-<script src="build/index.js"></script>
-```
 
 
 

@@ -76,6 +76,20 @@ int d = (int)9.99;
 不能在boolean和其它类型中进行强制转换
 
 
+```
+long a = 400L;  int by default
+float a = 400.0F; double by default
+```
+
+
+
+> - char
+```
+Unicode中代码点采用十六进制书写，加前缀U+
+Unicode代码点可以分成17个代码级别code plane
+basic multilingual plane: U+0000 ~ U+FFFF
+
+```
 
 
 #### 运算符
@@ -455,9 +469,33 @@ TODO: format in page71
 
 
 
+# [Spring boot](http://projects.spring.io/spring-boot/)
+
+# [Spring MVC]()
+# [Struts 2]()
+# [Hibernate]()
+# [JSF]()
+
+[IDEA+JSF]
+New project->
+Java Enterprise: Web Application、JSF、CDI: Contexts and Dependency Injection
+Run on GlassFish Server, Not Tomcat
+
+# [GWT]()
+# [Grails]()
+# [Vaadin](https://vaadin.com/home)
+
+
+
+
+
+
 
 
 # [JavaFx](http://docs.oracle.com/javase/8/javase-clienttechnologies.htm)
+
+
+
 
 
 
@@ -471,5 +509,78 @@ TODO: format in page71
 
 
 # [Scene Builder](http://gluonhq.com/labs/scene-builder/)
+
+
+
+# Tools
+
+#### Ant
+还有ant可以在使用吗，make被宰应用程序领域被CMake取代。
+
+
+#### maven on windows
+http://maven.apache.org/download.cgi
+unzip
+M2_HOME=D:\tools\maven
+PATH = %M2_HOME%/bin
+mvn -version
+
+
+
+> - pom.xml
+```
+<dependencies>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+```
+spring项目在使用Maven
+mvn spring-boot:run
+
+
+
+#### gradle on windows
+http://gradle.org/download
+unzip
+GRADLE_HOME = D:\tools\gradle
+PATH = ;%GRADLE_HOME%\bin
+gradle -version
+
+
+gradle init     # create init build.gradle
+gradle build    # build/lib
+gradle war
+gradle idea     # build idea project files
+gradle eclipse  # build eclipse project files
+
+
+> - build.gradle
+```
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'com.android.application'
+
+jar {
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework:spring-context:${springVersion}")
+}
+```
+Android项目已经基本全线使用Gradle来管理编译
+
+
+import to eclipse:
+file -> import -> gradle project
+
 
 
