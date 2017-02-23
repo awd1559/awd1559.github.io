@@ -110,29 +110,18 @@ babel index.js   //output to std output
 
 
 ##### webpack
-> - user Loaders to extract resources, package to static resources
+> - user Loaders to extract resources, package to one or multi-part static resources
+> - yard add webpack
 
-```
-npm i -g webpack
-//package entry.js and all its used resources into bundle.js
-webpack entry.js bundle.js    
-
-//entry.js
-require("./style.css");   
-document.write("It worked");
-document.write(require("./content.js"));
-
-//content.js
-module.exports = "it works from content.js";
-```
 
 ```
 //use default config file
+//package entry.js and all its used resources into build/bundle.js
 //webpack.config.js
 var path = require('path');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'test.js'),
+    entry: path.resolve(__dirname, 'entry.js'),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
@@ -182,18 +171,46 @@ webpack-dev-server --progress --colors
 
 > - Loaders
 
+> - css-loader
 ```
-//css loader
 yarn add style-loader css-loader --dev
 
 {
   test:/\.css$/,
-  loaders:['style','css'],
+  loaders:['style','css'],    //loader: 'style!css'
   exclude:'node_modules'
 }
 ```
 
+> - less-loader
+```
+yarn add less-loader --dev
+{
+  test: /\.less$/,
+  loader: 'style!css!less'
+}
+```
 
+> - sass-loader
+```
+yarn add sass-loader --dev
+{
+  test: /\.scss$/,
+  loader: 'style!css!sass'
+}
+```
+
+
+
+> - url-loader
+```
+yarn add url-loader --dev
+{
+  test: /\.(png|jpg)$/,
+  loader: 'url?limit=25000'
+}
+```
+> - 小于25000的png|jpg文件，转为BASE64，存储在css中
 
 ```
 //reactjs jsx loader
@@ -780,8 +797,8 @@ npm run build
 
 ```
 //reactjs jsx loader
-yarn add react react-dom --dev
-yarn add babel-loader --dev
+yarn add react react-dom
+yarn add babel-core babel-loader --dev
 yarn add babel-preset-es2015 --dev
 yarn add babel-preset-react --dev
 
@@ -800,7 +817,25 @@ module: {
 
 ```
 //app.js
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import HelloMessage from './hello.js'
 
+render(<HelloMessage name="John" />, document.getElementById('root'));
+
+//hello.js
+import React, { Component } from 'react';
+class HelloMessage extends Component {
+  render() {
+    return <div>Hello {this.props.name}</div>;
+  }
+}
+
+module.exports = HelloMessage  //ok
+export default HelloMessage    //ok
+```
+
+```
 //html
 <html>
 <head>
@@ -1568,53 +1603,355 @@ copy = numbers[..]   #var copy = numbers.slice(0);
 
 # javascript
 
+#### 变量
 
-#### 模块
+> - ES6 add let
+> - 作用域只在所在块中有效，没有变量提升，声明后才可使用，相同作用域中不可重复声明
+> - 尽量使用let，不使用var
+> - 
+> - 立即执行函数(IIFE)(function () { var tmp = ...;  ... }()); 不再使用
+> - { let tmp = ...; ... } 可代替IIFE
+> - 
+> - const 常量
 
-> - imort module
+
+> - ES6 解构(Destructuring)
+```
+var [a, b, c] = [1, 2, 3];  //let will ERROR
+var [,,third] = ["foo", "bar", "baz"];  //third = "baz"
+var [head, ...tail] = [1, 2, 3, 4];     //head = 1, tail = [2, 3, 4]
+
+let { foo, bar } = { foo: "aaa", bar: "bbb" };
+```
+
+#### string 
+> - ES6 support codepoing > 0xFFFF
 
 ```
-//ES6 模块
-import MyModule from './MyModule.js';
-//CommonJS
-var MyModule = require('./MyModule.js');
-//AMD
-define(['./MyModule.js'], function (MyModule) { });
+//when codepoing > 0xFFFF, use fromCodePoint
+String.fromCharCode(0x20BB7)    // => return 0x0BB7
+String.fromCodePoint(0x20BB7)   
+
+\uxxxx shows unicode, ranged between \u0000——\uFFFF
+\u{20BB7}   //Unicode 0x20BB7, since ES6
+
+
+//RE
+/\u{61}/.test('a') // false
+/\u{61}/u.test('a') // true
+/^.$/.test('𠮷') // false
+/\u{20BB7}/u.test('𠮷') // true , codepoint = 0x20BB7
 ```
 
-> - export module
 
+#### binary
+
+```
+0b111110111 === 503 // true,
+0o767 === 503 // true
+```
+
+> - Number
+```
+isFinite(25) // true
+isFinite("25") // true
+Number.isFinite(25) // true
+Number.isFinite("25") // false
+
+isNaN(NaN) // true
+isNaN("NaN") // true
+Number.isNaN(NaN) // true
+Number.isNaN("NaN") // false
+
+// ES5
+parseInt("12.34") // 12
+parseFloat('123.45#') // 123.45
+
+// ES6
+Number.parseInt("12.34") // 12
+Number.parseFloat('123.45#') // 123.45
+```
+
+#### Array
+
+```
+//from()函数转换两类对象到数组：类似数组的对象（array-like object）和可遍历（iterable）的对象
+let ps = document.querySelectorAll('p');
+
+Array.from(ps).forEach(function (p) {
+  console.log(p);
+});
+
+
+Array.from(arrayLike, x => x * x);
+// 等同于
+Array.from(arrayLike).map(x => x * x);
+
+
+
+//Array.of()方法用于将一组值，转换为数组
+Array.of(3, 11, 8) // [3,11,8]
+Array.of(3).length // 1
+
+
+
+//find
+[1, 5, 10, 15].find(function(value, index, arr) {
+    return value > 9;
+}) // 10
+
+//findIndex
+[1, 5, 10, 15].findIndex(function(value, index, arr) {
+    return value > 9;
+}) // 2
+
+
+
+
+
+
+//entries()，keys()和values()
+for (let key of ['a', 'b'].keys()) {}
+
+for (let value of ['a', 'b'].values()) {console.log(elem);}
+
+for (let [key, value] of ['a', 'b'].entries()) {}
+
+
+///
+var a1 = [1, 2, 3, 4];
+var a2 = [for (i of a1) i * 2];
+
+a2 // [2, 4, 6, 8]
+```
+
+
+
+
+
+
+
+#### function
+
+> - argument default value
 ```
 //ES6
-//CommonJS
-//AMD
+function log(x, y = 'World') {}
 
-export default list
-module.exports = list
-```
-
-
-
-#### call方式
-
-```
-function changeColor(color){
-	this.style.color = color;
+//ES5
+function log(x, y) {
+  y = y || 'World';
 }
-changeColor(“white”);	//= window.changeColor;  this == window
-
-var main = document.getElementById(“main”);
-changeColor.call(main, “black”);		//=main.changeColor(); this == main
 ```
 
-#### 面向对象
+
+> - rest arguments
+```
+function push(array, ...items) { 
+  items.forEach(function(item) {
+    array.push(item);
+    console.log(item);
+  });
+}
+
+var a = [];
+push(a, 1, 2, 3)            //将1,2,3打包到items Array中
+
+
+function f(a, ...b, c){}   //ERROR
+```
+
+
+
+
+> - spread
+> - 与rest正好相反
 
 ```
+function add(x, y) {
+  return x + y;
+}
+var numbers = [4, 38];
+add(...numbers)         //将Array numbers拆包到[x,y]中
+```
+
+> - 只要具有Iterator接口的对象，比如Map，都可以使用spread
+```
+let map = new Map([
+  [1, 'one'],
+  [2, 'two'],
+  [3, 'three'],
+]);
+
+let arr = [...map.keys()]; // [1, 2, 3]
+
+//Generator
+var go = function*(){
+  yield 1;
+  yield 2;
+  yield 3;
+};
+
+[...go()] 
+```
+
+
+
+> - => function
+```
+var f = () = > {}       //基本语法
+var f = (v) => {v+1}    //可省略：var f = v => v + 1 
+
+//最后一个语句为返回，如果返回对象，使用()，否则有歧义
+var getTempItem = id => ({ id: id, name: "Temp" });
+```
+
+
+
+
+
+
+
+#### Set/Map
+
+```
+var items = new Set([1, 2, 3, 4, 5]);
+
+var s = new Set();
+
+for (i of s) {console.log(i)}
+
+s.foreach((v,k) => v*2)
+```
+> - size
+> - add(value)
+> - delete(value)
+> - has(value)
+> - clear()
+
+
+
+```
+var map = new Map();
+map.set('first', 'hello');
+map.set('second', 'world');
+
+for (let [key, value] of map) {
+  console.log(key + " is " + value);
+}
+```
+> - size
+> - has(key)
+> - get(key)
+> - set(key, value)
+> - delete(key)
+> - clear
+
+
+
+
+
+#### Generator/Promise
+> - callback hell
+```
+fs.readFile(fileA, function (err, data) {
+  fs.readFile(fileB, function (err, data) {
+    // ...
+  });
+});
+```
+
+> - Promise
+> - change the way to write callbacks
+> - too much thens
+```
+var readFile = require('fs-readfile-promise');
+
+readFile(fileA)
+.then(function(data){
+  console.log(data.toString());
+})
+.then(function(){
+  return readFile(fileB);
+})
+.then(function(data){
+  console.log(data.toString());
+})
+.catch(function(err) {
+  console.log(err);
+});
+```
+
+
+
+> - Generator
+> - 异步任务的容器，用yield标明要暂停执行的地方
+```
+function* gen(x){
+  var y = yield x + 2;
+  return y;
+}
+
+var g = gen(1);
+g.next() // { value: 3, done: false }
+g.next() // { value: undefined, done: true }
+```
+
+
+
+
+
+
+
+
+#### Object
+
+```
+// ES6
+class Lecture {
+  constructor(name, teacher) {
+    this.name = name;
+    this.teacher = teacher;
+  }
+  display() {
+    ...
+  }
+}
+var l = new Lecture("cs", "wang");
+l.display();
+
+//继承
+class ColorPoint extends Point {}
+
+
+
+
+
+
+
+
+// ES5
 function Lecture(name, teacher){
 	this.name = name;
 	this.teacher = teacher;
 }
 Lecture.prototype.display = function(){};
+
+//继承
+User.property = new Person();
+
+
+
+
+
+
+
+//object data
+var myobj = {
+  id:"",
+  init:function(){},
+  doSomething: function(){}
+};
 ```
 
 
@@ -1635,11 +1972,65 @@ var you = new me.constructor();
 ```
 
 
-#### 继承
+
+#### Module
+
 
 ```
-User.property = new Person();
+//CommonJS
+const MyModule = require('./MyModule');
+var { stat, exists, readFile } = require('fs');
+
+//AMD
+define(['./MyModule.js'], function (MyModule) { });
 ```
+
+> - export/import
+
+```
+//ES6
+//profile.js
+var firstName = 'Michael';
+var lastName = 'Jackson';
+var year = 1958;
+
+export {firstName, lastName, year};
+//main.js
+import {firstName, lastName, year} from './profile';
+
+
+export default
+
+
+//CommonJS
+export default list
+module.exports = list
+
+//AMD
+
+
+```
+
+
+> - CommonJS
+
+```
+//message.js
+module.exports = "it works from content.js";
+
+//entry.js
+require("./style.css")
+let message = require('./message')
+console.log("It worked")
+console.log(message)
+
+//in command line
+node entry.js
+```
+
+
+
+
 
 #### 命名空间
 
@@ -1657,6 +2048,23 @@ YAHOO.util.Event = {
 //调用函数
 YAHOO.util.Event.addEventListener();
 ```
+
+
+
+
+
+#### call/apply/bind
+
+```
+function changeColor(color){
+  this.style.color = color;
+}
+changeColor(“white”); //= window.changeColor;  this == window
+
+const main = document.getElementById(“main”);
+changeColor.call(main, “black”);    //=main.changeColor(); this == main
+```
+
 
 
 
