@@ -1374,7 +1374,7 @@ ember g component listing
 ```
 
 
-# plugins
+#### plugins
 
 ```
 ember install ember-cli-template-lint
@@ -1459,11 +1459,17 @@ import MyCoolModule from "npm:my-cool-module";
 
 
 
+# desktop & apps
+
+#### [electron](http://electron.atom.io/)
+
+```
+
+```
 
 
-
-# [meteor](https://www.meteor.com/)
-- [source code on github](https://github.com/meteor/meteor/)<br>
+##### [meteor](https://www.meteor.com/)
+> - [source code on github](https://github.com/meteor/meteor/)
 
 ```
 //install
@@ -1473,7 +1479,7 @@ meteor create <name>
 meteor add tabs:bootstrap
 ```
 
-# [ionic2](http://ionicframework.com)
+##### [ionic2](http://ionicframework.com)
 - [github](https://github.com/driftyco/ionic)
 
 
@@ -1506,27 +1512,7 @@ ionic emulate android
 
 
 
-
-
-
-
-
-
-# [spine](http://spinejs.com/)
-- [source code on github](https://github.com/spine)
-
-	Lightweight MVC library
-
-
-
-
-
-
-
-
-
-
-# [egret](http://www.egret.com/)
+#### [egret](http://www.egret.com/)
 - [source code on github](https://github.com/egret-labs)
 
   html5 game engine
@@ -1582,7 +1568,7 @@ egret startserver HelloWorld
 
 
 
-
+# language
 
 
 # sass
