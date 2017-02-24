@@ -552,14 +552,14 @@ run the task
 
 > - [plugin](http://gulpjs.com/plugins/)
 
-编译sass  gulp-ruby-sass
-Autoprefix: gulp-autoprefixer
-压缩css gulp-minify-css
-JSHint    gulp-jshint
-拼接    gulp-concat
-丑化    gulp-uglify
-图片压缩  gulp-imagemin
-live reload gulp-livereload
+- 编译sass  gulp-ruby-sass
+- Autoprefix: gulp-autoprefixer
+- 压缩css gulp-minify-css
+- JSHint    gulp-jshint
+- 拼接    gulp-concat
+- 丑化    gulp-uglify
+- 图片压缩  gulp-imagemin
+- live reload gulp-livereload
     gulp-cache    只有修改过的图片会进行压缩
     gulp-notify
     gulp-sourcemaps
@@ -633,11 +633,12 @@ module.exports = function(grunt) {
 }
 ```
 
-到项目grunt项目的根目录：
+```
+//到项目grunt项目的根目录：
 npm install  //安装依赖项目， 根据package.json(必须有内容)
 grunt
 grunt serve
-
+```
 
 
 
@@ -1874,7 +1875,7 @@ copy = numbers[..]   #var copy = numbers.slice(0);
 
 # javascript
 
-#### 变量
+#### var/const/let
 
 > - ES6 add let
 > - 作用域只在所在块中有效，没有变量提升，声明后才可使用，相同作用域中不可重复声明
@@ -1887,6 +1888,7 @@ copy = numbers[..]   #var copy = numbers.slice(0);
 
 
 > - ES6 解构(Destructuring)
+
 ```
 var [a, b, c] = [1, 2, 3];  //let will ERROR
 var [,,third] = ["foo", "bar", "baz"];  //third = "baz"
@@ -1923,6 +1925,7 @@ String.fromCodePoint(0x20BB7)
 ```
 
 > - Number
+
 ```
 isFinite(25) // true
 isFinite("25") // true
@@ -2005,6 +2008,7 @@ a2 // [2, 4, 6, 8]
 #### function
 
 > - argument default value
+
 ```
 //ES6
 function log(x, y = 'World') {}
@@ -2017,6 +2021,7 @@ function log(x, y) {
 
 
 > - rest arguments
+
 ```
 function push(array, ...items) { 
   items.forEach(function(item) {
@@ -2047,6 +2052,7 @@ add(...numbers)         //将Array numbers拆包到[x,y]中
 ```
 
 > - 只要具有Iterator接口的对象，比如Map，都可以使用spread
+
 ```
 let map = new Map([
   [1, 'one'],
@@ -2069,6 +2075,7 @@ var go = function*(){
 
 
 > - => function
+
 ```
 var f = () = > {}       //基本语法
 var f = (v) => {return v+1}    //可省略：var f = v => v + 1 
@@ -2094,6 +2101,7 @@ for (i of s) {console.log(i)}
 
 s.foreach((v,k) => v*2)
 ```
+
 > - size
 > - add(value)
 > - delete(value)
@@ -2111,6 +2119,7 @@ for (let [key, value] of map) {
   console.log(key + " is " + value);
 }
 ```
+
 > - size
 > - has(key)
 > - get(key)
@@ -2124,6 +2133,7 @@ for (let [key, value] of map) {
 
 #### Generator/Promise
 > - callback hell
+
 ```
 fs.readFile(fileA, function (err, data) {
   fs.readFile(fileB, function (err, data) {
@@ -2135,6 +2145,7 @@ fs.readFile(fileA, function (err, data) {
 > - Promise
 > - change the way to write callbacks
 > - too much thens
+
 ```
 var readFile = require('fs-readfile-promise');
 
@@ -2157,6 +2168,7 @@ readFile(fileA)
 
 > - Generator
 > - 异步任务的容器，用yield标明要暂停执行的地方
+
 ```
 function* gen(x){
   var y = yield x + 2;
@@ -2247,51 +2259,64 @@ var you = new me.constructor();
 #### Module
 
 
+> - ES6
+
 ```
-//ES6
 //profile.js
 var firstName = 'Michael';
 var lastName = 'Jackson';
 var year = 1958;
 
 export {firstName, lastName, year};
+
 //main.js
 import {firstName, lastName, year} from './profile';
 
 
-export default
-
-
-//CommonJS
-const MyModule = require('./MyModule');
-var { stat, exists, readFile } = require('fs');
-
-
-
-export default list
-module.exports = list
-
-//AMD
-define(['./MyModule.js'], function (MyModule) { });
-
+//2
+export default const str = 'message'
+import str from './message'
 ```
 
 
 > - CommonJS
+> - Server Node.js, Browserify use CommonJS
 
 ```
-//message.js
-module.exports = "it works from content.js";
+//1
+//profile.js
+exports.firstName = 'Michael';
+exports.lastName = 'Jackson';
+exports.year = 1958;
 
-//entry.js
-require("./style.css")
-let message = require('./message')
-console.log("It worked")
-console.log(message)
+//2
+//prifile.js
+var firstName = 'Michael';
+var lastName = 'Jackson';
+var year = 1958; 
+module.exports = {firstName, lastName, year}
 
-//in command line
-node entry.js
+//main.js
+var profile = require('./profile')
+console.log(profile.year)
+
+let {firstName, lastName, year} = require('./profile')
+console.log(year)
 ```
+
+
+
+
+
+
+> - AMD
+> - [RequireJS](http://requirejs.org/) use AMD
+
+```
+define(['./MyModule.js'], function (MyModule) { });
+
+```
+
 
 
 
@@ -2317,6 +2342,7 @@ YAHOO.util.Event.addEventListener();
 
 
 #### map/reduce, filter, sort
+
 ```
 var arr = [1, 3, 5, 7, 9];
 
