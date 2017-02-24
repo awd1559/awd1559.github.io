@@ -169,12 +169,12 @@ webpack-dev-server --progress --colors
 ```
 
 
-> - Loaders
+#### webpack-loaders
 
 > - css-loader
+
 ```
 yarn add style-loader css-loader --dev
-
 {
   test:/\.css$/,
   loaders:['style','css'],    //loader: 'style!css'
@@ -183,6 +183,7 @@ yarn add style-loader css-loader --dev
 ```
 
 > - less-loader
+
 ```
 yarn add less-loader --dev
 {
@@ -192,6 +193,7 @@ yarn add less-loader --dev
 ```
 
 > - sass-loader
+
 ```
 yarn add sass-loader --dev
 {
@@ -203,17 +205,21 @@ yarn add sass-loader --dev
 
 
 > - url-loader
+
 ```
 yarn add url-loader --dev
 {
   test: /\.(png|jpg)$/,
   loader: 'url?limit=25000'
 }
+//小于25000的png|jpg文件，转为BASE64，存储在css中
 ```
-> - 小于25000的png|jpg文件，转为BASE64，存储在css中
+
+
+
+> - reactjs jsx loader
 
 ```
-//reactjs jsx loader
 yarn add react react-dom --dev
 yarn add babel-loader --dev
 yarn add babel-preset-es2015 --dev
@@ -395,6 +401,8 @@ npm install -g supervisor
 
 
 
+
+
 # tools
 
 ##### [Bower](http://bower.io/)
@@ -491,6 +499,15 @@ yo angular:service myService
 
 
 
+
+
+
+
+
+
+
+
+
 #### [gulp](http://gulpjs.com/)
 > - [中文](http://www.gulpjs.com.cn/)
 
@@ -546,6 +563,28 @@ live reload gulp-livereload
     gulp-cache    只有修改过的图片会进行压缩
     gulp-notify
     gulp-sourcemaps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### [grunt](http://www.gruntjs.net)
@@ -726,6 +765,13 @@ module.exports = () => {
 ```
 
 
+
+
+
+
+
+
+
 #### [angular-material](https://github.com/angular/material)
 
 ```
@@ -739,6 +785,10 @@ gulp docs
 cd dist/docs
 php -S 
 ```
+
+
+
+
 
 
 
@@ -757,6 +807,26 @@ php -S
   
   angular.module('myModule', ['lumx']);
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -872,6 +942,24 @@ dotnet run
 ```
 
 
+#### React
+> - React四大概念：
+> - Component
+> - JSX：
+    实现了Component，封装了HTML
+    JSX最终被编译为js内容，如：
+    <a href="http://facebook.github.io/react/">Hello!</a>
+    直接使用js就是：
+    React.createElement('a', {href: 'http://facebook.github.io/react/'}, 'Hello!')
+
+> - VDOM：提升操作DOM的性能
+> - Data Flow：单项数据绑定
+
+
+
+> - Redux:事件流
+> - component -> action -> reducer -> state -> component
+
 #### basic useage 
 
 ```
@@ -890,6 +978,8 @@ class App extends Component{
 const App = (props) => ({});
 ```
 
+
+
 ```
 <script src="react.js"></script>
 <script src="react-dom.js"></script>
@@ -898,6 +988,15 @@ const App = (props) => ({});
   var App = React.createClass({
     getInitialState: function () {
       return { count: 0 };
+    },
+    getDefaultProps: function() {
+
+    },
+    componentWillMount: function() {
+
+    },
+    componentDidMount: function() {
+
     },
     handleClick: function () {
       this.setState({
@@ -925,6 +1024,11 @@ const App = (props) => ({});
 <script src="browser.min.js"></script>
 <script type="text/babel">
   class ExampleApplication extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { count: props.initialCount };
+    }
+
     render() {
       var elapsed = Math.round(this.props.elapsed  / 100);
       var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
@@ -977,6 +1081,30 @@ ReactDOM.render(<App />, document.getElementById('container'));
 <script src="build/react-dom.js"></script>
 <script src="build/index.js"></script>
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1154,6 +1282,26 @@ angular.module('myApp')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # [emberjs](http://emberjs.com/)
 - [source code on github](https://github.com/emberjs/ember.js)
 - [addons](emberaddons.com)
@@ -1294,6 +1442,25 @@ import MyCoolModule from "npm:my-cool-module";
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # [meteor](https://www.meteor.com/)
 - [source code on github](https://github.com/meteor/meteor/)<br>
 
@@ -1340,10 +1507,19 @@ ionic emulate android
 
 
 
+
+
+
+
 # [spine](http://spinejs.com/)
 - [source code on github](https://github.com/spine)
 
 	Lightweight MVC library
+
+
+
+
+
 
 
 
@@ -1371,6 +1547,34 @@ egret startserver HelloWorld
 
 //使用WebStore作为IDE，打开目录即可编辑TypeScript
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1438,6 +1642,23 @@ nav{
   border-color:green;
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ＃ coffeescript
@@ -1599,6 +1820,56 @@ end = numbers[-2..]  #var end = numbers.slice(-2);
 
 copy = numbers[..]   #var copy = numbers.slice(0);
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # javascript
@@ -1800,9 +2071,9 @@ var go = function*(){
 > - => function
 ```
 var f = () = > {}       //基本语法
-var f = (v) => {v+1}    //可省略：var f = v => v + 1 
+var f = (v) => {return v+1}    //可省略：var f = v => v + 1 
 
-//最后一个语句为返回，如果返回对象，使用()，否则有歧义
+//如果返回对象，使用()，否则有歧义
 var getTempItem = id => ({ id: id, name: "Temp" });
 ```
 
@@ -1922,14 +2193,14 @@ l.display();
 
 //继承
 class ColorPoint extends Point {}
+```
 
 
 
 
 
 
-
-
+```
 // ES5
 function Lecture(name, teacher){
 	this.name = name;
@@ -1943,20 +2214,20 @@ User.property = new Person();
 
 
 
-
-
-
-//object data
+//literal object
 var myobj = {
   id:"",
+  name: {
+    firstName: 'Brendan',
+    lastName: 'Eich'
+  },
   init:function(){},
   doSomething: function(){}
 };
-```
 
 
 
-```
+
 //1
 var obj = new Object();
 obj.val = 5;
@@ -1977,17 +2248,6 @@ var you = new me.constructor();
 
 
 ```
-//CommonJS
-const MyModule = require('./MyModule');
-var { stat, exists, readFile } = require('fs');
-
-//AMD
-define(['./MyModule.js'], function (MyModule) { });
-```
-
-> - export/import
-
-```
 //ES6
 //profile.js
 var firstName = 'Michael';
@@ -2003,11 +2263,16 @@ export default
 
 
 //CommonJS
+const MyModule = require('./MyModule');
+var { stat, exists, readFile } = require('fs');
+
+
+
 export default list
 module.exports = list
 
 //AMD
-
+define(['./MyModule.js'], function (MyModule) { });
 
 ```
 
@@ -2051,6 +2316,16 @@ YAHOO.util.Event.addEventListener();
 
 
 
+#### map/reduce, filter, sort
+```
+var arr = [1, 3, 5, 7, 9];
+
+let result = arr.map(x => x*x); //[1, 9, 25, 49, 81]
+
+let result = arr.reduce((x,y) => {return x+y}); //25
+
+arr.filter((x) => {return x % 2 !== 0})
+```
 
 
 #### call/apply/bind
