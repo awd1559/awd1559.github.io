@@ -1,16 +1,1847 @@
 ---
 layout:     post
-title:      "photoshop, ps"
-subtitle:   " \"常用方法和快捷键\""
+title:      "tools"
+subtitle:   " \"all the tools that we use\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - tools
+    - info
 ---
 
+# Apple常用方法和快捷键
 
-ps
+#### KeyDefine
+
+- ⌘——Command ()
+- ⌃ ——Control
+- ⌥——Option (alt)
+- ⇧——Shift
+- ⇪——Caps Lock
+- fn——功能键就是fn
+
+
+
+
+#### keymap
+
+> **屏幕截屏**
+>
+> - Command + Shift + 3:全屏捕捉到桌面
+> - Command + Shift + 4:屏幕部分捕捉到桌面
+> - Control + Command + Shift + 3: 全屏捕捉到剪贴板
+> - Control + Command + Shift + 4: 部分屏幕捕捉到剪贴板
+
+> **屏幕放大**
+>
+> - Option + Command + 8 : 放大/缩小鼠标处
+> - Option + Command + - :  缩小鼠标处
+> - Option + Command + =:  放大鼠标处
+
+> **窗口控制**
+>
+> - Command+`   切换同一个程序中的多个窗口
+> - Command+m最小化窗口
+> - Command+w关闭窗口
+> - Command+Control+f 全屏
+
+
+> **Misc**
+>
+> - Control + 空格 ： Spotlight
+> - Control + Shift + 空格 :手写输入法
+> - Command + Delete： 删除项目
+
+
+
+> **IOS**
+>
+> - 截图： home + power
+> - 三个手指：放大缩小
+
+------------- | -------- |
+windows键对应  | Mac键盘   |
+win			  |	⌘        |
+alt           |	option   |
+
+
+#### Homebrew
+
+```
+brew help
+
+brew search [TEXT]
+brew info  [FORMULA]
+brew install [FORMULA]
+brew update 
+brew upgrade [FORMULA]
+brew uninstall [FORMULA]
+
+brew config
+brew doctor
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# android使用
+
+#### Android及Mi刷机
+
+> **Recovery模式**
+>
+> - 升级包改名为update.zip,拷贝到存储卡的根目录
+> - 进入Recovery
+	MIUI：进入系统更新，菜单，重启Recovery模式
+	其他系统：关机，音量加 + 开机键
+
+
+> **线刷**
+>
+> - 关机，连线
+> - mi键 + 音量减 + 开机键
+	进入fastboot模式
+> - MiFlash->刷机
+
+
+
+//适用系统更新
+MIUI 系统更新， 每周五升级
+
+//升级包
+MIUI系统更新，菜单，选择安装包
+选择存储卡上的ROM文件
+
+
+
+
+
+
+
+##### su的方法
+> - 进入手机shell
+> - sdk/platform-tools/adb
+> - ./adb shell
+> - 进入手机shell
+> - 如果permission denied， su
+> - 或者　./adb root
+
+
+#### error
+
+> 进程android.process.media已停止解决方法
+> 应用 － 全部 － 媒体存储 － 清除数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Android Studio
+
+#### error fix
+
+first run, show 'Fetching Android component iniformation' failed
+
+open studio/bin/idea.properties
+```
+disable.android.first.run=true
+```
+
+#### keymap
+- symbols: cmd+shit+o
+- structure: cmd+7 (like outline in eclipse)
+- nav backward: cmd+[
+- nav forward:  cmd+]
+- run        :  cmd+r
+- setting : cmd+,
+- search everywhere: double shift
+
+#### menu 
+- Theme：Appearance—>Theme->Darcula
+- Font：Editor—>Color & Font —> Size —> 16
+- Encoding：File Encodings—>
+- Line Number：Editor—>Appearance—>Show Line numbers
+- Tab：Editor—>Appearance—>Show whitespaces
+- auto import：Editor—>Auto import add unambiguous imports on the fly
+- spelling check：Editor->Inspections—>Spelling
+- git：Version Control—>Git
+- Plugins：Plugins
+
+导入第三方库：
+import module
+修改build.gradle中相对应的版本参数
+
+问题：
+Failed to resolve: com.android.support:appcompat-v7:21.+
+是sdk不完整造成的，更新sdk，修改到19.+
+
+asset
+src/main/asset/
+xxx.imi中添加：
+	<option Name=
+
+
+
+
+
+
+
+
+minSdkVersion/maxSdkVersion:在安装时限制可安装设备
+targetSdkVersion:程序运行时起作用
+
+
+
+
+
+#### ADT->Android Studio
+
+> - ADT版本必须在22及以上
+> - Eclipse工程—>Export->Generate Gradle Build Files
+> - 生成build.gradle文件
+> - Launch Android Stuidio
+> - Import Project
+
+
+
+
+
+
+
+使用EmptyActivity创建，可避免content_main.xml等layout文件
+
+
+
+
+
+
+
+
+
+
+
+
+# ADT
+> - 废弃的工具
+
+#### install
+
+解压，指定sdk目录即可
+
+
+
+
+#### 混淆签名
+
+> 使用混淆文件
+> project.properties中加入proguard.config=proguard.txt
+
+```
+//生成keystore
+keytool -genkey -alias android.keystore -keyalg RSA -validity 100000 -keystore android.keystore
+
+
+Eclipse->File->Export->Export Android Application
+->Select project
+->Using the existing keystone, and input password
+->select the destination APK file
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# vi
+
+#### install 
+
+```
+brew install vim
+brew install ctags
+brew install cscope
+
+sudo vim /etc/paths
+	/usr/local/bin		放在第一行
+	/usr/bin
+在代码根目录运行：
+	ctags -R
+	cscope -Rbq
+```
+
+#### config 
+
+use [script1](https://github.com/spf13/spf13-vim)
+
+```
+curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+```
+
+use [script2](https://github.com/amix/vimrc)
+
+```
+git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+```
+
+#### plugins
+
+> -  [Vundle](https://github.com/VundleVim/Vundle.vim) 
+> - install 
+
+```
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+
+启动vim，运行:PluginInstall 		//安装Vundle中的插件
+
+
+
+> -  Pathogen
+
+```
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+```
+
+
+> -  useful plugin list
+
+```
+ctrlp
+https://github.com/kien/ctrlp.vim
+let g:ctrlp_map = '<c-p>'		"ctrl+p 触发文件搜索
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:ctrlp_working_path_mode = 'ra'		"搜索目录
+c - directory of current file
+r  - nearest that contains one of these dir or files : .git .hg .svn
+a - like c, but only if the current working dir  
+```
+
+```
+mru  - most recent used file
+https://github.com/vim-scripts/mru.vim
+:MRU
+```
+
+```
+NERDTree - 文件目录树工具 实现文件导航
+Plugin ‘scrooloose/nerdtree'
+配置：
+	let NERDTreeWinPos = “left”
+
+:NERDTreeToggle
+```
+
+```
+YouCompleteMe - 自动补全
+Plugin 'Valloric/YouCompleteMe'
+```
+
+```
+powerline - 状态栏
+vim powerline
+```
+
+```
+tagbar 显示文件结构
+tagbar
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# atom
+
+#### keymap
+ctrl+shift+p    
+ctrl+p          open file in current project
+ctrl+enter      new line
+ctrl+/			trigger sidebar
+
+
+#### config
+
+theme: Atom Material, One Dark
+
+
+#### plugins
+
+- misc
+
+> **atom-beautify**
+> - support: Arduino, c/c++/c#, CSS/HTML/JavaScript/JSON, Java,  php, ruby, SQL
+> - ctrl+alt+b
+> - Packages -> Atom Beautify
+
+
+
+- markdown
+
+> **markdown-preview**
+> - ctrl+shift+m:   trigger preview mode
+
+- php
+
+> ****
+> -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# sublime
+
+#### keymap
+
+```
+ctrl+p			goto file
+ctrl+r			outline view
+ctrl+x 			delete line
+ctrl+shift+d	duplicate current line
+ctrl+l			select current line		
+
+cmd+k,cmd+b	 	trigger side bar
+command+option+1 	single view
+command+option+2  	two    view
+```
+
+
+
+#### install package control
+
+```
+//ctrl-` or View -> Show Console
+
+
+//sublime 2
+import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')
+
+
+//sublime 3
+import  urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+
+
+```
+
+#### config
+
+```
+"draw_white_space": "selection",
+"font_size": 19,
+"hot_exit": false,
+"ignored_packages":
+[
+	"Vintage"
+],
+"open_files_in_new_window": false,
+"remember_open_files": false,
+"word_wrap": true,
+"show_full_path": true,
+"drag_text": false
+
+```
+
+
+#### build system
+
+Tools -> Build System -> New Build System
+
+//php
+{
+	"cmd": ["php", "$file"],
+	"file_regex": "php$",
+	"selector": "test.php"
+}
+
+
+
+
+#### plugin packages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Eclipse
+
+#### keymap
+
+-------------- | ---------------------------- |
+ctrl+shift+r   | open file in project         |
+ctrl+o         | goto function in current file|
+ctrl+shift+f   | format                       |
+Alt + /        | set keybinding               |
+Ctrl+Shift+f   | fommat                       |
+Ctrl + F11     | fast run                     |
+Ctrl+Shift+o   | auto input category          |
+Ctrl+/         | add comment                  |
+Ctrl+\         | cancel comment               |
+Ctrl+ F8       | switch view                  |
+Ctrl+ d        | delete current line          |
+Ctrl+ m        | max current window           |
+Ctrl+Shift+r   | open Resource                |
+Ctrl+Shift+o   | fix auto import              |
+F3             | code goto                    |
+F4             | code Hierarchies             |
+
+
+#### error fix
+
+Eclipse 提示rt.jar中访问限制(Access restriction)
+在Window - Preferences
+Java - Compiler - Errors/Warnings
+Deprecated and restricted API。把Forbidden reference (access rules): 的规则由默认的Error改为Warning即可。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# MarkDown
+
+tool Mou
+
+```
+# First Level
+
+this is note text.
+
+- list item 1
+- list item 2
+- list item 3
+- block `keyword`
+
+
+## second level
+
+
+> '>'作为引用
+
+项目     | 价格
+-------- | ---
+Computer | $1600
+Phone    | $12
+Pipe     | $1
+
+
+```
+code block
+```
+
+line 
+
+****
+
+special
+
+&amp;
+&copy;
+
+
+- [链接](http://example.com)
+- **强调**
+- `this is code line`
+- image ![alter](/path/to/image.jpg)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# git
+
+---------- | ---------------------------- |
+git clone  |                              |
+git init   | init local                   |
+git status | check current project status |
+
+> git remote
+>
+> - 添加url如下，名称为origin的远程服务器
+> - git remote add origin git://github.com/someone/someproject.git 
+
+> git pull 
+>
+> - 从其他的版本库将代码更新到本地
+> - 将origina这个版本库的代码更新道本地的master分支上
+> - git pull origin master
+
+> git push
+>
+> - 将本地代码更新到名为orgin的远程版本库中
+> - git push origin
+
+> git add
+>
+> - 增加文件到git索引中
+> - git add app/model/user.rb
+
+> git rm
+>
+> - 从当前工作空间中和索引中删除文件
+> - git rm app/model/user.rb
+
+> git commit
+>
+> - 提交当前空间的修改内容
+> - git commit -m “story #3, ad user model”
+
+> git revert	
+>
+> - 还原版本
+
+> git branch
+>
+> - 创建分支
+> - git branch branch_name
+
+> git checkout
+>
+> - 切换到分支
+> - git checkout branch_name
+> - 将文件更新到上次提交
+> - git checkout app/model/user.rb
+
+> git tag
+
+
+- git submodule init
+- git submodule update
+
+> git log
+
+> git diff item1 item2
+
+
+
+#### git pages作为blog
+- create repository username.github.io
+- git clone username.github.io
+- git push
+
+
+### 使用jekyll模版
+[可参考的网站和源码](https://github.com/jekyll/jekyll/wiki/sites)
+
+
+#### 绑定域名
+
+```
+echo “awd1559.github.io”  > CNAME
+```
+
+添加评论功能
+https://disqus.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# JetBrain
+
+> -  JetBrain 2016 License Server
+
+http://www.iteblog.com/idea/key.php
+
+> - 2016.3.3
+
+
+#### phpStorm keymap
+
+----------------- | ----------------------------- |
+ctrl+shift+o      |	goto file in project          |
+ctrl+shift+n      |	goto file in project          |
+ctrl+f12		  |	goto function in current file |
+ctrl+shift+alt+n  |	goto function in project      |
+alt+下箭头         |	next function                 |
+alt+上箭头		  | last function                 |
+ctrl+shift+f	  |	search in project             |
+ctrl+b			  | jump to symbol defination     |
+ctrl+d	          | copy current line             |
+ctrl+y	          | delete current line           |
+ctrl+/			  | add comment                   |
+ctrl+shift+/	  | add block comment             |
+ctrl+[]           |	match { }[ ]                  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Unity
+
+#### install 
+- install unity-4.3.4.dmg
+- unzip u4.3.4f1cmac.zip
+- Unity overwrite Content/MacOs/Unity
+- offline
+- Load Lisence -> 选择　Unity_v4.x.ulf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Xcode
+
+#### keymap
+
+> - Standard Editor>Show Document Items 
+
+------------------- | ---------------------- |
+Open Quickly        | ctrl+shift+o           |
+⌘ + p               | function jump in file  |
+⌘ + ⇧ + j           | Reveal in Project Navigator   |
+⌘ + ⌃ + ↓ or ↑      | *.m*.h切换  |
+⌥ + leftkey         | show doc |
+⌘ + .               | 暂停模拟器 |
+⌘ + ⌃ + ← or →      | 前进后退文本文件      |
+⌃ + i               | 自动排版代码          | 
+⌘ + [ or ]          | 左右缩进              | 
+⌘ + ⌃ + w           | 关闭当前文本文件       |
+⌘ + /               | 注释                 |
+⌘ + ⌥ + 2-6         | 在右侧检测器间跳转     |
+⌘ + ⌥ + 0           | 显示／隐藏右侧检测器    |
+⌘ + ⇧ + Y           | 显示／隐藏debugger     |
+⌘ + ⇧ + o           | 快速打开项目中的文件    |
+⌘ + 1 - 8           | 显示／隐藏左侧Navigator |
+⌘ + 1 - 8           | 在左侧Navigator间跳转 |
+
+
+
+#### 禁止Indexing
+```
+defaults write com.apple.dt.XCode IDEIndexDisable 1
+```
+
+
+#### comment
+
+```
+/// test
+/// - new line with list mark
+/// - parameter x:Int the x location
+/// - parameter y:Int the y location
+///这之后填写什么都不会在xcode工具中显示了，只能看
+```
+
+#### doc位置
+
+- /Application/Xcode.app/Contents/Developer/Documentation/DocSets
+- app临时编译位置
+- /Users/awd/Library/Developer/Xcode/DerivedData
+
+# 预览sb、xib：
+左上角preview
+
+
+
+shift+Option(alt) : 设置预览
+
+ctrl + Option : 预览
+
+
+#### plugins
+
+- auto-importer: quickly import headers 
+- CocoaControls: browse, search, integrate, clone controls in http://cocoacontrols.com
+- CocoaPodUI:			CocoaPods GUI
+- CodePilot:				快速查找文件、函数、符号
+- ~~FuzzyAutocomplete:		函数自动提示，可从函数中间开始~~
+- KKHighlightRecentPlugin:	高亮显示最近选中的文件
+- ~~OFPlugin:				方便添加OpenFrameworks addons~~
+- ~~OMColorSense			显示UIColor~~
+- OpenInSublimeText
+- OpenTerminal
+- ~~SuggestedColors			Interface Builder中显示颜色选择下拉菜单~~
+- SwiftCodeSnippets		自动下载SwiftCodeSnip
+- SwipeGestureSwitcher		代码编辑框中使用手势
+- XCActionBar			使用action完成Xcode中的所有命令
+- xcfui					fui: find unused inport
+- ~~XcodeWay				navigating 到不同的文件夹~~
+- ~~XFunnyEditor			在背景显示一张图片~~
+- XLCXcodeAssist			provide suggestion implementation for missing objective-c methods
+- XToDo				收集代码中的TODO, FIXME, ???
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Sketch
+
+----------- | ---------- |
+cmd + .     | 切换演示界面 |
+cmd + r     | 切换标尺     |
+cmd + 方向键 | 缩放        |
+cmd + d     | duplicate  |
+
+选中元素，cmd + g |  分组 |
+选中元素，cmd + r | 重命名 |
+
+选中元素，按alt，鼠标悬浮到另一个元素，查看距离
+
+
+
+#### plugins
+
+Plugins -> Reveal  Plugins Folder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# SketchUp
+
+------- | -------------- | 
+space   | select         |
+q	    | Rotate         |
+e 	    | Eraser         |
+r       | Rectangle      |
+t	    | Tape Measuure  |
+o 		| Orbit          |
+p 		| Pull           |
+a		| Arc            |
+s		| Scale          |
+f		| Offset         |
+g 		| Component      |
+h		| Hand/Pan       |
+l		| Line           |
+z		| Zoom           |
+c		| Circle         |
+b		| Brush          |
+m		| Move           |
+
+
+#### plugins
+
+Preference - Extensions - install Extensions *.rbz
+
+双击一个单独的面可以同时选中这个面和线
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 使用3D Max
+
+#### 骨骼
+
+- 创建人物模型
+- 全选模型，右键-转换为-转换为可编辑网络
+	：到修改面板，进入顶点层级将相邻的面焊接
+- 点击Biped ，创建人物骨骼
+- 运动面板-体形模式，移动骨骼和人体吻合。（F3：转为线框模式）
+- 运动面板-体形模式
+- 修改面板-蒙皮，将人体骨骼全部添加
+- 将整个模型渲染成纹理，烘培的贴图一定要同模型一并放到U3d项目文件夹的Assets中
+- 导出FBX，选择骨骼
+
+#### 烘培
+
+> **LightMap**
+>
+> - 渲染出来的贴图只带有阴影信息，不包含基本纹理
+> - 将模型的基本纹理贴图和LightMap阴影贴图两者叠加
+> - 最终模型纹理比较清楚，可以使用重复纹理贴图，可直接导出FBX文件，不用修改贴图通道
+> - 不带高光
+
+> **CompleteMap**
+>
+> - 渲染出来的贴图本身就带有基本纹理和光影信息
+> - 没有细节纹理，近处时纹理比较模糊
+
+
+
+
+
+#### 用Poly多边形建模
+
+- 平移视图 鼠标中键
+- 旋转视图 Alt+鼠标中键
+- 缩放视图 鼠标滚轮
+- 对齐到视图 V
+- 自动平滑 A
+- 选择定点级别 1
+- 选择边级别 2
+- 选择边界级别 3
+- 选择多边形级别 4
+- 选择元素级别 5
+- 选择对象级别 6
+- 打开变换输入 F12
+- 进入倒角模式 Shift+Ctrl+B
+- 倒角设置 Ctrl+B
+- 断开 Shift+B
+- 连接 Shift+Ctrl_E
+- 连接边设置 Ctrl_N
+- 切割 Alt_C
+- 分离 Ctrl_D
+- 挤出模式 E
+- 进入挤出设置 Ctrl_E
+- 翻转法线 F
+- 进入插入顶点模式 Shift+I
+- 进入插入模式 I
+- 插入设置 Ctrl+I
+- 选择循环边 Alt+L
+- 选择环形边 Alt_R
+- 收缩选择 Ctrl_PageDown
+- 分割边 Shift+P
+- 进入目标焊接模式 Shift_Ctrl_W
+- 焊接设置 Ctrl_W
+- 使用软件选择 Ctrl_S
+- 塌陷 Shift_L
+- 约束到边 Shift_X
+- 约束到面 X
+- 从边创建图形 Shift_M
+
+
+
+
+- A——角度捕捉开关 
+- B——切换到底视图 
+- C——切换到摄像机视图 
+- D——封闭视窗 
+- E——切换到轨迹视图 
+- F——切换到前视图 
+- G——切换到网格视图 
+- H——显示通过名称选择对话框 
+- I——交互式平移 
+- J——选择框显示切换 
+- K——切换到背视图 
+- L——切换到左视图 
+- M——材质编辑对话框 
+- N——动画模式开关 
+- O——自适应退化开关 
+- P——切换到透视用户视图 
+- Q——显示选定物体三角形数目 
+- R——切换到右视图 
+- S——捕捉开关 
+- T——切换到顶视图 
+- U——切换到等角用户视图 
+- V——旋转场景 
+- W——最大化视窗开关 
+- X——坐标轴高亮显示开关 
+- Y——工具样界面转换 
+- Z——缩放模式
+
+- [——交互式移近 ]——交互式移远 
+- /——播放动画 F1——帮助文件 
+- F3——线框与光滑高亮显示切换 F4——DEGED FACES 显示切换 
+- F5——约束到X轴方向 F6——约束到Y轴方向 
+- F7——约束到Z轴方向 F8——约束轴面循环 
+- F9——快速渲染 F10——渲染对话框 
+- F11——MAX脚本程序编辑 F12——键盘输入变换
+
+
+
+- F3 线框显示
+- F4 线框实体显示
+- U  User View
+- P  Perspective View
+
+- F5 x-轴
+- F6 y-轴
+- F7 z-轴
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# maya
+
+#### 创建物体
+
+```
+Create->NURBS->Primitive
+Alt+左键		拖拽
+Alt+右键		缩放
+中键		移动
+F 		使物体在屏幕居中
+A 		屏幕上显示场景冲所有物体
+```
+
+```
+F3 	多边形模式
+F4 	surface模式
+F5 	particle模式
+```
+
+```
+4 线条显示
+5 实体显示
+6 
+```
+
+```
+Y last Tool
+G 重复上个命令
+```
+
+```
+F8 Enter/Exit Component Mode
+```
+
+```
+Window->Render Editors->Hypershade
+	添加材质球
+	鼠标中键拖动到物体上，赋予材质
+```
+
+```
+Window - Animation Editor - Express Editor
+	object.TranslateY = sin(time)
+```
+
+```
+Skeleton->Joint Tool
+	定义骨骼工具
+```
+
+```
+Create Deforme->Cluster
+	创建Cluster辅助对象
+```
+
+按住v，拖动Joint Tool，把骨骼吸附到Cluster
+
+
+选中对象
+Shift＋骨骼root节点
+Skin－Bind Skin－Smooth Bind绑定骨骼
+
+
+Skeleton->IK Handle Tool
+
+
+沿路径运动
+Animate - Motion Paths - Attach To Motion Path
+
+自动记录动画帧
+选中channel box中的属性，key selected
+打开autokey
+
+
+
+选中对象
+Effect－>create Fire
+
+
+
+view -> image plane -> input image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# matlab
+
+矩阵除法：
+左除：A*x=B 的解x=A\B,A是非奇异方阵，A\B是A的逆矩阵乘B，即inv(A)*B
+右除：x*A=B 的解x=B/A,               B/A是B乘A的逆矩阵，即B*inv(A)
+
+
+矩阵乘法：
+A^P是A的P次方
+
+数组乘 .*
+数组除 .\ ./
+如果x={x1,x2,L,xn}, y={y1,y2,L,yn}
+x.*y=(x1y1,x2y2,L, xnyn)
+x.\y=(y1/x1, y2/x2, L, yn/xn)
+x./y=(x1/y1,x2/y2,L,xn/yn)
+
+乘方 .^
+
+逆矩阵 inv(A)
+行列式 det(A)
+
+秩： rank
+	 pinv	广义逆矩阵
+	 rref
+	 orth
+	 null
+	 
+分解因子 factor
+多项式展开 expand
+精度 digits
+复合函数生成 compose
+合并同类项 collect
+
+
+二维图：
+plot		x，y为线性刻度
+loglog		x，y为对数刻度
+semilogx	x为线性刻度
+semilogy	y为线性刻度
+
+	axis()	调整轴的范围
+	xlabel	x轴注释
+	ylabel 	y轴注释
+	title	标题
+	legend	注释
+
+polar		极坐标图
+hist		分布图
+stem		
+fill		
+feather		
+compass		
+quiver		等高线
+
+
+
+
+
+
+
+三维图: 
+plot3(x, y, z)
+stem3(x, y, z)
+fill3(x, y, z, 'r')
+bar3(x, y, z)
+
+meshgrid设置范围
+曲面
+	mesh
+	surf
+	
+	view	设置视角	
+
+
+%播放动画
+s=0.2;x1=0;
+nframes=50;
+for k=1:nframes
+x1=x1+s;
+x=0:0.01:x1;
+y=sin(x);
+plot(x,y);
+axis([0 2*pi -1 1]);
+grid off;
+M(k)=getframe;			%将当前图形存入矩阵M(k)
+end
+movie(M,3)				%重复3次播放动画M
+
+
+for i=-2*pi:0.5:2*pi
+    R=[cos(i) sin(i) 0; -sin(i) cos(i) 0; 0 0 1];
+    vt=[1 1 1; 1 2 1; 2 2 1; 2 1 1; 1 1 2; 1 2 2; 2 2 2; 2 1 2];
+    vt=vt*R;
+    f=[1 2 3 4;2 6 7 3; 4 3 7 8; 1 2 6 5; 5 6 7 8];
+    pause(0.1)
+    patch('faces', f, 'vertices', vt, 'FaceVertexCData', hsv(8), 'FaceColor', 'interp');
+    view(3);
+    grid on;
+end
+
+
+
+
+
+tic	开始计时
+toc	停止计时
+
+
+//================================
+帮助
+//================================
+help matfun ：	矩阵函数－数值线性代数
+help general：	通用命令
+help graphics：	通用图形函数
+help elfun：	基本的数学函数
+help elmat：	基本矩阵和矩阵操作
+help datafun：	数据分析和傅立叶变换函数
+help ops：		操作符和特殊字符
+help polyfun：	多项式和内插函数
+help lang：		语言结构和调试
+help strfun：	字符串函数
+help control：	控制系统工具箱函数
+helpwin：		帮助窗口
+helpdesk：		帮助桌面，浏览器模式
+lookfor命令：	返回包含指定关键词的那些项
+demo：			打开示例窗口
+
+
+库
+datefun		数据分析函数库
+dde			动态数据交换库
+elfun		初等数学函数库
+elmat		基本矩阵库
+timefun		时间日期函数库
+funfun		非线性数值方法库
+general		通用命令
+datatypes	数据类型库
+graphics	通用图形函数库
+iofun		
+lang		语音结构函数库
+matfun		矩阵线性代数库
+ops			运算符和特殊字符
+graph2d		二维图形
+specgraph	特殊图形
+graph3d		三维图形
+polyfun		多项式和插值
+sparfun		稀疏矩阵
+specfun		特殊数学函数
+strfun		字符串
+Guitools	gui
+demos		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Flash
+
+> - Ctrl+Shift+V原地粘贴
+> - 基本矩形(图形) 通过右键+分离 分离成普通形状
+> - 形状转换为元件(图形)
+> - 引导层
+> - 被引导层
+> - 补间动画	元件
+> - 形状动画	形状
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# After Effect
+
+#### keymap
+
+> - ~		缩放当前Pannel
+> - F3		收缩Effect属性
+> - u		层中所有带关键帧的属性
+> - uu		
+> - F4		打开Transform mode
+> - aa		Layer Material Option
+
+> - 前一关键帧 J
+> - 下一关键帧 K
+> - 到指定时间 Ctrl+G
+> - Ctrl+Shift+C 合成图层为新的compossion
+
+> - ctrl+M  加入render
+
+#### 多层自动排序
+
+> - ctrl+A选中所有排序图层
+> - Animation->Keyframe Assistant->Sequence Layers
+
+
+
+
+#### 单帧渲染
+
+> - 时间标识停到单帧处，Composition>Save Frame AS>File
+> - Composition>Save Frame AS>Photoshop Layers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Final Cut Pro
+
+音画分离 Shift+L
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ai
+
+ctrl+alt+p   文档大小设置 -> edit art board size
+
+
+
+选择两个Object->Blend
+Ctrl ： 临时切换到选择工具
+
+ai模板库
+AI样式
+
+AI立体感觉
+
+AI与PS结合
+
+AI背景透明
+
+
+修改文字字体及颜色 
+
+新增样式库
+
+
+
+> - 一个ArtBoard意味着一张纸
+> - 可以在AI里进行多张纸的操作
+
+工作区就是对AI各工具布局的管理，默认设置了一些工作区
+
+
+view->show/hide Edges 显示或隐藏锚点、方向线和方向点
+
+
+
+# keymap
+> - 双击缩放工具：100%显示
+> - 双击抓手工具：适合屏幕显示
+>
+> - view-preview/outline切换 ctrl-y
+> - 右键-preview/outline
+>
+> - view -> rule -> show rule 
+> - 右键rule，可以改变标尺单位
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ps
+
 中文版改英文版
 	重命名Locales/zh_CN/Support Files/tw10428.dat
 	该文件为菜单翻译文件
@@ -792,3 +2623,6 @@ Ctrl+Shift+F——退去上次用过的滤镜或调整的效果或改变合成�
 147. 在选色控制板上直接切换色彩模式，可按住Shift键后将光标移到色彩杆上单击鼠标即可。
 
 148. 要把一个彩色的图像转换为灰度图像，通常的方法是用“图像”→“模式”→“灰度”，或“图像”→“去色”。不过现在有一种方法可以让颜色转换成灰度是更加细腻。步骤是首先把图像转化成Lab颜色模式：“图像”→“模式”→“Lab颜色”，然后来到通道面板，删掉信道a和信道b，你就可以得到一幅灰度更加细腻的图像了。
+
+
+
