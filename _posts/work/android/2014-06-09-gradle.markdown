@@ -22,32 +22,439 @@ tags:
 
 # framework
 
-[AndroidAnnotations](/2014/06/09/gradle-androidannotations)
+#### [AndroidAnnotations](https://github.com/excilys/androidannotations)
+> - AndroidAnnotations: Dependency Injection<50K
 
-[butterknife](/2014/06/09/gradle-butterknife)
+```
+@EActivity(R.layout.main)  
 
-[dagger](/2014/06/09/gradle-dagger)
+@ViewById(R.id.myTextView)  
 
-[droidparts](https://github.com/yanchenko/droidparts)
-[android-common](https://github.com/litesuits/android-common)
-[SAF](https://github.com/fengzhizi715/SAF)
-[Android-Next](https://github.com/mcxiaoke/Android-Next)
-[UltimateAndroid](https://github.com/cymcsg/UltimateAndroid)
-[android-priority-jobqueue](https://github.com/yigit/android-priority-jobqueue)
-[anvil](https://github.com/zserge/anvil)
-[Rosie](https://github.com/Karumi/Rosie)
-[Conductor](https://github.com/bluelinelabs/Conductor)
-[Android-ZBLibrary](https://github.com/TommyLemon/Android-ZBLibrary)
+@Click
+
+
+@Click({R.id.button1,R.id.button2,R.id.button3})  
+void buttonClicked(Button bt){  
+    switch(bt.getId()){  
+    case R.id.button1:  //  
+        break;  
+        ...  
+    }  
+} 
+
+
+@EBean,@RootContext,@UiThread
+```
+
+
+
+#### [butterknife](https://github.com/JakeWharton/butterknife)
+> - Bind Android views and callbacks
+
+> - install 
+
+```
+compile 'com.jakewharton:butterknife:7.0.1'
+```
+
+> - usage
+
+```
+@Bind(R.id.user) EditText username;
+@Bind(R.id.pass) EditText password;
+
+@BindString(R.string.login_error)
+String loginErrorMessage;
+
+@OnClick(R.id.submit) 
+void submit(View view) {
+  // TODO call server...
+}
+
+@Override public void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.simple_activity);
+  ButterKnife.bind(this);
+}
+
+```
+
+
+
+
+
+#### [dagger](https://github.com/google/dagger)
+> - DONOT use [dagger by square](https://github.com/square/dagger)
+> - dependency injector
+
+> - install
+
+```
+compile 'com.google.dagger:dagger:2.0'
+compile 'com.google.dagger:dagger-compiler:2.0'
+compile 'javax.annotation:javax.annotation-api:1.2'
+```
+
+> - usage 
+
+```
+@Inject
+@Module
+@Provide
+@Component
+@Scope
+```
+
+
+
+
+```
+//create model
+public class Motor {
+
+    private int rpm;
+
+    public Motor(){
+        this.rpm = 0;
+    }
+
+    public int getRpm(){
+        return rpm;
+    }
+
+    public void accelerate(int value){
+        rpm = rpm + value;
+    }
+
+    public void brake(){
+        rpm = 0;
+    }
+}
+
+public class Vehicle {
+
+    private Motor motor;
+
+    @Inject
+    public Vehicle(Motor motor){
+        this.motor = motor;
+    }
+
+    public void increaseSpeed(int value){
+        motor.accelerate(value);
+    }
+
+    public void stop(){
+        motor.brake();
+    }
+
+    public int getSpeed(){
+        return motor.getRpm();
+    }
+}
+```
+
+
+```
+//create module 
+
+@Module
+public class AppModule {
+    private final App application;
+
+    public AppModule(App application) {
+        this.application = application;
+    }
+
+    @Provides
+    @Singleton
+    App provideApp() {
+        Log.e("module", "provideApp");
+        return application;
+    }
+
+    @Provides
+    @Singleton
+    Motor provideMotor() {
+        return new Motor();
+    }
+
+    @Provides
+    @Singleton
+    Vehicle provideVehicle() {
+        return new Vehicle(new Motor());
+    }
+}
+```
+
+```
+//component
+@Singleton
+@Component(modules = AppModule.class)
+public interface AppComponent {
+    Vehicle vehicle();
+
+    App app();
+
+    void inject(MainActivity activity);
+}
+```
+
+```
+//dagge into application
+class App extends Applicaiton {
+  private AppComponent component;
+  onCreate() {
+    DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+  }
+  public static AppComponent component(Context context) {
+    return ((App) context.getApplicationContext()).component;
+  }
+}
+```
+
+```
+//use it
+@Inject
+App app;
+
+@Inject
+Vehicle vehicle;
+
+class MainActiviy extends AppCom {
+  onCreate() {
+    App.component(this).inject(this);
+  }
+}
+```
+
+
+
+
+
+#### [droidparts](https://github.com/yanchenko/droidparts)
+#### [android-common](https://github.com/litesuits/android-common)
+#### [SAF](https://github.com/fengzhizi715/SAF)
+#### [Android-Next](https://github.com/mcxiaoke/Android-Next)
+#### [UltimateAndroid](https://github.com/cymcsg/UltimateAndroid)
+#### [android-priority-jobqueue](https://github.com/yigit/android-priority-jobqueue)
+#### [anvil](https://github.com/zserge/anvil)
+#### [Rosie](https://github.com/Karumi/Rosie)
+#### [Conductor](https://github.com/bluelinelabs/Conductor)
+#### [Android-ZBLibrary](https://github.com/TommyLemon/Android-ZBLibrary)
 
 
 # event bus
 
-[EventBus](/2014/06/09/gradle-eventbus)
+#### [EventBus](https://github.com/greenrobot/EventBus)
+> - simplifies communication between Activities, Fragments, Threads, Services
+
+> - install
+
+```
+compile 'org.greenrobot:eventbus:3.0.0'
+```
+
+> -  usage
 
 
-[otto](/2014/06/09/gradle-otto)
+```
+//1.define event
+public class MessageEvent {
+    public final String message;
 
-[RxAndroid](/2014/06/09/gradle-rxandroid)
+    public MessageEvent(String message) {
+        this.message = message;
+    }
+}
+```
+
+
+
+```
+//2.Prepare subscribers
+@Override
+public void onStart() {
+    super.onStart();
+    EventBus.getDefault().register(this);
+}
+
+@Override
+public void onStop() {
+   EventBus.getDefault().unregister(this);
+   super.onStop();
+}
+
+@Subscribe
+public void onEvent(MessageEvent event) {
+  /* Do something */
+}
+```
+
+
+```
+// 3.post event
+EventBus.getDefault().post(new MessageEvent("send message"));
+```
+
+
+
+
+
+#### [otto](https://github.com/square/otto)
+> - An enhanced Guava-based event bus - by [square](https://square.github.io)
+
+> -  install
+
+```
+compile 'com.squareup:otto:1.3.8'
+```
+
+> -  usage
+
+
+
+
+#### [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+> - based on [RxJava](https://github.com/ReactiveX/RxJava)
+> - [RxSwift](https://github.com/ReactiveX/RxSwift)
+> - [RxKotlin](https://github.com/ReactiveX/RxKotlin)
+> - [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
+> - [给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083)
+
+
+> - install
+
+```
+compile 'io.reactivex:rxandroid:1.1.0'
+compile 'io.reactivex:rxjava:1.1.0'
+```
+
+> - usage
+> - Observer, Subscriber
+
+```
+Observer<String> observer = new Observer<String>() {
+  @Override
+  public void onNext(String s) {}
+
+  @Override
+  public void onCompleted() {}
+
+  @Override
+  public void onError(Throwable e) {}
+};
+
+Subscriber<String> subscriber = new Subscriber<String>() {
+  @Override
+  public void onNext(String s) {}
+
+  @Override
+  public void onCompleted() {}
+
+  @Override
+  public void onError(Throwable e) {}
+};
+```
+
+> - Observable
+
+```
+Observable observable = Observable.create(new Observable.OnSubscribe<String>() {
+  @Override
+  public void call(Subscriber<? super String> subscriber) {
+    subscriber.onNext("Hello");
+    subscriber.onNext("Hi");
+    subscriber.onNext("Aloha");
+    subscriber.onCompleted();
+  }
+});
+
+
+// from(), just()
+
+Observable<String> o = Observable.from("a", "b", "c");
+// onNext("Hello");
+// onNext("Hi");
+// onNext("Aloha");
+// onCompleted();
+
+
+int[] list = [5, 6, 7, 8]
+Observable<Int> o = Observable.from(list);
+
+Observable<String> o = Observable.just("one object");
+```
+
+
+> - Subscribe
+
+```
+observable.subscribe(observer);
+// or: 
+observable.subscribe(subscriber);
+
+// the reasone that not write as observer.subscribe(observable) is because 
+// need to chain the functon calls
+```
+
+> -  example
+
+```
+String[] folders;
+
+Observable.from(folders)
+    .flatMap(new Func1<File, Observable<File>>() {
+        @Override
+        public Observable<File> call(File file) {
+            return Observable.from(file.listFiles());
+        }
+    })
+    .filter(new Func1<File, Boolean>() {
+        @Override
+        public Boolean call(File file) {
+            return file.getName().endsWith(".png");
+        }
+    })
+    .map(new Func1<File, Bitmap>() {
+        @Override
+        public Bitmap call(File file) {
+            return getBitmapFromFile(file);
+        }
+    })
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Action1<Bitmap>() {
+        @Override
+        public void call(Bitmap bitmap) {
+            imageCollectorView.addImage(bitmap);
+        }
+    });
+
+// Lambda
+Observable.from(folders)
+    .flatMap((Func1) (folder) -> { Observable.from(file.listFiles()) })
+    .filter((Func1) (file) -> { file.getName().endsWith(".png") })
+    .map((Func1) (file) -> { getBitmapFromFile(file) })
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe((Action1) (bitmap) -> { imageCollectorView.addImage(bitmap) });
+```
+
+> -  Scheduler
+
+| ---------------------------- | -------------------------------------- |
+|Schedulers.immediate()        |by default, on the same thread          |
+|Schedulers.newThread()        |always on new thread                    |
+|Schedulers.io()               |io op, same as newThread, in Thread pool|
+|Schedulers.computation()      |thread pool contains cpu's count thread |
+|AndroidSchedulers.mainThread()|for android ui thread                   |
+
+```
+Observable.just(1, 2, 3, 4)
+    .subscribeOn(Schedulers.io()) //produce event on io thread pool
+    .observeOn(AndroidSchedulers.mainThread()) //consume event on android ui thread
+```
 
 
 
@@ -55,40 +462,643 @@ tags:
 
 # Font
 
-[Calligraphy](https://github.com/chrisjenx/Calligraphy)
+#### [Calligraphy](https://github.com/chrisjenx/Calligraphy)
 
 
 
 # ImageLoader
 
-[Android-Universal-Image-Loader](/2014/06/09/gradle-uimageloader)
+#### [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
+> - Load Image
 
-[glide](/2014/06/09/gradle-glide)
+> -  install
 
-[picasso](/2014/06/09/gradle-picasso)
+```
+compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+```
+
+```
+<manifest>  
+  <!-- load image from internet -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!-- cache images on SD card -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+</manifest>
+```
+
+```
+@Override 
+void onCreate(Bundle savedInstanceState) {
+  //config and initialize ImageLoader
+  ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+  ImageLoader.getInstance().init(config);
+}
+```
+
+
+
+
+#### [glide](https://github.com/bumptech/glide)
+> - Android image loader
+
+> -  install
+
+```
+repositories {
+  mavenCentral() // jcenter() works as well because it pulls from Maven Central
+}
+
+dependencies {
+  compile 'com.github.bumptech.glide:glide:3.7.0'
+  compile 'com.android.support:support-v4:19.1.0'
+}
+```
+
+
+#### [picasso](https://github.com/square/picasso)
+> - Android picasso by square
+> - image downloading and caching - by [square](https://square.github.io)
+
+> -  install
+
+```
+compile 'com.squareup.picasso:picasso:2.5.2'
+```
+
+
 
 # JSON
 
-[Gson](/2014/06/09/gradle-gson)
+#### [Gson](https://github.com/google/gson)</small>
+> - Gson: Google JSON for Android
+- convert Java Objects into JSON
+- convert a JSON string into Java object
+
+> - install
+
+```
+compile 'com.google.code.gson:gson:2.6.2'
+```
+
+
+> -  Primitives
+
+```
+// Serialization
+Gson gson = new Gson();
+gson.toJson(1);            // ==> 1
+gson.toJson("abcd");       // ==> "abcd"
+gson.toJson(new Long(10)); // ==> 10
+int[] values = { 1 };
+gson.toJson(values);       // ==> [1]
+
+// Deserialization
+int one = gson.fromJson("1", int.class);
+Integer one = gson.fromJson("1", Integer.class);
+Long one = gson.fromJson("1", Long.class);
+Boolean false = gson.fromJson("false", Boolean.class);
+String str = gson.fromJson("\"abc\"", String.class);
+String anotherStr = gson.fromJson("[\"abc\"]", String.class);
+```
+
+> - Object
+
+```
+class BagOfPrimitives {
+  private int value1 = 1;
+  private String value2 = "abc";
+  private transient int value3 = 3;
+  BagOfPrimitives() {
+
+  }
+}
+
+// Serialization
+BagOfPrimitives obj = new BagOfPrimitives();
+Gson gson = new Gson();
+String json = gson.toJson(obj);  
+
+// ==> json is {"value1":1,"value2":"abc"}
+
+
+// Deserialization
+BagOfPrimitives obj2 = gson.fromJson(json, BagOfPrimitives.class);
+// ==> obj2 is just like obj
+```
+
+
+> - custom
+
+```
+GsonBuilder gson = new GsonBuilder();
+gson.registerTypeAdapter(MyType2.class, new MyTypeAdapter());
+gson.registerTypeAdapter(MyType.class, new MySerializer());
+gson.registerTypeAdapter(MyType.class, new MyDeserializer());
+gson.registerTypeAdapter(MyType.class, new MyInstanceCreator());
+```
+
+
+> - Serializer
+
+```
+private class DateTimeSerializer implements JsonSerializer<DateTime> {
+  public JsonElement serialize(DateTime src, Type typeOfSrc, JsonSerializationContext context) {
+    return new JsonPrimitive(src.toString());
+  }
+}
+
+> - Deserializer
+
+```
+private class DateTimeDeserializer implements JsonDeserializer<DateTime> {
+  public DateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+      throws JsonParseException {
+    return new DateTime(json.getAsJsonPrimitive().getAsString());
+
+    //another example
+    final JsonObject jsonObject = json.getAsJsonObject();
+    JsonArray data = jsonObject.get("data").getAsJsonArray();
+    JsonObject first = data.get(0).getAsJsonObject();
+    String id = first.get("id").getAsString();
+    String name = first.get("name").getAsString();
+  }
+}
+```
+
+> - Instance Creator
+
+```
+private class MoneyInstanceCreator implements InstanceCreator<Money> {
+  public Money createInstance(Type type) {
+    return new Money("1000000", CurrencyCode.USD);
+  }
+}
+```
+
+> - use annotations
+
+```
+public class User {
+  @SerializedName("id")
+  private int userId;
+
+  @SerializedName("cover_url")
+  private String coverUrl;
+
+  @SerializedName("full_name")
+  private String fullname;
+
+  @SerializedName("description")
+  private String description;
+}
+
+Gson gson = new Gson();
+
+String json = gson.toJson(user, User.class);
+User user = gson.fromJson(jsonString, User.class);
+```
 
 # Networking
 
-[volley](/2014/06/09/gradle-volley)
+#### [volley](https://android.googlesource.com/platform/frameworks/volley)
+> - Android volley by google
+> - [train](http://developer.android.com/intl/zh-cn/training/volley/index.html)
 
-[okhttp](/2014/06/09/gradle-okhttp)
+> - install
+```
+compile 'com.android.volley:volley:1.0.0'
 
-[retrofit](/2014/06/09/gradle-retrofit)
+//DEPRECATED
+compile 'com.mcxiaoke.volley:library:1.0.19'
 
-[android-async-http](https://github.com/loopj/android-async-http)
 
-[AndroidAsync](https://github.com/koush/AndroidAsync)
+git clone https://android.googlesource.com/platform/frameworks/volley
 
-[ion](https://github.com/koush/ion)
+import as module to Android Studio
+
+<uses-permission android:name="android.permission.INTERNET"/>
+
+```
+
+
+> - use java.net.HttpURLConnection
+
+```
+// android sdk use java.net.HttpURLConnection
+HttpUrlConnection urlConnection = (HttpURLConnection) url.openConnection();
+  try {
+    urlConnection.setDoOutput(true);
+    urlConnection.setChunkedStreamingMode(0);
+
+    OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+    writeStream(out);
+
+    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+    readStream(in);
+  }finaly {
+    urlConnection.disconnect();
+}
+```
+
+
+> - RequestQueue
+
+```
+RequestQueue mQueue = Volley.newRequestQueue(context);
+```
+
+> - ImageLoader
+
+```
+LruBitmapCache  imageCache = new LruBitmapCache();
+DiskBitmapCache imageCache = new DiskBitmapCache();
+
+ImageLoader mImageLoader = new ImageLoader(mQueue, imageCache);
+
+ImageLoader.ImageListener listener = ImageLoader.getImageListener(this.mImage, R.drawable.holder, R.drawable.error);
+imageLoader.get(url, listener);
+```
+
+> - ImageListener
+
+```
+class FadeInImageListener implements ImageLoader.ImageListener {
+  WeakReference<ImageView> mImageView;
+  Context mContext;
+  
+  public FadeInImageListener(ImageView image,Context context) {
+    mImageView = new WeakReference<ImageView>(image);
+    mContext = context;
+  }
+  
+  @Override
+  public void onErrorResponse(VolleyError arg0) {
+    if(mImageView.get() != null) {
+      mImageView.get().setImageResource(R.drawable.ic_launcher);
+    }
+  }
+
+  @Override
+  public void onResponse(ImageContainer response, boolean arg1) {
+    if(mImageView.get() != null) {
+      ImageView image = mImageView.get();
+      if(response.getBitmap() != null) {
+                image.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.fade_in));
+                image.setImageBitmap(response.getBitmap());
+      } else {
+        image.setImageResource(R.drawable.ic_launcher);
+      }
+    }
+  }
+}
+```
+
+> - StringRequest
+
+```
+String url = ”http://www.baidu.com”;
+StringRequest stringRequest = new StringRequst(Request.Method.GET, url, 
+  new Response.Listener<String>( {
+    @Override
+    public void onResponse(String reponse) {
+    }
+  }, 
+  new Response.ErrorListener() {
+    @Override
+    public void onErrorResponse(VolleyError error) {}
+  }));
+
+mQueue.add(stringRequest);
+```
+
+```
+ImageRequest request = new ImageRequest(url,
+  new Response.Listener<Bitmap>() {
+    @Override
+    public void onResponse(Bitmap bitmap) {
+      mImageView.setImageBitmap(bitmap);
+    }
+  }, 0, 0, null,
+  new Response.ErrorListener() {
+    public void onErrorResponse(VolleyError error) {
+      mImageView.setImageResource(R.drawable.image_load_error);
+    }
+  });
+```
+
+> - JsonObjectRequest
+
+```
+String url = "https://api.flickr.com/services/rest";
+Uri.Builder builder = Uri.parse(url).buildUpon();
+builder.appendQueryParameter("api_key", "5e045abd4baba4bbcd866e1864ca9d7b");
+builder.appendQueryParameter("method", "flickr.interestingness.getList");
+builder.appendQueryParameter("format", "json");
+builder.appendQueryParameter("nojsoncallback", “1");
+
+JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET, builder.toString(), null,
+    new Response.Listener<JSONObject>() {
+      @Override
+      public void onResponse(JSONObject response) {
+        Log.d(TAG, response.toString());
+      }
+    }, 
+    new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError error) {
+        VolleyLog.d(TAG, "Error: " + error.getMessage());
+      }
+});
+
+```
+
+> - Request
+
+```
+public class GsonRequest<T> extends Request<T>{
+  private final Gson gson;
+  private final Response.Listener<T> listener;
+
+  @Override
+  protected void deliverResponse(T response) {
+    listener.onResponse(response);
+  }
+
+  @Override
+  protected Response<T> parseNetworkResponse(NetworkResponse response) {
+    String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+
+    return (Response<T>) Response.success(
+                            gson.fromJson(json, type),
+                            HttpHeaderParser.parseCacheHeaders(response));
+  }
+}
+
+
+
+GsonRequest<Model> gsonObjRequest = new GsonRequest<Model>(Request.Method.GET, builder.toString(), 
+  new Response.Listener<FlickrResponsePhotos>(){
+    public void onResponse(Model response) {}
+  }, 
+  new Response.ErrorListener(){
+    @Override
+    public void onErrorResponse(VolleyError error) {
+      if( error instanceof NetworkError) {} 
+      else if( error instanceof ClientError) {} 
+      else if( error instanceof ServerError) {} 
+      else if( error instanceof AuthFailureError) {} 
+      else if( error instanceof ParseError) {} 
+      else if( error instanceof NoConnectionError) {} 
+      else if( error instanceof TimeoutError) {}
+    }
+  });
+```
+
+> - cache
+
+```
+Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); 
+Network network = new BasicNetwork(new HurlStack());
+RequestQueue  mRequestQueue = new RequestQueue(cache, network);
+mRequestQueue.start();
+```
+
+
+
+
+
+
+
+
+
+
+#### [okhttp](http://square.github.io/okhttp)
+> - android okhttp by square
+
+> - install
+
+```
+compile 'com.squareup.okhttp3:okhttp:3.2.0'
+```
+
+> - get 
+
+```
+String url = "https://raw.github.com/square/okhttp/master/README.md";
+
+OkHttpClient client = new OkHttpClient();
+
+String run(String url) throws IOException {
+  Request request = new Request.Builder().url(url).build();
+  Response response = client.newCall(request).execute();
+  return response.body().string();
+}
+```
+
+> - post json string
+
+```
+public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+OkHttpClient client = new OkHttpClient();
+
+String post(String url, String json) throws IOException {
+  RequestBody body = RequestBody.create(JSON, json);
+  Request request = new Request.Builder()
+      .url(url)
+      .post(body)
+      .build();
+  Response response = client.newCall(request).execute();
+  return response.body().string();
+}
+```
+
+
+
+
+
+#### [retrofit](https://github.com/square/retrofit)
+> - android retrofit by square
+
+
+> - install 
+```
+compile 'com.squareup.retrofit2:retrofit:2.0.2'
+```
+
+> - usage
+
+```
+public interface GitHubService {
+  @GET("users/{user}/repos")
+  Call<List<Repo>> listRepos(@Path("user") String user);
+}
+
+Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.github.com/")
+    .build();
+
+GitHubService service = retrofit.create(GitHubService.class);
+
+Call<List<Repo>> repos = service.listRepos("octocat");
+```
+
+> - api
+> - Request
+
+```
+@GET, @POST, @PUT, @DELETE, @HEAD
+
+@GET("users/list")
+@GET("users/list?sort=desc")
+
+```
+
+> - parameters
+
+```
+@GET("group/{id}/users")
+Call<List<User>> groupList(@Path("id") int groupId);
+
+@GET("group/{id}/users")
+Call<List<User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
+
+@GET("group/{id}/users")
+Call<List<User>> groupList(@Path("id") int groupId, @QueryMap Map<String, String> options);
+```
+
+> - request body
+
+```
+@POST("users/new")
+Call<User> createUser(@Body User user);
+```
+
+> - form Encoded
+
+```
+@FormUrlEncoded
+@POST("user/edit")
+Call<User> updateUser(@Field("first_name") String first, @Field("last_name") String last);
+```
+
+> - Multipart
+
+```
+@Multipart
+@PUT("user/photo")
+Call<User> updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
+```
+
+> - Header
+
+```
+@Headers("Cache-Control: max-age=640000")
+@GET("widget/list")
+Call<List<Widget>> widgetList();
+
+
+@Headers({
+    "Accept: application/vnd.github.v3.full+json",
+    "User-Agent: Retrofit-Sample-App"
+})
+@GET("users/{username}")
+Call<User> getUser(@Path("username") String username);
+
+
+@GET("user")
+Call<User> getUser(@Header("Authorization") String authorization)
+
+```
+
+
+
+
+#### [android-async-http](https://github.com/loopj/android-async-http)
+
+#### [AndroidAsync](https://github.com/koush/AndroidAsync)
+
+#### [ion](https://github.com/koush/ion)
 
 # ORM
 
-[greenDAO](/2014/06/09/gradle-greendao)
-[ActiveAndroid](https://github.com/pardom/ActiveAndroid)
+#### [greenDAO](https://github.com/greenrobot/greenDAO)
+> - Android greenDAO by greenbot, ORM
+
+
+> - install
+
+```
+compile 'de.greenrobot:greendao:2.1.0'
+```
+
+
+> - create dao 
+
+- import new module 'DaoGenerator'
+- modify build.gradle(Module: DaoGenerator) 
+  srcDir 'src-template'
+- add class
+
+```
+Schema schema = new Schema(1000, "package.name.dao");
+
+Entity note = schema.addEntity("Note");
+note.addIdProperty();
+note.addStringProperty("text").notNull();
+note.addDateProperty("date");
+
+Entity customer = schema.addEntity("Customer");
+customer.addIdProperty();
+customer.addStringProperty("name").notNull();
+
+Entity order = schema.addEntity("Order");
+order.setTableName("ORDERS");
+order.addIdProperty();
+Property orderDate = order.addDateProperty("date").getProperty();
+
+Property customerId = order.addLongProperty("customerId").notNull().getProperty();
+order.addToOne(customer, customerId);
+
+ToMany customerToOrders = customer.addToMany(order, customerId);
+customerToOrders.setName("orders");
+customerToOrders.orderAsc(orderDate);
+
+new DaoGenerator().generateAll(schema, "../app/src/main/java");
+```
+
+> - usage 
+
+```
+class DaoExampleApplication extends Application｛
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    setupDatabase();
+  }
+
+  private void setupDatabase() {
+    DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "example-db", null);
+    SQLiteDatabase db = helper.getWritableDatabase();
+    DaoMaster daoMaster = new DaoMaster(db);
+    daoSession = daoMaster.newSession();
+  }
+
+  public DaoSession getDaoSession() {
+    return daoSession;
+  }
+}
+
+session.getEntityDao()
+insertOrReplace(Entity e)
+deleteAll()
+delete(long id)
+load(long id)
+List<Entity> loadAll()
+```
+
+
+#### [ActiveAndroid](https://github.com/pardom/ActiveAndroid)
 
 
 
@@ -132,7 +1142,7 @@ dependencies {
 
 # misc
 
-> **[](​https://github.com/mikepenz/AboutLibraries)**
+> **[AboutLibraries](​https://github.com/mikepenz/AboutLibraries)**
 
 ```
 ​

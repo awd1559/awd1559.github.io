@@ -8,7 +8,7 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - Android
 ---
-><small>目录:[Android目录](/2014/06/09/android-index)</small>
+><small>目录:[Android目录](/2014/06/09/android)</small>
 ><small>目录:[gradle](/2014/06/09/gradle)</small>
 
 # Animation
