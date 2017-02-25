@@ -1464,6 +1464,7 @@ import MyCoolModule from "npm:my-cool-module";
 #### [electron](http://electron.atom.io/)
 
 ```
+npm i -g electron
 
 ```
 
@@ -1477,6 +1478,7 @@ curl https://install.meteor.com | /bin/sh
 //create project
 meteor create <name>
 meteor add tabs:bootstrap
+metetor
 ```
 
 ##### [ionic2](http://ionicframework.com)

@@ -12,7 +12,9 @@ tags:
 ><small>目录:[gradle](/2014/06/09/gradle)</small>
 
 # Animation
-## Property Animation
+
+#### Property Animation
+
 ```
 AnimatorSetR.animator.xxxx
 @package:animator/xxx
@@ -46,7 +48,7 @@ ValueAnimator
 </set>
 ```
 
-## View Animation
+#### View Animation
 ```
 Tween animation
 R.anim.xxx
