@@ -8,12 +8,14 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - Android
 ---
+><small>目录:[Android目录](/2014/06/09/android)</small>
+><small>目录:[gradle](/2014/06/09/gradle)</small>
 
-- [android-best-practices](https://github.com/futurice/android-best-practices)
-- [awesome-android](https://github.com/snowdream/awesome-android)
-- [awesome-android-libraries](https://github.com/wasabeef/awesome-android-libraries)
-- [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
-- [android-open-project](https://github.com/Trinea/android-open-project)
+> - [android-best-practices](https://github.com/futurice/android-best-practices)
+> - [awesome-android](https://github.com/snowdream/awesome-android)
+> - [awesome-android-libraries](https://github.com/wasabeef/awesome-android-libraries)
+> - [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
+> - [android-open-project](https://github.com/Trinea/android-open-project)
 
 
 
@@ -54,7 +56,8 @@ void buttonClicked(Button bt){
 > - install 
 
 ```
-compile 'com.jakewharton:butterknife:7.0.1'
+compile 'com.jakewharton:butterknife:8.5.1'
+annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 ```
 
 > - usage
@@ -71,10 +74,27 @@ void submit(View view) {
   // TODO call server...
 }
 
-@Override public void onCreate(Bundle savedInstanceState) {
+@Override 
+public void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.simple_activity);
   ButterKnife.bind(this);
+}
+
+//Fragment
+@Override 
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  View view = inflater.inflate(R.layout.fancy_fragment, container, false);
+  ButterKnife.bind(this, view);
+  ...
+  return view;
+}
+
+@Override 
+public void onDestroyView() {
+    super.onDestroyView();
+    ButterKnife.unbind(this);
+  }
 }
 
 ```
@@ -229,19 +249,57 @@ class MainActiviy extends AppCom {
 ```
 
 
+#### [SAF](https://github.com/fengzhizi715/SAF)
 
+#### [Android-ZBLibrary](https://github.com/TommyLemon/Android-ZBLibrary)
+
+#### [UltimateAndroid](https://github.com/cymcsg/UltimateAndroid)
+#### [android-priority-jobqueue](https://github.com/yigit/android-priority-jobqueue)
+#### [Rosie](https://github.com/Karumi/Rosie)
+#### [Conductor](https://github.com/bluelinelabs/Conductor)
+
+
+***
+***
+***
 
 
 #### [droidparts](https://github.com/yanchenko/droidparts)
+
+```
+//2016.12.26
+compile 'org.droidparts:droidparts:2.9.8'
+```
+
 #### [android-common](https://github.com/litesuits/android-common)
-#### [SAF](https://github.com/fengzhizi715/SAF)
+
+```
+compile 'com.luffykou:android-common-utils:1.1.3'
+```
+
 #### [Android-Next](https://github.com/mcxiaoke/Android-Next)
-#### [UltimateAndroid](https://github.com/cymcsg/UltimateAndroid)
-#### [android-priority-jobqueue](https://github.com/yigit/android-priority-jobqueue)
 #### [anvil](https://github.com/zserge/anvil)
-#### [Rosie](https://github.com/Karumi/Rosie)
-#### [Conductor](https://github.com/bluelinelabs/Conductor)
-#### [Android-ZBLibrary](https://github.com/TommyLemon/Android-ZBLibrary)
+
+
+
+
+
+
+
+
+
+
+
+# MVP
+
+#### [mosby](https://github.com/sockeqwe/mosby)
+
+
+#### [Moxy](https://github.com/Arello-Mobile/Moxy)
+#### [archi](https://github.com/ivacf/archi)
+#### [EasyMVP](https://github.com/6thsolution/EasyMVP)
+
+
 
 
 # event bus
@@ -312,6 +370,17 @@ compile 'com.squareup:otto:1.3.8'
 
 > -  usage
 
+```
+//定义事件
+public class MessageEvent { /* Additional fields if needed */ }
+
+//订阅和取消订阅
+bus.register(this);
+bus.unregister(this);
+
+//发布
+bus.post(new MessageEvent());
+```
 
 
 
@@ -323,14 +392,7 @@ compile 'com.squareup:otto:1.3.8'
 > - [给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083)
 
 
-> - install
 
-```
-compile 'io.reactivex:rxandroid:1.1.0'
-compile 'io.reactivex:rxjava:1.1.0'
-```
-
-> - usage
 > - Observer, Subscriber
 
 ```
@@ -525,6 +587,26 @@ dependencies {
 compile 'com.squareup.picasso:picasso:2.5.2'
 ```
 
+```
+//1
+Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(imageView);
+
+//2
+Picasso.with(context)
+  .load(url)
+  .resize(50, 50)
+  .centerCrop()
+  .into(imageView);
+
+
+//3
+Picasso.with(context)
+  .load(url)
+  .placeholder(R.drawable.user_placeholder)
+  .error(R.drawable.user_placeholder_error)
+.into(imageView);
+```
+
 
 
 # JSON
@@ -665,6 +747,7 @@ User user = gson.fromJson(jsonString, User.class);
 > - [train](http://developer.android.com/intl/zh-cn/training/volley/index.html)
 
 > - install
+
 ```
 compile 'com.android.volley:volley:1.0.0'
 
@@ -677,9 +760,12 @@ git clone https://android.googlesource.com/platform/frameworks/volley
 import as module to Android Studio
 
 <uses-permission android:name="android.permission.INTERNET"/>
-
 ```
 
+> - use OkHttpClient
+
+```
+```
 
 > - use java.net.HttpURLConnection
 
@@ -705,6 +791,51 @@ HttpUrlConnection urlConnection = (HttpURLConnection) url.openConnection();
 
 ```
 RequestQueue mQueue = Volley.newRequestQueue(context);
+```
+
+
+> - StringRequest
+
+```
+String url = ”http://www.baidu.com”;
+StringRequest stringRequest = new StringRequst(Request.Method.GET, url, 
+  new Response.Listener<String>( {
+    @Override
+    public void onResponse(String reponse) {
+    }
+  }, 
+  new Response.ErrorListener() {
+    @Override
+    public void onErrorResponse(VolleyError error) {}
+  }));
+
+mQueue.add(stringRequest);
+```
+
+
+> - JsonObjectRequest
+
+```
+String url = "https://api.flickr.com/services/rest";
+Uri.Builder builder = Uri.parse(url).buildUpon();
+builder.appendQueryParameter("api_key", "5e045abd4baba4bbcd866e1864ca9d7b");
+builder.appendQueryParameter("method", "flickr.interestingness.getList");
+builder.appendQueryParameter("format", "json");
+builder.appendQueryParameter("nojsoncallback", “1");
+
+JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET, builder.toString(), null,
+    new Response.Listener<JSONObject>() {
+      @Override
+      public void onResponse(JSONObject response) {
+        Log.d(TAG, response.toString());
+      }
+    }, 
+    new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError error) {
+        VolleyLog.d(TAG, "Error: " + error.getMessage());
+      }
+});
 ```
 
 > - ImageLoader
@@ -753,64 +884,17 @@ class FadeInImageListener implements ImageLoader.ImageListener {
 }
 ```
 
-> - StringRequest
+
+> - cache
 
 ```
-String url = ”http://www.baidu.com”;
-StringRequest stringRequest = new StringRequst(Request.Method.GET, url, 
-  new Response.Listener<String>( {
-    @Override
-    public void onResponse(String reponse) {
-    }
-  }, 
-  new Response.ErrorListener() {
-    @Override
-    public void onErrorResponse(VolleyError error) {}
-  }));
-
-mQueue.add(stringRequest);
+Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); 
+Network network = new BasicNetwork(new HurlStack());
+RequestQueue  mRequestQueue = new RequestQueue(cache, network);
+mRequestQueue.start();
 ```
 
-```
-ImageRequest request = new ImageRequest(url,
-  new Response.Listener<Bitmap>() {
-    @Override
-    public void onResponse(Bitmap bitmap) {
-      mImageView.setImageBitmap(bitmap);
-    }
-  }, 0, 0, null,
-  new Response.ErrorListener() {
-    public void onErrorResponse(VolleyError error) {
-      mImageView.setImageResource(R.drawable.image_load_error);
-    }
-  });
-```
 
-> - JsonObjectRequest
-
-```
-String url = "https://api.flickr.com/services/rest";
-Uri.Builder builder = Uri.parse(url).buildUpon();
-builder.appendQueryParameter("api_key", "5e045abd4baba4bbcd866e1864ca9d7b");
-builder.appendQueryParameter("method", "flickr.interestingness.getList");
-builder.appendQueryParameter("format", "json");
-builder.appendQueryParameter("nojsoncallback", “1");
-
-JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET, builder.toString(), null,
-    new Response.Listener<JSONObject>() {
-      @Override
-      public void onResponse(JSONObject response) {
-        Log.d(TAG, response.toString());
-      }
-    }, 
-    new Response.ErrorListener() {
-      @Override
-      public void onErrorResponse(VolleyError error) {
-        VolleyLog.d(TAG, "Error: " + error.getMessage());
-      }
-});
-
-```
 
 > - Request
 
@@ -854,14 +938,7 @@ GsonRequest<Model> gsonObjRequest = new GsonRequest<Model>(Request.Method.GET, b
   });
 ```
 
-> - cache
 
-```
-Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); 
-Network network = new BasicNetwork(new HurlStack());
-RequestQueue  mRequestQueue = new RequestQueue(cache, network);
-mRequestQueue.start();
-```
 
 
 
@@ -873,7 +950,7 @@ mRequestQueue.start();
 
 
 #### [okhttp](http://square.github.io/okhttp)
-> - android okhttp by square
+> - An HTTP+HTTP/2 client for Android and Java applications. by square
 
 > - install
 
@@ -918,12 +995,12 @@ String post(String url, String json) throws IOException {
 
 
 #### [retrofit](https://github.com/square/retrofit)
-> - android retrofit by square
+> - Type-safe HTTP client for Android and Java by Square, Inc
 
 
 > - install 
 ```
-compile 'com.squareup.retrofit2:retrofit:2.0.2'
+compile 'com.squareup.retrofit2:retrofit:2.2.0'
 ```
 
 > - usage
@@ -940,6 +1017,7 @@ Retrofit retrofit = new Retrofit.Builder()
 
 GitHubService service = retrofit.create(GitHubService.class);
 
+//https://api.github.com/users/octocat/repos
 Call<List<Repo>> repos = service.listRepos("octocat");
 ```
 
@@ -1008,9 +1086,11 @@ Call<User> getUser(@Path("username") String username);
 
 @GET("user")
 Call<User> getUser(@Header("Authorization") String authorization)
-
 ```
 
+> - retrofit.RestAdapter or retrofit.CallAdpater
+> - converter by gson
+> - 
 
 
 
@@ -1101,25 +1181,29 @@ List<Entity> loadAll()
 #### [ActiveAndroid](https://github.com/pardom/ActiveAndroid)
 
 
+# Test
+
+#### [Robolectric](http://robolectric.org/)
+> - Unit Test
+
+#### [Robotium](https://code.google.com/p/robotium/)
+> - UI Test
+
+
 
 # misc
 
-
-
-widget for picking a date from a calendar view - by square
-[android-times-square](https://github.com/square/android-times-square)
-
-
-test - by square
-[assertj-android](https://github.com/square/assertj-android)
+#### [android-times-square](https://github.com/square/android-times-square)
+> - widget for picking a date from a calendar view - by square
 
 
 
+#### [assertj-android](https://github.com/square/assertj-android)
+> -test - by square
 
+// build.gradle
 
-
-
-# build.gradle
+```
 buildscript {
   repositories {
     mavenCentral()
@@ -1138,11 +1222,10 @@ android {
 dependencies {
   
 }
+```
 
 
-# misc
-
-> **[AboutLibraries](​https://github.com/mikepenz/AboutLibraries)**
+#### [AboutLibraries](​https://github.com/mikepenz/AboutLibraries)
 
 ```
 ​

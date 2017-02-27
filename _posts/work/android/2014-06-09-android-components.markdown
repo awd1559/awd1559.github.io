@@ -325,7 +325,7 @@ onConfigrationChanged
 
 
 
-# Framgment
+# Fragment
 
 #### Life Cycle
 

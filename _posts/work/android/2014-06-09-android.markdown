@@ -11,6 +11,36 @@ tags:
 ><small>目录:[Android目录](/2014/06/09/android)</small>
 ><small>目录:[gradle](/2014/06/09/gradle)</small>
 
+
+# Version
+
+| ----------------- | -------------- | -------- | ----- |
+| API               | version        | Name     | Date  |
+| API 23            | Android 6	     | Mushroom |	2015
+| API 22            | Android 5.1.1	 |          |
+| API 21            | Android 5.0.1	 |	        |
+| API 20, L preview | Android L      | Lollipap |	
+| API 20            | Android 4.4W.2 |		    |
+| API 19            | Android 4.4.2  |	KitKat	|
+| API 18            | Android 4.3.1  |		    | 2012
+| API 17            | Android 4.2.2  |		    | 2012
+| API 16            | Android 4.1.2  | jellybean| 2012.6.28
+| API 15            | Android 4.0.3  |		    |
+| API 14            | Android 4.0    | icecream | 2011.10.19
+| API 13            | Android 3.2    |		    | 2011.7.13
+| API 12            | Android 3.1    |		    | 2011.5.11
+| API 11            | Android 3.0    | Honeycomb| 2011.2.2
+| API 10            | Android 2.3.3  |		
+| API 9             | Android 2.3.1  |	姜饼	    | 2010.12.7
+| API 8             | Android 2.2    |	Froyo   | 2010.5.20
+| API 7             | Android 2.1    |	松饼    |  2009.10.26
+| API 6             | Android 2.0.1  |	松饼    | 2009.10.26
+| API 5             | Android 2.0    |	松饼	   | 2009.10.26
+| API 4             | Android 1.6    |	甜甜圈  | 2009.9.15
+| API 3             | Android 1.5    |	cupcake | 2009.4.30
+| API 2             | Android 1.1    |	发条机器人 | 2008.9
+| API 1             | Android 1.0    |	阿童木  |	
+
 # [Components](/2014/06/09/android-components)
 
 > - Intent
@@ -34,3 +64,1193 @@ tags:
 > - misc
 
 
+# [Interface](/2014/06/09/android-interface)
+
+> - Layout
+> - Input Controllers
+> - Input Event
+> - Menu
+> - Setting
+
+
+# [Animations](/2014/06/09/android-animations)
+
+
+
+# System
+
+#### Sqlite
+
+> - SQLiteOpenHelper
+
+```
+public class DictionaryOpenHelper extends SQLiteOpenHelper {
+
+    private static final int DATABASE_VERSION = 2;
+    private static final String DICTIONARY_TABLE_NAME = "dictionary";
+    private static final String DICTIONARY_TABLE_CREATE =
+                "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
+                KEY_WORD + " TEXT, " +
+                KEY_DEFINITION + " TEXT);";
+
+    DictionaryOpenHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(DICTIONARY_TABLE_CREATE);
+    }
+}
+
+DictionaryOpenHelper helper = new DictionaryOpenHelper(this);
+SQLiteDatabase db = helper.getWritableDatabase();//如果该数据库未创建，openHelper会相应的创建数据库
+String sql ="";		//使用sql或ContentValues对象操作
+db.execSQL(sql);	//操作数据库
+
+
+//insert
+ContentValues values = ne wContentValules();
+values.put("firstname", "J.K.");
+values.put("lastname", "Rowling");
+long newAuthorID = db.insert("tbl_authors", null, values);
+
+
+//update
+ContentValues values = new ContentValues();
+values.put("title", "new title");
+db.update("tbl_books", values, "id=?", new String[]{bookID.toString()});
+
+//delete
+database.delete("tbl_books", "id=?", new String[] {bookId.toString()});
+
+
+//transaction
+database.beginTransaction();
+try{
+    ... ...
+    ... ...
+    ... ...
+    database.setTransactionSuccessful();
+} catch (Exception e){
+    
+} finally {
+    database.endTransaction();
+}
+
+
+
+//query
+String col[] = {TITLE, BODY};	//两列
+Cursor cur = db.query(TABLENAME, col, selection, selectionargs, groupby, habing, orderby); //查询数据库
+	prjection:表中的对应列
+	selection:相当于where
+	selectionargs:如果selection中有？，那selectionargs中字符串代替
+
+//bind ui
+startManagingCursor(cur);//将Cursor交给activity管理
+String[] from = new String[] { DiaryDbAdapter.KEY_TITLE, DiaryDbAdapter.KEY_CREATED };
+int[] to = new int[] { R.id.text1, R.id.created };			//此次两个id应该在R.layout.diary_row中
+SimpleCursorAdapter notes = new SimpleCursorAdapter(this, R.layout.diary_row, cur, from, to);
+setListAdapter(notes);
+```
+
+
+> - SQLiteQueryBuilder
+
+```
+SQLiteQuereyBuilder queryBuilder = new SQLiteQueryBuilder();
+queryBuilder.setTables("tbl_books, tbl_authors");
+queryBuilder.appendWhere("tbl_books.authorid=tbl_authors.id");
+
+String asColumnsToReturn[] = {
+    "tbl_books.title", 
+    "tbl_books.id",
+    "tbl_authors.firstname",
+    "tbl_authors.lastname",
+    "tbl_books.authorid" };
+queryBuilder.appendWhere(Pets.PETS_TABLE_NAME + "." + Pets.PET_TYPE_ID + "=" + 
+                        PetType.PETTYPE_TABLE_NAME + "." + PetType._ID);
+
+String strSortOrder = "title ASC";
+
+Cursor c = queryBuilder.query(database, asColumnsToReturn, null, null, null, null, strSortOrder);
+```
+
+
+
+> - BaseColumns 记住表的列名
+> - BaseColumns接口，有两个变量:_id,count
+
+```
+public final class PetDatabase{
+    private PetDatabase() {}
+
+    public static final class Pets implements BaseColumns {
+        private Pets(){}
+        public static final String PETS_TABLE_NAME = "table_pets";
+        public static final String PET_NAME = "pet_name";
+        public static final String PET_TYPE_ID = "pet_type_id";
+        public static final String DEFAULT_SORT_ORDER = "pet_name ASC";
+    }
+
+    public static final class PetType implments BAseColumns {
+        private PetType() {}
+        public static final String PETTYPE_TABLE_NAME = "table_pettypes";
+        public static final String PET_TYPE_NAME = "pet_type";
+        public static final String DEFAULT_SORT_ORDER = "pet_type ASC";
+    }
+}
+```
+
+
+
+
+
+# JSON
+> - JSONObject  //json对象
+> - JSONArray   //一组有序数值，value类型包括：Boolean、JSONArray、JSONObject、Number、String
+> - JSONStringer    //构建类
+> - JSONTokener //解析类
+
+```
+//filename.json
+ {  
+    "phone" : ["12345678", "87654321"], // 数组  
+    "name" : "yuanzhifei89", // 字符串  
+    "age" : 100, // 数值  
+    "address" : { "country" : "china", "province" : "jiangsu" }, // 对象  
+    "married" : false // 布尔值  
+}  
+```
+
+> - build it 
+
+```
+//<1>
+JSONObjectt person = new JSONObject();  //最外层
+
+JSONArray phone = new JSONArray();  
+phone.put("12345678").put("87654321");  
+person.put("phone", phone); 
+
+person.put("name", "yuanzhifei89");  
+person.put("age", 100);  
+
+JSONObject address = new JSONObject();  
+address.put("country", "china");  
+address.put("province", "jiangsu");  
+person.put("address", address);    
+person.put("married", false);  
+
+//<2>JSONStringer
+try {  
+    JSONStringer jsonText = new JSONStringer();  
+    // 首先是{，对象开始。object和endObject必须配对使用  
+    jsonText.object();  
+      
+    jsonText.key("phone");  
+    // 键phone的值是数组。array和endArray必须配对使用  
+    jsonText.array();  
+    jsonText.value("12345678").value("87654321");  
+    jsonText.endArray();  
+      
+    jsonText.key("name");  
+    jsonText.value("yuanzhifei89");  
+    jsonText.key("age");  
+    jsonText.value(100);  
+      
+    jsonText.key("address");  
+    // 键address的值是对象  
+    jsonText.object();  
+    jsonText.key("country");  
+    jsonText.value("china");  
+    jsonText.key("province");  
+    jsonText.value("jiangsu");  
+    jsonText.endObject();  
+      
+    jsonText.key("married");  
+    jsonText.value(false);  
+      
+    // }，对象结束  
+    jsonText.endObject();  
+} catch (JSONException ex) {  
+    throw new RuntimeException(ex);  
+}
+```
+
+
+> - JSONTokener
+
+```
+String JSON = "..........."
+try {  
+    JSONTokener jsonParser = new JSONTokener(JSON);  
+                                    //此时还未读取任何json文本，直接读取就是一个JSONObject对象。  
+                                    //如果此时的读取位置在"name" : 了，那么nextValue就是"yuanzhifei89"（String）  
+    JSONObject person = (JSONObject) jsonParser.nextValue();  
+    
+    person.getJSONArray("phone");               //接下来的就是JSON对象的操作了
+    person.getString("name");  
+    person.getInt("age");  
+    person.getJSONObject("address");  
+    person.getBoolean("married");  
+} catch (JSONException ex) {  
+    // 异常处理代码  
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# network
+
+> - Socket方式
+
+```
+ServerSocket svr = new ServerSocket(8989);      //启动server
+Socket s = svr.accept();                        
+DataInputStream dis = new DataInputStream(s.getInputStream());
+DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+Socket s = new Socket("192.168.1.200",8989);    //客户端
+```
+
+
+> - Http协议
+
+```
+DefaultHttpClient
+    createHttpParams
+    createHttpProcessor
+    createRedirectHandler
+    createCookieStore
+```
+
+
+> - URLConnection
+
+```
+URL url = new URL("ftp://mirror.csclub.uwaterloo.ca/index.html");
+URLConnection urlConnection = url.openConnection();
+InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+```
+
+
+
+
+
+> - HttpURLConnection
+
+```
+URL url = new URL("http://www.android.com/php.jpg");
+HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+HttpURLConnection urlConnection = new URL("http://www.google.com").openConnection();
+//设置标志
+urlConn.setDoOutput(true);
+urlConn.setDoInput(true);       //post的情况下需要设置DoOutput为true
+urlConn.setRequestMethod("POST");
+urlConn.setUseCache(false);     //设置是否用缓存
+urlConn.setRequestProperty("Content-type","application/x-www-form-urlencoded");//设置content－type获得输出流，便于向服务器发送信息。
+urlConn.setRequestProperty("Rang", "bytes="+start+"-"+(contentLength-1));       //设置下载范围，断点续传
+
+DataOutputStream dos = new DataOutputStream(urlConn.getOutputStream());
+dos.writeBytes("name="+URLEncoder.encode("chenmouren","gb2312");        //望流里面写请求参数
+dos.flush();dos.close();//发送完后马上关闭。
+BufferReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));  //获得输入流，取数据
+reader.readLine();//用 !=null来判断是否结束
+reader.close();
+
+
+//<1>读取字符
+InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+BufferedInputStream bis = new BufferedInputStream(in);
+ByteArrayBuffer baf = new ByteArrayBuffer(bis.available());
+int data = 0;
+while((data = bis.read())!= -1){        //读取BufferedInputStream中数据
+    baf.append((byte)data);             //将数据读取到ByteArrayBuffer中
+}
+String msg = EncodingUtils.getString(baf.toByteArray(), "UTF-8");
+
+//<2>读取图片
+Bitmap bmp = BitmapFactory.decodeStream(in);
+
+
+
+//-----------------------------------------------------------
+//Post
+HttpPost httpPostRequest = new HttpPost(urlPost);                   //创建HttpPost对象
+List<NameValuePair> httpParams = new ArrayList<NameValuePair>();    //创建存放参数的ArrayList
+httpParams.add(new BasicNameValuePair("name", "Java"));             //设置post参数
+try {
+    httpPostRequest.setEntity(new UrlEncodedFormEntity(httpParams,HTTP.UTF_8));
+    HttpResponse httpResponse = new DefaultHttpClient().execute(httpPostRequest);
+    if(httpResponse.getStatusLine().getStatusCode()==200){              //连接成功
+        String result = EntityUtils.toString(httpResponse.getEntity()); //获得资源
+        result = result.replaceAll("\r\n|\n\r|\r|\n", "");              //去掉信息中的回车和换行
+    }
+}
+
+//Get
+HttpGet httpGetRequest = new HttpGet(urlGet);                   //创建HttpPost对象
+try {
+    HttpResponse httpResponse = new DefaultHttpClient().execute(httpGetRequest);
+    if(httpResponse.getStatusLine().getStatusCode()==200){      //连接成功
+        String result = EntityUtils.toString(httpResponse.getEntity()); //获得资源
+        result = result.replaceAll("\r\n|\n\r|\r|\n", "");      //去掉信息中的回车和换行
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+# FileSystem
+
+> - 默认路径为 /data/data/packagename/files/      //Activity.getFilesDir()
+
+> - 文件目录
+
+```
+public String getSDPath(){ 
+       File sdDir = null; 
+       boolean sdCardExist = Environment.getExternalStorageState().equals(Android.os.Environment.MEDIA_MOUNTED);   //判断sd卡是否存在 
+
+       if(sdCardExist)   
+       {                               
+         sdDir = Environment.getExternalStorageDirectory();                 //获取sd卡根目录 
+       }   
+       return sdDir.toString(); 
+}
+String fileName = getSDPath() +"/" + name
+
+activity.getPackageCodePath()                                   // /data/app/<package>-n.apk
+activity.getPackageResourcePath()                               // /data/app/<package>-n.apk
+
+activity.getCacheDir()                                          // /data/data/<package name>/cache/
+activity.getDir(name, mode)                                     // /data/data/<package name>/app_name
+activity.getDatabasePath(String name)                           // /data/data/<package name>/database/name
+activity.getFileStreamPath(String name)                         // /data/data/<package name>/files/name
+activity.getFilesDir()                                          // /data/data/<package name>/files/
+
+Environment.getDataDirectory()                                  // /data
+Environment.getDownloadCacheDirectory()                         // /cache
+Environment.getRootDirectory()                                  // /system
+Environment.getExternalStorageDirectory()                       // /mnt/sdcard/
+                                                                //以下三项需要android.permission.WRITE_EXTERNAL_STORAGE，否则返回Null
+activity.getExternalCacheDir()                                  // /mnt/sdcard/Android/data/<package>/cache/
+activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)    // /mnt/sdcard/Android/data/<package>/files/Pictures
+activity.getExternalFilesDir(null)                              // /mnt/sdcard/Android/data/<package>/files/
+
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_ALARMS)         //公共目录 // /mnt/sdcard/Alarms
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)           //公共目录 // /mnt/sdcard/DCIM
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)      //公共目录 // /mnt/sdcard/Download
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)         //公共目录 // /mnt/sdcard/Movie
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)          //公共目录 // /mnt/sdcard/Music
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_NOTIFICATIONS)  //公共目录 // /mnt/sdcard/Notificatins
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)       //公共目录 // /mnt/sdcard/Pictures
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS)       //公共目录 // /mnt/sdcard/Podcasts
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES)      //公共目录 // /mnt/sdcard/Ringtones
+Environment.getExternalStorageState()
+```
+
+
+
+> - 扫描文件内容
+
+```
+MediaScannerConnection.scanFile(this,new String[] { file.toString() }, null,
+    new MediaScannerConnection.OnScanCompletedListener() {
+        public void onScanCompleted(String path, Uri uri) {
+            Log.i("ExternalStorage", "Scanned " + path + ":");
+            Log.i("ExternalStorage", "-> uri=" + uri);
+        }
+    }
+});
+```
+
+
+
+> - 文件操作
+
+```
+context.openFileInput()
+context.openFileOutput()
+context.deleteFile()
+        fileList()
+        getFileDir()
+        getCacheDir()
+        getDir()
+
+
+FileOutputStream fos;
+String strFileContents = "Some text to write to the file.";
+fos = openFileOutput("Filename.txt", MODE_PRIVATE);
+fos.write(strFileContents.getBytes());
+fos.close();
+
+
+
+fos = openFileOutput("Filename.txt", MODE_APPEND);
+fos.write(strFileContents.getBytes());
+fos.close();
+
+
+
+
+FileInputStream fis = openFileInput("Fielname.txt");
+
+
+//reading raw files byte-by-byte
+FileInputStream fis = openFileInput(filename);
+StringBuffer sBuffer = new StringBuffer();
+DataInputStream dataIO = new DataInputStream(fis);
+String strLine = null;
+
+while((strLine = dataIO.readLine()) != null){
+    sBuffer.append(strLine + "\n");
+}
+dataIO.close();
+fis.close();
+
+
+
+
+File pathForAppFiles = getFileDir();
+String[] fiileList = pathForAppFiles.list();
+
+
+
+
+
+File fileDir = getFileDir();                            /files目录
+String strNewFileName = "myFile.dat";
+String strFileContents = "Some data for our file";
+
+File newFile = new File(fileDir, strNewFileName);
+newFile.createNewFile();
+
+FileOutputStream fo = new FileOutputStream(newFile.getAbsolutePath());
+fo.write(strFileContents.getBytes());
+fo.close();
+
+
+
+File pathCacheDir = getCacheDir();            /cache目录
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# FileCache
+
+> - 在内存中缓存
+
+```
+import android.support.v4.util.LruCache;
+//开辟8M硬缓存空间
+private final int hardCachedSize = 8*1024*1024;     
+//hard cache
+private final LruCache<String, Bitmap> sHardBitmapCache = new LruCache<String, Bitmap>(hardCachedSize){
+    @Override
+    public int sizeOf(String key, Bitmap value){
+        return value.getRowBytes() * value.getHeight();
+    }
+    @Override
+    protected void entryRemoved(boolean evicted, String key, Bitmap oldValue, Bitmap newValue){
+        Log.v("tag", "hard cache is full , push to soft cache");
+        //硬引用缓存区满，将一个最不经常使用的oldvalue推入到软引用缓存区
+        sSoftBitmapCahe.put(key, new SoftReference<Bitmap>(oldValue));
+    }
+}
+//软引用
+private static final int SOFT_CACHE_CAPACITY = 40;
+private final static LinkedHashMap<String, SoftReference<Bitmap>> sSoftBitmapCache = 
+    new  LinkedHashMao<String, SoftReference<Bitmap>>(SOFT_CACHE_CAPACITY, 0.75f, true){
+    @Override
+    public SoftReference<Bitmap> put(String key, SoftReference<Bitmap> value){
+        return super.input(key, value);
+    }
+    @Override
+    protected boolean removeEldestEntry(LinkedHashMap.Entry<Stirng, SoftReference<Bitmap>> eldest){
+        if(size() > SOFT_CACHE_CAPACITY){
+            Log.v("tag", "Soft Reference limit , purge one");
+            return true;
+        }
+        return false;
+    }
+}
+//缓存bitmap
+public boolean putBitmap(String key, Bitmap bitmap){
+    if(bitmap != null){
+        synchronized(sHardBitmapCache){
+            sHardBitmapCache.put(key, bitmap);
+        }
+        return true;
+    }       
+    return false;
+}
+//从缓存中获取bitmap
+public Bitmap getBitmap(String key){
+    synchronized(sHardBitmapCache){
+        final Bitmap bitmap = sHardBitmapCache.get(key);
+        if(bitmap != null)
+            return bitmap;
+    }
+    //硬引用缓存区间中读取失败，从软引用缓存区间读取
+    synchronized(sSoftBitmapCache){
+        SoftReference<Bitmap> bitmapReference = sSoftBtimapCache.get(key);
+        if(bitmapReference != null){
+            final Bitmap bitmap2 = bitmapReference.get();
+            if(bitmap2 != null)
+                return bitmap2;
+            else{
+                Log.v("tag", "soft reference 已经被回收");
+                sSoftBitmapCache.remove(key);
+            }
+        }
+    }
+    return null;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+> - 在外部存储中缓存
+
+```
+private File mCacheDir = context.getCacheDir();
+private static final int MAX_CACHE_SIZE = 20 * 1024 * 1024; //20M
+private final LruCache<String, Long> sFileCache = new LruCache<String, Long>(MAX_CACHE_SIZE){
+    @Override
+    public int sizeOf(String key, Long value){
+        return value.intValue();
+    }
+    @Override
+    protected void entryRemoved(boolean evicted, String key, Long oldValue, Long newValue){
+        File file = getFile(key);
+        if(file != null)
+            file.delete();
+    }
+}
+private File getFile(String fileName) throws FileNotFoundException {
+    File file = new File(mCacheDir, fileName);
+    if(!file.exists() || !file.isFile())
+        throw new FileNotFoundException("文件不存在或有同名文件夹");
+    return file;
+}
+//缓存bitmap到外部存储
+public boolean putBitmap(String key, Bitmap bitmap){
+    File file = getFile(key);
+    if(file != null){
+        Log.v("tag", "文件已经存在");
+        return true;
+    }
+    FileOutputStream fos = getOutputStream(key);
+    boolean saved = bitmap.compress(CompressFormat.JPEG, 100, fos);
+    fos.flush();
+    fos.close();
+    if(saved){
+        synchronized(sFileCache){
+            sFileCache.put(key, getFile(key).length());
+        }
+        return true; 
+    }
+    return false;
+}
+//根据key获取OutputStream
+private FileOutputStream getOutputStream(String key){
+    if(mCacheDir == null)
+        return null;
+    FileOutputStream fos = new FileOutputStream(mCacheDir.getAbsolutePath() + File.separator + key);
+    return fos;
+}
+//获取bitmap
+private static BitmapFactory.Options sBitmapOptions;
+static {
+    sBitmapOptions = new BitmapFactory.Options();
+    sBitmapOptions.inPurgeable=true; //bitmap can be purged to disk
+}
+public Bitmap getBitmap(String key){
+    File bitmapFile = getFile(key);
+    if(bitmapFile != null){
+        Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(bitmapFile), null, sBitmapOptions);
+        if(bitmap != null){
+            //重新将其缓存至硬引用中
+            ...
+        }
+    }
+}
+```
+
+
+
+
+> - 3.从服务端下载图片
+> - 下载成功后调用1内存缓存的putBitmap()函数,缓存图片。
+> - 在外部文件缓存中也写入一份，调用2的putBitmap()函数.
+
+> - 4.预览图片的流程
+> - 1) 如果预览的图片在内存缓存区中，直接调用1的getBitmap()函数，获取bitmap数据(先在硬引用缓存区查找匹配，若硬引用区匹配失败，再去软引用区匹配)
+> - 2) 如果从内存缓存区读取失败，再从外部文件缓存中读取，调用2的getBitmap()函数
+> - 3) 如果从外部文件缓存中读取失败，则从服务端下载该图片，过程3.
+
+
+> - 5.生成key值
+
+```
+private static String generateKey(String fileId, int width, int height) {       
+    String ret = fileId + "_" + Integer.toString(width) + "x" + Integer.toString(height);
+    return ret;
+}
+String key = generateKey(...)即可生成唯一的key值
+```
+
+
+
+
+
+# Task
+
+#### Handler
+> - 执行计划任务, 进程间通信
+
+```
+Handler mHandler = new Handler()
+{
+    public void handleMessage(Message msg) 
+    {
+        switch (msg.what)
+        { 
+            case EX04_14.GUINOTIFIER:
+                //do the thing           
+                mTextView.setText(mHour+" : "+mMinutes);
+            break; 
+        } 
+        super.handleMessage(msg); 
+    }
+};
+
+Thread mClockThread=new Thread(new Runnable(){
+    public void run() 
+      {
+        super.run();
+        try
+        {
+            do{
+                long time = System.currentTimeMillis();
+                final Calendar mCalendar = Calendar.getInstance();
+                mCalendar.setTimeInMillis(time);
+                mHour = mCalendar.get(Calendar.HOUR);
+                mMinutes = mCalendar.get(Calendar.MINUTE);
+ 
+                Thread.sleep(1000); 
+            
+                Message m = new Message();
+                m.what = EX04_14.GUINOTIFIER;
+                EX04_14.this.mHandler.sendMessage(m);       
+            }while(EX04_14.LooperThread.interrupted()==false);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }  
+});
+mClockThread.start(); 
+
+
+Handler myMessageHandler = new Handler()
+{
+    // @Override 
+    public void handleMessage(Message msg)
+    { 
+      switch (msg.what)
+      {
+        case EX04_17.GUI_STOP_NOTIFIER:
+          mTextView01.setText(R.string.str_progress_done);
+          
+          mProgressBar01.setVisibility(View.GONE);
+          Thread.currentThread().interrupt();
+          break;
+          
+        case EX04_17.GUI_THREADING_NOTIFIER:
+          if(!Thread.currentThread().isInterrupted())
+          {
+            mProgressBar01.setProgress(intCounter);
+            mTextView01.setText
+            (
+              getResources().getText(R.string.str_progress_start)+"("+Integer.toString(intCounter)+"%)\n"+"Progress:"+Integer.toString(mProgressBar01.getProgress())+"\n"+"Indeterminate:"+Boolean.toString(mProgressBar01.isIndeterminate())
+            );
+          }
+          break;
+      } 
+      super.handleMessage(msg); 
+    }
+};
+
+
+
+
+new Thread(new Runnable()
+{
+  public void run()
+  {
+    for (int i=0;i<10;i++)
+    {
+      try
+      {
+        intCounter = (i+1)*20;
+        Thread.sleep(1000);
+        
+
+        if(i==4)
+        {
+          Message m = new Message();
+       
+          m.what = EX04_17.GUI_STOP_NOTIFIER;
+          EX04_17.this.myMessageHandler.sendMessage(m);
+          break;
+        }
+        else
+        {
+          Message m = new Message();
+          m.what = EX04_17.GUI_THREADING_NOTIFIER;
+          EX04_17.this.myMessageHandler.sendMessage(m); 
+        }
+      }
+      catch(Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+  }
+}).start();
+
+
+
+
+
+Handler mHandler = new Handler();
+Runnable mTask = new Runnable(){
+    void run(){
+        mHandler.postDelayed(this, 1000); //把runnable自己不停放入队列
+    }
+};
+```
+
+
+
+
+
+
+
+#### Looper
+> - 每个线程最多可以有一个Looper
+
+```
+Looper.Prepare()    //创建looper
+looper.loop()       //通过循环从MessageQueue中提取Message进行处理
+handler.sendMessage //将消息放入MessageQueue
+
+Looper.myLooper()   //取得当前线程的Looper对象
+Looper.getMainLooper(); //主线程Looper对象
+```
+
+```
+//给非主线程装上Handler
+class LooperThread extends Thread {
+      public Handler mHandler;
+
+      public void run() {
+          Looper.prepare();
+
+          mHandler = new Handler() {
+              public void handleMessage(Message msg) {
+                  // process incoming messages here
+              }
+          };
+
+          Looper.loop();
+      }
+  }
+//这样你的线程就具有了消息处理机制了，在Handler中进行消息处理。
+```
+
+
+
+
+
+
+
+#### timer
+
+```
+Timer timer = new Timer();
+timer.schedule(new UpdateTask*(), 300, 500);    //300ms后开始，每500ms运行一次task
+UpdateTask extends TimerTask{
+    run(){}
+    cancel(){}
+}
+```
+
+
+
+
+
+#### 线程池
+
+```
+//ExecutorService线程池
+PhotoLoader implements Runnable{
+
+}
+
+ExecutorService executorService = Executors.newCachedThreadPool();      //缓存型池子
+ExecutorService executorService = Executors.ScheduledThreadPool();      //线程可以按schedule依次delay执行
+ExecutorService executorService = Executors.SingleThreadExecutor();     //池中只有一个线程
+或者
+int cpuNums = Runtime.getRuntime().availableProcessors();
+ExecutorService executorService = Executors.newFixedThreadPool(cpuNums*POOL_SIZE);// 固定线程数
+
+
+executorService.execute(new PhotoLoader(parms));
+executorService.submit(new PhotosLoader(parms));
+```
+
+
+
+
+
+
+
+
+
+# JNI
+
+> - C++调用java代码
+
+```
+#include <jni.h>
+#include "platform/android/jni/JniHelper.h"
+
+JniMethodInfo t;
+
+
+if (JniHelper::getStaticMethodInfo(t, "com/cocos2dev/JNIDemo/FMJNIHelp", "starPayMoney",
+                                "(Ljava/lang/String;Ljava/lang/String;)V"))
+{
+    jstring stringArg1 = t.env->NewStringUTF("2");// $
+
+    jstring stringArg2 = t.env->NewStringUTF("10");  // count
+
+    t.env->CallStaticVoidMethod(t.classID, t.methodID, stringArg1, stringArg2);
+
+    t.env->DeleteLocalRef(stringArg1);
+
+    t.env->DeleteLocalRef(stringArg2);
+    
+    t.env->DeleteLocalRef(t.classID);
+}
+
+//1、com/cocos2dev/JNIDemo/FMJNIHelp指的是java那边需要调用的方法的类名，前面是包名。
+//2、(Ljava/lang/String;Ljava/lang/String;)V表示传递的参数，两个字符串
+```
+
+
+
+
+# System
+
+
+#### Alarm
+> - AlarmManage
+
+```
+set(type, time, pendingIntent)  注册新闹钟
+setRepeating            注册一个重复类型的闹钟
+cancel(pendingIntent)       取消闹钟
+```
+
+
+```
+<receiver android:name=".app.OneShotAlarm" android:process=":remote" />
+
+//receiver
+Intent intent = new Intent(AlarmController.this, OneShotAlarm.class);
+PendingIntent sender = PendingIntent.getBroadcast(AlarmController.this,
+                    0, intent, 0);
+//30秒后闹钟
+Calendar calendar = Calendar.getInstance();
+calendar.setTimeInMillis(System.currentTimeMillis());
+calendar.add(Calendar.SECOND, 30);
+AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+
+//30秒后
+long firstTime = SystemClock.elapsedRealtime();
+firstTime += 15*1000;
+am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,firstTime, 15*1000, sender);
+
+[ApiDEMO:App/Alarm/Alert Dialogs]
+ShowDialog(id);
+Dialog onCreateDialog(int id)｛
+
+｝
+broadcast
+Intent intent = new Intent("broadcast.filter.name");
+intent.putExtra("key", value);
+sendBroadcast(intent);          //无序
+sendOrderedBroadcast            //有序
+
+
+class MyReceiver extends BroadcastReceiver{
+    onReceive(Intent intent){
+    
+    }
+}
+//xml注册
+<receiver android:name="MyReceiver">
+    <intent-filter>
+        <action android:name="broadcast.filter.name"/>
+    </intent-filter>
+</receiver>
+
+
+Activity.onResume(){
+    //代码注册
+    IntentFilter filter = new IntentFilter("broadcast.filter.name");
+    MyReceiver receiver = new MyReceiver();
+    registerReceiver(receiver, filter); 
+}
+
+Activity.onPause(){
+    //注销
+    unregisterReceiver(receiver);
+}
+```
+
+
+#### Camera
+
+```
+Camera myCamera = Camera.open();
+Camera.Parameters myParameters = myCamera.getParameters();
+myParameters.setPictureFormat(PixelFormat.JPEG);
+myParameters.setPreviewSize(200, 200);//屏幕大小
+myCamera.setParameters(myParameters);
+myCamera.setPreviewDisplay(mySurfaceHolder);
+myCamera.startPreview();//立即运行Preview
+```
+
+
+#### Message
+
+```
+Message message
+message.setData(bundle);
+Bundle message.getData();
+```
+
+
+
+
+
+####GestureDector
+
+```
+class MyGestureDectorListener extends SimpleOnGestureListener{
+    private static final int SWIPE_MIN_DISTANCE = 120;   
+    private static final int SWIPE_MAX_OFF_PATH = 250;   
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    
+    
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
+        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE           && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {   
+            viewFlipper.setInAnimation(slideLeftIn);   
+            viewFlipper.setOutAnimation(slideLeftOut);   
+            viewFlipper.showNext();   
+        } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE   && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {   
+            viewFlipper.setInAnimation(slideRightIn);   
+            viewFlipper.setOutAnimation(slideRightOut);   
+            viewFlipper.showPrevious();   
+        }
+        
+        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE           && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {  
+            viewFlipper.setInAnimation(slideLeftIn);  
+            viewFlipper.setOutAnimation(slideLeftOut);  
+            viewFlipper.showNext();  
+        } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE   && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {  
+            viewFlipper.setInAnimation(slideRightIn);  
+            viewFlipper.setOutAnimation(slideRightOut);  
+            viewFlipper.showPrevious();  
+        } 
+    }
+}
+
+//Activity
+private GestureDetector gestureDetector = new GestureDetector(new MyGestureDectorListener());
+
+@Override   
+public boolean onTouchEvent(MotionEvent event) {   
+    if (gestureDetector.onTouchEvent(event))   
+        return true;   
+    else   
+        return false;   
+}
+
+
+
+
+
+//方法2
+implements OnGestureListener
+不同于SimpleOnGestureListener，必须实现所有手势方法,SimpleOnGestureListener只需要选取感兴趣的手势方法
+
+
+
+
+//方法3：复杂手势的识别
+//GestureOverlayView：一种用于手势输入的透明覆盖层，可覆盖在其他控件的上方，也可包含其他控件。
+<GestureOverlayView 
+        android:eventsInterceptionEnabled 定义当手势已经被识别出来时，是否拦截手势动作
+        android:fadeDuration 当用户画完手势时，手势淡出效果的持续时间，单位为毫秒（milliseconds）
+        android:fadeEnabled 定义识别完手势后，手势是否自动淡出
+        android:fadeOffset 淡出延迟，单位为毫秒，即用户画完手势之后到手势淡出之间的时间间隔
+        android:gestureColor 描绘手势的颜色
+        android:gestureStrokeAngleThreshold 识别是否为手势前，一笔必须包含的最小曲线度
+        android:gestureStrokeLengthThreshold 识别是否为手势前，一笔的最小长度
+        android:gestureStrokeSquarenessThreshold 识别是否为手势前，一笔的偏斜度阀值
+        android:gestureStrokeType 定义笔画（定义为手势）的类型
+        android:gestureStrokeWidth 画手势时，笔划的宽度
+        android:orientation 指出是水平（当Orientation为vertical），还是垂直（当orientation为horizontal）笔画自动定义为手势
+        android:uncertainGestureColor 未确定为手势之前，描绘用户笔画的颜色
+    ></GestureOverlayView>
+
+//加载文件中手势：
+gestureLib = GestureLibraries.fromFile(path);//实例手势仓库  
+gestureLib.load()//加载手势集合  
+//识别手势：
+gestureOverlayView.addOnGesturePerformedListener(new GestureListener());//添加监听   
+private final class GestureListener implements GestureOverlayView.OnGesturePerformedListener{    
+        @Override    
+        public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {    
+            if(state){    
+                List<Prediction> predictions = mLibrary.recognize(gesture);//从手势库中查询匹配的内容，匹配的结果可能包括多个相似的结果，匹配度高的结果放在最前面    
+                if(!predictions.isEmpty()){    
+                    Prediction prediction = predictions.get(0);    
+                    //prediction的score属性代表了与手势的相似程度    
+                    //prediction的name代表手势对应的字母    
+                    if(prediction.score > 1){    
+                        addressText.setText(prediction.name);    
+                    }    
+                }    
+            }    
+        }    
+}   
+    
+    
+//保存手势：
+gestureLib.addGesture(name, gesture);//第一个参数为手势名字String类型  
+gestureLib.save()  
+//将手势转换成图片：
+Bitmap bitmap = gesture.toBitmap(width, height, inset, color);    
+//参数为别为宽，高，内间距，笔触颜色  
+```
+
+
+
+
+
+
+
+
+#### livefolder
+
+```
+<intent-filter>
+    <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
+    <category android:name="android.intent.category.DEFAULT" />
+</intent-filter>
+```
+
+
+```
+if(getIntent().getAction().equals(LiveFolders.ACTION_CREATE_LIVE_FOLDER)){
+    Intent intent = new Intent();
+    intent.setData(Uri.parse("content://contacts/live_folders/people"));
+    intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_BASE_INTENT, new Intent(Intent.ACTION_VIEW,ContactsContract.Contacts.CONTENT_URI));
+    intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_NAME, "电话本");
+    intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_ICON,Intent.ShortcutIconResource.fromContext(this, R.drawable.png1));//快捷方式的图标
+    intent.putExtra(LiveFolders.EXTRA_LIVE_FOLDER_DISPLAY_MODE, LiveFolders.DISPLAY_MODE_LIST);
+    setResult(RESULT_OK, intent);
+}
+else{
+    setResult(RESULT_CANCELED);
+}
+```
