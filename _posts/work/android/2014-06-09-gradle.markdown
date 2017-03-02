@@ -492,7 +492,7 @@ dialog.show();
 # Other
 
 #### [Crouton](https://github.com/keyboardsurfer/Crouton)
-> - better than Toast
+> - better than Toast, use Snackbar, not this
 
 
 #### [CWAC](https://github.com/commonsguy)

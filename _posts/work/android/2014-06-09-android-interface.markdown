@@ -208,15 +208,17 @@ SimpleAdapter adapter = new SimpleAdapter(this, data,
 
 
 > - 方法3：SimpleCursorAdapter
+> - use android.support.v4.widget.SimpleCursorAdapter
 
 ```
 //使用Cursor数据指针adapter
 Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
+//use CursorLoader, LoaderManager
 startManagingCursor(c);
 ListAdapter adapter = new SimpleCursorAdapter(this, 
     android.R.layout.simple_list_item_1, c,
     new String[] {People.NAME},
-    new int[] {android.R.id.text1});
+    new int[] {android.R.id.text1}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 ```
 
 
@@ -1540,70 +1542,49 @@ Set<String> setting.getStringSet
 
 
 # Dialog
+> - use android.support.v7.app.AlertDialog
+> - use android.support.v4.app.DialogFragment
+> - use android.support.v7.preference.DialogPreference
+> - 乱不乱!
 
 ```
-activity.showDialog():    to display a Dialog,将会调用onCreateDialog()
-activity.dismissDialog(): to stop showing a Dialog
-activity.removeDialog():  to remove a Dialog from Activity object Dialog pool
+Dialog
+    AlertDialog
+        DatePickerDialog
+        ProgressDialog
+        TimePickerDialog
+    CharacterPickerDialog
 
-onCreateDialog()  //返回Dialog
-onPrepareDialog()
+    [android.support.v7.app.*]
+    AppCompatDialog
+        AlertDialog
+            MediaRouteControllerDialog
+        BottomSheetDialog
+        MediaRouteChooserDialog
+
+//Fragment
+//support v4, AppCompat-v7
+DialogFragment
+    AppCompatDialogFragment
+        BottomSheetDialogFragment
+    MediaRouteChooserDialogFragment
+    MediaRouteControllerDialogFragment
+    PreferenceDialogFragmentCompat
+        EditTextPreferenceDialogFragmentCompat
+        ListPreferenceDialogFragmentCompat
+        MultiSelectListPreferenceDialogFragmentCompat
 
 
-protected Dialog onCreateDialg(int id){
-    return dailog;
-}
-```
-
-> - simple Dialog
-
-```
-Dialog simpleDialog = new Dialog(this);
-simpleDialog.setTitle("");
-```
-
-> - Alert Dialog
-
-```
-AlertDialog alertDialog = new AlertDialog.Builder(this);
-    .setTitle("")
-    .setMessage("")
-    .create();
-
-new AlertDialog.Builder(EX03_12.this)
-    .setIcon(R.drawable.icon)
-    .setTitle(R.string.app_about)
-    .setMessage(R.string.app_about_msg)
-    .setPositiveButton(R.string.str_ok,
-         new DialogInterface.OnClickListener()
-         {
-           public void onClick(DialogInterface dialoginterface, int i)
-           {
-           }
-         }
-    )
-    .setNegativeButton
-    .setNeutralButton       //三个按钮
-    
-    .setItems(R.array.select_dialog_items,              //列表
-        new DialogInterface.OnClickListener() { 
-            public void onClick(DialogInterface dialog, int which) {
-
-                String[] items = getResources().getStringArray(R.array.select_dialog_items);
-                new AlertDialog.Builder(AlertDialogSamples.this)
-                    .setMessage("You selected: " + which + " , " + items[which])
-                    .show();
-                }
-        })
-        
-    .setSingleChoiceItems(R.array.select_dialog_items, new DialogInterface.OnClickListener(){}) //单选列表
-    .setMultiChoiceItems(R.array.select_dialog_items, new DialogInterface.OnClickListener(){})  //多选列表
-    .setMultiChoiceItems(cursor, new DialogInterface.OnClickListener(){})                       //多选列表
-    
-    .setView(view)                                      //定制的外观
-    .create()
-    .show();
+//Preference
+DialogPreference
+    EditTextPreference
+    ListPreference
+        DropDownPreference
+    MultiSelectListPreference
 ```    
+
+
+
  
 > - PrograssDialog
 
@@ -1619,6 +1600,7 @@ myProgressDialog.setIcon(R.drawable.icon)
                     
 myProgressDialog = ProgressDialog.show(EX03_18.this, strDialogTitle, strDialogBody, true);
 
+//count down
 new Thread()
 { 
     public void run()
@@ -1659,19 +1641,16 @@ CharacterPickerDialog charDialog = new CharacterPickerDialog(this, new View(this
 
 ```
 Calendar c = Calendar.getInstance();
-Dialog dialog = new DatePickerDialog(           //创建DatePickerDialog对象
-                 this,
-                 new DatePickerDialog.OnDateSetListener(){  //创建OnDateSetListener监听器
-                    @Override
-                    public void onDateSet(DatePicker dp, int year, int month,int dayOfMonth) {      
-                        EditText et = (EditText)findViewById(R.id.et);
-                        et.setText("您选择了："+year+"年"+month+"月"+dayOfMonth+"日");
-                    }                    
-                 },
-                 c.get(Calendar.YEAR),                  //传入年份
-                 c.get(Calendar.MONTH),                 //传入月份
-                 c.get(Calendar.DAY_OF_MONTH)           //传入天数     
-              );
+Dialog dialog = new DatePickerDialog(this,
+    new DatePickerDialog.OnDateSetListener(){  //创建OnDateSetListener监听器
+        @Override
+        public void onDateSet(DatePicker dp, int year, int month,int dayOfMonth) {      
+            EditText et = (EditText)findViewById(R.id.et);
+            et.setText("您选择了："+year+"年"+month+"月"+dayOfMonth+"日");
+        }                    
+    },
+    c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)     
+);
 ```
 
 > - TimePickerDialog
@@ -1683,44 +1662,12 @@ Dialog dialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListene
         EditText et = (EditText)findViewById(R.id.et);
         et.setText("您选择了："+hourOfDay+"时"+minute+"分");       //设置EditText控件的属性
     }                    
- },
- c.get(Calendar.HOUR_OF_DAY),       //传入当前小时数
- c.get(Calendar.MINUTE),            //传入当前分钟数
- false
+ }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false
 );
 ```
 
 
 
-
-
-
-> - 定制Dialog
-
-```
-<activity android:theme="@android:style/Theme.Dialog"
-      android:name="DialogActivity"
-
-requestWindowFeature(Window.FEATURE_LEFT_ICON);
-setContentView(R.layout.dialog_activity);
-getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, android.R.drawable.ic_dialog_alert);
-```
-
-
-
-
-> - 自定义对话框
-> - <1>继承自Dialog类
-> - Oncreate方法中通过setContentView来设置视图布局
-
-> - <2>修改系统dialog外观
-
-```
-<style name="Theme_dialog" parent="@android:style/Theme.Dialog">
-    <item name="android:windowBackground">@android:color/transparent</item>
-    <item name="android:windowNoTitle">true</item>
-</style>
-```
 
 
 
@@ -1748,7 +1695,8 @@ nm.notify(R.string.imcoming_message_ticker_text, notif);
 nm.cancel(id);
 ```
 
-# Toast
+
+> - 
 
 ```
 Toast.makeText(context, “string”, Toast.LENGTH_SHORT).show();
@@ -1763,6 +1711,22 @@ toast.setDuration(Toast.LENGTH_LONG);
 mToast.setView(mView);
 mToast.show();
 ```
+
+
+> - Snackbar
+
+```
+View content = findViewById(android.R.id.content);
+Snackbar.make(content, "This is a Snackbar", Snackbar.LENGTH_SHORT)
+    .setAction("Cancel", new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {}
+    })
+    .show();
+```
+
+
+
 
 
 
