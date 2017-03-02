@@ -174,21 +174,13 @@ listview.smoothScrollToPosition(listView.getCount() - 1)
 
 
 
-> - 常见的List方法
 > - 继承自ListActivity
 > -     1)可直接setAdapter
-> -     2)如果除ListView外，还包括其他的View，setContentView(R.layout.main); 
-> -       main中必须有<ListView android:id="@android:id/list" />
+> -     2)如果除ListView外，还包括其他的View
+> -     3)layout中必须有<ListView android:id="@android:id/list" />
       
-> - 使用Activity
-> -     1)ListView listView = (ListView)findViewById(android.R.id.list);的方式找到listview
-> -     2)setContentView(R.layout.main);  //main中包含android:id/list
-> -       能用ArrayAdapter和android.R.layout.simple_list_item_1
-> -     3)如果listview是自定义的id
-> -       必须使用自己的ListItem Layout文件和SimpleAdapter映射
-
-
-> - 方法1：
+> - 使用Activity, ListAdapter
+> - 方法1：ArrayAdapter
 
 ```
 //最简单的ArrayAdapter使用String数组
@@ -199,41 +191,41 @@ listview.setAdapter(adapter);
 ```
 
 
-> - 方法2：
+> - 方法2：SimpleAdapter
 
 ```
 //SimpleAdapter:使用List<HashMap>
 List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-    Map<String, Object> temp = new HashMap<String, Object>();
-    temp.put("title", name);
-     temp.put("intent", intent);
+Map<String, Object> temp = new HashMap<String, Object>();
+temp.put("title", name);
+temp.put("intent", intent);
 data.add(temp);
-SimpleAdapter adapter = new SimpleAdapter(this, data,
-          android.R.layout.simple_list_item_1,  //layout.xml
-        new String[] { "title" },           //数据映射
-          new int[] { android.R.id.text1 });        //layout中id
+SimpleAdapter adapter = new SimpleAdapter(this, data, 
+    android.R.layout.simple_list_item_1,
+    new String[] { "title" },
+    new int[] { android.R.id.text1 });
 ```
 
 
-> - 方法3：
+> - 方法3：SimpleCursorAdapter
 
 ```
 //使用Cursor数据指针adapter
 Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
 startManagingCursor(c);
 ListAdapter adapter = new SimpleCursorAdapter(this, 
-    android.R.layout.simple_list_item_1,                //listview的模板
-     c,                                             //访问数据的指针
-     new String[] {People.NAME} ,                       //数据中的映射列
-     new int[] {android.R.id.text1});                   //view中的映射id
+    android.R.layout.simple_list_item_1, c,
+    new String[] {People.NAME},
+    new int[] {android.R.id.text1});
 ```
 
 
-> - 方法4：
+
+
+
+> - 方法4：extends ArrayAdapter
 
 ```
-//自定义adapter
-//继承自ArrayAdapter
 class TestAdapter extends ArrayAdapter<String>{
     private LayoutInflater layouter;
     private int layoutId;
@@ -259,12 +251,13 @@ class TestAdapter extends ArrayAdapter<String>{
         return view;
     }
 }
+```
 
-ArrayAdapter<String> adapter = new TestAdapter(this, R.layout.listitem, R.id.title);
-adapter.add("test array;in/out Object[]”);
-listview.setAdapter(adapter);
 
-//继承自BaseAdapter
+
+> - 方法5：extends BaseAdapter
+
+```
 class MyImgAdapter extends BaseAdapter{
     private Context context;
         
@@ -290,41 +283,6 @@ class MyImgAdapter extends BaseAdapter{
         return iv;
      }
 }
-```
-
-
-> - 方法5：
-
-```
-//可伸缩的list
-//见例子list6
-//list 的itemview做成一个根据bool值伸缩的view
-
-
-//简单渐变的ListItem
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:background="#fff8f8f8" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout android:background="@drawable/item_selector" android:paddingLeft="12.0dip" android:paddingRight="5.0dip" android:paddingBottom="4.0dip" android:layout_width="fill_parent" android:layout_height="42.0dip">
-        <ImageView android:id="@id/itemImageRight" 
-            android:background="@drawable/action_arrow" 
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:layout_alignParentRight="true" 
-            android:layout_centerVertical="true" />
-        <TextView 
-            android:textSize="15.0dip" 
-            android:textColor="#ff101010" 
-            android:id="@id/ItemTitle" 
-            android:paddingRight="8.0dip" 
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:text="亲情文章 [92篇]" 
-            android:lines="1" 
-            android:layout_toLeftOf="@id/itemImageRight" 
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
-</FrameLayout>
 ```
 
 
@@ -358,6 +316,9 @@ class MyImgAdapter extends BaseAdapter{
 
 
 # ViewGroup
+
+
+
 
 #### ViewFlipper
 > - 自动切换view
@@ -1282,134 +1243,222 @@ android:scaleType           图片如何resized/moved来匹配Imageview的size
 # ToolBar
 > - since api 21, inlcuded in support v7
 > - android.support.v7.widget.ToolBar
-> - 使用Toolbar、android.support.v4.widget.DrawerLayout、ActionBarDrawerToggle
-
+> - android.support.v4.widget.DrawerLayout
 
 
 ```
-//res/values/styles.xml
+compile 'com.android.support:appcompat-v7:newestVersion'
+compile 'com.android.support:design:newestVersion'
+compile 'com.android.support:support-v4:newestVersion'
+```
+
+
+
+> - activity_main.xml
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/Toolbar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <FrameLayout
+                android:background="@android:color/white"
+                android:id="@+id/contentFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_add_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/ic_add"
+                app:fabSize="normal"
+                app:layout_anchor="@id/contentFrame"
+                app:layout_anchorGravity="bottom|right|end" />
+        </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+</android.support.v4.widget.DrawerLayout>
+```
+
+
+> - styles.xml
+```
 <resources>
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"> //必须没有ActionBar
-       或者<item name="android:windowActionBar">false</item> (不起作用)
-        <!-- toolbar（actionbar）颜色 -->
-        <item name="colorPrimary">#00FF00</item>
-        <!-- 状态栏颜色 -->
-        <item name="colorPrimaryDark">#FF0000</item>
-        <!-- 窗口的背景颜色 -->
-        <item name="android:windowBackground">@android:color/white</item>
-        <!-- 底部导航栏颜色 -->
-        <item name="navigationBarColor">#4876FF</item>  
-        <!-- SearchView -->
-        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <item name="queryBackground">@drawable/ab_search</item>
-        <item name="submitBackground">@drawable/ab_search</item>
-        <item name="closeIcon">@drawable/ab_share</item>
-        <item name="searchIcon">@drawable/ic_drawer</item>
-        <item name="goIcon">@drawable/ic_drawer</item>
-        <item name="voiceIcon">@drawable/ic_drawer</item>
-        <item name="commitIcon">@drawable/ic_drawer</item>
-        <item name="suggestionRowLayout">@layout/searchview</item>
-    </style>
-    <style name="AppTheme" parent="AppBaseTheme"></style>
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 </resources>
 ```
 
 
 
-```
-//res/layout/activity_main.xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.test_navigationdrawer.TestActivity" >
-    
-<!— toolbar —>
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"  
-    xmlns:app="http://schemas.android.com/apk/res-auto"  
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar">  
-    </android.support.v7.widget.Toolbar>
-</LinearLayout>
-```
 
 
 ```
-setContentView(R.layout.activity_main);
-mToolbar = (Toolbar) findViewById(R.id.toolbar);
-setSupportActionBar(mToolbar);
+private void init() {
+    //setup the toolbar
+    Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    ActionBar bar = getSupportActionBar();
+    bar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    bar.setDisplayHomeAsUpEnabled(true);
 
-toolbar.inflateMenu(int resId);
-mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+    //setup the navigation menu
+    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    mDrawerLayout.setStatusBarBackground(R.color.colorPrimaryDark);
+    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    if(navigationView != null) {
+        setupDrawerContent(navigationView);
+    }
+
+    //setup the fragment
+    MainFragment tasksFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+    if (tasksFragment == null) {
+        // Create the fragment
+        tasksFragment = MainFragment.newInstance();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.contentFrame, tasksFragment);
+        transaction.commit();
+    }
+}
+
+//the home trigger MenuItem
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case android.R.id.home:
+            // Open the navigation drawer when the home icon is selected from the toolbar.
+            mDrawerLayout.openDrawer(GravityCompat.START);
+            return true;
+    }
+    return super.onOptionsItemSelected(item);
+}
+```
+
+
+
+
+> - Fragment
+
+```
+public class MainFragment extends Fragment {
+    public MainFragment() {}
+
+    public static MainFragment newInstance() {
+        return new MainFragment();
+    }
+
     @Override
-    public boolean onMenuItemClick(MenuItem item) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.tasks_frag, container, false);
+
+        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab_add_task);
+
+        fab.setImageResource(R.drawable.ic_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {}
+        });
+        
+        setHasOptionsMenu(true);
+        return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.tasks_fragment_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-            case R.id.action_share:
+            case R.id.menu_clear:
+                break;
+            case R.id.menu_filter:
+                showFilteringPopUpMenu();
+                break;
+            case R.id.menu_refresh:
+                break;
         }
         return true;
     }
-});
 
 
 
-mToolbar.setTitle("Rocko");                     //getSupportActionBar().setTitle("标题");
-mToolbar.setSubtitle("副标题");                    //getSupportActionBar().setSubtitle("副标题");
-mToolbar.setLogo(R.drawable.ic_launcher);           //getSupportActionBar().setLogo(R.drawable.ic_launcher);
-mToolbar.setNavigationIcon
-toolbar.setNavigationOnClickListener
-```
+    public void showFilteringPopUpMenu() {
+        PopupMenu popup = new PopupMenu(getContext(), getActivity().findViewById(R.id.menu_filter));
+        popup.getMenuInflater().inflate(R.menu.filter_tasks, popup.getMenu());
 
-> - 使用drawer布局
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.active:
+                        break;
+                    case R.id.completed:
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
 
-```
-<!— 放一个总的layout —>
-    <android.support.v4.widget.DrawerLayout     
-        android:id="@+id/drawer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <!-- 内容界面 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/content"
-            android:orientation="vertical" >
-            
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </android.support.v4.view.ViewPager>
-        </LinearLayout>
-
-        <!-- 侧滑菜单内容 -->
-        <LinearLayout
-            android:id="@+id/drawer_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@drawable/drawer"
-            android:orientation="vertical"
-            android:padding="8dp" >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </android.support.v4.widget.DrawerLayout>
-mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open,R.string.drawer_close);
-mDrawerToggle.syncState();                  //得到左上角的三横线
-mDrawerLayout.setDrawerListener(mDrawerToggle);
+        popup.show();
+    }
+}
 ```
 
 

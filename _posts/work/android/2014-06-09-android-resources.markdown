@@ -519,14 +519,20 @@ RelativeLayout
     android:layout_alignParentRight
     android:layout_alignParentTop
 
-    android:layout_toRightOf           子组件位于给出ID组件的右侧 
-    android:layout_toLeftOf            左侧
-    android:layout_above               上方
-    android:layout_below               下方
-    android:layout_alignTop            子组件与给出ID组件上边界对齐
-    android:layout_alignBottom         下边界对齐
-    android:layout_alignLeft           左边界对齐
-    android:layout_alignRight          右边界对齐
+    android:layout_above            本组件在某组件的上方
+    android:layout_alignBaseline    本组件和某组件的基线对齐。
+    android:layout_alignBottom      本组件的下边缘和某组件的的下边缘对齐
+    android:layout_alignEnd         本组件的末端和某组件末端对齐
+    android:layout_alignRight       本组件的右边缘和某组件的的右边缘对齐
+    android:layout_alignLeft        本组件左边缘和某组件左边缘对齐
+    android:layout_alignStart       本组件的开始端和某组件开始端对齐
+    android:layout_alignTop         本组件的顶部和某组件的的顶部对齐
+    android:layout_below            本组件在某组件的下方
+     
+    android:layout_toEndOf          本组件在某组件末端
+    android:layout_toLeftOf         本组件在某组件的左边
+    android:layout_toRightOf        本组件在某组件的右边
+    android:layout_alignLeft        本组件在某组件开始端
 
 FrameLayout
     android:foreground           前景图像

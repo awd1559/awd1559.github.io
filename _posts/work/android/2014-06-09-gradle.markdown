@@ -22,7 +22,530 @@ tags:
 
 常用的gradle on github
 
+
+# UI
+
+
+# ViewPager
+
+#### [ViewPagerIndicator](https://github.com/JakeWharton/ViewPagerIndicator)
+
+#### [SmartTabLayout](https://github.com/ogaclejapan/SmartTabLayout)
+
+#### [CircleIndicator](https://github.com/ongakuer/CircleIndicator)
+
+#### [FlipViewPager.Draco](https://github.com/Yalantis/FlipViewPager.Draco)
+
+#### [ViewPagerTransforms](https://github.com/ToxicBakery/ViewPagerTransforms)
+
+#### [ParallaxHeaderViewPager](https://github.com/kmshack/Android-ParallaxHeaderViewPager)
+
+#### [ParallaxPagerTransformer](https://github.com/xgc1986/ParallaxPagerTransformer)
+
+#### [freepager](https://github.com/alexzaitsev/freepager)
+
+#### [ViewPagerIndicator](https://github.com/hongyangAndroid/Android-ViewPagerIndicator)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Layout
+
+#### [android-Ultra-Pull-To-Refresh](https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh)
+#### [Yalantis](https://github.com/Yalantis)
+
+#### [AndroidSwipeLayout](https://github.com/daimajia/AndroidSwipeLayout)
+#### [SwipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)
+
+
+#### [AndroidViewHover](https://github.com/daimajia/AndroidViewHover)
+
+#### [WaveView](https://github.com/john990/WaveView)
+
+#### [ArcLayout](https://github.com/ogaclejapan/ArcLayout)
+
+#### [Dragger](https://github.com/ppamorim/Dragger)
+
+#### [DraggablePanel](https://github.com/pedrovgs/DraggablePanel)
+
+#### [Slidr](https://github.com/r0adkll/Slidr)
+
+#### [android_maskable_layout](https://github.com/christophesmet/android_maskable_layout)
+
+#### [ShowcaseView](https://github.com/amlcurran/ShowcaseView)
+
+#### [ResideLayout](https://github.com/kyze8439690/ResideLayout)
+
+#### [InboxLayout](https://github.com/zhaozhentao/InboxLayout)
+
+#### [FreeFlow](https://github.com/Comcast/FreeFlow)
+
+#### [ExpandableLayout](https://github.com/traex/ExpandableLayout)
+
+
+
+# List/Grid
+
+#### [AndroidSwipeLayout](https://github.com/daimajia/AndroidSwipeLayout)
+> - iOS Like Android List Item Swipe Operation
+
+
+
+
+
+
+
+
+
+
+
+
+# Material
+
+
+
+
+
+
+
+
+
+# CWAC
+
+
+
+
+
+
+# Animation
+
+#### [lottie-android](https://github.com/airbnb/lottie-android)
+> - Render AE animation natively on Android and iOS
+
+
+
+
+#### [Material-Animations](https://github.com/lgvalle/Material-Animations)
+
+
+
+
+
+#### [AndroidViewAnimations](https://github.com/daimajia/AndroidViewAnimations)
+> - Easing Android Animation
+
+```
+View mTarget = findViewById(R.id.target);
+YoYo.YoYoString rope= YoYo.with(Techniques.BounceIn)
+  .duration(1000)
+  .interpolate(new AccelerateDecelerateInterpolator(){})
+  .withListener(new Animator.AnimatorListener() {})
+  .playOn(mTarget);
+
+//停止动画
+rope.stop(true);
+```
+
+
+
+
+#### [AndroidImageSlider](https://github.com/daimajia/AndroidImageSlider)
+> - 图片幻灯跑马灯效果
+> - 图片可以来自res，可以来自http
+
+
+
+
+
+
+#### [android-flip](https://github.com/openaphid/android-flip)
+> - 翻页效果
+
+```
+//copy all library code & values/attr.xml
+
+Activity.onCreate()
+  FlipViewController flipView =  new FlipViewController(this);
+  flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
+  flipView.setAdapter();
+  setContentView(flipView);
+
+Activity.onResume()
+  super.onResume();
+  flipView.onResume();
+Activity.onPause()
+  super.onPause();
+  flipView.onPause();
+```
+
+#### [android-pathview](https://github.com/geftimov/android-pathview)
+> - svg
+
+
+#### [ListViewAnimations](https://github.com/nhaarman/ListViewAnimations)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Effect
+
+#### [android-stackblur](https://github.com/kikoso/android-stackblur)
+
+
+# Image
+
+#### [CircleImageView](https://github.com/hdodenhof/CircleImageView)
+#### [android-shape-imageview](https://github.com/siyamed/android-shape-imageview)
+#### [android-crop](https://github.com/jdamcd/android-crop)
+#### [cropper](https://github.com/edmodo/cropper)
+#### [CropImageView](https://github.com/cesards/CropImageView)
+
+#### [GifImageView](https://github.com/felipecsl/GifImageView)
+
+#### [TouchImageView](https://github.com/MikeOrtiz/TouchImageView)
+
+# Chart
+
+#### [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+
+#### [WilliamChart](https://github.com/diogobernardino/WilliamChart)
+
+#### [EazeGraph](https://github.com/blackfizz/EazeGraph)
+
+#### [hellocharts-android](https://github.com/lecho/hellocharts-android)
+
+#### [SelectableRoundedImageView](https://github.com/pungrue26/SelectableRoundedImageView)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Parallax
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Calendar
+
+#### [android-times-square](https://github.com/square/android-times-square)
+
+#### [material-calendarview](https://github.com/prolificinteractive/material-calendarview)
+
+#### [Android-Week-View](https://github.com/alamkanak/Android-Week-View)
+
+#### [Android-MonthCalendarWidget](https://github.com/romannurik/Android-MonthCalendarWidget)
+
+#### [Caldroid](https://github.com/roomorama/Caldroid)
+
+#### [android-betterpickers](https://github.com/code-troopers/android-betterpickers)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Lable/Form
+
+#### [BabushkaText](https://github.com/quiqueqs/BabushkaText)
+
+#### [shimmer-android](https://github.com/facebook/shimmer-android)
+
+#### [android-autofittextview](https://github.com/grantland/android-autofittextview)
+
+#### [ExpandableTextView](https://github.com/Manabu-GT/ExpandableTextView)
+
+#### [floatlabelededittext](https://github.com/wrapp/floatlabelededittext)
+
+#### [Titanic](https://github.com/RomainPiel/Titanic)
+
+#### [TextJustify-Android](https://github.com/bluejamesbond/TextJustify-Android)
+
+#### [TextDrawable](https://github.com/amulyakhare/TextDrawable)
+
+#### [Shimmer-android](https://github.com/RomainPiel/Shimmer-android)
+
+#### [SecretTextView](https://github.com/matthewrkula/SecretTextView)
+
+#### [RoundedLetterView](https://github.com/pavlospt/RoundedLetterView)
+
+#### [MatchView](https://github.com/Rogero0o/MatchView)
+
+
+
+
+
+
+
+
+
+
+
+
+# Button
+
+#### [ShineButton](https://github.com/ChadCSong/ShineButton)
+
+#### [labelview](https://github.com/linger1216/labelview)
+> - Button with ribbon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Dialog
+
+#### [material-dialogs](https://github.com/afollestad/material-dialogs)
+#### [sweet-alert-dialog](https://github.com/pedant/sweet-alert-dialog)
+
+#### [dialogplus](https://github.com/orhanobut/dialogplus)
+
+```
+ViewHolder holder = new ViewHolder(R.layout.content); //dialog的内容
+ListHolder holder = new ListHolder();
+GridHolder holder = new GridHolder(3);
+
+DialogPlus dialog = new DialogPlus.Builder(this)
+  .setContentHolder(holder)
+  .setHeader(R.layout.header)
+  .setFooter(R.layout.footer)
+  .setCancelable(true)
+  .setGravity(DialogPlus.Gravity.Top)
+  .setAdapter(adapter)
+  .setOnClickListener(clickListener)
+  .setOnItemClickListener(itemClickListener)
+  .setOnDismissListener(dismissListener)
+  .setOnCancelListener(cancelListener)
+  .create();
+dialog.show();
+```
+
+
+#### [BlurDialogFragment](https://github.com/tvbarthel/BlurDialogFragment)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Progress 
+
+#### [NumberProgressBar](https://github.com/daimajia/NumberProgressBar)
+#### [SmoothProgressBar](https://github.com/castorflex/SmoothProgressBar)
+#### [CircleProgress](https://github.com/lzyzsd/CircleProgress)
+#### [RoundCornerProgressBar](https://github.com/akexorcist/Android-RoundCornerProgressBar)
+#### [GoogleProgressBar](https://github.com/jpardogo/GoogleProgressBar)
+#### [android-square-progressbar](https://github.com/mrwonderman/android-square-progressbar)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# SeekBar
+
+
+#### [discreteSeekBar](https://github.com/AnderWeb/discreteSeekBar)
+
+
+#### [BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Other
+
+#### [Crouton](https://github.com/keyboardsurfer/Crouton)
+> - better than Toast
+
+
+#### [CWAC](https://github.com/commonsguy)
+
+
+#### [Android-PickerView](https://github.com/Bigkoo/Android-PickerView)
+
+
+#### [Android-Bootstrap](https://github.com/Bearded-Hen/Android-Bootstrap)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # framework
+
+#### [xUtils3](https://github.com/wyouflf/xUtils3)
+
 
 #### [AndroidAnnotations](https://github.com/excilys/androidannotations)
 > - AndroidAnnotations: Dependency Injection<50K
