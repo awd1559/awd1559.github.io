@@ -78,6 +78,8 @@ tags:
 
 # Layout
 
+#### [flexbox-layout](https://github.com/google/flexbox-layout)
+
 #### [android-Ultra-Pull-To-Refresh](https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh)
 #### [Yalantis](https://github.com/Yalantis)
 
@@ -145,6 +147,8 @@ tags:
 
 
 # Animation
+
+#### [ExpectAnim](https://github.com/florent37/ExpectAnim)
 
 #### [lottie-android](https://github.com/airbnb/lottie-android)
 > - Render AE animation natively on Android and iOS
@@ -302,7 +306,7 @@ Activity.onPause()
 
 
 
-
+#### [Etar-Calendar](https://github.com/Etar-Group/Etar-Calendar)
 
 
 
@@ -544,6 +548,7 @@ dialog.show();
 
 # framework
 
+#### [weex](https://github.com/alibaba/weex)
 #### [xUtils3](https://github.com/wyouflf/xUtils3)
 
 
@@ -1716,6 +1721,9 @@ List<Entity> loadAll()
 
 # misc
 
+#### [Alerter](https://github.com/Tapadoo/Alerter)
+
+
 #### [android-times-square](https://github.com/square/android-times-square)
 > - widget for picking a date from a calendar view - by square
 
@@ -1748,6 +1756,26 @@ dependencies {
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### [AboutLibraries](​https://github.com/mikepenz/AboutLibraries)
 
 ```
@@ -1762,3 +1790,53 @@ new LibsBuilder()
     .withAboutDescription("中文的说明问阿健老是打击.<br /><b>You can style 中文老师的 :D</b>")
     .start(this);
 ```
+
+
+
+
+
+
+
+
+
+
+#### [jsoup](https://github.com/jhy/jsoup)
+> - Java HTML Parser, with best of DOM, CSS, and jquery 
+
+
+
+
+
+
+
+
+#### [Logger](https://github.com/orhanobut/logger)
+> - Simple, pretty and powerful logger for android
+
+
+
+
+
+
+
+#### [JustWeTools](https://github.com/lfkdsk/JustWeTools)
+> - useful tools
+> - txtReader, code viewer, CartoonView, ExplorerView, MarkDownView
+
+
+
+#### [muzei](https://github.com/romannurik/muzei)
+> - Live Wallpaper
+
+
+
+
+
+#### [Apktool](https://github.com/iBotPeaches/Apktool)
+> - reverse engineering Android apk files
+
+
+
+
+#### [Android-skin-support](https://github.com/ximsfei/Android-skin-support)
+
