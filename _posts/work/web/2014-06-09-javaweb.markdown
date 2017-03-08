@@ -19,17 +19,254 @@ Gradle => build.gradle
 
 
 # spring boot
-2014: v1.0.0
+> - 2014: v1.0.0
+
+
+#### starters
+
+| -------------------------------------- | ------------------ |
+|spring-boot-starter                     |core, log, YAML
+|spring-boot-starter-actuator            |监控和管理应用
+|spring-boot-starter-amqp                |spring-rabbit,高级消息队列
+|spring-boot-starter-aop                 |spring-aop, AspectJ
+|spring-boot-starter-batch               |HSQLDB
+|spring-boot-starter-cloud-connectors    |Cloud Fundary, Heroku
+|spring-boot-starter-data-elasticsearch  |spring-data-elesticsearch
+|spring-boot-starter-data-gemfire        |spring-data-gemfire
+|spring-boot-starter-data-jpa            |spring-data-jpa, spring-orm, Hibernate
+|spring-boot-starter-data-mongodb        |
+|spring-boot-starter-data-rest           |
+|spring-boot-starter-data-solr           |
+|spring-boot-starter-freemarker          |
+|spring-boot-starter-groovy-templates    |
+|spring-boot-starter-hateoas             |
+|spring-boot-starter-hornetq             |
+|spring-boot-starter-integration         |
+|spring-boot-starter-jdbc                |连接数据库、操作数据库，管理数据库连接
+|spring-boot-starter-jersey              |Jersey RESTFul web
+|spring-boot-starter-jta-atomikos        |分布式事务
+|spring-boot-starter-jta-bitronix        |分布式事务
+|spring-boot-starter-mail                |
+|spring-boot-starter-mobile              |
+|spring-boot-starter-mustache            |
+|spring-boot-starter-redis               |
+|spring-boot-starter-security            |
+|spring-boot-starter-social-facebook     |
+|spring-boot-starter-social-linkedin     |
+|spring-boot-starter-social-twitter      |
+|spring-boot-starter-test                |
+|spring-boot-starter-thymeleaf           |template
+|spring-boot-starter-velocity            |template
+|spring-boot-starter-web                 |tomcat, spring-webmvc
+|spring-boot-starter-websocket           |
+|spring-boot-starter-ws                  |web service
+|spring-boot-starter-actuator            |指标和监控
+|spring-boot-starter-remote-shell        |远程ssh shell
+
+
+
+
+
+
+#### Basic
+
+```
+@SpringBootApplication
+@Controller
+public class Demo1Application {
+
+  public static void main(String[] args) {
+    SpringApplication.run(Demo1Application.class, args);
+  }
+  
+  @RequestMapping("/home")
+  public @ResponseBody
+  String homePage() {
+    return "this is home dsdgdssdfgdgsdfg";
+  }
+}
+```
+
+
+
+> - CommandLine Runner
+
+```
+@Order(2)
+public class StartupRunner implements CommandLineRunner {
+    protected final org.apache.commons.logging.Logger logger = LoggerFactory.getLogger(StartupRunner.class);
+
+    @Override
+    public void run(String... strings) throws Exception {
+        logger.info("hello");
+    }
+
+    @Scheduled(initialDelay = 1000, fixedRate = 10000)
+    public void run() {
+        logger.info("");
+    }
+}
+
+@SpringBootApplication
+@EnableScheduling
+public class DemoApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
+  }
+
+  @Bean
+  public StartupRunner schedulerRunner() {
+    return new StartupRunner();
+  }
+}
+```
+
+
+
+
+#### database
+application.properties
+```
+spring.datasource.url = jdbc:h2:~/test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+spring.datasource.username = sa
+spring.datasource.password =
+```
+~/test.mv.db
+
+
+```
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/springbootcookbook
+spring.datasource.username=root
+spring.datasource.password=
+
+spring.jpa.hibernate.ddl-auto=create-drop|update   #自动创建表和数据库
+spring.jpa.show-sql = true              #显示sql
+spring.jpa.database = MYSQL
+```
+
+
+
+
+
+
+
+#### run
+
+
+```
+//in eclipse
+Eclipse Market -> STS
+new -> project -> spring starter project
+
+RunAs -> Spring Boot App
+
+
+SpringBoot In IDEA
+
+
+mvn package #create jar
+mvn spring-boot:run #listen on 8080
+
+
+gradle build #create jar
+gradle bootRun #listen on 8080
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # spring
+> - 已经不需要xml配置了
+
+
+
+
+
+```
+@Configuration
+@ComponentScan("com.bread")
+public class MyConfig {
+  @Bean
+  public Person tom() {
+    return new Person();
+  }
+  
+  @Bean
+  public Teacher jack() {
+    return new Teacher();
+  }
+}
+
+
+@Component
+@Transactional
+public class Person {
+  private String name;
+  private int age;
+  
+  Person() {
+    this.name = "person1";
+    this.age = 10;
+  }
+  public String getName() {
+    return this.name;
+  }
+  public int getAge() {
+    return this.age;
+  }
+}
+
+@Component
+public class Teacher {
+  @Autowired
+  private Person tom;
+  
+  public Teacher() {
+  }
+  
+  @Override
+  public String toString() {
+    if(tom != null)
+      return "[" + tom.getName() + ": " + tom.getAge() + "]";
+    else
+      return "tom is not wired";
+  }
+}
+
+
+ApplicationContext context = new AnnotationConfigApplicationContext("com.bread");
+Teacher teacher = (Teacher) context.getBean("jack");  
+```
+
+
+
+
+
+
 
 #### Spring template engines
 
-- (freemaker)[http://freemarker.org/docs/index.html]
-- (mustache)[http://mustache.github.io/]
-- (velocity)[http://velocity.apache.org/engine/devel/user-guide.html]
-- (groovy templates)[http://docs.groovy-lang.org/latest/html/documentation/template-engines.html]
-- (thymeleaf)[http://www.thymeleaf.org/]
+> - [thymeleaf](http://www.thymeleaf.org/)
+> - [freemaker](http://freemarker.org/docs/index.html)
+> - [mustache](http://mustache.github.io/)
+> - [velocity](http://velocity.apache.org/engine/devel/user-guide.html)
+> - [groovy templates](http://docs.groovy-lang.org/latest/html/documentation/template-engines.html)
 
 
 
@@ -179,58 +416,9 @@ public class MainController {
 
 
 
-# depandency
-
-| -------------------------------------- | ------------------ |
-|spring-boot-starter                     |core, log, YAML
-|spring-boot-starter-actuator            |监控和管理应用
-|spring-boot-starter-amqp                |spring-rabbit,高级消息队列
-|spring-boot-starter-aop                 |spring-aop, AspectJ
-|spring-boot-starter-batch               |HSQLDB
-|spring-boot-starter-cloud-connectors    |Cloud Fundary, Heroku
-|spring-boot-starter-data-elasticsearch  |spring-data-elesticsearch
-|spring-boot-starter-data-gemfire        |spring-data-gemfire
-|spring-boot-starter-data-jpa            |spring-data-jpa, spring-orm, Hibernate
-|spring-boot-starter-data-mongodb        |
-|spring-boot-starter-data-rest           |
-|spring-boot-starter-data-solr           |
-|spring-boot-starter-freemarker          |
-|spring-boot-starter-groovy-templates    |
-|spring-boot-starter-hateoas             |
-|spring-boot-starter-hornetq             |
-|spring-boot-starter-integration         |
-|spring-boot-starter-jdbc                |
-|spring-boot-starter-jersey              |Jersey RESTFul web
-|spring-boot-starter-jta-atomikos        |分布式事务
-|spring-boot-starter-jta-bitronix        |分布式事务
-|spring-boot-starter-mail                |
-|spring-boot-starter-mobile              |
-|spring-boot-starter-mustache            |
-|spring-boot-starter-redis               |
-|spring-boot-starter-security            |
-|spring-boot-starter-social-facebook     |
-|spring-boot-starter-social-linkedin     |
-|spring-boot-starter-social-twitter      |
-|spring-boot-starter-test                |
-|spring-boot-starter-thymeleaf           |template
-|spring-boot-starter-velocity            |template
-|spring-boot-starter-web                 |tomcat, spring-webmvc
-|spring-boot-starter-websocket           |
-|spring-boot-starter-ws                  |web service
-|spring-boot-starter-actuator            |指标和监控
-|spring-boot-starter-remote-shell        |远程ssh shell
 
 
 
-# command
-
-```
-mvn package #create jar
-mvn spring-boot:run #listen on 8080
-
-gradle build #create jar
-gradle bootRun #listen on 8080
-```
 
 
 # java web in Eclipse

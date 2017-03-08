@@ -961,6 +961,28 @@ dotnet run
 > - Redux:事件流
 > - component -> action -> reducer -> state -> component
 
+#### IDEA
+
+```
+npm install create-react-app
+
+newproject -> React App
+create-react-app:C:\Users\awd\AppData\Roaming\npm\node_modules\create-react-app
+run config -> npm 
+command:run
+script: start
+```
+
+
+
+
+
+
+
+
+
+
+
 #### basic useage 
 
 ```
@@ -1114,16 +1136,46 @@ ReactDOM.render(<App />, document.getElementById('container'));
 [angular.io](https://github.com/angular/angular.io) site for Angular 2 documentation<br>
 [doc](http://docs.angularjs.cn/api)<br>
 
-#### Angularjs in webstorm
+#### Angularjs in IDEA
 
 ```
-create angularjs project
-bower install
-add configuration as nodejs
-set work directory path
-Live Edit -> launch , and set default index.html path
-debug at random port
+newproject -> static web -> AngularJS
+run config -> npm 
+command:run
+script: start
+说明：
+npm start -> package.json中的start, 启动http-server
+依赖:
+bower -> bower.json
+    angular: 1.5
+    angular-route
+    angular-loader
+    angular-mocks
+    html5-boilerplate: 5.3
+http-server
+karma
 ```
+
+
+
+
+
+
+
+#### Angular CLI
+
+```
+npm install angular-cli
+newproject -> static web -> AngularCLI
+AngularCLI: C:\Users\awd\AppData\Roaming\npm\node_modules\angular-cli
+
+open localhost:4200
+```
+
+
+
+
+
 
 
 #### basic

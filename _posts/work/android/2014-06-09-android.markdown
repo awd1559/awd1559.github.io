@@ -49,8 +49,8 @@ com.android.support:appcompat-v7:newestVersion
 com.android.support:support-v4:newestVersion
 
 com.android.support:design:newestVersion
-com.android.support:recyclerview:
-com.android.support:cardview:
+com.android.support:recyclerview:newestVersion
+com.android.support:cardview-v7:newestVersion
 ```
 
 

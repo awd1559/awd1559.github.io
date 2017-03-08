@@ -1089,24 +1089,10 @@ void onCreate(Bundle savedInstanceState) {
 
 
 #### [glide](https://github.com/bumptech/glide)
-> - Android image loader
-
-> -  install
-
-```
-repositories {
-  mavenCentral() // jcenter() works as well because it pulls from Maven Central
-}
-
-dependencies {
-  compile 'com.github.bumptech.glide:glide:3.7.0'
-  compile 'com.android.support:support-v4:19.1.0'
-}
-```
+> - An image loading and caching library for Android focused on smooth scrolling
 
 
 #### [picasso](https://github.com/square/picasso)
-> - Android picasso by square
 > - image downloading and caching - by [square](https://square.github.io)
 
 > -  install
@@ -1140,7 +1126,6 @@ Picasso.with(context)
 # JSON
 
 #### [Gson](https://github.com/google/gson)</small>
-> - Gson: Google JSON for Android
 - convert Java Objects into JSON
 - convert a JSON string into Java object
 
@@ -1171,7 +1156,7 @@ String str = gson.fromJson("\"abc\"", String.class);
 String anotherStr = gson.fromJson("[\"abc\"]", String.class);
 ```
 
-> - Object
+> - POJO
 
 ```
 class BagOfPrimitives {
@@ -1194,10 +1179,12 @@ String json = gson.toJson(obj);
 // Deserialization
 BagOfPrimitives obj2 = gson.fromJson(json, BagOfPrimitives.class);
 // ==> obj2 is just like obj
+
+gson.fromJson(jsonString, new TypeToken<List<String>>(){}.getType());
 ```
 
 
-> - custom
+> - Custom
 
 ```
 GsonBuilder gson = new GsonBuilder();
@@ -1216,6 +1203,7 @@ private class DateTimeSerializer implements JsonSerializer<DateTime> {
     return new JsonPrimitive(src.toString());
   }
 }
+```
 
 > - Deserializer
 
@@ -1272,6 +1260,7 @@ User user = gson.fromJson(jsonString, User.class);
 
 #### [volley](https://android.googlesource.com/platform/frameworks/volley)
 > - Android volley by google
+> - suitable for small files
 > - [train](http://developer.android.com/intl/zh-cn/training/volley/index.html)
 
 > - install
@@ -1313,6 +1302,7 @@ HttpUrlConnection urlConnection = (HttpURLConnection) url.openConnection();
     urlConnection.disconnect();
 }
 ```
+
 
 
 > - RequestQueue
@@ -1378,6 +1368,7 @@ ImageLoader.ImageListener listener = ImageLoader.getImageListener(this.mImage, R
 imageLoader.get(url, listener);
 ```
 
+
 > - ImageListener
 
 ```
@@ -1411,6 +1402,13 @@ class FadeInImageListener implements ImageLoader.ImageListener {
   }
 }
 ```
+
+
+
+
+> - NetworkImageView
+
+
 
 
 > - cache
