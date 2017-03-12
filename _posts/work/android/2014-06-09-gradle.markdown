@@ -1404,6 +1404,98 @@ class FadeInImageListener implements ImageLoader.ImageListener {
 ```
 
 
+> - DiskBitmapCache
+
+```
+public  class DiskBitmapCache extends DiskBasedCache implements ImageCache {
+   
+  public DiskBitmapCache(File rootDirectory, int maxCacheSizeInBytes) {
+      super(rootDirectory, maxCacheSizeInBytes);
+  }
+
+  public DiskBitmapCache(File cacheDir) {
+      super(cacheDir);
+  }
+
+  public Bitmap getBitmap(String url) {
+      final Entry requestedItem = get(url);
+
+      if (requestedItem == null)
+          return null;
+
+      return BitmapFactory.decodeByteArray(requestedItem.data, 0, requestedItem.data.length);
+  }
+
+  public void putBitmap(String url, Bitmap bitmap) {
+      
+    final Entry entry = new Entry();
+      
+/*      //Down size the bitmap.If not done, OutofMemoryError occurs while decoding large bitmaps.
+  // If w & h is set during image request ( using ImageLoader ) then this is not required.
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+  Bitmap downSized = BitmapUtil.downSizeBitmap(bitmap, 50);
+  
+  downSized.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+  byte[] data = baos.toByteArray();
+      entry.data = data ; */
+  
+      entry.data = BitmapUtil.convertBitmapToBytes(bitmap) ;
+      put(url, entry);
+  }
+}
+```
+
+
+> - LruBitmapCache
+
+```
+public class LruBitmapCache extends LruCache<String, Bitmap> implement ImageCache {
+  public static int getDefaultLruCacheSize() {
+    final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+    final int cacheSize = maxMemory / 8;
+
+    return cacheSize;
+  }
+
+  public LruBitmapCache() {
+    this(getDefaultLruCacheSize());
+  }
+  
+  public LruBitmapCache(@NonNull final Context ctx) {
+    this(getCacheSize(ctx));
+  }
+
+  public LruBitmapCache(int sizeInKiloBytes) {
+    super(sizeInKiloBytes);
+  }
+
+  @Override
+  protected int sizeOf(String key, Bitmap value) {
+    return value.getRowBytes() * value.getHeight() / 1024;
+  }
+
+  @Override
+  public Bitmap getBitmap(String url) {
+    return get(url);
+  }
+
+  @Override
+  public void putBitmap(String url, Bitmap bitmap) {
+    put(url, bitmap);
+  }
+  
+  private static int getCacheSize(@NonNull final Context context) {
+    final DisplayMetrics displayMetrics = context.getResources().
+              getDisplayMetrics();
+    final int screenWidth = displayMetrics.widthPixels;
+    final int screenHeight = displayMetrics.heightPixels;
+    // 4 bytes per pixel
+    final int screenBytes = screenWidth * screenHeight * 4;
+
+    return screenBytes * 3;
+  }
+}
+```
 
 
 > - NetworkImageView
@@ -1422,47 +1514,11 @@ mRequestQueue.start();
 
 
 
-> - Request
-
-```
-public class GsonRequest<T> extends Request<T>{
-  private final Gson gson;
-  private final Response.Listener<T> listener;
-
-  @Override
-  protected void deliverResponse(T response) {
-    listener.onResponse(response);
-  }
-
-  @Override
-  protected Response<T> parseNetworkResponse(NetworkResponse response) {
-    String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-
-    return (Response<T>) Response.success(
-                            gson.fromJson(json, type),
-                            HttpHeaderParser.parseCacheHeaders(response));
-  }
-}
+> - Custom Request
+> - GesonRequest
+> - XmlRequest
 
 
-
-GsonRequest<Model> gsonObjRequest = new GsonRequest<Model>(Request.Method.GET, builder.toString(), 
-  new Response.Listener<FlickrResponsePhotos>(){
-    public void onResponse(Model response) {}
-  }, 
-  new Response.ErrorListener(){
-    @Override
-    public void onErrorResponse(VolleyError error) {
-      if( error instanceof NetworkError) {} 
-      else if( error instanceof ClientError) {} 
-      else if( error instanceof ServerError) {} 
-      else if( error instanceof AuthFailureError) {} 
-      else if( error instanceof ParseError) {} 
-      else if( error instanceof NoConnectionError) {} 
-      else if( error instanceof TimeoutError) {}
-    }
-  });
-```
 
 
 
@@ -1511,8 +1567,7 @@ String post(String url, String json) throws IOException {
       .url(url)
       .post(body)
       .build();
-  Response response = client.newCall(request).execute();
-  return response.body().string();
+  Response response = client.newCall(request).enqueue(...);
 }
 ```
 
@@ -1527,24 +1582,54 @@ String post(String url, String json) throws IOException {
 > - install 
 ```
 compile 'com.squareup.retrofit2:retrofit:2.2.0'
+compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+Gson: com.squareup.retrofit2:converter-gson
+Jackson: com.squareup.retrofit2:converter-jackson
+Moshi: com.squareup.retrofit2:converter-moshi
+Protobuf: com.squareup.retrofit2:converter-protobuf
+Wire: com.squareup.retrofit2:converter-wire
+Simple XML: com.squareup.retrofit2:converter-simplexml
+Scalars (primitives, boxed, and String): com.squareup.retrofit2:converter-scalars
 ```
 
 > - usage
 
 ```
+//POJO
+public class Repo {
+    public long id;
+    public String name;
+    @SerializedName("owner")
+    public Owner owner;
+}
+public class Owner {
+    public String login;
+    public long id;
+    public String url;
+}
+```
+
+
+```
+//base url
+Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.github.com/")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build();
+
+//define interface
 public interface GitHubService {
   @GET("users/{user}/repos")
   Call<List<Repo>> listRepos(@Path("user") String user);
 }
 
-Retrofit retrofit = new Retrofit.Builder()
-    .baseUrl("https://api.github.com/")
-    .build();
-
+//service instance
 GitHubService service = retrofit.create(GitHubService.class);
 
-//https://api.github.com/users/octocat/repos
-Call<List<Repo>> repos = service.listRepos("octocat");
+//GET https://api.github.com/users/octocat/repos
+Call<List<Repo>> call = service.listRepos("octocat");
+call.enqueue(...);
 ```
 
 > - api
@@ -1614,13 +1699,17 @@ Call<User> getUser(@Path("username") String username);
 Call<User> getUser(@Header("Authorization") String authorization)
 ```
 
-> - retrofit.RestAdapter or retrofit.CallAdpater
-> - converter by gson
-> - 
 
+> - custom converter
+> - Interface Converter.Factory
+
+```
+
+```
 
 
 #### [android-async-http](https://github.com/loopj/android-async-http)
+> - base on HttpClient
 
 #### [AndroidAsync](https://github.com/koush/AndroidAsync)
 

@@ -214,11 +214,13 @@ SimpleAdapter adapter = new SimpleAdapter(this, data,
 //使用Cursor数据指针adapter
 Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
 //use CursorLoader, LoaderManager
-startManagingCursor(c);
+// startManagingCursor(c);
 ListAdapter adapter = new SimpleCursorAdapter(this, 
     android.R.layout.simple_list_item_1, c,
     new String[] {People.NAME},
     new int[] {android.R.id.text1}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+
+getSupportLoaderManager().initLoader(0, null, this);
 ```
 
 
