@@ -8,19 +8,8 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - Apple
 ---
-# 基本语法
+# Basic
 
-#### 定义常量
-```
-let constValue = 99
-```
-
-#### 定义变量
-```
-var myValue = 90
-var myString = "Swi"
-myString += "ft"
-```
 
 #### Operators
 ```
@@ -34,90 +23,8 @@ func == (left: Person, right: Person) -> Bool{
 }
 ```
 
-#### Enum
-```
-enum CarType: String{
-    case Classic = "Classic"
-    case
-}
-```
 
-#### String
-```
-let value = "Guten Tag!"
-value[value.startIndex]                     //G
-value[value.endIndex.predecessor()]         //!
-value[value.startIndex.successor()]         //u
-let index = value.startIndex.advancedBy(7)
-value[index]                                //a
 
-for index in value.characters.indices {     //
-	value[index]
-}
-
-value.insert("!", atIndex: value.endIndex)
-value.removeAtIndex(value.endIndex.predecessor())
-
-if value.hasPrefix("!")
-if value.hasSuffix("!")
-```
-
-#### Array
-```
-var someInts = [Int]()
-someInt.append(3)
-someints = []
-
-var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
-var anotherThreeDoubles = Array(count: 3, repeatedValue: 2.5)
-var doubles = threeDoubles + anotherThreeDoubles
-
-if someInts.isEmpty
-
-someInts.insert(3, atIndex: 0)
-someInts.removeAll()
-someInts.removeFirst()
-someInts.removeAtIndex(0)
-someInts.removeLast()
-someInts.removeRange(range:Range)
-
-//遍历
-for item in someInts {						
-	print(item)
-}
-for ( index, value) in someInts.enumerate() {
-	print("Item \(index+1): \(value)")
-}
-```
-
-#### Set
-```
-var value: Set = ["Rock", "Rock", "Rock"]				//Rock
-value.isEmpty
-value.remove("Rock")
-value.contains("Rock")
-for v in value
-
-//集合操作
-a.intersect(b)           //a,b集合中都有的值
-a.exclusiveOr(b)         //a + b，但不在两个集合中的值
-a.union(b)               //a + b
-a.subtract(b)            //a - b
-```
-
-#### Dictionary
-```
-dict.isEmpty
-dict["name"] = "edw"
-
-if let name = dict["name"] {
-	//if dict has "name"
-}
-
-for (k, v) in dict { }
-for v in dict.keys { }
-for v in dict.vlaues  {  }
-```
 
 
 
@@ -125,33 +32,25 @@ for v in dict.vlaues  {  }
 
 #### Label
 
-#### AttributeText
 ```
+let message = UILabel()
+
+//AttributeText
 let shadow = NSShadow()
-shadow.shadowColor = UIColor.darkGrayColor()
+shadow.shadowColor = UIColor.darkGray
 shadow.shadowOffset = CGSize(width: 4, height: 4)
 
 let attribute = [
-	NSFontAttributeName: UIFont.boldSystemFontOfSize(60),
-	NSForegroundColorAttributeName: UIColor.whiteColor(),
-	NSBackgroundColorAttributeName: UIColor.greenColor(),
-	NSShadowAttributeName: shadow]
+    NSFontAttributeName: UIFont.boldSystemFont(ofSize: 60),
+    NSForegroundColorAttributeName: UIColor.white,
+    NSBackgroundColorAttributeName: UIColor.green,
+    NSShadowAttributeName: shadow]
+
+let result = NSMutableAttributedString(string: "message")
+result.setAttributes(attribute, range: NSMakeRange(0, 3))
+message.attributedText = result
 ```
 
-```
-let firstRange = NSRange(location: 0, length: 3)             //0,1,2
-let result = NSMutableAttributedString(string: stringValue)  //stringValue的[0-2]
-result.setAttributes(attribute, range: firstRange)           //stringValue的[0-2]设置attribute
-label.attributedText = result
-```
-
-```
-//在AttributedString使用中，无法使用Range取代NSRange
-let range = Range(start: 0, end: 2)effect
-//Blur Effect
-let blurEffect  = UIBlurEffect(style: .Light)
-let blurView   = UIVisualEffectView(effect: blurEffect)
-```
 
 ||NSFontAttributeName||字体||
 ||NSParagraphStyleAttributeName||段落格式||
@@ -169,27 +68,28 @@ let blurView   = UIVisualEffectView(effect: blurEffect)
 let textView = UITextView(frame: view.bounds)
 textView.text = "Some text goes here …"
 textView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-textView.font = UIFont.systemFontOfSize(16)
+textView.font = UIFont.systemFont(ofSize: 16)
+textView.delegate = self
 
-//UITextViewDelegate
 //UIKeyboard
+NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow(notification:)), name: .UIKeyboardDidShow, object: nil)
+NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 
-NSNotificationCenter.defaultCenter().addObserver(self, Selector("handleKeyboardDidShow:"), name: UIKeyboardDidShowNotification, object: nil)
-NSNotificationCenter.defaultCenter().addObserver(self, Selector("handleKeyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
 
+
+// MARK: UIKeyboard
 let defaultContentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-
 func handleKeyboardDidShow(notification: NSNotification) -> Void {
-  let keyboardRectAsObject = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-
-  var keyboardRect = CGRectZero
-  keyboardRectAsObject.getValue(&keyboardRect)
-
-  textView.contentInset = UIEdgeInsets(top: defaultContentInset.top, left: 0, bottom: keyboardRect.height, right: 0)
+    let keyboardRectAsObject = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+    
+    var keyboardRect = CGRect(x: 0, y: 0, width: 0, height: 0)
+    keyboardRectAsObject.getValue(&keyboardRect)
+    
+    textView.contentInset = UIEdgeInsets(top: defaultContentInset.top, left: 0, bottom: keyboardRect.height, right: 0)
 }
 
 func handleKeyboardWillHide(notification: NSNotification) -> Void {
-  textView.contentInset = defaultContentInset
+    textView.contentInset = defaultContentInset
 }
 ```
 
@@ -204,22 +104,23 @@ textField.placeholder = "Enter your text here…."
 textField.text = "Siri"
 textField.delegate = self
 
-//UITextFieldDelegate
-func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-  let range = Range(value.startIndex.advancedBy(8)..<value.startIndex.advancedBy(10))
-  textField.text.replaceRange(range, with: string)
-  return true
-}
-func textFieldShoudlReturn(textField: UITextField) -> Bool {
-  return true
+//extension ViewController: UITextFieldDelegate {
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    let range = Range(value.startIndex.advancedBy(8)..<value.startIndex.advancedBy(10))
+    textField.text.replaceRange(range, with: string)
+    return true
+  }
+  func textFieldShoudlReturn(textField: UITextField) -> Bool {
+    return true
+  }
 }
 ```
 
-- UITextField右侧显示¥符号
+> - UITextField右侧显示¥符号
 
 ```
 //let left = UILabel()
-//left.text = NSNumberFormatter().currencySymbol//$符号
+//left.text = NumberFormatter().currencySymbol//$符号
 //textField.leftView = left
 //textField.leftViewMode = UITextFieldViewMode.Always
 ```
@@ -256,8 +157,8 @@ NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWith
 
 //动态字体
 self.textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-这样设置之后，文本控件就会以用户设定的字体大小及粗细显示
-在系统字体修改时，系统会给运行中的程序发送UIContentSizeCategoryDidChangeNotification通知
+> - 这样设置之后，文本控件就会以用户设定的字体大小及粗细显示
+> - 在系统字体修改时，系统会给运行中的程序发送UIContentSizeCategoryDidChangeNotification通知
 [[NSNotificationCenter defaultCenter] addObserver:self 
   selector:@selector(preferredContentSizeChanged:) 
   name:UIContentSizeCategoryDidChangeNotification 
@@ -274,24 +175,19 @@ imageView.contentMode = .ScaleAspectFit
 
 #### UIButton
 ```
-let button: UIButton! = UIButton(type: .System)
+let normalImage = UIImage(named: "normal")
+let highlightedImage = UIImage(named: "high")
+
+let button = UIButton(type: .system)
 button.frame = CGRect(x: 100, y:100, width: 100, height: 100)
-button.setTitle("xxxx", forState: .Normal)
-button.setBackgroundImage(normalImage, forState: .Normal)
-button.setBackgroundImage(highlightedImage, forState: .Highlighted)
-button.addTarget(self, action: #selector(onTap(_:)),    forControlEvents: .TouchUpInside)
+button.setTitle("xxxx", for: .normal)
+button.setBackgroundImage(normalImage, for: .normal)
+button.setBackgroundImage(highlightedImage, for: .highlighted)
+button.addTarget(self, action: #selector(onTap(_:)),    for: .touchUpInside)
 self.view.addSubview(button)
 
-func onTap(sender: UIButton){
-  //code
+func onTap(_ sender: UIButton) {
 }
-
-UIButtonType.ContactAdd：前面带"+"图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
-UIButtonType.DetailDisclosure：前面带"!"图标按钮，默认文字颜色为蓝色，有触摸时的高亮效果
-UIButtonType.System：前面不带图标，默认文字颜色为蓝色，有触摸时的高亮效果
-UIButtonType.Custom：定制按钮，前面不带图标，默认文字颜色为白色，无触摸时的高亮效果
-UIButtonType.InfoDark：为感叹号"!"圆形按钮
-UIButtonType.InfoLight：为感叹号"!"圆形按钮
 ```
 
 #### Progress
@@ -328,37 +224,11 @@ myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
 
 #### Alert
 
-- UIAlertView
-iOS8开始废弃，使用UIAlertController
+> - UIAlertView, Deprecated, use UIAlertController
 
-```
-var alertview: UIAlertView = UIAlertView()
-alertview.title = "title"
-alertview.message = "message"
-alertview.addButtonWithTitle("click me")
-alertview.delegate = self 	//UIAlertViewDelegate
-alertview.show()
+> - UIActionSheet, Deprecated, use UIAlertController
 
-UIAlertViewDelegate
-	alertView:clickedButtonAtIndex:
-	alertViewShouldEnableFirstOtherButton
-	willPresentAlertView:
-	didPresentAlertview:
-	alertView:willDismissWithButtonIndex:
-	alertView:didDismissWithButtonIndex:
-
-func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-  let buttonTitle = alertview.buttonTitleAtIndex(buttonIndex)
-  message.text = String(format: "clicked on %@", buttonTitle!)
-}
-```
-
-- UIActionSheet
-iOS8开始废弃，使用UIAlertController
-UIActionSheetDelegate
-
-
-- UIAlertController
+> - UIAlertController
 
 ```
 let controller = UIAlertController(title: "title", message: "message", preferredStyle: .ActionSheet)	//.Alert
@@ -705,16 +575,16 @@ self.myCollectionView.dataSource = self;
 self.view addSubview:self.myCollectionView;
 ```
 
-Layout决定CollectinView如何显示在界面上
-FlowLayout是一个Cells的线性布局方案， 具有header & footer
-定制：
-sizeForItemAtIndexPath
-minimumInteritemSpacingForSectionAtIndex
-referenceSizeForHeaderInSection
-referenceSizeForFooterInSection
-insetForSectionAtIndex
+> - Layout决定CollectinView如何显示在界面上
+> - FlowLayout是一个Cells的线性布局方案， 具有header & footer
+> - 定制：
+> - sizeForItemAtIndexPath
+> - minimumInteritemSpacingForSectionAtIndex
+> - referenceSizeForHeaderInSection
+> - referenceSizeForFooterInSection
+> - insetForSectionAtIndex
 
-
+```
 UICollectionViewDataSource
 numberOfSectionsInCollectionView
 numberOfItemsInSection
@@ -722,8 +592,8 @@ cellForItemAtIndexPath
 viewForSupplementaryElementOfKind atIndexPath
 
 
-
 UICollectionViewDelegate
+```
 
 
 #### Navigation
@@ -731,7 +601,7 @@ UICollectionViewDelegate
 let nav = UINavigationController(rootViewController:)
 ```
 
-- titleview
+> - titleview
 ```
 let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
 imageView.contentMode = .ScaleAspectFit
@@ -739,7 +609,7 @@ imageView.image = UIImage(named:"Logo")
 navigationItem.titleView = imageView
 ```
 
-- BarButtonItem
+> - BarButtonItem
 ```
 //action function
 func performAdd(sender: UIBarButtonItem) {
@@ -757,27 +627,12 @@ switch.on = true
 navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
 ```
 
-- push viewController
+> - push viewController
 ```
 self.navigationController.pushViewController(detailViewController, animated:true)
 ```
 
-#### UITabBar
-```
-let c1 = MyViewController()
-let c2= MyViewController()
-let tabBarController = UITabBarController()
-tabBarController.viewControllers = [c1, c2]
 
-//自定义tab
-class MyViewController: UIViewController
-override init(nibName: String,  bundle:NSBundle) {
-	super.init(nibName, bundle)
-  self.tabBarItem.title = "Hypnotize"
-  let image = UIImage(named:"Hypno.png")
-  self.tabBarItem.image = image
-}
-```
 
 
 #### UIScrollView
@@ -793,7 +648,7 @@ UIScrollViewDelegate
 	scrollViewDidEndDragging:willDecelerate:
 ```
 
-- page
+> - page
 
 ```
 scroll.pagingEnabled = true
@@ -1015,6 +870,7 @@ self.events = array;
 ```
 
 #### 添加Reminder
+
 ```
 NSDate *date = self.datePicker.date;
 UILocalNotification *note = [[UILocalNotification alloc] init];
@@ -1025,6 +881,7 @@ note.fireDate = date;
 ```
 
 #### 随机数
+
 ```
 int x = arc4random() % 100;			[0,100)包括0，不包括100
 int y = (arc4random() % 501) + 500;		[500,1000]，包括500，包括1000
@@ -1036,8 +893,9 @@ int y = (arc4random() % 501) + 500;		[500,1000]，包括500，包括1000
 }
 ```
 #### Resources
-new->Resources->Settings.bundle
-系统Setting里就多一项
+> - new->Resources->Settings.bundle
+> - 系统Setting里就多一项
+
 ```
 NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 [defaults stringForKey:@""];
@@ -1052,22 +910,16 @@ NSAssert([viewControllerKlass isSubclassOfClass:[UIViewController class]], @"Cla
 UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibName:nil bundle:nil];
 ```
 
-#### iOS应用的5种状态LifeCycle
-not running: 没有运行或者被系统终止   
-Inactive:      正在进入前台，不能接收事件
-Active:        能接收事件
-Background: 后台，依然可执行代码，如果可执行代码结束，进入挂起
-Suspended:  不能执行代码，如果内存不够，会被终止
-
-//状态的保存恢复
-application:shouldSavaeApplicationState	应用退出时调用，控制是否允许保存状态
-application:shouldRestoreApplicationState	应用启动时调用，是否恢复上次退出时的状态
-application:willEncodeResorableStateWithCoder	保存状态时调用，实现UI状态的保存
-application:didDecodeRestorableStateWithCoder	恢复时调用，恢复上次保存的数据
-实现具体界面控件的保持和恢复，要在相应viewcontroller中添加代码
+#### App's LifeCycle
+> - not running:  没有运行或者被系统终止   
+> - Inactive:     正在进入前台，不能接收事件
+> - Active:       能接收事件
+> - Background:   后台，依然可执行代码，如果可执行代码结束，进入挂起
+> - Suspended:    不能执行代码，如果内存不够，会被终止
 
 
-## Hardware
+
+# Hardware
 
 ####  Touch
 覆盖UIResponder的touchesBegan等方法就可以接受touch
@@ -1183,6 +1035,154 @@ animation.toValue = endPath
 
 View.animateWithDuration
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AutoLayout
+
+#### better use SnapKit
+
+```
+yellowView.snp.makeConstraints { make in
+    make.left.equalTo(self.view).offset(20)
+    make.top.equalTo(self.view).offset(20)
+    make.width.height.equalTo(100)
+}
+
+redView.snp.makeConstraints { make in
+    make.left.equalTo(yellowView.snp.right).offset(80)
+    make.top.equalTo(yellowView.snp.top)
+    make.height.width.equalTo(yellowView)
+}
+```
+
+
+#### LayoutGuide 
+> - since iOS9
+> - a placehoder view
+> - UILaoutGuide/NSLayoutGuide
+
+
+#### NSLayoutAnchor
+
+```
+orangeView.translatesAutoresizingMaskIntoConstraints = false
+orangeView.topAnchor.constraint(equalTo: yellowView.bottomAnchor).isActive = true
+orangeView.leftAnchor.constraint(equalTo: yellowView.leftAnchor).isActive = true
+orangeView.widthAnchor.constraint(equalTo: yellowView.widthAnchor, multiplier: 1, constant: 0).isActive = true
+orangeView.heightAnchor.constraint(equalTo: yellowView.heightAnchor, multiplier: 1, constant: 0).isActive = true
+
+greenView.translatesAutoresizingMaskIntoConstraints = false
+greenView.topAnchor.constraint(equalTo: orangeView.topAnchor).isActive = true
+greenView.leftAnchor.constraint(equalTo: orangeView.rightAnchor, constant: 80).isActive = true
+greenView.heightAnchor.constraint(equalTo: orangeView.heightAnchor).isActive = true
+greenView.widthAnchor.constraint(equalTo: orangeView.widthAnchor).isActive = true
+```
+
+
+#### addConstraints
+
+```
+// [0]
+view.translatesAutoresizingMaskIntoConstraints = false
+
+
+// [1] prepare views
+let headerView = UIView()
+let avatar = UIImageView()
+let nameLabel = UILabel()
+headerView.addSubview(avatar)
+headerView.addSubview(nameLabel)
+let views = ["avatar":avatar, "nameLabel":nameLabel]
+
+
+// [2] add constraints with VFL
+// avatar.height = 60
+headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+    "V:[avatar(60)]-10-[nameLabel]-15-|",
+    options:.AlignAllCenterX,
+    metrics:nil,
+    views:views))
+
+
+// [3] use matrics param
+let metrics = ["x": UIScreen.mainScreen().bounds.size.width / 4 - 15]
+
+//avatar's left offset screen.s left: 1/4 width - 15, avatar.width = 60
+headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+    "|-x-[avatar(60)]",
+    options:[],
+    metrics:metrics,
+    views:views))
+
+
+
+
+
+
+// add constraints with NSLayoutAttribute
+//logo.centerx = view.centerx * 1 + 0
+
+self.view.addConstraint(NSLayoutConstraint(item:logo,      
+    attribute:NSLayoutAttribute.CenterX,
+    relatedBy:NSLayoutRelation.Equal,
+    toItem:self.view,
+    attribute:NSLayoutAttribute.CenterX,
+    multiplier:1.0,
+    constant:0))
+```
+
+#### Visual Format Language
+
+```
+H:[button]-[textField]    标准间距
+H:[button]—8-[textField]  水平间距8
+H:[button(>=50)]    button.width >=50
+H:|-50-[box]-50-|   距左边50，右边50；
+V:[topField]-10-[buttonField] 垂直间距10
+
+[maroonView][oceanView]   Flush Views
+[button(100@20)]    Priority
+[button1(==button2)]    Equal Widths
+[flexButton(>=70, <=100)]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

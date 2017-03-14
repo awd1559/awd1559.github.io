@@ -1,22 +1,66 @@
 ---
 layout:     post
-title:      "apple script"
-subtitle:   " \"apple script\""
+title:      "apple"
+subtitle:   " \"all about apple development\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 tags:
     - Apple
 ---
-利用AppleScript实现流程自动化
-不要求大小写
-一旦发现错误，后面的内容不再执行
+# StoryBoard
+> - 全部在100%显示下添加控件，否则无法操作
 
-注释
+
+#### navigation
+> - 添加UINavigationController
+> - Attributes面板 ->  Is initial View Controller,设为初试页面
+
+> - 拖入一个Navigation View Controller到storyboard, 属性设为Is Initial View Controller
+> - 拖入普通的ViewController
+> - ctrl+鼠标左键: 拖动到ViewController， 选择 root view controller
+> - Editor -> Embedded in -> Navigation Controller
+
+#### 跳转时带参数
+> - Segue就是类UIStoryboardSegue的实例
+> - 当跳转时当前视图会收到prepareForSegue:send:消息
+
+```
+-(void)prepareForSegue:(UIStoryboardSegue *) segue sender:(id)sender{
+	secondViewController* second = segue.destinationViewController;        
+	[second setText: myInput.text];                  //实例未初始化nib
+}
+```
+
+#### tab
+> - storyboard中添加Tab Bar Controller
+> - Editor -> Embeded in -> Tab bar Controller
+
+
+
+
+
+
+
+
+
+
+
+# AppleScript
+
+> - 利用AppleScript实现流程自动化
+> - 不要求大小写
+> - 一旦发现错误，后面的内容不再执行
+
+> - 注释
+
+```
 #
 -
 (**)
+```
 
+```
 beep	
 beep 2
 say “this is a spoken s” using “Zarvox”
@@ -69,4 +113,4 @@ end considering
 ignoring white space
 	…… #这里忽略空格、换行、制表符
 end ignoring
- 
+```
