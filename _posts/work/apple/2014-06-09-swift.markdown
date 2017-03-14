@@ -262,7 +262,8 @@ label.font = UIFont.boldSystemFontOfSize(14)
 var switch = UISwitch(frame: CGRect(x: 100, y: 100, width: 0, height: 0))
 ```
 
-- custom
+> - custom
+
 ```
 switch.tintColor = UIColor.redColor()
 switch.onTintColor = UIColor.brownColor()
@@ -322,6 +323,7 @@ func updateSearchResultsForSearchController(searchController: UISearchController
 ```
 
 #### UIPickerView
+
 ```
 var picker = UIPickerView()
 picker.dataSource = self		//UIPickerViewDataSource
@@ -352,6 +354,7 @@ UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewContr
 ```
 
 ##### UIDatePicker
+
 ```
 var datePicker = UIDatePicker()
 let today = NSDate()
@@ -368,6 +371,7 @@ let date = picker.date
 ```
 
 #### UISlider
+
 ```
 let slider = UISlider(frame: CGRect(x:0, y:0, width: 200, height:23))
 slider.minimumValue = 0
@@ -399,6 +403,7 @@ func sliderValueChanged(slider: UISlider) {
 ```
 
 #### UISegmentedController
+
 ```
 var segmentedController = UISegmentedControl(items: ["iPhone", "iPad", "iPod"])
 
@@ -417,7 +422,7 @@ func segmentedControlValueChanged(sender: UISegmentedControl) {
 [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 ```
 
-- tableview by code
+> - tableview by code
 
 ```
 class ViewController: UIViewController, UITableViewDataSource {
@@ -450,7 +455,7 @@ class ViewController: UIViewController, UITableViewDataSource {
 }
 ```
 
-- 下拉刷新
+> - 下拉刷新
 
 
 ```
@@ -486,7 +491,7 @@ self.refreshControl = rc;
 }
 ```
 
-- 切换编辑模式
+> - 切换编辑模式
 
 ```
 - (IBAction)toggleEditingMode:(id)sender {
@@ -502,7 +507,7 @@ self.refreshControl = rc;
 }
 ```
 
-- 表编辑－move
+> - 表编辑－move
 
 ```
 UITableViewDataSource
@@ -516,7 +521,7 @@ UITableViewDataSource
 }
 ```
 
-- 表编辑－删除
+> - 表编辑－删除
 
 ```
 UITableViewDataSource
@@ -597,11 +602,13 @@ UICollectionViewDelegate
 
 
 #### Navigation
+
 ```
 let nav = UINavigationController(rootViewController:)
 ```
 
 > - titleview
+
 ```
 let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
 imageView.contentMode = .ScaleAspectFit
@@ -610,6 +617,7 @@ navigationItem.titleView = imageView
 ```
 
 > - BarButtonItem
+
 ```
 //action function
 func performAdd(sender: UIBarButtonItem) {
@@ -628,6 +636,7 @@ navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
 ```
 
 > - push viewController
+
 ```
 self.navigationController.pushViewController(detailViewController, animated:true)
 ```
@@ -636,6 +645,7 @@ self.navigationController.pushViewController(detailViewController, animated:true
 
 
 #### UIScrollView
+
 ```
 let scrollView = UIScrollView(frame: view.bounds)
 scrollView.addSubview(imageView)
@@ -674,7 +684,8 @@ scroll.contentSize = CGSize(width:Int, height:Int)
 }
 ```
 
-回车取消键盘显示
+> - 回车取消键盘显示
+
 ```
 #pragma mark — UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -693,6 +704,7 @@ scrollView.pagingEnabled = YES;
 
 #### UIWebView
 
+```
   WebKit
   loadHTMLString:baseURL
   loadData:MIMEType:textEncodingName:baseURL
@@ -727,9 +739,10 @@ scrollView.pagingEnabled = YES;
   	var uri = 'gap://XXXClass.XXXmethod#' + JSONString;
   	window.location = uri;
   }
+```
 
 
-  UIWebViewDelegate
+> - UIWebViewDelegate
 
 ```
   - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -811,8 +824,8 @@ deinit {
 ```
 
 #### KVO
-Key-Value-Coding
-Key-Value-Observe
+> - Key-Value-Coding
+> - Key-Value-Observe
 
 ```
 class DataModel: NSObject {
@@ -861,6 +874,7 @@ if Float(UIDevice.currentDevice().systemVersion) >= Float(8.0) {
 ```
 
 #### 读取文件
+
 ```
 NSBundle *bundle = [NSBundle mainBundle];
 NSString *plistPath = [bundle pathForResource:@"events" ofType:@"plist"];
@@ -892,6 +906,8 @@ int y = (arc4random() % 501) + 500;		[500,1000]，包括500，包括1000
     return (int)(from + (arc4random() % (to – from + 1)));
 }
 ```
+
+
 #### Resources
 > - new->Resources->Settings.bundle
 > - 系统Setting里就多一项
@@ -903,6 +919,7 @@ if([defaults boolForKey"@""]){}
 ```
 
 #### 反射
+
 ```
 Class viewControllerKlass = NSClassFromString(@"xxxxViewController");
 NSAssert(viewControllerKlass, @"Class should not be nil!");
@@ -922,7 +939,7 @@ UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibN
 # Hardware
 
 ####  Touch
-覆盖UIResponder的touchesBegan等方法就可以接受touch
+> - 覆盖UIResponder的touchesBegan等方法就可以接受touch
 
 ```
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -940,6 +957,7 @@ UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibN
 ```
 
 #### Gesture
+
 ```
 UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc]  initWithTarget:self  action:@selector(doubleTap:)];
 doubleTapRecognizer.numberOfTapsRequired = 2;
@@ -947,7 +965,8 @@ doubleTapRecognizer.delaysTouchesBegan = YES;
 [myUIView addGestureRecognizer:doubleTapRecognizer];
 ```
 
-或者
+or
+
 ```
 UIPanGestureRecognizer *moveRecognizer；
 self.moveRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveLine:)];
@@ -956,7 +975,8 @@ self.moveRecognizer.cancelsTouchesInView = NO;
 [self addGestureRecognizer:self.moveRecognizer];
 ```
 
-UIGestureRecognizerDelegate
+> - UIGestureRecognizerDelegate
+
 ```
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
     shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other
@@ -969,6 +989,7 @@ UIGestureRecognizerDelegate
 ```
 
 #### Camera
+
 ```
 let imagePicker = UIImagePickerController()
 imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext
@@ -983,7 +1004,8 @@ imagePicker.delegate = self
 self.presentViewController(imagePicker, animated:true, completion:nil)
 ```
 
-UIImagePickerControllerDelegate
+> - UIImagePickerControllerDelegate
+
 ```
 override func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[String:AnyObject]) {
   let image = info[UIImagePickerControllerOriginalImage]
@@ -1013,6 +1035,7 @@ override func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 
 
 ## Animations
+
 ```
 animation CABasicAnimation(keyPath: "path")
 animation.fromValue = startPath
@@ -1186,18 +1209,15 @@ V:[topField]-10-[buttonField] 垂直间距10
 
 
 
-swift 坑
-Library not loaded : 真机无法使用
-Build Setting -> Embeded Content Contains Swift code -> YES
-
-Cannot assign to property:"xxx" is a get-only
-
-cocoaPods > 0.39.0
 
 
-Objective-c to Swift
 
+
+# Objective-C to Swift
+
+```
 enumerateObjectsUsingBlock
+
 for (index, value) in array.enumerate() {
     static var stop = false
     if stop {
@@ -1235,29 +1255,6 @@ String.stringByReplacingCharactersInRange(Range, withString:NSString)
 CoreGraphics
 kCGInterpolationNone
   CGInterpolationQuality.None
+```
 
 
-
-app目录结构
-iOS
-
-Application
-
-Controller
-
-Model
-
-Library
-	views
-	service
-	utils
-	extensions
-
-Resource
-Api
-Vendors
-
-Pod
-
-命令行编译
-xcodebuild -workspace OSChina-swift.xcworkspace -scheme OSChina-swift -target OSChina-swift – configuration Debug

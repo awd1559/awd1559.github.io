@@ -79,7 +79,8 @@ carhage update
 > - select project -> target -> build phases -> Link binary with Libraries
 
 
-> - objective-c 
+> - objective-c
+
 ```
 #import "iCarousel.h"
 @interface : UIViewController<iCarouselDataSource, iCarouselDelegate>
@@ -149,8 +150,8 @@ carousel!.bounceDistance = 0.2
 view.addSubview(carousel!)
 ```
 
-iCarouselDataSource
-iCarouselDelegate
+> - iCarouselDataSource
+> - iCarouselDelegate
 
 ```
 extension ViewController: iCarouselDataSource{
@@ -321,16 +322,6 @@ ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:se
 
 
 > - autolayout
-> - 用起来都不是很好，直接使用Storyboard，可以很好很直观的解决问题
-> - storyboard中还可以使用tab、nav、跳转
-
-
-
-#### [Neon](https://github.com/mamaral/Neon)
-
-#### [pureLayout](/2014/06/09/cocoapod-pureLayout)
-
-
 
 
 #### [SnapKit](https://github.com/SnapKit/SnapKit)
@@ -1005,20 +996,19 @@ let year: Int = date.year
 let month  = date.month
 
 let day = date.dayWithCalendar(calendar)
-```
+
 
 //日期比较
 isEarlierThan
 isEarlierThanOrEqualTo
 isLaterThan
 isLaterThanOrEqualTo
+```
 
 
-> - 参考Timepiece
 
-> - 对于Swift，Timepiece更方便
-> - [Timepiece](https://github.com/naoty/Timepiece)
 
+#### [Timepiece](https://github.com/naoty/Timepiece)
 > - install
 
 ```
@@ -1502,6 +1492,7 @@ pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2
 ```
 
 > - usage
+
 ```
 let button = SpringButton()
 button.animation = Spring.AnimationPreset.Shake.rawValue
@@ -1531,9 +1522,6 @@ SpringTextView
 
 	
 # JSON
-
-
-
 
 
 ####[ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
@@ -1745,15 +1733,15 @@ pod 'FMDB'
 
 ```
 //存在打开，不存在则创建
-//@“”: 在临时文件夹创建空数据库
+//@"": 在临时文件夹创建空数据库
 //NULL: 内存数据库
-FMDatabase *db = [FMDatabase databaseWithPath:@“/tmp/tmp.db"];
+FMDatabase *db = [FMDatabase databaseWithPath:@"/tmp/tmp.db"];
 
 if (![db open]) {
     [db release];
     return;
 }
-NSString *sql = @“CREATE TABLE ‘User’ (‘id’ INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ‘name’ VARCHAR(30), ‘password’ VARCHAR(30)) ”;
+NSString *sql = @"CREATE TABLE 'User' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'name' VARCHAR(30), 'password' VARCHAR(30)) ";
 BOOL res = db executeUpdate:sql
 if (!res)
 
