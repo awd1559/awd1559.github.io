@@ -8,24 +8,6 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - Apple
 ---
-# Basic
-
-
-#### Operators
-```
-//可以重写operator
-func == (left: Person, right: Person) -> Bool{
-    if left.firstname == right.firstname && left.lastname == right.lastname {
-        return true
-    } else {
-        return false
-    }
-}
-```
-
-
-
-
 
 
 # UI
@@ -280,47 +262,7 @@ func switchIsChanged(sender: UISwitch) {
 }
 ```
 
-#### UISearchController
 
-```
-class ResultsTableController: UITableViewController {}
-
-class MainViewController : UITableViewController, UISearchResultsUpdating
-  var searchController: UISearchController!
-  var resultsTableController = ResultsTableController()
-
-func viewDidLoad() {
-  resultsTableController.tableView.dataSource = self
-  searchController = UISearchController(searchResultsController:resultsTableController)
-  searchController.searchResultsUpdater = self
-  searchController.searchBar.sizeToFit()
-  tableView.tableHeaderView = searchController.searchBar
-
-  searchController.dimsBackgroundDuringPresentation = false
-  searchController.hidesNavigationBarDuringPresentation = false
-  let x = searchController.searchBar.frame.origin.x
-  let y = searchController.searchBar.frame.origin.y
-  let w = searchController.searchBar.frame.size.width
-  searchController.searchBar.frame = CGRect(x: x, y: y, width: w, height: 44.0)
-}
-
-//MARK: UISerachResultsUpdating
-func updateSearchResultsForSearchController(searchController: UISearchController) {
-  if searchController.searchBar.text == nil || searchController.searchBar.text!.isEmpty{
-    searchlist = data
-    tableView.reloadData()
-    return
-  }
-        
-  let searchString = searchController.searchBar.text!
-    if searchlist.count > 0 {
-      searchlist.removeAll()
-    }
-  searchlist = data.filter{$0.containsString(searchString)}
-  resultsTableController.filteredProducts = searchlist
-  resultsTableController.tableView.reloadData()
-}
-```
 
 #### UIPickerView
 
@@ -344,14 +286,7 @@ UIPickerViewDelegate
   }
 ```
 
-#### UIPopoverController
 
-```
-ContentViewController *popoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectViewController"];
-UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:popoverViewController];
-UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:nav];
-[pop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-```
 
 ##### UIDatePicker
 
@@ -402,18 +337,7 @@ func sliderValueChanged(slider: UISlider) {
 }
 ```
 
-#### UISegmentedController
 
-```
-var segmentedController = UISegmentedControl(items: ["iPhone", "iPad", "iPod"])
-
-segmentedControl.addTarget(self, action: "segmentedControlValueChanged:", forControlEvents: .ValueChanged)
-
-func segmentedControlValueChanged(sender: UISegmentedControl) {
-  let index = sender.selectedSegmentIndex
-  let title = sender.titleForSegmentAtindex(index)
-}
-```
 
 
 #### UITableView
@@ -601,106 +525,7 @@ UICollectionViewDelegate
 ```
 
 
-#### Navigation
 
-```
-let nav = UINavigationController(rootViewController:)
-```
-
-> - titleview
-
-```
-let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-imageView.contentMode = .ScaleAspectFit
-imageView.image = UIImage(named:"Logo")
-navigationItem.titleView = imageView
-```
-
-> - BarButtonItem
-
-```
-//action function
-func performAdd(sender: UIBarButtonItem) {
-}
-
-//title
-navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "performAdd:")
-
-//systemItem
-navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "performAdd:")
-
-//custom view
-let switch = UISwitch()
-switch.on = true
-navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
-```
-
-> - push viewController
-
-```
-self.navigationController.pushViewController(detailViewController, animated:true)
-```
-
-
-
-
-#### UIScrollView
-
-```
-let scrollView = UIScrollView(frame: view.bounds)
-scrollView.addSubview(imageView)
-scrollView.contentSize = imageView.bounds.size
-
-UIScrollViewDelegate
-	scrollViewDidScroll
-	scrollViewWillBeginDecelerating
-	scrollViewDidEndDecelerating
-	scrollViewDidEndDragging:willDecelerate:
-```
-
-> - page
-
-```
-scroll.pagingEnabled = true
-scroll.contentSize = CGSize(width:Int, height:Int)
-```
-
-![scroll1](/img/in-post/work-apple-scroll1.png) ![scroll2](/img/in-post/work-apple-scroll2.png) ![scroll3](/img/in-post/work-apple-scroll3.png)
-
-```
--(void) viewWillAppear:(BOOL)animated {
-    //注册键盘出现通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (keyboardDidShow:) name: UIKeyboardDidShowNotification object:nil];
-    //注册键盘隐藏通知
-   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (keyboardDidHide:) name: UIKeyboardDidHideNotification object:nil];
-   [super viewWillAppear:animated];
-}
--(void) viewWillDisappear:(BOOL)animated {
-    //解除键盘出现通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self  name: UIKeyboardDidShowNotification object:nil];
-    //解除键盘隐藏通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self name: UIKeyboardDidHideNotification object:nil];
-    [super viewWillDisappear:animated];
-}
-```
-
-> - 回车取消键盘显示
-
-```
-#pragma mark — UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-```
-
-```
-CGRect screenRect = self.window.bounds;
-UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
-scrollView.pagingEnabled = YES;
-[self.window addSubview:scrollView];
-```
 
 #### UIWebView
 
@@ -810,7 +635,382 @@ let nib = UINib(nibName: "cell", bundle: nil)
 ```
 
 
-## System
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Layout
+
+#### root view
+
+```
+window = UIWindow(frame: UIScreen.main.bounds)
+window?.rootViewController = navigation
+window?.backgroundColor = UIColor.white
+window?.makeKeyAndVisible()
+```
+
+
+
+#### Navigation
+
+```
+//screen top
+let navigation = UINavigationController()
+let first = FirstView()
+let navigation = UINavigationController(rootViewController: first)
+
+//in first
+let second = SecondView()
+navigationController?.pushViewController(second, animated: false)
+
+
+//UINavigationBar: in one app only have one UINavigationBar
+navigationController?.navigationBar.backgroundColor = UIColor.orange
+
+//UINavigationItem: leftBarButtonItem, rightBarButtonItem
+```
+
+
+> - titleview
+
+```
+let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+imageView.contentMode = .ScaleAspectFit
+imageView.image = UIImage(named:"Logo")
+navigationItem.titleView = imageView
+```
+
+> - BarButtonItem
+
+```
+//action function
+func performAdd(sender: UIBarButtonItem) {
+}
+
+//title
+navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "performAdd:")
+
+//systemItem
+navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "performAdd:")
+
+//custom view
+let switch = UISwitch()
+switch.on = true
+navigationItem.rightBarButtonItem = UIBarButtonItem(customView: switch)
+```
+
+> - push viewController
+
+```
+self.navigationController.pushViewController(detailViewController, animated:true)
+```
+
+
+
+
+
+
+
+
+#### UIToolbar
+
+```
+//screen bottom
+navigationController?.setToolbarHidden(false, animated: true)
+let add = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+let save = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
+let action = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+let search = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+let flexibleItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+toolbarItems = [add, flexibleItem, save, flexibleItem, action, flexibleItem, search]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Tab
+
+```
+let first = FirstView()
+first.tabBarItem.title = "first"
+first.tabBarItem.image = 
+let second = SecondView()
+second.tabBarItem.title = "second"
+second.tabBarItem.image = 
+
+let tab = UITabBarController()
+tab.viewControllers = [first, second]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### UISearchController
+
+
+
+> - UISearchBar
+
+```
+let w = UIScreen.main.bounds.width
+let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: w, height: 100))
+searchBar.prompt = "选择"
+searchBar.showsCancelButton = true
+view.addSubview(searchBar)
+```
+
+
+```
+class ResultsTableController: UITableViewController {}
+
+class MainViewController : UITableViewController, UISearchResultsUpdating
+  var searchController: UISearchController!
+  var resultsTableController = ResultsTableController()
+
+func viewDidLoad() {
+  resultsTableController.tableView.dataSource = self
+  searchController = UISearchController(searchResultsController:resultsTableController)
+  searchController.searchResultsUpdater = self
+  searchController.searchBar.sizeToFit()
+  tableView.tableHeaderView = searchController.searchBar
+
+  searchController.dimsBackgroundDuringPresentation = false
+  searchController.hidesNavigationBarDuringPresentation = false
+  let x = searchController.searchBar.frame.origin.x
+  let y = searchController.searchBar.frame.origin.y
+  let w = searchController.searchBar.frame.size.width
+  searchController.searchBar.frame = CGRect(x: x, y: y, width: w, height: 44.0)
+}
+
+//MARK: UISerachResultsUpdating
+func updateSearchResultsForSearchController(searchController: UISearchController) {
+  if searchController.searchBar.text == nil || searchController.searchBar.text!.isEmpty{
+    searchlist = data
+    tableView.reloadData()
+    return
+  }
+        
+  let searchString = searchController.searchBar.text!
+    if searchlist.count > 0 {
+      searchlist.removeAll()
+    }
+  searchlist = data.filter{$0.containsString(searchString)}
+  resultsTableController.filteredProducts = searchlist
+  resultsTableController.tableView.reloadData()
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### UIPageControl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### UIScrollView
+
+```
+let scrollView = UIScrollView(frame: view.bounds)
+scrollView.addSubview(imageView)
+scrollView.contentSize = imageView.bounds.size
+
+UIScrollViewDelegate
+  scrollViewDidScroll
+  scrollViewWillBeginDecelerating
+  scrollViewDidEndDecelerating
+  scrollViewDidEndDragging:willDecelerate:
+```
+
+> - page
+
+```
+scroll.pagingEnabled = true
+scroll.contentSize = CGSize(width:Int, height:Int)
+```
+
+![scroll1](/img/in-post/work-apple-scroll1.png) ![scroll2](/img/in-post/work-apple-scroll2.png) ![scroll3](/img/in-post/work-apple-scroll3.png)
+
+```
+-(void) viewWillAppear:(BOOL)animated {
+    //注册键盘出现通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (keyboardDidShow:) name: UIKeyboardDidShowNotification object:nil];
+    //注册键盘隐藏通知
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (keyboardDidHide:) name: UIKeyboardDidHideNotification object:nil];
+   [super viewWillAppear:animated];
+}
+-(void) viewWillDisappear:(BOOL)animated {
+    //解除键盘出现通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self  name: UIKeyboardDidShowNotification object:nil];
+    //解除键盘隐藏通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self name: UIKeyboardDidHideNotification object:nil];
+    [super viewWillDisappear:animated];
+}
+```
+
+> - 回车取消键盘显示
+
+```
+#pragma mark — UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+```
+
+```
+CGRect screenRect = self.window.bounds;
+UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+scrollView.pagingEnabled = YES;
+[self.window addSubview:scrollView];
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### UIPopoverController
+
+```
+ContentViewController *popoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectViewController"];
+UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:popoverViewController];
+UIPopoverController *pop = [[UIPopoverController alloc] initWithContentViewController:nav];
+[pop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+```
+
+#### UISegmentedController
+
+```
+var segmentedController = UISegmentedControl(items: ["iPhone", "iPad", "iPod"])
+
+segmentedControl.addTarget(self, action: "segmentedControlValueChanged:", forControlEvents: .ValueChanged)
+
+func segmentedControlValueChanged(sender: UISegmentedControl) {
+  let index = sender.selectedSegmentIndex
+  let title = sender.titleForSegmentAtindex(index)
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# System
 
 #### Notification
 
