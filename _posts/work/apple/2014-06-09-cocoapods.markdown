@@ -1373,63 +1373,49 @@ Alamofire.request(.GET, "https://httpbin.org/get", headers: headers)
 
 # Animation
 
-#### [Animo](https://github.com/eure/Animo)
-
-> - install
+#### [Pop](https://github.com/facebook/pop)
 
 ```
-pod 'Animo'
-```
-
-> - usage
-> - Animo turns this:
-
-```
-let positionAnimation = CABasicAnimation(keyPath: "position")
-positionAnimation.fromValue = NSValue(CGPoint: fromPoint)
-positionAnimation.toValue = NSValue(CGPoint: toPoint)
-
-let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
-colorAnimation.fromValue = fromColor.CGColor
-colorAnimation.toValue = toColor.CGColor
-
-let animationGroup = CAAnimationGroup()
-animationGroup.animations = [positionAnimation, colorAnimation]
-animationGroup.fillMode = kCAFillModeForwards
-animationGroup.removedOnCompletion = false
-animationGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-
-someView.layer.addAnimation(animationGroup, forKey: "animationGroup")
-```
-
-> - to this:
-
-```
-someView.layer.runAnimation(
-    Animo.group(
-        Animo.move(from: fromPoint, to: toPoint, duration: 1),
-        Animo.keyPath("backgroundColor", from: fromColor, to: toColor, duration: 1),
-        timingMode: .EaseInOut,
-        options: Options(fillMode: .Forwards)
-    )
-)
+PopBasicAnimation
+PopSpringAnimation
+PopDecayAnimation
+PopCustomAnimation
 ```
 
 
-> - api
+> - Basic Usage
 
 ```
-group(...)
-sequence(...)
-autoreverse(...)
-wait(...)
-replay(...) and replayForever(...)
+POPSpringAnimation *anim = [POPSpringAnimation animation];
+[layer pop_addAnimation:anim forKey:@"myKey"];
+[layer pop_removeAnimationForKey:@"myKey"];
+anim = [layer pop_animationForKey:@"myKey"];
+```
 
-Animo.move()
-Animo.translate
-Animo.scale
-Animo.fade
-Animo.keyPath()
+
+
+```
+let animation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+animation.fromValue = 0
+animation.toValue = 1
+animation.duration = 2
+view.pop_addAnimation(animation, forKey: "fade")
+
+let spring = POPSpringAnimation(propertyNamed: kPOPLayerOpacity)
+spring.toValue = 0
+spring.beginTime = CACurrentMediaTime() + 2
+spring.springBounciness = 10.0  //[0-20] 弹力
+spring.springSpeed = 10.0       //[0-20] 速度
+spring.dynamicsTension = 0      //拉力
+spring.dynamicsFriction = 0     //摩擦
+spring.dynamicsMass     = 0     //质量
+sender.layer.pop_addAnimation(spring, forKey: "fade")
+
+let decay = POPDecayAnimation(propertyNamed: kPOPLayerOpacity)
+decay.velocity = 600
+decay.beginTime = CACurrentMediaTime() + 4
+decay.deceleration = 0.998  //衰减系数
+decay.layer.pop_addAnimation(decay, forKey: "fade")
 ```
 
 
@@ -1438,89 +1424,168 @@ Animo.keyPath()
 
 
 
-
-#### [pop](/2014/06/09/cocoapod-pop)
-
-
-> - Introduction, Tutorials animation
-
-#### [JazzHands](/2014/06/09/cocoapod-JazzHands)
-#### [Presentation](https://github.com/hyperoslo/Presentation)
-
-	
-> - spring like animation lib
-
-#### [IBAnimatable](https://github.com/JakeLin/IBAnimatable)
-> - 在IB和playground中使用Animation
-> -同样像[Spring](/2014/06/09/cocoapod-spring)的框架，但是支持IB
-> - 拖入UIView到storyboard，绑定到AnimatableView类，则可开始设置动画属性
-
-|UIKit elements	        |Animatable UI elements	        |
-| --------------------- | ----------------------------- |
-|UIView	                |AnimatableView                 |
-|UIBarButtonItem        |AnimatableBarButtonItem        |
-|UIButton               |AnimatableButton               |
-|UIButton	            |AnimatableCheckBox             |
-|UIImageView	        |AnimatableImageView            |	
-|UILabel                |AnimatableLabel                |
-|UIStackView	        |AnimatableStackView            |
-|UITableView	        |AnimatableTableView	        |
-|UITableViewCell	    |AnimatableTableViewCell        |	
-|UITextField	        |AnimatableTextField            |	
-|UITextView	            |AnimatableTextView	            |
-|UINavigationBar	    |DesignableNavigationBar	    |
-|UIViewController	    |AnimatableViewController	    |
-|UINavigationController	|AnimatableNavigationController |
-
+```
+// Common CALayer property names.
+kPOPLayerBackgroundColor
+kPOPLayerBounds
+kPOPLayerCornerRadius
+kPOPLayerBorderWidth
+kPOPLayerBorderColor
+kPOPLayerOpacity
+kPOPLayerPosition
+kPOPLayerPositionX
+kPOPLayerPositionY
+kPOPLayerRotation
+kPOPLayerRotationX
+kPOPLayerRotationY
+kPOPLayerScaleX
+kPOPLayerScaleXY
+kPOPLayerScaleY
+kPOPLayerSize
+kPOPLayerSubscaleXY
+kPOPLayerSubtranslationX
+kPOPLayerSubtranslationXY
+kPOPLayerSubtranslationY
+kPOPLayerSubtranslationZ
+kPOPLayerTranslationX
+kPOPLayerTranslationXY
+kPOPLayerTranslationY
+kPOPLayerTranslationZ
+kPOPLayerZPosition
+kPOPLayerShadowColor
+kPOPLayerShadowOffset
+kPOPLayerShadowOpacity
+kPOPLayerShadowRadius
 
 
 
 
+// Common CAShapeLayer property names.
+kPOPShapeLayerStrokeStart
+kPOPShapeLayerStrokeEnd
+kPOPShapeLayerStrokeColor
+kPOPShapeLayerFillColor
+kPOPShapeLayerLineWidth
+kPOPShapeLayerLineDashPhase
 
 
 
+// Common NSLayoutConstraint property names.
+kPOPLayoutConstraintConstant
+
+
+
+// Common UIView property names.
+kPOPViewAlpha
+kPOPViewBackgroundColor
+kPOPViewBounds
+kPOPViewCenter
+kPOPViewFrame
+kPOPViewScaleX
+kPOPViewScaleXY
+kPOPViewScaleY
+kPOPViewSize
+kPOPViewTintColor
+
+
+
+// Common UIScrollView property names.
+kPOPScrollViewContentOffset
+kPOPScrollViewContentSize
+kPOPScrollViewZoomScale
+kPOPScrollViewContentInset
+kPOPScrollViewScrollIndicatorInsets
+
+
+
+// Common UITableView property names.
+kPOPTableViewContentOffset
+kPOPTableViewContentSize
+
+
+
+// Common UICollectionView property names.
+kPOPCollectionViewContentOffset
+kPOPCollectionViewContentSize
+
+
+
+// Common UINavigationBar property names.
+kPOPNavigationBarBarTintColor
+
+
+
+// Common UIToolbar property names.
+kPOPToolbarBarTintColor
+
+
+
+// Common UITabBar property names.
+kPOPTabBarBarTintColor
+
+
+
+// Common UILabel property names.
+kPOPLabelTextColor
+```
 
 
 
 #### [Spring](https://github.com/MengTo/Spring)
 
 
-> - install
-```
-use_frameworks!
-pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
-```
-
-> - usage
-
-```
-let button = SpringButton()
-button.animation = Spring.AnimationPreset.Shake.rawValue
-button.animate()
-
-SpringView
-SpringButton
-SpringImageView
-SpringLabel
-SpringTextField
-SpringTextView
-```
 
 
 
+#### [IBAnimatable](https://github.com/JakeLin/IBAnimatable)
+> - animation design in Storyboard
+> - drag UIView into storyboard，bind AnimatableView
 
-
+|UIKit elements         |Animatable UI elements         |
+| --------------------- | ----------------------------- |
+|UIView                 |AnimatableView                 |
+|UIBarButtonItem        |AnimatableBarButtonItem        |
+|UIButton               |AnimatableButton               |
+|UIButton             |AnimatableCheckBox             |
+|UIImageView          |AnimatableImageView            | 
+|UILabel                |AnimatableLabel                |
+|UIStackView          |AnimatableStackView            |
+|UITableView          |AnimatableTableView          |
+|UITableViewCell      |AnimatableTableViewCell        | 
+|UITextField          |AnimatableTextField            | 
+|UITextView             |AnimatableTextView             |
+|UINavigationBar      |DesignableNavigationBar      |
+|UIViewController     |AnimatableViewController     |
+|UINavigationController |AnimatableNavigationController |
 
 
 
 
 
+
+#### [Animo](https://github.com/eure/Animo)
+
+
+
+
+
+
+> - Introduction, Tutorials animation
+
+#### [JazzHands](/2014/06/09/cocoapod-JazzHands)
+#### [Presentation](https://github.com/hyperoslo/Presentation)
 #### [Cheetah](https://github.com/suguru/Cheetah)
 #### [DKChainableAnimationKit](https://github.com/Draveness/DKChainableAnimationKit)
 #### [Morgan](https://github.com/RamonGilabert/Morgan)
 #### [Walker](https://github.com/RamonGilabert/Walker)
 
-	
+
+
+
+
+
+
+
 # JSON
 
 
@@ -1646,9 +1711,13 @@ pod 'Ono'
 
 
 
+
+
+
+
+
+
 # Database
-
-
 
 
 #### [RealmSwift](https://github.com/realm/realm-cocoa)
