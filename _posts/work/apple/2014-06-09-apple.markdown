@@ -9,17 +9,17 @@ tags:
     - Apple
 ---
 # StoryBoard
-> - 全部在100%显示下添加控件，否则无法操作
-
 
 #### navigation
-> - 添加UINavigationController
-> - Attributes面板 ->  Is initial View Controller,设为初试页面
-
-> - 拖入一个Navigation View Controller到storyboard, 属性设为Is Initial View Controller
+> - 拖入一个Navigation Controller到storyboard, 属性设为Is Initial View Controller
 > - 拖入普通的ViewController
-> - ctrl+鼠标左键: 拖动到ViewController， 选择 root view controller
+> - ctrl+鼠标左键: 从Navigation Contrller上拖动到ViewController， 选择 root view controller
+> - or
 > - Editor -> Embedded in -> Navigation Controller
+> - 可以修改Navigation Item
+
+
+
 
 #### 跳转时带参数
 > - Segue就是类UIStoryboardSegue的实例
@@ -32,14 +32,45 @@ tags:
 }
 ```
 
+
+
 #### tab
 > - storyboard中添加Tab Bar Controller
+> - or
 > - Editor -> Embeded in -> Tab bar Controller
 
 
 
 
+#### 多StoryBoard
 
+> - 新建sub.storyboard文件， 定义ViewController
+> - 设为Is Initial View Controller
+> - 在Main.storyboard中添加Storyboard Reference, 指向sub.storyboard
+
+
+ 
+#### [IBAnimatable](https://github.com/JakeLin/IBAnimatable)
+> - animation design in Storyboard
+> - drag UIView into storyboard，set corresponded AnimatableView
+> - prototype tool, as good as Axure RP
+
+|UIKit elements         |Animatable UI elements         |
+| --------------------- | ----------------------------- |
+|UIView                 |AnimatableView                 |
+|UIBarButtonItem        |AnimatableBarButtonItem        |
+|UIButton               |AnimatableButton               |
+|UIButton               |AnimatableCheckBox             |
+|UIImageView            |AnimatableImageView            | 
+|UILabel                |AnimatableLabel                |
+|UIStackView            |AnimatableStackView            |
+|UITableView            |AnimatableTableView            |
+|UITableViewCell        |AnimatableTableViewCell        | 
+|UITextField            |AnimatableTextField            | 
+|UITextView             |AnimatableTextView             |
+|UINavigationBar        |DesignableNavigationBar        |
+|UIViewController       |AnimatableViewController       |
+|UINavigationController |AnimatableNavigationController |
 
 
 

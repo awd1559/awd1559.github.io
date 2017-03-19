@@ -1415,7 +1415,7 @@ let decay = POPDecayAnimation(propertyNamed: kPOPLayerOpacity)
 decay.velocity = 600
 decay.beginTime = CACurrentMediaTime() + 4
 decay.deceleration = 0.998  //衰减系数
-decay.layer.pop_addAnimation(decay, forKey: "fade")
+sender.layer.pop_addAnimation(decay, forKey: "fade")
 ```
 
 
@@ -1532,38 +1532,24 @@ kPOPLabelTextColor
 
 
 #### [Spring](https://github.com/MengTo/Spring)
-
-
-
-
-
-#### [IBAnimatable](https://github.com/JakeLin/IBAnimatable)
-> - animation design in Storyboard
-> - drag UIView into storyboard，bind AnimatableView
-
-|UIKit elements         |Animatable UI elements         |
-| --------------------- | ----------------------------- |
-|UIView                 |AnimatableView                 |
-|UIBarButtonItem        |AnimatableBarButtonItem        |
-|UIButton               |AnimatableButton               |
-|UIButton             |AnimatableCheckBox             |
-|UIImageView          |AnimatableImageView            | 
-|UILabel                |AnimatableLabel                |
-|UIStackView          |AnimatableStackView            |
-|UITableView          |AnimatableTableView          |
-|UITableViewCell      |AnimatableTableViewCell        | 
-|UITextField          |AnimatableTextField            | 
-|UITextView             |AnimatableTextView             |
-|UINavigationBar      |DesignableNavigationBar      |
-|UIViewController     |AnimatableViewController     |
-|UINavigationController |AnimatableNavigationController |
+> - swift 
+> - shark, pull etc.
 
 
 
 
 
 
-#### [Animo](https://github.com/eure/Animo)
+
+
+
+
+
+#### [Hero](https://github.com/lkzhao/Hero)
+> - Elegant transition library for iOS & tvOS
+
+
+
 
 
 
