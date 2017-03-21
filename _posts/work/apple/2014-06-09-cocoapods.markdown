@@ -1657,30 +1657,24 @@ while ([rs next]) {
 
 > - [Argo](https://github.com/thoughtbot/Argo)
 
+
 > - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 
 
 ```
-import SwiftyJSON
-let jsonString = "{    \"emp\": [        {            \"firstname\": \"1111\",            \"lastname\": \"222222\"        },        {            \"firstname\": \"333\",            \"lastname\": \"444\"        }    ]}"
-let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-
-let json1 = JSON(data: dataFromNetworking)  //无法解析
-
-let json2 = JSON(jsonString)        //可以解析无法读取数据
-
-if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-    let json3 = JSON(data: dataFromString)  //无法解析
-}
-
-
-var json1 : JSON? = nil
-if let file = NSBundle(forClass:AppDelegate.self).pathForResource("SwiftyJSONTests", ofType: "json") {
-    let data = NSData(contentsOfFile: file)!
-    let json = JSON(data:data)
-    json1 = json
-} else {
-    json1 = JSON.null
+let url = "https://api.github.com/users/octocat/repos"
+Alamofire.request(url).responseJSON{ response in
+  switch response.result {
+    case .success:
+      let json = JSON(data: response.data!)
+      
+      for item in json.array! {
+          print(item["name"])
+      }
+      self.label.text = json[0, "full_name"].string
+    case .failure(let error):
+      print(error)
+  }
 }
 ```
 
