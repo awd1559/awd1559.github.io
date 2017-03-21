@@ -8,239 +8,269 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - Apple
 ---
-# install
 
-```
-brew install cocoapods
-
-sudo gem install -g cocoapods
-sudo gem uninsall cocoapods
-
-pod setup    #设置环境
-
-pod init          #创建一个Podfile文件
-pod install
-pod update
-```
-
-# make cocoapods
-
-```
-pod trunk register awd1559@gmail.com 'awd1559' //注册
-
-//生成SwiftyExt.podspec
-pod spec create NAME
-//检查
-pod spec lint SwiftyExt.podspec  
-//添加到本地repo spec
-pod repo push SPECNAME NAME.podspec
-
-修改SwiftyExt.podspec版本
-git tag '1.1.1'
-git push --tags
-//删除原称tag
-git push origin —delete tag <tagnaem>  
-
-//上传到cocoapods
-pod trunk push SwiftyExt.podspec  
-```
-
-
-#### Cartfile
-
-
-```
-brew install Carthage
-brew upgrade Carthage
-
-carthage version
-carhage update
-```
-
-
-
-
-# 常用的pod
+> - 常用的pod
 > - [awesome-iOS](https://github.com/vsouza/awesome-ios)
 > - [awesome-iOS-ui](https://github.com/cjwirth/awesome-ios-ui)
 > - [awesome-Swift](https://github.com/matteocrippa/awesome-swift)
 > - [control preview](https://www.cocoacontrols.com/controls)
 
 
-# UI
+> - UI
 
-> -  View
+#### pager
 
-#### [iCarousel](https://github.com/nicklockwood/iCarousel)
+
+> - [PageMenu](https://github.com/HighBay/PageMenu)
+
+
+```
+let c1 = FirstViewController()
+c1.title = ""
+let c2 = SecondViewcontroller()
+c2.title = ""
+var controllers : [UIViewController] = [c1, c2]
+
+var parameters: [CAPSPageMenuOption] = [
+    .MenuItemSeparatorWidth(4.3), 
+    .UseMenuLikeSegmentedControl(true), 
+    .MenuItemSeparatorPercentageHeight(0.1)
+]
+
+var pageMenu = CAPSPageMenu(viewControllers: controllers, frame: CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height), pageMenuOptions: parameters)
+
+self.view.addSubview(pageMenu!.view)
+```
+
+
+
+
+
+> - [PagingMenuController](https://github.com/kitasuke/PagingMenuController)
+
+
+```
+import PagingMenuController
+
+//prepare controllers
+let controller1 = First()
+let controller2 = Second()
+let viewControllers = [controller1, controller2]
+
+//config options
+let options = PagingMenuOptions()
+options.menuItemMargin = 5
+options.menuHeight = 60
+options.menuDisplayMode = .SegmentedControl
+
+//
+let pagingMenuController = PagingMenuController(viewControllers: viewControllers, options: options)
+pagingMenuController.view.frame.origin.y += 64
+pagingMenuController.view.frame.size.height -= 64
+
+addChildViewController(pagingMenuController)
+view.addSubview(pagingMenuController.view)
+pagingMenuController.didMoveToParentViewController(self)
+```
+
+> - use storyboard
+
+```
+let usersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UsersViewController") as! UsersViewController
+let repositoriesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RepositoriesViewController") as! RepositoriesViewController
+
+let viewControllers = [usersViewController, repositoriesViewController]
+
+let options = PagingMenuOptions()
+options.menuHeight = 50
+   
+let pagingMenuController = self.childViewControllers.first as! PagingMenuController
+pagingMenuController.delegate = self
+pagingMenuController.setup(viewControllers: viewControllers, options: options)
+```
+
+
+
+
+
+
+> - [XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip)
+> - 4种
+> - Button Bar  :ButtonBarPagerTabStripViewController 
+> - Bar         :BarPagerStripViewController
+> - Twitter     :TwitterPagerTabStripViewController
+> - Segmented   :SegmentedPagerTabStripViewController
+
+```
+class MyViewController: ButtonBarPagerTabStripViewController{
+  override func viewDidLoad() {
+    //xlpagertabstrip settings
+    settings.style.buttonBarBackgroundColor = UIColor.red
+    settings.style.buttonBarItemBackgroundColor = .clear
+    settings.style.selectedBarBackgroundColor = UIColor(red: 234/255.0, green: 234/255.0, blue: 234/255.0, alpha: 1.0)
+    settings.style.selectedBarHeight = 4.0
+    settings.style.buttonBarMinimumLineSpacing = 0
+    settings.style.buttonBarItemTitleColor = .black
+    settings.style.buttonBarItemsShouldFillAvailableWidth = true
+    settings.style.buttonBarLeftContentInset = 0
+    settings.style.buttonBarRightContentInset = 0
+    
+    changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        guard changeCurrentIndex == true else { return }
+        oldCell?.label.textColor = UIColor(red: 138/255.0, green: 138/255.0, blue: 144/255.0, alpha: 1.0)
+        newCell?.label.textColor = .white
+    }
+
+    super.viewDidLoad()
+    navigationController?.navigationBar.shadowImage = UIImage()
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+  }
+
+  override public func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+    return [First(), Second()]
+  }
+}
+
+
+class First: UIViewController, IndicatorInfoProvider {
+  func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+    return IndicatorInfo(title: "My Child title”, image: UIImage(named:”home”))
+   }
+}
+```
+
+
+
+
+
+
+> - [RKSwipeBetweenViewControllers](https://github.com/cwRichardKim/RKSwipeBetweenViewControllers)
+
+```
+UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll   navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    
+RKSwipeBetweenViewControllers *nav = [[RKSwipeBetweenViewControllers alloc]initWithRootViewController:pageController];
+
+[nav.viewControllerArray addObjectsFromArray:@[ first, second, third]];
+nav.buttonText = @[@"冒泡广场", @"朋友圈", @"热门冒泡"];
+```
+
+
+```
+bridge.h
+#import <RKSwipeBetweenViewControllers/RKSwipeBetweenViewControllers.h>
+
+import RKSwipeBetweenViewControllers
+
+let second = SecondViewController()
+let third = ThirdViewController()
+let four = FourViewController()
+
+let pagerController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+let nav = RKSwipeBetweenViewControllers(rootViewController: pagerController)
+nav.viewControllerArray.addObjectsFromArray([second, third, four])
+nav.buttonText = ["冒泡广场", "朋友圈", “热门冒泡"]
+```
+
+
+
+
+
+
+
+
+
+
+
+#### Tab
+
+
+
+> - [RDVTabBarController](https://github.com/robbdimitrov/RDVTabBarController)
 
 > - install
-> - only need two files: iCarousel.h、iCarousel.m
-> - add QuartzCore
-> - select project -> target -> build phases -> Link binary with Libraries
-
-
-> - objective-c
 
 ```
-#import "iCarousel.h"
-@interface : UIViewController<iCarouselDataSource, iCarouselDelegate>
-@property (strong, nonatomic) iCarousel *myCarousel;
-
-_myCarousel = ({
-        iCarousel *icarousel = [[iCarousel alloc] init];
-        icarousel.dataSource = self;
-        icarousel.delegate = self;
-        icarousel.decelerationRate = 1.0;
-        icarousel.scrollSpeed = 1.0;
-        icarousel.type = iCarouselTypeLinear;
-	icarousel.vertical = YES;				//NO by default
-        icarousel.pagingEnabled = YES;
-        icarousel.clipsToBounds = YES;
-        icarousel.bounceDistance = 0.2;
-        [self.view addSubview:icarousel];
-        icarousel.frame = view.frame
-        icarousel;
-});
-[self.view addSubview:_mySegmentControl];
-
-
-@property (nonatomic, strong) NSMutableArray *items;
-
-- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
-	return items.count;
-}
-
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
-	if(view == nil)
-		view = [UIImageView alloc] initWithFrame:
-		UILabel* label = [[UILabel alloc] init];
-		label.tag = 1;
-		[view addSubView:label];
-	else
-		UILabel* label = (UILabel*)[view withTag:1];
-
-	return view;
-}
-
-- (void)carousel:(__unused iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
-- (void)carouselCurrentItemIndexDidChange:(__unused iCarousel *)carousel
-```
-
-
-> -  swift
-
-```
-var carousel:iCarousel?
-var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
-```
-
-
-```
-carousel = iCarousel()
-carousel!.frame = view.frame
-carousel!.dataSource = self
-carousel!.delegate = self
-carousel!.decelerationRate = 1.0
-carousel!.scrollSpeed = 1.0
-carousel!.type = .Cylinder
-carousel!.vertical = false
-carousel!.pagingEnabled = true
-carousel!.clipsToBounds = true
-carousel!.bounceDistance = 0.2
-view.addSubview(carousel!)
-```
-
-> - iCarouselDataSource
-> - iCarouselDelegate
-
-```
-extension ViewController: iCarouselDataSource{
-  func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
-    return items.count
-  }
-    
-  func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
-    var result = view as? UIImageView
-    var label = UILabel()
-        
-    if result == nil {
-      result = UIImageView(frame: CGRect(x:0, y:0, width:200.0, height:200.0))
-      result!.image = UIImage(named: "page")
-      label.tag = 1
-      result!.addSubview(label)
-    } else {
-      label = result!.viewWithTag(1) as! UILabel
-    }
-    label.text = items[index]
-    
-    return result!
-  }
-}
-
-extension ViewController: iCarouselDelegate {
-    
-}
-```
-
-
-
-
-
-
-
-
-#### [SMPageControl](https://github.com/Spaceman-Labs/SMPageControl)
-
-```
-@property (strong, nonatomic) SMPageControl *pageControl;
-
-self.pageControl = ({
-  SMPageControl *pageControl = [[SMPageControl alloc] init];
-  pageControl.numberOfPages = self.numberOfPages;
-  pageControl.userInteractionEnabled = NO;
-  pageControl.pageIndicatorImage = pageIndicatorImage;
-  pageControl.currentPageIndicatorImage = currentPageIndicatorImage;
-  [pageControl sizeToFit];
-  pageControl.currentPage = 0;
-  pageControl;
-});
-[self.view addSubview:self.pageControl];
-```
-
-
-
-
-
-
-
-
-#### [FXBlurView](https://github.com/nicklockwood/FXBlurView)
-
-
-> -  install
-
-```
-pod 'FXBlurView', '~> 1.6.4'
-
-//only have two files: FXBlurView.h, FXBlurView.m
+pod 'RDVTabBarController'
 ```
 
 > - usage
 
 ```
-import FXBlurView
+TabBar
+UIViewController* first = [[FirstViewController alloc]init];
+UIViewController* second = [[SecondViewController alloc]init];
+UIViewController* third = [[ThirdViewController alloc]init];
 
-let frostedView = FXBlurView()
-frostedView.underlyingView = UIImageView(image:UIImage(named:""))
-frostedView.dynamic = false
-frostedView.tintColor = UIColor.blackColor()
-frostedView.frame = CGRect(x:0.0, y:view.frame.height/2, width:view.frame.width, height:view.frame.height/2)
-view.addSubview(frostedView) 
+#import "RDVTabBarController.h"
+RDVTabBarController* tab = [[RDVTabBarController alloc]init];
+[tab setViewControllers:@[first, second, third]];
+```
 
-//add some view to show
-let someview = UIView()
-someview.frame = frostedView.frame
-view.addSubview(someview)
+
+
+> - swift
+
+```
+bridge.h
+#import “RDVTabBarController/RDVTabBarController.h"
+#import “RDVTabBarController/RDVTabBarItem.h"
+
+import RDVTabBarController
+let first = FirstViewController()
+let second = SecondViewController()
+let tab = RDVTabBarController()
+tab.viewControllers = [first, second]
+
+//自定义
+let tabImages = ["first", "second"]
+for (idx, item) in tab.tabBar.items.enumerate() {
+  let realItem = item as! RDVTabBarItem
+  let image = UIImage(named: tabImages[idx])
+  realItem.setFinishedSelectedImage(image, withFinishedUnselectedImage: image)
+}
+
+self.window.rootViewController = tab
+```
+
+
+
+> - 自定义
+
+```
+#import "RDVTabBarItem.h"
+RDVTabBar* bar = [tab tabBar];
+for (RDVTabBarItem *item in [bar items])
+  item.titlePositionAdjustment = UIOffsetMake(-10, 5);
+  [item setTitle:@""];
+  [item setBadgeValue:@"1"];
+  [item setBackgroundSelectedImage:backgroundImage withUnselectedImage:backgroundImage];
+  [item setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:unselectedImage];
+```
+
+
+
+
+
+
+
+
+> - [PageControls](https://github.com/popwarsweet/PageControls)
+> - 4 styles
+> - SnakePageControl
+> - FilledPageControl
+> - PillPageControl
+> - ScrollingPageControl
+
+
+```
+let snakePageControl = SnakePageControl()
+snakePageControl.pageCount = 3
+snakePageControl.activeTint = .black
+snakePageControl.inactiveTint = .white
+
+
+snakePageControl.progress = progress
 ```
 
 
@@ -253,7 +283,10 @@ view.addSubview(someview)
 
 
 
-#### [ImageSlideshow](https://github.com/zvonicek/ImageSlideshow)
+#### Slider
+
+
+> - [ImageSlideshow](https://github.com/zvonicek/ImageSlideshow)
 
 ```
 let slideshow = ImageSlideshow()
@@ -295,14 +328,19 @@ func click() {
 
 
 
-> - Refresh
-
-#### [MJRefresh](/2014/06/09/cocoapod-MJRefresh)
 
 
 
 
-#### [ODRefreshControl](https://github.com/Sephiroth87/ODRefreshControl)
+
+#### Refresh
+
+> - [MJRefresh](https://github.com/CoderMJLee/MJRefresh)
+
+
+
+
+> - [ODRefreshControl](https://github.com/Sephiroth87/ODRefreshControl)
 
 
 ```
@@ -321,65 +359,10 @@ ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:se
 
 
 
-> - autolayout
+#### autolayout
 
 
-#### [SnapKit](https://github.com/SnapKit/SnapKit)
-
-
-> - install
-
-```
-use_frameworks!
-
-pod 'SnapKit', '~> 0.15.0'
-```
-
-
-
-> - usage
-
-```
-import SnapKit
-
-class MyViewController: UIViewController {
-
-    lazy var box = UIView()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.addSubview(box)
-        box.snp_makeConstraints { (make) -> Void in
-           make.width.height.equalTo(50)
-           make.center.equalTo(self.view)
-        }
-    }
-
-}
-
-make.size.equalTo(CGSize(width: 500, height: 500))
-make.edges.equalTo(UIEdgeInsets(top:10, left: 10, bottom:10, right:10))
-
-make.left.equalTo(view).offset(20)
-	   	.lessThanOrEqualTo
-		.greaterThanOrEqualTo
-
-make.left.equalTo(view.snp_right)
-
-
-view.snp_left
-view.snp_right
-view.snp_top
-view.snp_bottom
-view.snp_leading
-view.snp_trailing
-view.snp_width
-view.snp_height
-view.snp_centerX
-view.snp_centerY
-view.snp_baseline
-```
+> - [SnapKit](https://github.com/SnapKit/SnapKit)
 
 
 
@@ -395,7 +378,10 @@ view.snp_baseline
 
 
 
-#### [Masonry](https://github.com/SnapKit/Masonry)
+
+
+
+> - [Masonry](https://github.com/SnapKit/Masonry)
 
 ```
 pod 'Masonry'
@@ -431,10 +417,20 @@ make.left.mas_equalTo(view).mas_offset(UIEdgeInsetsMake(10, 0, 10, 0));
 
 
 
+> - [Cartography](https://github.com/robb/Cartography)
+for swift
 
-> - Layout
 
-#### [DrawerController](https://github.com/sascha/DrawerController)
+> - [FLKAutoLayout](https://github.com/floriankugler/FLKAutoLayout)
+> - for Objective-C
+
+
+
+
+
+#### Drawer
+
+> - [DrawerController](https://github.com/sascha/DrawerController)
 
 > -  install 
 
@@ -508,6 +504,7 @@ self.evo_drawerController?.centerViewController
 
 
 
+> - [RESideMenu](https://github.com/romaonthego/RESideMenu)
 
 
 
@@ -521,255 +518,10 @@ self.evo_drawerController?.centerViewController
 
 
 
+#### HUD
 
 
-
-
-
-
-#### [PagingMenuController](https://github.com/kitasuke/PagingMenuController)
-
-
-```
-pod 'PagingMenuController'
-```
-
-
-> - use code 
-
-```
-import PagingMenuController
-
-//prepare controllers
-let controller1 = First()
-let controller2 = Second()
-let viewControllers = [controller1, controller2]
-
-//config options
-let options = PagingMenuOptions()
-options.menuItemMargin = 5
-options.menuHeight = 60
-options.menuDisplayMode = .SegmentedControl
-
-//
-let pagingMenuController = PagingMenuController(viewControllers: viewControllers, options: options)
-pagingMenuController.view.frame.origin.y += 64
-pagingMenuController.view.frame.size.height -= 64
-
-addChildViewController(pagingMenuController)
-view.addSubview(pagingMenuController.view)
-pagingMenuController.didMoveToParentViewController(self)
-```
-
-> - use storyboard
-
-```
-let usersViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UsersViewController") as! UsersViewController
-let repositoriesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RepositoriesViewController") as! RepositoriesViewController
-
-let viewControllers = [usersViewController, repositoriesViewController]
-
-let options = PagingMenuOptions()
-options.menuHeight = 50
-   
-let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-pagingMenuController.delegate = self
-pagingMenuController.setup(viewControllers: viewControllers, options: options)
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### [PageMenu](https://github.com/HighBay/PageMenu)
-
-> - install
-
-```
-pod 'PageMenu'
-```
-
-> -  usage
-
-```
-import PageMenu
-var pageMenu : CAPSPageMenu?
-var controllers : [UIViewController] = []
-let c1 = FirstViewController()
-c1.title = ""
-let c2 = SecondViewcontroller()
-c2.title = ""
-controllers.append(c1)
-controllers.append(c2)
-
-var parameters: [CAPSPageMenuOption] = [
-    .MenuItemSeparatorWidth(4.3), 
-    .UseMenuLikeSegmentedControl(true), 
-    .MenuItemSeparatorPercentageHeight(0.1)
-]
-
-pageMenu = CAPSPageMenu(viewControllers: controllers, frame: CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height), pageMenuOptions: parameters)
-
-self.view.addSubview(pageMenu!.view)
-```
-
-
-
-
-
-
-
-
-
-#### [RESideMenu](https://github.com/romaonthego/RESideMenu)
-
-
-
-
-
-#### [XLPagerTabStrip](/2014/06/09/cocoapod-XLPagerTabStrip)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### [RDVTabBarController](https://github.com/robbdimitrov/RDVTabBarController)
-
-> - install
-
-```
-pod 'RDVTabBarController'
-```
-
-> - usage
-
-```
-TabBar
-UIViewController* first = [[FirstViewController alloc]init];
-UIViewController* second = [[SecondViewController alloc]init];
-UIViewController* third = [[ThirdViewController alloc]init];
-
-#import "RDVTabBarController.h"
-RDVTabBarController* tab = [[RDVTabBarController alloc]init];
-[tab setViewControllers:@[first, second, third]];
-```
-
-
-
-> - swift
-
-```
-bridge.h
-#import “RDVTabBarController/RDVTabBarController.h"
-#import “RDVTabBarController/RDVTabBarItem.h"
-
-import RDVTabBarController
-let first = FirstViewController()
-let second = SecondViewController()
-let tab = RDVTabBarController()
-tab.viewControllers = [first, second]
-
-//自定义
-let tabImages = ["first", "second"]
-for (idx, item) in tab.tabBar.items.enumerate() {
-	let realItem = item as! RDVTabBarItem
-	let image = UIImage(named: tabImages[idx])
-	realItem.setFinishedSelectedImage(image, withFinishedUnselectedImage: image)
-}
-
-self.window.rootViewController = tab
-```
-
-
-
-> - 自定义
-
-```
-#import "RDVTabBarItem.h"
-RDVTabBar* bar = [tab tabBar];
-for (RDVTabBarItem *item in [bar items])
-	item.titlePositionAdjustment = UIOffsetMake(-10, 5);
-	[item setTitle:@""];
-	[item setBadgeValue:@"1"];
-	[item setBackgroundSelectedImage:backgroundImage withUnselectedImage:backgroundImage];
-	[item setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:unselectedImage];
-```
-
-
-
-
-
-
-
-
-
-
-#### [RKSwipeBetweenViewControllers](https://github.com/cwRichardKim/RKSwipeBetweenViewControllers)
-
-```
-UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll   navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    
-RKSwipeBetweenViewControllers *nav = [[RKSwipeBetweenViewControllers alloc]initWithRootViewController:pageController];
-
-[nav.viewControllerArray addObjectsFromArray:@[ first, second, third]];
-nav.buttonText = @[@"冒泡广场", @"朋友圈", @“热门冒泡"];
-```
-
-
-> - swift
-
-```
-bridge.h
-#import <RKSwipeBetweenViewControllers/RKSwipeBetweenViewControllers.h>
-
-import RKSwipeBetweenViewControllers
-
-let second = SecondViewController()
-let third = ThirdViewController()
-let four = FourViewController()
-
-let pagerController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-let nav = RKSwipeBetweenViewControllers(rootViewController: pagerController)
-nav.viewControllerArray.addObjectsFromArray([second, third, four])
-nav.buttonText = ["冒泡广场", "朋友圈", “热门冒泡"]
-```
-
-
-
-
-
-
-
-> - HUD
-
-
-
-
-
-#### [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
+> - [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
 
 ```
 pod 'MBProgressHUD', '~> 0.9.2'
@@ -841,7 +593,7 @@ hud.do
 
 
 
-#### [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
+> - [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
 
 > - install
 
@@ -881,8 +633,9 @@ SVProgressHUD.setDefaultMaskType(.None)
 
 
 
+#### Popup
 
-#### [PopMenu](https://github.com/xhzengAIB/PopMenu)
+> - [PopMenu](https://github.com/xhzengAIB/PopMenu)
 
 ```
 pod 'PopMenu'
@@ -913,10 +666,19 @@ popMenu.didSelectedItemCompletion = ^(MenuItem *selectedItem) {
 
 
 
+#### Dialog
 
-#### [QuickDialog](https://github.com/escoz/QuickDialog/)
+> - [QuickDialog](https://github.com/escoz/QuickDialog/)
 
 
+
+
+
+
+
+
+
+#### misc
 
 
 ####[JDStatusBarNotification](https://github.com/jaydee3/JDStatusBarNotification)
@@ -953,20 +715,131 @@ pod 'JDStatusBarNotification'
 
 
 Animation Types
-	•	JDStatusBarAnimationTypeNone
-	•	JDStatusBarAnimationTypeMove
-	•	JDStatusBarAnimationTypeBounce
-	•	JDStatusBarAnimationTypeFade
+  • JDStatusBarAnimationTypeNone
+  • JDStatusBarAnimationTypeMove
+  • JDStatusBarAnimationTypeBounce
+  • JDStatusBarAnimationTypeFade
 Progress Bar Positions
-	•	JDStatusBarProgressBarPositionBottom
-	•	JDStatusBarProgressBarPositionCenter
-	•	JDStatusBarProgressBarPositionTop
-	•	JDStatusBarProgressBarPositionBelow
-	•	JDStatusBarProgressBarPositionNavBar
+  • JDStatusBarProgressBarPositionBottom
+  • JDStatusBarProgressBarPositionCenter
+  • JDStatusBarProgressBarPositionTop
+  • JDStatusBarProgressBarPositionBelow
+  • JDStatusBarProgressBarPositionNavBar
 
 
 //swift
 bridge.h
+```
+
+> - [iCarousel](https://github.com/nicklockwood/iCarousel)
+
+> - install
+> - only need two files: iCarousel.h、iCarousel.m
+> - add QuartzCore
+> - select project -> target -> build phases -> Link binary with Libraries
+
+
+> - objective-c
+
+```
+#import "iCarousel.h"
+@interface : UIViewController<iCarouselDataSource, iCarouselDelegate>
+@property (strong, nonatomic) iCarousel *myCarousel;
+
+_myCarousel = ({
+  iCarousel *icarousel = [[iCarousel alloc] init];
+  icarousel.dataSource = self;
+  icarousel.delegate = self;
+  icarousel.decelerationRate = 1.0;
+  icarousel.scrollSpeed = 1.0;
+  icarousel.type = iCarouselTypeLinear;
+  icarousel.vertical = YES;       //NO by default
+  icarousel.pagingEnabled = YES;
+  icarousel.clipsToBounds = YES;
+  icarousel.bounceDistance = 0.2;
+  [self.view addSubview:icarousel];
+  icarousel.frame = view.frame
+  icarousel;
+});
+[self.view addSubview:_mySegmentControl];
+
+
+@property (nonatomic, strong) NSMutableArray *items;
+
+- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
+  return items.count;
+}
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
+  if(view == nil)
+    view = [UIImageView alloc] initWithFrame:
+    UILabel* label = [[UILabel alloc] init];
+    label.tag = 1;
+    [view addSubView:label];
+  else
+    UILabel* label = (UILabel*)[view withTag:1];
+
+  return view;
+}
+
+- (void)carousel:(__unused iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+- (void)carouselCurrentItemIndexDidChange:(__unused iCarousel *)carousel
+```
+
+
+> -  swift
+
+```
+var carousel:iCarousel?
+var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
+```
+
+
+```
+carousel = iCarousel()
+carousel!.frame = view.frame
+carousel!.dataSource = self
+carousel!.delegate = self
+carousel!.decelerationRate = 1.0
+carousel!.scrollSpeed = 1.0
+carousel!.type = .Cylinder
+carousel!.vertical = false
+carousel!.pagingEnabled = true
+carousel!.clipsToBounds = true
+carousel!.bounceDistance = 0.2
+view.addSubview(carousel!)
+```
+
+> - iCarouselDataSource
+> - iCarouselDelegate
+
+```
+extension ViewController: iCarouselDataSource{
+  func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+    return items.count
+  }
+    
+  func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+    var result = view as? UIImageView
+    var label = UILabel()
+        
+    if result == nil {
+      result = UIImageView(frame: CGRect(x:0, y:0, width:200.0, height:200.0))
+      result!.image = UIImage(named: "page")
+      label.tag = 1
+      result!.addSubview(label)
+    } else {
+      label = result!.viewWithTag(1) as! UILabel
+    }
+    label.text = items[index]
+    
+    return result!
+  }
+}
+
+extension ViewController: iCarouselDelegate {
+    
+}
 ```
 
 
@@ -975,15 +848,10 @@ bridge.h
 	
 # enhance
 
-#### [DateTools](https://github.com/MatthewYork/DateTools)
+> -[ExSwift](https://github.com/pNre/ExSwift)
 
-> - install
 
-```
-pod 'DateTools'
-```
-
-> - usage
+> - [DateTools](https://github.com/MatthewYork/DateTools)
 
 ```
 let timeAgoDate = NSDate(timeIntervalSinceNow:-4)
@@ -1219,21 +1087,22 @@ self.textView.inputView = emojiKeyboardView;
 # Reactive
 
 
-#### [RxSwift](https://github.com/ReactiveX/RxSwift)
+> - [RxSwift](https://github.com/ReactiveX/RxSwift)
 
 
-#### [ReactiveCocoa](/2014/06/09/cocoapod-ReactiveCocoa)
+> - [ReactiveCocoa](/2014/06/09/cocoapod-ReactiveCocoa)
+
+# Image 
+
+> - [SDWebImage](https://github.com/rs/SDWebImage)
+> - Image downloader with cache
 
 
 
 
 # Network
 
-
-
-####[SDWebImage](https://github.com/rs/SDWebImage)
-> - Image downloader with cache
-
+#### [Moya](https://github.com/Moya/Moya)
 
 
 #### [AFNetworking](https://github.com/AFNetworking/AFNetworking)
@@ -1531,7 +1400,7 @@ kPOPLabelTextColor
 
 
 
-#### [Spring](https://github.com/MengTo/Spring)
+> - [Spring](https://github.com/MengTo/Spring)
 > - swift 
 > - shark, pull etc.
 
@@ -1545,7 +1414,7 @@ kPOPLabelTextColor
 
 
 
-#### [Hero](https://github.com/lkzhao/Hero)
+> - [Hero](https://github.com/lkzhao/Hero)
 > - Elegant transition library for iOS & tvOS
 
 
@@ -1556,124 +1425,54 @@ kPOPLabelTextColor
 
 
 
-> - Introduction, Tutorials animation
+#### Introduction, Tutorials animation
 
-#### [JazzHands](/2014/06/09/cocoapod-JazzHands)
-#### [Presentation](https://github.com/hyperoslo/Presentation)
-#### [Cheetah](https://github.com/suguru/Cheetah)
-#### [DKChainableAnimationKit](https://github.com/Draveness/DKChainableAnimationKit)
-#### [Morgan](https://github.com/RamonGilabert/Morgan)
-#### [Walker](https://github.com/RamonGilabert/Walker)
+> - [JazzHands](/2014/06/09/cocoapod-JazzHands)
+> - for Objective-C
 
 
 
 
+> - 4个步骤
+> - 1、继承IFTTTAnimatedPagingScrollViewController
+> - 2、创建view，到contentView
+> - 3、设定view是在哪个page上
+> - 4、为view设定动画
 
 
 
-
-# JSON
-
-
-####[ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
-
-> - install
 
 ```
-pod 'ObjectMapper', '~> 1.1’
-```
+bridege.h
+#include "JazzHands/IFTTTJazzHands.h"
 
-```
-class User: Mappable {
-    var username: String?
-    var age: Int?
-    var weight: Double!
-    var array: [AnyObject]?
-    var dictionary: [String : AnyObject] = [:]
-    var bestFriend: User?                       // Nested User object
-    var friends: [User]?                        // Array of Users
-    var birthday: NSDate?
+import JazzHands
 
-    required init?(_ map: Map) {
+class ViewController : IFTTTAnimatedPagingScrollViewController
 
-    }
-
-    // Mappable
-    func mapping(map: Map) {
-        username    	<- map["username"]
-        age         		<- map["age"]
-        weight      	<- map["weight"]
-        array       		<- map["arr"]
-        dictionary  	<- map["dict"]
-        bestFriend  	<- map["best_friend"]
-        friends     	<- map["friends"]
-        birthday    	<- (map["birthday"], DateTransform())
-    }
+override func numberOfPages() -> UInt {
+  return 4
 }
 
+override func viewDidLoad() {
+  super.viewDidLoad()
 
-//JSONString -> model
-let user = Mapper<User>().map(JSONString)
-//Model -> JSONString
-let JSONString = Mapper().toJSONString(user, prettyPrint: true)
+  //create view, and added to contentView
+  let imageview0 = UIImageView(image: UIImage(named:""))
+  self.contentView.addSubview(imageview0)
 
+  //keep view on certain pages
+  self.keepView(imageview0, onPage:0)     //show imageview0 on page0
+  self.keepView(imageview2, onPages:[2,3])  //show imageview2 on page2 & page3
+  
+  //create animations
+  let alphaAnimation = IFTTTAlphaAnimation(view:view_you_want_to_animate)
+  alphaAnimation.addKeyframeForTime(30, alpha:1.0)
+  alphaAnimation.addKeyframeForTime(60, alpha:0.0)
 
-
-//嵌套
-"distance" : {
-     "text" : "102 ft",
-     "value" : 31
-}
-
-func mapping(map: Map) {
-    distance <- map["distance.value"]
-}
-distance <- map["distances.0.value"]
-```
-
-
-
-
-
-
-
-
-#### [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
-
-
-> - install
-
-```
-platform :ios, '8.0'
-use_frameworks!
-
-target 'MyApp' do
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-end
-```
-
-
-```
-import SwiftyJSON
-let jsonString = "{    \"emp\": [        {            \"firstname\": \"1111\",            \"lastname\": \"222222\"        },        {            \"firstname\": \"333\",            \"lastname\": \"444\"        }    ]}"
-let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-
-let json1 = JSON(data: dataFromNetworking)	//无法解析
-
-let json2 = JSON(jsonString)				//可以解析无法读取数据
-
-if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-    let json3 = JSON(data: dataFromString)	//无法解析
-}
-
-
-var json1 : JSON? = nil
-if let file = NSBundle(forClass:AppDelegate.self).pathForResource("SwiftyJSONTests", ofType: "json") {
-    let data = NSData(contentsOfFile: file)!
-    let json = JSON(data:data)
-    json1 = json
-} else {
-    json1 = JSON.null
+  //add animator
+  self.animator = IFTTTAnimator()
+  self.animator.addAnimation(alphaAnimation)
 }
 ```
 
@@ -1682,18 +1481,27 @@ if let file = NSBundle(forClass:AppDelegate.self).pathForResource("SwiftyJSONTes
 
 
 
-# Xml
+
+> - [RazzleDazzle](https://github.com/IFTTT/RazzleDazzle)
+> - for swift
+
+
+
+> - [Presentation](https://github.com/hyperoslo/Presentation)
+
+> - [Cheetah](https://github.com/suguru/Cheetah)
+
+> - [DKChainableAnimationKit](https://github.com/Draveness/DKChainableAnimationKit)
+
+> - [Morgan](https://github.com/RamonGilabert/Morgan)
+
+> - [Walker](https://github.com/RamonGilabert/Walker)
 
 
 
 
-#### [Ono](https://github.com/mattt/Ono)
 
-```
-pod 'Ono'
 
-#import "Ono/Ono.h"
-```
 
 
 
@@ -1706,7 +1514,7 @@ pod 'Ono'
 # Database
 
 
-#### [RealmSwift](https://github.com/realm/realm-cocoa)
+> - [RealmSwift](https://github.com/realm/realm-cocoa)
 
 > - install
 
@@ -1774,7 +1582,7 @@ dispatch_async(dispatch_queue_create("background", nil)) {
 
 
 
-#### [FMDB](https://github.com/ccgus/fmdb)
+> - [FMDB](https://github.com/ccgus/fmdb)
 
 > - install
 
@@ -1801,16 +1609,23 @@ BOOL res = db executeUpdate:sql
 if (!res)
 
 //query
-FMResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
-while ([s next]) {
-    //retrieve values for each record
+FMResultSet *rs = [db executeQuery:@"SELECT * FROM myTable"];
+while ([rs next]) {
+  NSNumber* id = [NSNumber numberWithInt:[rs intForColumnIndex:0]];
+  NSString* name = [rs stringForColumn:@"name"];
+  
+  const unsigned char* ccchar = [rs UTF8StringForColumnName:@"chinesename"];
+  NSString* cname = [[NSString alloc] initWithCString:ccchar encoding:NSUTF8StringEncoding];
+  
+  NSData* avata = [rs dataForColumn:@"avata"];
 }
 
-FMResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
+FMResultSet *rs = [db executeQuery:@"SELECT COUNT(*) FROM myTable"];
 if ([s next]) {
     int totalCount = [s intForColumnIndex:0];
     NSString *pass = [s stringForColumn:@“name”];
 }
+[rs close];
 [db close];
 
 
@@ -1832,10 +1647,108 @@ while ([rs next]) {
 
 
 
+
+
+
+# model
+
+> - [Mantle](https://github.com/Mantle/Mantle)
+> - model framework
+
+> - [Argo](https://github.com/thoughtbot/Argo)
+
+> - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+
+
+```
+import SwiftyJSON
+let jsonString = "{    \"emp\": [        {            \"firstname\": \"1111\",            \"lastname\": \"222222\"        },        {            \"firstname\": \"333\",            \"lastname\": \"444\"        }    ]}"
+let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+
+let json1 = JSON(data: dataFromNetworking)  //无法解析
+
+let json2 = JSON(jsonString)        //可以解析无法读取数据
+
+if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+    let json3 = JSON(data: dataFromString)  //无法解析
+}
+
+
+var json1 : JSON? = nil
+if let file = NSBundle(forClass:AppDelegate.self).pathForResource("SwiftyJSONTests", ofType: "json") {
+    let data = NSData(contentsOfFile: file)!
+    let json = JSON(data:data)
+    json1 = json
+} else {
+    json1 = JSON.null
+}
+```
+
+> - [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
+
+
+```
+class User: Mappable {
+    var username: String?
+    var age: Int?
+    var weight: Double!
+    var array: [AnyObject]?
+    var dictionary: [String : AnyObject] = [:]
+    var bestFriend: User?                       // Nested User object
+    var friends: [User]?                        // Array of Users
+    var birthday: NSDate?
+
+    required init?(_ map: Map) {
+
+    }
+
+    // Mappable
+    func mapping(map: Map) {
+        username      <- map["username"]
+        age             <- map["age"]
+        weight        <- map["weight"]
+        array           <- map["arr"]
+        dictionary    <- map["dict"]
+        bestFriend    <- map["best_friend"]
+        friends       <- map["friends"]
+        birthday      <- (map["birthday"], DateTransform())
+    }
+}
+
+
+//JSONString -> model
+let user = Mapper<User>().map(JSONString)
+//Model -> JSONString
+let JSONString = Mapper().toJSONString(user, prettyPrint: true)
+
+
+
+//嵌套
+"distance" : {
+     "text" : "102 ft",
+     "value" : 31
+}
+
+func mapping(map: Map) {
+    distance <- map["distance.value"]
+}
+distance <- map["distances.0.value"]
+```
+
+
+
+
+> - [Ono](https://github.com/mattt/Ono)
+
+
+
+
+
+
 	
 # Log
 
-#### [Log](https://github.com/delba/Log)
+> - [Log](https://github.com/delba/Log)
 
 ```
 extension Formatters {
@@ -1864,7 +1777,123 @@ log(object, use as print function)
 
 
 
-
 	
 # misc
+
+> - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver)
+
+
+> - [FXBlurView](https://github.com/nicklockwood/FXBlurView)
+> - on iOS 5 and above
+
+```
+pod 'FXBlurView', '~> 1.6.4'
+
+//only have two files: FXBlurView.h, FXBlurView.m
+```
+
+> - usage
+
+```
+import FXBlurView
+
+//set background
+let frostedView = FXBlurView()
+frostedView.underlyingView = UIImageView(image:UIImage(named:"nemo"))
+frostedView.isDynamic = false
+frostedView.tintColor = UIColor.black
+frostedView.frame = CGRect(x:0.0, y:view.frame.height/2, width:view.frame.width, height:view.frame.height/2)
+view.addSubview(frostedView)
+
+//show someview on top
+let someview = UIView()
+someview.frame = frostedView.frame
+view.addSubview(someview)
+```
+
+
+
+
+
+
+
+
+> - [SMPageControl](https://github.com/Spaceman-Labs/SMPageControl)
+
+```
+@property (strong, nonatomic) SMPageControl *pageControl;
+
+self.pageControl = ({
+  SMPageControl *pageControl = [[SMPageControl alloc] init];
+  pageControl.numberOfPages = self.numberOfPages;
+  pageControl.userInteractionEnabled = NO;
+  pageControl.pageIndicatorImage = pageIndicatorImage;
+  pageControl.currentPageIndicatorImage = currentPageIndicatorImage;
+  [pageControl sizeToFit];
+  pageControl.currentPage = 0;
+  pageControl;
+});
+[self.view addSubview:self.pageControl];
+```
+
+
+
+
+
+
+
+
+
+
+
+
+#### cocoapods
+> - install
+
+```
+brew install cocoapods
+
+sudo gem install -g cocoapods
+sudo gem uninsall cocoapods
+
+pod setup    #设置环境
+
+pod init          #创建一个Podfile文件
+pod install
+pod update
+```
+
+> - make cocoapods
+
+```
+pod trunk register awd1559@gmail.com 'awd1559' //注册
+
+//生成SwiftyExt.podspec
+pod spec create NAME
+//检查
+pod spec lint SwiftyExt.podspec  
+//添加到本地repo spec
+pod repo push SPECNAME NAME.podspec
+
+修改SwiftyExt.podspec版本
+git tag '1.1.1'
+git push --tags
+//删除原称tag
+git push origin —delete tag <tagnaem>  
+
+//上传到cocoapods
+pod trunk push SwiftyExt.podspec  
+```
+
+
+#### Cartfile
+
+```
+brew install Carthage
+brew upgrade Carthage
+
+carthage version
+carhage update
+```
+
 
