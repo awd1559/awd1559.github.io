@@ -1678,6 +1678,42 @@ Alamofire.request(url).responseJSON{ response in
 }
 ```
 
+
+> - [AlamofireJsonToObjects](https://github.com/evermeer/AlamofireJsonToObjects)
+
+```
+import AlamofireJsonToObjects
+
+import Foundation
+import EVReflection
+class User:EVObject{
+    var id = ""
+    var name = ""
+    var full_name = ""
+    var owner: Owner = Owner()
+}
+class Owner:EVObject {
+    var login = ""
+    var id = ""
+    var avatar_url = ""
+}
+
+
+
+let url = "https://api.github.com/users/octocat/repos"
+Alamofire.request(url).responseArray{(response: DataResponse<[User]>) -> Void in
+  switch response.result {
+  case .success:
+      for user in response.value! {
+          print(user.name + ": " + user.owner.login)
+      }
+  case .failure(let error):
+      print(error)
+  }
+}
+```
+
+
 > - [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
 
 
