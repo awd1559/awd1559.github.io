@@ -721,9 +721,9 @@ grunt serve
 npm install dva-cli
 dva new myapp
 cd myapp
-npm antd --save
-npm antd-mobile --save
-npm babel-plug-import --save-dev
+npm i antd --save
+npm i antd-mobile --save
+npm i babel-plugin-import --save-dev
 npm start
 ```
 
@@ -741,10 +741,15 @@ npm run build
 ```
 //dva
 //.roadhogrc
-["import", [{"libraryName": "antd", "style": true}]]
+"extraBabelPlugins":
+["dva-hmr","transform-runtime", 
+  ["import", { "libraryName": "antd", "style": "css" }]
+]
+
 "theme": {
   "primary-color": "#1DA57A",
 },
+
 "theme": "./theme.js",
 
 
