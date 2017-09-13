@@ -479,34 +479,36 @@ ExampleFragment fragment = (ExampleFragment) getFragmentManager().findFragmentBy
 //startService, bindService both start this service
 //when service started, it call onCreate()
 onCreate()
-onDestory
+onDestory()
 
 //run on foregroud, for example: Music Service
-startForeground
-stopForeground
+startForeground()
+stopForeground()
 ```
 
 #### start 
 
 ```
-context.startService()
 //start service, context exit, service still running
 //untile call context.stopService() or service.stopSelf()
+context.startService()
 
-service.onStartCommand
+
 //process request from context
+service.onStartCommand()
 
 
-
-context.bindService()
 //bind context to service, allow user interact
 //can bind saveral context to a same service
 //when no context bind to this service, service exit
+context.bindService()
 
-service.onBind
+
 //process request from context
+service.onBind()
 
-context.unbind
+
+context.unbind()
 ```
 
 #### connection
@@ -521,7 +523,7 @@ bindService(new Intent(context, LocalService.class), connection, Context.BIND_AU
 unbindService(connection);
 ```
 
-#### IntntService
+#### IntentService
 
 IntentService use worker-thread<br>
 onHanadleInput(Intent intent):process request<br>

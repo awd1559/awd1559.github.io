@@ -220,7 +220,7 @@ public final class PetDatabase{
 
 
 
-# JSON
+#### JSON
 > - JSONObject  //json对象
 > - JSONArray   //一组有序数值，value类型包括：Boolean、JSONArray、JSONObject、Number、String
 > - JSONStringer    //构建类
@@ -330,7 +330,7 @@ try {
 
 
 
-# network
+#### network
 
 > - Socket方式
 
@@ -439,7 +439,7 @@ try {
 
 
 
-# FileSystem
+#### FileSystem
 
 > - 默认路径为 /data/data/packagename/files/      //Activity.getFilesDir()
 
@@ -613,7 +613,7 @@ File pathCacheDir = getCacheDir();            /cache目录
 
 
 
-# FileCache
+#### FileCache
 
 > - 在内存中缓存
 
@@ -1038,7 +1038,7 @@ if (JniHelper::getStaticMethodInfo(t, "com/cocos2dev/JNIDemo/FMJNIHelp", "starPa
 
 
 
-# System
+# Hardware
 
 
 #### Alarm
@@ -1134,7 +1134,7 @@ Bundle message.getData();
 
 
 
-####GestureDector
+#### GestureDector
 
 ```
 class MyGestureDectorListener extends SimpleOnGestureListener{
@@ -1243,7 +1243,10 @@ Bitmap bitmap = gesture.toBitmap(width, height, inset, color);
 
 
 
-#### livefolder
+#### ~~livefolder~~
+
+> - deprecated in API level 14
+> - replaced by the new AppWidget Collection APIs
 
 ```
 <intent-filter>
