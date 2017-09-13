@@ -14,32 +14,37 @@ tags:
 
 # Version
 
-| ----------------- | -------------- | -------- | ----- |
-| API               | version        | Name     | Date  |
-| API 23            | Android 6	     | Mushroom |	2015
-| API 22            | Android 5.1.1	 |          |
-| API 21            | Android 5.0.1	 |	        |
-| API 20, L preview | Android L      | Lollipap |	
-| API 20            | Android 4.4W.2 |		    |
-| API 19            | Android 4.4.2  |	KitKat	|
-| API 18            | Android 4.3.1  |		    | 2012
-| API 17            | Android 4.2.2  |		    | 2012
-| API 16            | Android 4.1.2  | jellybean| 2012.6.28
-| API 15            | Android 4.0.3  |		    |
-| API 14            | Android 4.0    | icecream | 2011.10.19
-| API 13            | Android 3.2    |		    | 2011.7.13
-| API 12            | Android 3.1    |		    | 2011.5.11
-| API 11            | Android 3.0    | Honeycomb| 2011.2.2
-| API 10            | Android 2.3.3  |		
-| API 9             | Android 2.3.1  |	姜饼	    | 2010.12.7
-| API 8             | Android 2.2    |	Froyo   | 2010.5.20
-| API 7             | Android 2.1    |	松饼    |  2009.10.26
-| API 6             | Android 2.0.1  |	松饼    | 2009.10.26
-| API 5             | Android 2.0    |	松饼	   | 2009.10.26
-| API 4             | Android 1.6    |	甜甜圈  | 2009.9.15
-| API 3             | Android 1.5    |	cupcake | 2009.4.30
-| API 2             | Android 1.1    |	发条机器人 | 2008.9
-| API 1             | Android 1.0    |	阿童木  |	
+| -------- | ----------------- | -------- | ----- |
+| API      | version           | Code     | Date  |
+| API 26,O | Android 8         | Oreo     | 2017.08.22
+| API 25,N | Android 7.1.1/7.1 | N_MR1    | 2016.12
+| API 24,N | Android 7         | Nougat        | 2016.08.22       
+| API 23,M | Android 6	       | Mushroom      | 2015.09.30
+| API 22,L | Android 5.1       | LOLLIPOP_MR1  | 2015.03.10
+| API 21,L | Android 5.0       | LOLLIPOP      | 2014.11.03	
+| API 20   | Android 4.4W      | KITKAT_WATCH  |
+| API 19   | Android 4.4       | KITKAT        | 2013.09.04
+| API 18   | Android 4.3       | JELLY_BEAN_MR2| 2012
+| API 17   | Android 4.2, 4.2.2   |	JELLY_BEAN_MR1         | 2012
+| API 16   | Android 4.1, 4.1.1   | JELLY_BEAN             | 2012.06.28
+| API 15   | Android 4.0.3, 4.0.4 | ICE_CREAM_SANDWICH_MR1 |
+| API 14   | Android 4.0, 4.0.1, 4.0.2| ICE_CREAM_SANDWICH | 2011.10.19
+| API 13   | Android 3.2    | HONEYCOMB_MR2       | 2011.07.13
+| API 12   | Android 3.1.x  | HONEYCOMB_MR1       | 2011.05.11
+| API 11   | Android 3.0.x  | Honeycomb           | 2011.02.02
+| API 10   | Android 2.3.4  |                     |
+| API 10   | Android 2.3.3  | GINGERBREAD_MR1     |
+| API 9    | Android 2.3.2  |                     |
+| API 9    | Android 2.3.1  |                     |
+| API 9    | Android 2.3    | GINGERBREAD         | 2010.12.7
+| API 8    | Android 2.2.x  | Froyo               | 2010.5.20
+| API 7    | Android 2.1.x  | ECLAIR_MR1          | 2009.10.26
+| API 6    | Android 2.0.1  | ECLAIR_0_1          | 2009.10.26
+| API 5    | Android 2.0    | ECLAIR	          | 2009.10.26
+| API 4    | Android 1.6    | DONUT               | 2009.9.15
+| API 3    | Android 1.5    | CUPCAKE             | 2009.4.30
+| API 2    | Android 1.1    | BASE_1_1            | 2008.9
+| API 1    | Android 1.0    | BASE                |
 
 
 # Library
