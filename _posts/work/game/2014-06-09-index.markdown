@@ -1,0 +1,19 @@
+---
+layout:     post
+title:      "game 目录"
+subtitle:   " \"game Note Index\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: game
+permalink: /game/
+tags:
+    - game
+---
+
+- [box2d](/game/box2d)
+- [cocos2dx](/game/cocos2dx)
+- [libgdx](/game/libgdx)
+- [opengl](/game/opengl)
+- [sdl](/game/sdl)
+- [unity](/game/unity)

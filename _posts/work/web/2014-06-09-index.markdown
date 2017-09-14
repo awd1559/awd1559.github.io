@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      "web目录"
+subtitle:   " \"web note index\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: web
+permalink: /web/
+tags:
+    - web
+---
+
+- [asp.net](/web/asp.net)
+- [database](/web/db)
+- [front](/web/front)
+- [java](/web/java)
+- [perl](/web/perl)
+- [php](/web/php)
+- [wordpress](/web/wordpress)
+- [python](/web/python)
+- [rails](/web/rails)
+- [ruby](/web/ruby)

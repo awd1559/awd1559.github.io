@@ -1,0 +1,21 @@
+---
+layout:     post
+title:      "index"
+subtitle:   " \"all the infomations\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: info
+permalink: info/
+tags:
+    - info
+---
+- [世界电影杂志](/list/mag/)
+- [公司列表](/list/company/)
+- [应用列表](/list/application/)
+- [游戏列表](/list/game/)
+- [软件列表](/list/software/)
+- [音乐列表](/list/music/)
+- [设备列表](/list/device/)
+- [书单](/list/book/)
+- [使用工具](/tools/)

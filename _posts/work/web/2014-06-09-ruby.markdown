@@ -5,9 +5,13 @@ subtitle:   " \"ruby program language\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: web
+permalink: /web/ruby
 tags:
     - web
 ---
+> - [web目录](/web/)
+
 
 [ruby](https://www.ruby-lang.org/zh_cn/)
 [doc](http://ruby-doc.org/)

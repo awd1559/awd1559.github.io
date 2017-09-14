@@ -1,0 +1,16 @@
+---
+layout:     post
+title:      "linux目录"
+subtitle:   " \"linux note index\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: linux
+permalink: /linux/
+tags:
+    - linux
+---
+
+- [linux](/linux/linux)
+- [kernel](/linux/kernel)
+

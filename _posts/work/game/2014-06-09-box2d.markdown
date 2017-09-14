@@ -5,9 +5,12 @@ subtitle:   " \"Box2D\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: game
+permalink: /game/box2d
 tags:
     - game
 ---
+> - [game目录](/game/)
 
 # Box2D
 

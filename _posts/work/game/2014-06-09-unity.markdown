@@ -5,9 +5,13 @@ subtitle:   " \"Unity3D\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: game
+permalink: /game/unity
 tags:
     - game
 ---
+
+> - [game目录](/game/)
 
 # Basic
 

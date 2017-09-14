@@ -5,9 +5,12 @@ subtitle:   " \"all the tools that we use\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+permalink: tools
+category: info
 tags:
     - info
 ---
+- [信息目录](/info/)
 
 # Apple常用方法和快捷键
 

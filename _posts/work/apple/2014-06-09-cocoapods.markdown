@@ -5,9 +5,12 @@ subtitle:   " \"cocoapod, list\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: apple
+permalink: /apple/cocoapods
 tags:
     - Apple
 ---
+><small>目录:[Apple目录](/apple/)</small>
 
 > - 常用的pod
 > - [awesome-iOS](https://github.com/vsouza/awesome-ios)

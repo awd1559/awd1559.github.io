@@ -6,11 +6,12 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 category: android
+permalink: /android/graphic
 tags:
     - Android
 ---
-><small>目录:[Android目录](/2014/06/09/android)</small>
-><small>目录:[gradle](/2014/06/09/gradle)</small>
+><small>目录:[Android目录](/android/)</small>
+><small>目录:[gradle](/android/gradle)</small>
 
 
 # Font

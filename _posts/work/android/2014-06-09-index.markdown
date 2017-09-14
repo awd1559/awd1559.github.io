@@ -6,11 +6,11 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 category: android
+permalink: /android/
 tags:
     - Android
 ---
-><small>目录:[Android目录](/2014/06/09/android)</small>
-><small>目录:[gradle](/2014/06/09/gradle)</small>
+><small>目录:[gradle](/android/gradle)</small>
 
 
 # Version
@@ -60,7 +60,7 @@ com.android.support:cardview-v7:newestVersion
 ```
 
 
-# [Components](/2014/06/09/android-components)
+# [Components](/android/components)
 
 > - Intent
 > - Activity
@@ -71,7 +71,7 @@ com.android.support:cardview-v7:newestVersion
 > - Processes & Threads
 
 
-# [Resources](/2014/06/09/android-resources)
+# [Resources](/android/resources)
 
 > - Animation
 > - ColorStateList
@@ -83,7 +83,7 @@ com.android.support:cardview-v7:newestVersion
 > - misc
 
 
-# [Interface](/2014/06/09/android-interface)
+# [Interface](/android/interface)
 
 > - Layout
 > - Input Controllers
@@ -92,7 +92,7 @@ com.android.support:cardview-v7:newestVersion
 > - Setting
 
 
-# [Animations](/2014/06/09/android-animations)
+# [Animations](/android/animations)
 
 
 

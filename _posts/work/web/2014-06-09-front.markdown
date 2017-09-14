@@ -5,9 +5,12 @@ subtitle:   " \"all about javascript typescript, coffeescript and nodejs, css, h
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: web
+permalink: /web/front
 tags:
     - web
 ---
+> - [web目录](/web/)
 
 
 # [Node.js](https://nodejs.org/)

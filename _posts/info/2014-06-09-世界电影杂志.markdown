@@ -5,9 +5,15 @@ subtitle:   " \"世界电影杂志\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: list
+permalink: list/mag
 tags:
     - info
 ---
+- [信息目录](/info/)
+
+
+
 1984.5 芬尼和阿里山大
 1986.6 8又1/2
 1986.5 回到未来

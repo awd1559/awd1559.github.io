@@ -5,9 +5,15 @@ subtitle:   " \"web:wordpress\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: web
+permalink: /web/wordpress
 tags:
     - web
 ---
+> - [web目录](/web/)
+
+
+
 ## wordpress
 
 #### basic
