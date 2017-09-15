@@ -11,7 +11,6 @@ tags:
     - Android
 ---
 ><small>目录:[Android目录](/android/)</small>
-><small>目录:[gradle](/android/gradle)</small>
 
 
 

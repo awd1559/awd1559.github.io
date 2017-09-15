@@ -1500,7 +1500,8 @@ override func viewDidLoad() {
 
 > - [Walker](https://github.com/RamonGilabert/Walker)
 
-
+> - [spruce-ios](https://github.com/willowtreeapps/spruce-ios)
+> - for swift
 
 
 
@@ -1766,6 +1767,8 @@ log(object, use as print function)
 
 	
 # misc
+
+> - [GodEye](https://github.com/zixun/GodEye)
 
 > - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver)
 

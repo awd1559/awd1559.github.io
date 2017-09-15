@@ -1,0 +1,35 @@
+---
+layout:     post
+title:      "Android error"
+subtitle:   " \"Android error\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: android
+permalink: /android/error
+tags:
+    - Android
+---
+><small>目录:[Android目录](/android/)</small>
+
+> - BaseActivity extends android.support.v7.app.AppCompatActivity
+
+
+> - ConstraintsLayout
+
+
+> - FloatMath已经不再使用，使用java.lang.Math
+
+
+> - 找不到org.apache.http ==> 请改用HttpURLConnection
+> - 或者继续使用http
+> - 在build.gradle中添加
+
+```
+android {
+    useLibrary 'org.apache.http.legacy'
+}
+dependencies {
+    compile 'org.apache.httpcomponents:httpcore:4.4.2'
+}
+```

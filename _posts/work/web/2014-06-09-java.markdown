@@ -13,13 +13,13 @@ tags:
 > - [web目录](/web/)
 
 
-config spring project in eclipse
-install gradle
-install eclipse gradle plugin
+- config spring project in eclipse
+- install gradle
+- install eclipse gradle plugin
 
 
-Maven => pom.xml
-Gradle => build.gradle
+- Maven => pom.xml
+- Gradle => build.gradle
 
 
 # spring boot
@@ -425,11 +425,68 @@ public class MainController {
 
 
 
-# java web in Eclipse
+# IDE
+
+#### springboot in IDE
+
+> - IDEA 
+> - new maven project -> config spring boot, not tomcat
+> - new spring initlizer -> 
+
+> - Eclipse
+> - help->eclipse market->spring ide
+
+
+#### spring in IDE
+
+> - sprint tool suit->maven
+> - eclipse -> maven
+> - idea -> maven
+
+
+```
+//pom.xml
+<parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>1.4.4.RELEASE</version>
+</parent>
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<dependency> 
+  <groupId>com.vaadin</groupId> 
+  <artifactId>vaadin-spring-boot-starter</artifactId> 
+  <version>1.1.1</version> 
+</dependency>
+```
+
+```
+@ComponentScan
+@EnableAutoConfiguration
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
+@Controller
+public class ShowPersonController {
+    @RequestMapping("/showPerson")
+    public @ResponseBody Person showPerson() {
+        return new Person("levinzhang","levinzhang1981@gmail.com");
+    }
+}
+```
+
+
+
+#### java web in Eclipse
 
 ```
 File -> New -> Project -> dynamic java web
 create server
 ```
-
 

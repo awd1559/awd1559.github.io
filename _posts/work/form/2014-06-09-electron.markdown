@@ -11,3 +11,148 @@ tags:
     - form
 ---
 > - [form目录](/form/)
+
+
+- [electron](https://electron.atom.io/)
+- [awesome-electron](https://github.com/sindresorhus/awesome-electron)
+
+# starter 
+
+#### ~~quick start~~
+
+```
+# Clone the Quick Start repository
+$ git clone https://github.com/electron/electron-quick-start
+
+# Go into the repository
+$ cd electron-quick-start
+
+# Install the dependencies and run
+$ npm install && npm start
+```
+
+# [electron-vue](https://github.com/SimulatedGREG/electron-vue)
+
+```
+npm install -g vue-cli
+vue init simulatedgreg/electron-vue my-project
+cd my-project
+
+yarn # or npm install
+
+yarn run dev # or npm run dev
+
+yarn run build
+```
+
+
+# [electron-boilerplate](https://github.com/szwacz/electron-boilerplate)
+> - 在mac下可以打包
+> - 在win下
+> - 在linux下
+
+```
+git clone https://github.com/szwacz/electron-boilerplate.git
+cd electron-boilerplate
+npm install
+npm start
+
+npm run e2e
+
+npm run coverage
+
+
+npm run release //package into installer
+```
+
+
+
+# [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)
+
+```
+git clone --depth=1 https://github.com/chentsulin/electron-react-boilerplate.git your-project-name
+cd your-project-name
+yarn
+npm run dev
+
+npm run package
+npm run package-all
+```
+
+
+
+
+
+
+
+# [electron-quick-start](https://github.com/electron/electron-quick-start)
+
+```
+git clone https://github.com/electron/electron-quick-start
+cd electron-quick-start
+npm install
+npm start
+```
+
+
+
+
+
+
+#### ~~by code~~
+
+```
+npm install electron -g
+
+npm init
+npm install electron --save-dev
+
+//vi main.js
+const {app, BrowserWindow} = require('electron')
+const path = require('path')
+const url = require('url')
+
+let win 
+
+function createWindow() {
+    win = new BrowserWindow({width:800, height: 600})
+
+
+
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+
+    //win.webContents.openDevTools()
+
+    win.on('closed', () => {
+        win = null
+    })
+}
+
+
+app.on('ready', createWindow)
+
+app.on('window-all-closed', () => {
+    if(process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+
+app.on('activate', () => {
+    if(win == null) {
+        createWindow()
+    }
+})
+
+electron .      //run the app included in this folder
+```
+
+
+# Component
+
+#### [photon](http://photonkit.com/)
+
+

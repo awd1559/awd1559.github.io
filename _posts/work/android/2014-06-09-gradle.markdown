@@ -11,18 +11,17 @@ tags:
     - Android
 ---
 ><small>目录:[Android目录](/android/)</small>
-><small>目录:[gradle](/android/gradle)</small>
 
 > - [android-best-practices](https://github.com/futurice/android-best-practices)
 > - [awesome-android](https://github.com/snowdream/awesome-android)
 > - [awesome-android-libraries](https://github.com/wasabeef/awesome-android-libraries)
 > - [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
-> - [android-open-project](https://github.com/Trinea/android-open-project)
 
 
 
+-----
 
-常用的gradle on github
+> - 常用的gradle on github
 
 
 # UI
@@ -1052,7 +1051,11 @@ Observable.just(1, 2, 3, 4)
 
 
 
-# Font
+# Font & Icon
+
+#### [material-design-icons](https://github.com/google/material-design-icons)
+
+#### [Android-Iconics](https://github.com/mikepenz/Android-Iconics)
 
 #### [Calligraphy](https://github.com/chrisjenx/Calligraphy)
 
@@ -1718,7 +1721,7 @@ Call<User> getUser(@Header("Authorization") String authorization)
 
 #### [ion](https://github.com/koush/ion)
 
-# ORM
+# Database
 
 #### [greenDAO](https://github.com/greenrobot/greenDAO)
 > - Android greenDAO by greenbot, ORM
@@ -1798,6 +1801,8 @@ List<Entity> loadAll()
 
 #### [ActiveAndroid](https://github.com/pardom/ActiveAndroid)
 
+#### [DBFlow](https://github.com/Raizlabs/DBFlow)
+#### [LitePal](https://github.com/LitePalFramework/LitePal)
 
 # Test
 

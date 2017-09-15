@@ -1,0 +1,55 @@
+---
+layout:     post
+title:      "Android Git"
+subtitle:   " \"Android git resources\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: android
+permalink: /android/git
+tags:
+    - Android
+---
+><small>目录:[Android目录](/android/)</small>
+
+> - [android-open-project](https://github.com/Trinea/android-open-project)
+
+
+# starter
+
+> - [Android-Boilerplate](https://github.com/hitherejoe/Android-Boilerplate) RxJava, Dagger 2, Espresso, Mockito   
+长久未更新了
+> - [Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture)
+
+> - [EffectiveAndroidUI](https://github.com/pedrovgs/EffectiveAndroidUI)
+
+> - [SimpleNews](https://github.com/liuling07/SimpleNews) MVP案例
+
+
+# projects
+
+> - [Coding](https://github.com/Coding)
+> - [ECMobile](https://github.com/GeekZooStudio)
+> - [PocketHub](https://github.com/pockethub/PocketHub)
+> - [Douya](https://github.com/DreaminginCodeZH/Douya)
+
+> - [minicat](https://github.com/mcxiaoke/minicat) 蘑菇饭
+> - [SimplifyReader](https://github.com/chentao0707/SimplifyReader) 新闻客户端
+> - [talk-os](https://github.com/jianliaoim/talk-os) 简聊开源版 
+
+> - [muzei](https://github.com/romannurik/muzei)
+
+> - [android-topeka](https://github.com/googlesamples/android-topeka) kotlin  material design showcase
+
+> - [BookReader](https://github.com/JustWayward/BookReader) 任阅网络小说阅读器
+
+
+
+# 遗留项目
+> - [百大易商城](https://github.com/safari0825/bdysc) 百大易商城
+    代码量有一点，中文作者
+    BaiDaData
+    GetData用于数据测试
+    SplashActivity-> MainActivity
+
+> - [v2ex](https://github.com/kyze8439690/v2ex-daily-android)

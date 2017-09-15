@@ -11,6 +11,10 @@ tags:
     - Apple
 ---
 
-- [apple](/apple/apple)
+- [swift-cookbook](/apple/swift)
+
 - [cocoapods](/apple/cocoapods)
-- [swift](/apple/swift)
+- [git](/apple/git)
+
+- [storyboard](/apple/storyboard)
+- [actionscript](/apple/actionscript)

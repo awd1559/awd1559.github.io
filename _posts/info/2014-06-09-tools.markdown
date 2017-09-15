@@ -226,7 +226,7 @@ targetSdkVersion:程序运行时起作用
 
 
 
-#### ADT->Android Studio
+#### ~~ADT->Android Studio~~
 
 > - ADT版本必须在22及以上
 > - Eclipse工程—>Export->Generate Gradle Build Files
@@ -253,7 +253,7 @@ targetSdkVersion:程序运行时起作用
 
 
 
-# ADT
+# ~~ADT~~
 > - 废弃的工具
 
 #### install
@@ -829,7 +829,7 @@ echo “awd1559.github.io”  > CNAME
 ```
 
 添加评论功能
-https://disqus.com
+[disqus](https://disqus.com)
 
 
 
@@ -877,6 +877,15 @@ https://disqus.com
 http://www.iteblog.com/idea/key.php
 
 > - 2016.3.3
+
+
+
+#### Idea
+
+```
+//region description
+//endregion
+```
 
 
 #### phpStorm keymap
