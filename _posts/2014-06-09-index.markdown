@@ -23,7 +23,24 @@ header-img: "img/post-bg-2015.jpg"
 # [infomation](/info/)
 
 
- - [erp](/erp/)
- - [temp](/temp/)
- - [urls](/urls/)
+# misc
 
+> - [erp](/erp/)
+> - [temp](/temp/)
+> - [urls](/urls/)
+
+
+# lang
+
+> - [c](/lang/c)
+> - [cpp](/lang/cpp)
+> - [csharp](/lang/csharp)
+> - [java](/lang/java)
+> - [coffeescript](/lang/coffeescript)
+> - [html](/lang/html)
+> - [javascript](/lang/javascript)
+> - [perl](/lang/perl)
+> - [php](/lang/php)
+> - [python](/lang/python)
+> - [ruby](/lang/ruby)
+> - [sass](/lang/sass)

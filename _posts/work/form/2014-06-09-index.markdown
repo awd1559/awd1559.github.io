@@ -13,4 +13,7 @@ tags:
 
 - [winform](/form/winform)
 - [wpf](/form/wpf)
+- [java](/form/java)
 - [electron](/form/electron)
+- [mac](/form/mac)
+- [qt](/form/qt)

@@ -1,0 +1,42 @@
+---
+layout:     post
+title:      "html"
+subtitle:   " \"html\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: lang
+permalink: /lang/html
+tags:
+    - lang
+---
+> - [web front目录](/web/front)
+
+
+
+
+# web代码规范
+使用两个空格，不用tab
+嵌套元素应该缩进
+属性全部使用双引号，不用单引号
+自闭合标签, 使用<hr>, 不用<hr/>
+不省略结束标签: </li>
+IE兼容模式: <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+字符编码： <meta charset="UTF-8">
+
+```
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+	  <title></title>
+	  <meta charset="UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	  <link rel="stylesheet" href="">
+	  <style>
+	    /* ... */
+	  </style>
+	  <script src="code.js"></script>
+	</head>
+	<body></body>
+</html>
+```

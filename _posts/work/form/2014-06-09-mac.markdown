@@ -1,0 +1,34 @@
+---
+layout:     post
+title:      "mac"
+subtitle:   " \"mac desktop\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: from
+permalink: /form/mac
+tags:
+    - form
+---
+> - [form目录](/form/)
+
+
+# projects
+
+- [CotEditor](https://github.com/coteditor/CotEditor) swift
+- [iTerm2](https://github.com/gnachman/iTerm2)
+- [macdown](https://github.com/MacDownApp/macdown)
+- [mozilla](https://github.com/mozilla)
+- [sequel-pro](https://github.com/sheldon/sequel-pro)		mysql client
+- [Quicksilver](https://github.com/quicksilver/Quicksilver) control your mac with keyboard
+- [AudioKit](https://github.com/audiokit/AudioKit) audio processing
+- [Inkpad](https://github.com/sprang/Inkpad) Vector illustration app for the iPad
+- [dshb](https://github.com/beltex/dshb) osx system monitor in swift
+- [Frameless](https://github.com/stakes/Frameless) chromeless web browser in swift
+
+- [SpriteBuilder](https://github.com/spritebuilder/SpriteBuilder)
+- [textmate](https://github.com/textmate/textmate)
+- [OpenEmu](https://github.com/OpenEmu/OpenEmu) Retro video game emulation for macOS
+- [homebrew](https://github.com/Homebrew/legacy-homebrew)
+- [koala](https://github.com/oklai/koala/) less, sass and coffeescript compilation
+- [oschina](https://github.com/oschina)

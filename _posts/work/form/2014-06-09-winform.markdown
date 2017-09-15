@@ -275,3 +275,12 @@ foreach (var a in text)
 
 # Json.NET
 
+
+# projects
+
+- [icsharpcode](https://github.com/icsharpcode)
+- [SharpDevelop](https://github.com/icsharpcode/SharpDevelop) ide for .net
+- [MaterialSkin](https://github.com/IgnaceMaes/MaterialSkin)
+- [winforms-modernui](https://github.com/peters/winforms-modernui)
+- [Krypton](https://github.com/ComponentFactory/Krypton)
+- [paint.net](http://www.getpaint.net/download.html)

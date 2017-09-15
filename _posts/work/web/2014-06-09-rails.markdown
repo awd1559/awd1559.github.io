@@ -11,6 +11,7 @@ tags:
     - web
 ---
 > - [web目录](/web/)
+> - [ruby](/lang/ruby)
 
 
 # install 

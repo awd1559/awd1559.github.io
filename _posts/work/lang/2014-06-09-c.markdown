@@ -5,9 +5,18 @@ subtitle:   " \"c\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: lang
+permalink: /lang/c
 tags:
     - lang
 ---
+
+# git
+
+> - [crow](https://github.com/ipkn/crow)
+> - [webapplib](https://github.com/pi1ot/webapplib)
+
+
 
 # history
 

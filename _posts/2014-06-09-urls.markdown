@@ -10,66 +10,12 @@ tags:
 ---
 
 
-# Forms
-
-#### WinForm
-
-- [icsharpcode](https://github.com/icsharpcode)
-- [SharpDevelop](https://github.com/icsharpcode/SharpDevelop) ide for .net
-- [MaterialSkin](https://github.com/IgnaceMaes/MaterialSkin)
-- [winforms-modernui](https://github.com/peters/winforms-modernui)
-- [Krypton](https://github.com/ComponentFactory/Krypton)
-- [paint.net](http://www.getpaint.net/download.html)
-
-
-#### Wpf
-
-- [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
-- [ReactiveUI](https://github.com/reactiveui/ReactiveUI)
-- [MaterialDesignInXamlToolkit](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit)
-- [mui](https://github.com/firstfloorsoftware/mui)
-- [Fluent.Ribbon](https://github.com/fluentribbon/Fluent.Ribbon)
-- [Prism](https://github.com/PrismLibrary/)
-- [Dragablz](https://github.com/ButchersBoy/Dragablz)
-- [AdmiralRoom](https://github.com/huoyaoyuan/AdmiralRoom)
-- [WPF-Task-Dialog](https://github.com/yadyn/WPF-Task-Dialog)
-- [WPFConverters](https://github.com/kentcb/WPFConverters)
-- [KanColleViewer](https://github.com/Zharay/KanColleViewer)
-- [KanColleViewer](https://github.com/Grabacr07/KanColleViewer)
-
-
-#### Java
-
-- [FreeMind](http://sourceforge.net/projects/freemind/)
-- [XMind](https://github.com/xmindltd/xmind)
-
 #### ActionScript
 
 - [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton)远程教育
 
-#### QT
 
-- [QT](#)
 
-#### Mac
-
-- [CotEditor](https://github.com/coteditor/CotEditor) swift
-- [iTerm2](https://github.com/gnachman/iTerm2)
-- [macdown](https://github.com/MacDownApp/macdown)
-- [mozilla](https://github.com/mozilla)
-- [sequel-pro](https://github.com/sheldon/sequel-pro)		mysql client
-- [Quicksilver](https://github.com/quicksilver/Quicksilver) control your mac with keyboard
-- [AudioKit](https://github.com/audiokit/AudioKit) audio processing
-- [Inkpad](https://github.com/sprang/Inkpad) Vector illustration app for the iPad
-- [dshb](https://github.com/beltex/dshb) osx system monitor in swift
-- [Frameless](https://github.com/stakes/Frameless) chromeless web browser in swift
-
-- [SpriteBuilder](https://github.com/spritebuilder/SpriteBuilder)
-- [textmate](https://github.com/textmate/textmate)
-- [OpenEmu](https://github.com/OpenEmu/OpenEmu) Retro video game emulation for macOS
-- [homebrew](https://github.com/Homebrew/legacy-homebrew)
-- [koala](https://github.com/oklai/koala/) less, sass and coffeescript compilation
-- [oschina](https://github.com/oschina)
 
 # Mobiles
 
@@ -303,18 +249,6 @@ frameworks
 
 
 
-
-
-
-#### AngularJS
-
-- [ngmodules](https://ngmodules.org/)
-- [angular-ui](https://github.com/angular-ui)
-- [ng-admin](https://github.com/marmelab/ng-admin)
-- [taigaio](https://github.com/taigaio)
-
-study
-- [angularmvctutorial](https://github.com/bumblebeeman/angularmvctutorial)      angularjs in asp.netmvc
 
 
 #### Ember.js

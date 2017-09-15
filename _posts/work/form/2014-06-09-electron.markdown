@@ -31,7 +31,11 @@ $ cd electron-quick-start
 $ npm install && npm start
 ```
 
-# [electron-vue](https://github.com/SimulatedGREG/electron-vue)
+
+
+#### [electron-vue](https://github.com/SimulatedGREG/electron-vue)
+> - check [vue.js](/web/vuejs)
+> - choose this starter templat
 
 ```
 npm install -g vue-cli
@@ -45,8 +49,59 @@ yarn run dev # or npm run dev
 yarn run build
 ```
 
+```
+copy photon to static
+add app.scss
+@import "photon/css/photon.min.css";
+<template>
+</template>
+<script>
+  export default {
+    name: "home-page",
+    datat () {
+      return {
+        study: true,
+        note: false
+      }
+    },
+    components: { },
+    methods: {  }
+  }
+</script>
+<style></style>
 
-# [electron-boilerplate](https://github.com/szwacz/electron-boilerplate)
+
+@click=""
+@contextmenu=""
+
+<router-link to="/antd">Go to antd</router-link>
+
+
+let bus = new Vue()
+bus.$emit('eventname', this.id)
+bus.$on('eventname', this.handler)
+
+this.$refs.studytab.$refs.catelist.selectedListItem = 1
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### [electron-boilerplate](https://github.com/szwacz/electron-boilerplate)
 > - 在mac下可以打包
 > - 在win下
 > - 在linux下
@@ -67,7 +122,7 @@ npm run release //package into installer
 
 
 
-# [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)
+#### [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)
 
 ```
 git clone --depth=1 https://github.com/chentsulin/electron-react-boilerplate.git your-project-name
@@ -85,7 +140,7 @@ npm run package-all
 
 
 
-# [electron-quick-start](https://github.com/electron/electron-quick-start)
+#### [electron-quick-start](https://github.com/electron/electron-quick-start)
 
 ```
 git clone https://github.com/electron/electron-quick-start
@@ -152,6 +207,7 @@ electron .      //run the app included in this folder
 
 
 # Component
+> - check [nodejs](/web/nodejs/)
 
 #### [photon](http://photonkit.com/)
 

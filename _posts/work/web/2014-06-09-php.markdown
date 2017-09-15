@@ -11,6 +11,7 @@ tags:
     - web
 ---
 > - [web目录](/web/)
+> - [php lang](/lang/php)
 
 
 
@@ -128,12 +129,12 @@ session:table     #create session table in database
 
 ```
 //基础
-Route::get(‘/’, function() { return ‘this string is returned’;});
-Route::post(‘foo/bar’, function() { return ‘sadfasdfasdf’ ;} );
-Route::match([‘get’, ‘post’], ‘url’, function() {});
+Route::get('/', function() { return 'this string is returned';});
+Route::post('foo/bar', function() { return 'sadfasdfasdf' ;} );
+Route::match(['get', 'post'], 'url', function() {});
 Route::any();
 
-$url = url(‘for/bar’);
+$url = url('for/bar');
 ```
 
 ```
@@ -171,7 +172,7 @@ Route::get('user/profile', [
 ]);
 
 
-$redirect = redirect()->route(‘profile');
+$redirect = redirect()->route('profile');
 ```
 
 ```
@@ -228,42 +229,42 @@ Route::group(['prefix' => 'admin'], function () {
 
 ```
 //命名路由器， filter & acton
-Route::get(‘user/profile’, array(‘as’ => ‘profile’, ‘before’ => ‘old’, ‘uses’ => ‘UserController@showProfile'));
+Route::get('user/profile', array('as' => 'profile', 'before' => 'old', 'uses' => 'UserController@showProfile'));
 
 //<1>Controler Action
-Route::get('a', 'ArticleController@index’);
+Route::get('a', 'ArticleController@index');
 
-Route::get(‘/‘,  function(){
+Route::get('/',  function(){
 	echo "work";				//<2>直接输出
 
 	echo Form::open();
 	echo Form::close();
 
-	return View:make(‘login’);	//<3>输出login.blade.php
+	return View:make('login');	//<3>输出login.blade.php
 });
 ```
 
 ```
-Route::post(‘login’, function(){
-	$name = Input::get(‘username’);	//获得username框数值
+Route::post('login', function(){
+	$name = Input::get('username');	//获得username框数值
 
-	Redirect::to(‘login’);		
-	Redirect::route(‘login’);	
+	Redirect::to('login');		
+	Redirect::route('login');	
 });
 ```
 
 
 ```
 //Auth
-if(Auth::attempt(array(‘username’ => $name, ‘password’ => $password)); //用户验证
+if(Auth::attempt(array('username' => $name, 'password' => $password)); //用户验证
 Auth::check()		//判断用户是否已经验证
 Auth::user()->email	//当前用户email
 Auth::validate()	//验证但不登录
-Auth::logout();//数据库定义
+Auth::logout();     //数据库定义
 php artisan migrate:make final_table 
 	//编辑好所有的数据库脚本
-	Schema::create(‘posts’, function($table){
-		$table->increments(‘id’);
+	Schema::create('posts', function($table){
+		$table->increments('id');
 			  ->string($column)
 			  ->string($column, $length)
 			  ->integer($column)
@@ -282,7 +283,7 @@ php artisan migrate:make final_table 
 			 ->default($value)
 			 ->unsigned()
 
-		$table->foreign(‘user_id’)->references(‘id')->on(‘users')->onDelete(‘cascade');
+		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 	});
 
 	Schema::create()
@@ -305,12 +306,12 @@ php artisan migrate:make final_table 
 //Model
 <?php 
 class Post extends Eloquent{
-	protected $table = ‘’my_users’;	//Model 的表名	
+	protected $table = 'my_users';	//Model 的表名	
 	protected $fillable = [];			//指定哪些属性可以被集体赋值
         protected $guarded = [];			//指定哪些属性不可以被集体赋值
 
 	public function user(){
-		return->belongsTo(‘User’);
+		return->belongsTo('User');
 	}
 }
 
@@ -318,40 +319,40 @@ class Post extends Eloquent{
 $posts = Post::all();   	//获取全部
 $post = Post::find(1);	//id == 1
 $post = Post::findOrFail(1);
-$post = Post:;where(‘votes’, ‘>’ 100)->firstOrFail();
-$posts = Post::where(‘votes’, ‘>’, 100)->take(10)->get();
-$count = Post::where(‘vote’, ‘<‘, 100)->count();
+$post = Post:;where('votes', '>' 100)->firstOrFail();
+$posts = Post::where('votes', '>', 100)->take(10)->get();
+$count = Post::where('vote', '<', 100)->count();
 ```
 
 
 ```
 //注册错误处理，
 App::error(function(ModelNotFoundException $e){
-	return Response::make(‘Not Found’, 404);
+	return Response::make('Not Found', 404);
 });
 ```
 
 ```
 //insert / update
 $user = new User;
-$user->name = ‘John’;
+$user->name = 'John';
 $user->save();
 ```
 
 ```
-$affectedRows = Post::where(‘votes’, ‘>’, 100)->update(array(’status’ => 2));		//在一组模型上更新
+$affectedRows = Post::where('votes', '>', 100)->update(array('status' => 2));		//在一组模型上更新
 ```
 
 ```
 //关系
-hasOne(‘Phone’);	//一对一
-belongsTo(‘User’);l	//逆向关系
+hasOne('Phone');	//一对一
+belongsTo('User');l	//逆向关系
 
-hasmany(‘Comment’)	//一对多
-belongsTo(‘Post’)		//逆向关系
+hasmany('Comment')	//一对多
+belongsTo('Post')		//逆向关系
 
-belongsToMany(‘Role’)	//多对多
-belongsToMany(‘User’)	//逆向关系
+belongsToMany('Role')	//多对多
+belongsToMany('User')	//逆向关系
 ```
 
 
@@ -362,68 +363,69 @@ balde.php模版
 
 ```
 //Form
-{{ Form::open(array(‘url' => ‘foo/bar') ) }}			//要提交到view的url
-{{ Form::open(array(‘route' => ‘route.name') ) }} 	//要提交到的route
-{{ Form::open(array(‘action’ => ‘Controller@method') ) }} 		//要提交到的actoin
-{{ Form::open(array(‘url’ => ‘foo/bar’, ‘files’ => true)) }}			//允许在表单中提交文件
+echo Form::open(array('url' => 'foo/bar') )			//要提交到view的url
+echo Form::open(array('route' => 'route.name') ) 	//要提交到的route
+echo Form::open(array('action' => 'Controller@method') ) 		//要提交到的actoin
+echo Form::open(array('url' => 'foo/bar', 'files' => true)) 			//允许在表单中提交文件
 
-echo Form::lable(‘emai’, ‘E-Mail Adress’, array(‘class’ => ‘awesome’ ) );	//文本显示
-echo Form::text(‘email’, ‘example@gmail.com’);						//获取文本
-echo Form::password(‘password’);
-echo Form:;checkbox(’name’,  ‘value’);
-echo Form::radio(’name’,  ‘value’);
-echo Form::file(‘image’);						//文件上传
-echo Form::select(’size’, array(‘L’ => ‘Large’, ’S’ => ’Small’ ) );
-echo Form::submit(‘Click Me!’);
+echo Form::lable('emai', 'E-Mail Adress', array('class' => 'awesome' ) );	//文本显示
+echo Form::text('email', 'example@gmail.com');						//获取文本
+echo Form::password('password');
+echo Form:;checkbox('name',  'value');
+echo Form::radio('name',  'value');
+echo Form::file('image');						//文件上传
+echo Form::select('size', array('L' => 'Large', 'S' => 'Small' ) );
+echo Form::submit('Click Me!');
 
-{{ From::close() }}
+echo From::close()
 ```
 
 ```
 //HTML
 //此处都是指public目录下的资源
-{{ HTML::link(’assets/images/favicon-32.png’,  [’size’=>’32*32’] )}}
-{{ HTML::style('assets/libraries/bootstrap/css/bootstrap.min.css') }}
-{{ HTML::script('assets/libraries/respond.min.js') }}
-{{ HTML::image(’image/example.jpg’, ’this is alt’) }}
-{{ HTML::linkAsset(ur) }}
-{{ HTML::linkRoute(name) }}
-{{ HTML::linkActioin }}
-{{ HTML::mailto }}
-{{ HTML::ol }}
-{{ HTML::ullistinglistingElement }}
-{{ HTML::nestedListing }}
-{{ HTML::attributes }}
-{{ HTML::attributeElement }}
+
+echo HTML::link('assets/images/favicon-32.png',  ['size'=>'32*32'] )
+echo HTML::style('assets/libraries/bootstrap/css/bootstrap.min.css')
+echo HTML::script('assets/libraries/respond.min.js')
+echo HTML::image('image/example.jpg', 'this is alt')
+echo HTML::linkAsset(ur)
+echo HTML::linkRoute(name)
+echo HTML::linkActioin
+echo HTML::mailto
+echo HTML::ol
+echo HTML::ullistinglistingElement
+echo HTML::nestedListing
+echo HTML::attributes
+echo HTML::attributeElement
 ```
 
 
 
 ```
 <a href="{{ route('dashboard') }}">Dashboard</a>
-<a href="{{ URL::to(‘user/login') }}" ——>view/user/login.blade.php
+<a href="{{ URL::to('user/login') }}" ——>view/user/login.blade.php
 <img src="{{ asset('assets/images/logo.png') }} "/>
 ```
 
 
 ```
 //语法
-@include(‘layout.header’) layout/header.blade.php
+@include('layout.header') layout/header.blade.php
 
 //Layout
 //app/viess/layouts/master.balde.php
-@section(’sidebar’)
+@section('sidebar')
 This is the master sidebar.
 @show
-@yeild(‘content’, ‘Default Content') /空section，等待子view填充
+@yeild('content', 'Default Content') /空section，等待子view填充
 
 //app/views/subview.blade.php
-@	(‘layouts.master’) //扩展
-@section(’sidebar’) //覆盖父sidebar secton
+@	('layouts.master') //扩展
+@section('sidebar') //覆盖父sidebar secton
 @parent
 This is appended to the master sidebar.
 @stop
-@seciotn(‘content’) 填充content secton
+@seciotn('content') 填充content secton
 this is subview body content
 @stop
 
@@ -433,8 +435,8 @@ this is subview body content
 
 
 {{ $name }}
-{{ isset($name) ?name : ‘Defaut'   }}
-{{ $name or ‘Default' }}
+{{ isset($name) ?name : 'Defaut'   }}
+{{ $name or 'Default' }}
 
 //if
 @if ()
@@ -472,7 +474,6 @@ Response::download($file);
 ```
 
 
-################################################################
 
 ```
 php artisan migrate:make users_table //创建migrate文件
@@ -513,36 +514,36 @@ App::error(function($exception, $code)
 
 ```
 Route
-Route::get(‘/’, function(){
-	return ‘string’;
+Route::get('/', function(){
+	return 'string';
 });
 
-Route::post(‘/url’, function(){    });
-Route::put(‘/url’, function(){      });
-Route::delete(‘/url’, function() { });
+Route::post('/url', function(){    });
+Route::put('/url', function(){      });
+Route::delete('/url', function() { });
 
-Route::match([‘get’, ‘post’], ‘/url’, function() { });
-Route::any(‘url’, function() { });
+Route::match(['get', 'post'], '/url', function() { });
+Route::any('url', function() { });
 
 
 //使用参数
-Route::get(‘user/{id}’, function($id){   });
-Route::get(‘posts/{post}/comments/{comment}’,  function($postId, $commentId) {   });
+Route::get('user/{id}', function($id){   });
+Route::get('posts/{post}/comments/{comment}',  function($postId, $commentId) {   });
 
 
-Route::get(‘user/{name?}’, function($name = null) {  });
-Route::get(‘user/{name?}’, function($name = ‘John’ ) {  });
+Route::get('user/{name?}', function($name = null) {  });
+Route::get('user/{name?}', function($name = 'John' ) {  });
 
 //约束参数中format
-Route::get(‘user/{name}’, function($name) {})->where(‘name’, ‘[A-Za-z]+’);
-Route::get(‘user/{id}’, function($id){ })->where(‘id’, ‘[0-9]+’);
-Route::get(‘user/{id}/{name}, function($id, $name) {})->where([‘id’ => ‘[0-9]+’, ‘name’ => ‘[z-a]+’]);
+Route::get('user/{name}', function($name) {})->where('name', '[A-Za-z]+');
+Route::get('user/{id}', function($id){ })->where('id', '[0-9]+');
+Route::get('user/{id}/{name}', function($id, $name) {})->where(['id' => '[0-9]+', 'name' => '[z-a]+']);
 
 //为route命名
-Route::get(‘user/profile’, [‘as’ => ‘profile’, function() {}]);
-Route::get(‘user/profile’, [‘as’  => ‘profile’,  ‘users’ => ‘UserController@showProfile’ ]);
+Route::get('user/profile', ['as' => 'profile', function() {}]);
+Route::get('user/profile', ['as'  => 'profile',  'users' => 'UserController@showProfile' ]);
 
-//grpu url
+//group url
 Route::group(['as' => 'admin::'], function () {
     Route::get('dashboard', ['as' => 'dashboard', function () {
         // Route named "admin::dashboard"
@@ -644,7 +645,8 @@ config Database
 
 
 
-
+#### note
+> - HomePage: src\Template\Pages\home.ctp
 
 
 
@@ -659,7 +661,12 @@ config Database
 
 解开压缩包
 
+#### note
+> - HomePage: application\views\welcome_message.php
 
+#### projects
+
+> - [FUEL-CMS](https://github.com/daylightstudio/FUEL-CMS)
 
 
 
@@ -706,6 +713,34 @@ vendor/bin/phalcon.php
 ```
 php vendor\bin\phalcon.php create-project store
 ```
+
+
+
+
+#### on Mac
+
+```
+brew tap homebrew/dupes
+brew tap homebrew/versions
+brew tap homebrew/php
+brew install php56 php56-phalcon
+
+
+# install phalcon devtools
+git clone git://github.com/phalcon/phalcon-devtools.git
+cd phalcon-devtools/
+ln -s ./phalcon.php ./phalcon
+./phalcon create-project store
+```
+
+not working
+
+
+
+
+
+
+
 
 
 
@@ -1142,9 +1177,9 @@ php yaf_cg Sample
 
 
 
-#### Symfony2
+# Symfony2
 
-# install on windows
+#### install on windows
 
 ```
 php -r "readfile('http://symfony.com/installer');" > symfony
@@ -1171,6 +1206,12 @@ php bin\console server:run -p 3000
 
 
 
+#### projects
+
+> - [grav](https://github.com/getgrav/grav)
+> - [pagekit](https://github.com/pagekit/pagekit)
+> - [bolt](https://github.com/bolt/bolt)
+> - [forkcms](https://github.com/forkcms/forkcms)
 
 
 
@@ -1183,147 +1224,5 @@ php bin\console server:run -p 3000
 
 
 
-
-# php
-
-
-#### basic
-
-mac,apache
-
-```
-/etc/apache/httpd.cnf  DocumentRoot
-/Library/WebServer/Documents
-```
-
-#php include a server since v5.4
-
-```
-php -t public -S localhost:4000 
-php -S 0.0.0.0:4000               #for remote access
-```
-
-
-# php func ref
-
-- func_get_args() 返回函数参数数组
-- func_num_args() 返回函数参数个数
-
-
-Array
-
-- key($arr)
-- current($arr)
-- next($arr)
-- end($arr)
-
-- array_values($arr)
-- array_keys($arr)
-- in_array(‘item’, $arr)
-
-
-# app
-
-
-- [wordpress v4.5](/2014/06/09/php-wordpress)
-
-
-
-
-# [pear](http://pear.php.net/)
-
-#### install
-
-```
-sudo php /usr/lib/php/install-pear-nozlib.phar
-sudo pear config-set php_ini /private/etc/php.ini
-sudo pecl config-set php_ini /private/etc/php.ini
-sudo pear upgrade-all
-```
-
-#### usage
-
-```
-#install package
-pear install  packagenaem   
-
-#download package
-pear download packagenaem  
-
-pear remote-list 
-
-#list local packages
-pear list
-#list upgradable packages
-pear list-upgrades
-
-pear upgrade packagename 
-pear upgrade-all
-pear uninstall packagename 
-```
-
-```
-#install to /usr/lib/php/pear
-sudo pear install ch
-
-in /etc/php.ini中include_path=".:/php/includes/:/usr/lib/pear"
-pear install HTML_AJAX
-require_once("HTML/AJAX.php");
-```
-
-
-
-
-# [composer](https://getcomposer.org)
-
-for php 
-
-#### install & update
-
-```
-mv composer.phar /usr/local/bin/composer
-chmod a+x composer
-
-#update composer 
-/usr/local/bin/composer self-update 
-```
-
-```
-#install bootstrap
-composer require "twbs/bootstrap"   
-
-#global install laravel installer 
-composer global require "laravel/installer" 
-
-#install packages in composer.json
-composer install
-```
-
-#### composer.json
-[schema](http://docs.phpcomposer.com/04-schema.html)
-
-```
-{
-  "name":"",
-  "description": "",
-  "keywords":"",
-  "license":"",
-  "type":"",
-  "require":{
-    "php": ">=5.5.9",
-    "laravel/framework": "5.2.*"
-  },
-  "require-dev":{},
-  "autoload":{}
-}
-```
-
-|------------|-----------------------|
-|require     |needed composer package|
-|require-dev |                       |
-|autoload    |                       |
-|autoload-dev|                       |
-|scripts     |plugin scripts         |
-|config      |composer config        |
 
 

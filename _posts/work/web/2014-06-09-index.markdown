@@ -11,25 +11,25 @@ tags:
     - web
 ---
 
-- [perl](/web/perl)
+- [perl](/lang/perl)
 - [database](/web/db)
 - [front](/web/front)
 
----
+****
 
 - [asp.net](/web/asp.net)
 - [java](/web/java)
 
----
+****
 
 - [php](/web/php)
 - [wordpress](/web/wordpress)
 
----
+****
 
+- [ruby](/lang/ruby)
 - [rails](/web/rails)
-- [ruby](/web/ruby)
 
----
+****
 
-- [python](/web/python)
+- [python](/lang/python)

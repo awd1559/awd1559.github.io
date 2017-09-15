@@ -1,0 +1,13 @@
+---
+layout:     post
+title:      "QT"
+subtitle:   " \"QT\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: from
+permalink: /form/qt
+tags:
+    - form
+---
+> - [form目录](/form/)

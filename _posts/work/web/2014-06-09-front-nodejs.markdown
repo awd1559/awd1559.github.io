@@ -17,6 +17,7 @@ tags:
 > - brew install nodejs
 > - download installer from [Node.js](https://nodejs.org/)
 > - [npm](https://www.npmjs.com) included
+> - [awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs)
 
 
 #### working in webstorm
@@ -368,6 +369,152 @@ res.sendStatus()
 - npm install -g supervisor
 - 使用supervisor app.js 启动服务器
 - 会遇到supervisor不停重启的错误问题
+
+
+
+
+
+# Component
+> - see [awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs)
+
+
+#### dialog
+
+[vodal](https://github.com/chenjiahan/vodal)
+
+```
+npm i -S vodal
+
+App.vue
+@import "../../node_modules/vodal/common.css";
+@import "../../node_modules/vodal/door.css";
+@import "../../node_modules/vodal/flip.css";
+@import "../../node_modules/vodal/rotate.css";
+@import "../../node_modules/vodal/slide-down.css";
+@import "../../node_modules/vodal/slide-left.css";
+@import "../../node_modules/vodal/slide-right.css";
+@import "../../node_modules/vodal/slide-up.css";
+@import "../../node_modules/vodal/zoom.css";
+```
+
+
+
+
+
+
+
+
+#### markdown
+
+> - [vue-markdown](https://github.com/miaolz123/vue-markdown)
+
+```
+npm install --save vue-markdown
+
+import VueMarkdown from 'vue-markdown'
+
+new Vue({
+  components: {
+    VueMarkdown
+  }
+})
+```
+
+
+> - [mavonEditor](https://github.com/hinesboy/mavonEditor)
+
+```
+npm install mavon-editor --save
+
+import Vue from 'vue'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
+Vue.use(mavonEditor)
+```
+
+
+
+
+
+
+
+# DataBase
+
+#### ORM
+> - [mongoose](https://github.com/Automattic/mongoose)
+MongoDB
+
+> - [sequelize](https://github.com/sequelize/sequelize)
+PostgreSQL, SQLite, MySQL, MSSQL
+
+```
+npm install --save sequelize
+npm install --save sqlite3
+```
+
+
+
+
+#### Query
+
+> -[Knex](http://knexjs.org/)
+MySQL
+PostgreSQL
+SQLite3
+Oracle
+MSSQL
+
+just query
+
+```
+npm install knex --save
+npm install sqlite3
+```
+
+#### Other
+
+> - [NeDB](https://github.com/louischatriot/nedb)
+
+```
+npm install nedb --save 
+```
+
+
+> - [Lowdb](https://github.com/typicode/lowdb)
+json file database
+
+```
+npm install lowdb --save
+```
+
+
+
+
+
+# HTTP
+> - [axios](https://github.com/mzabriskie/axios)
+promise Http client
+
+```
+npm install axios --save
+```
+
+
+
+> - [request](https://github.com/request/request)
+Simplified HTTP request client
+
+
+
+
+# spider
+> - [node-crawler](https://github.com/bda-research/node-crawler)
+
+```
+npm install crawler
+```
+
 
 
 

@@ -1,0 +1,75 @@
+---
+layout:     post
+title:      "sass"
+subtitle:   " \"sass\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: lang
+permalink: /lang/sass
+tags:
+    - lang
+---
+> - [web front目录](/web/front)
+
+
+
+
+# sass
+
+#### 定义变量
+
+```
+$fontStack: Helvetica, sans-serif;
+$primaryColor: #333;
+
+body{
+  font-family: $fontStack;
+  color: $primaryColor;
+}
+```
+
+#### 嵌套
+
+```
+nav{
+  ul{ }
+  li{ }
+}
+
+//==> nav ul{} 和 nav li {}
+```
+
+#### 导入
+
+```
+@import ‘reset’;  导入_reset.scss
+```
+
+
+#### mixin
+
+```
+@mixin box-sizing ($sizing) { 
+  -webkit-box-sizing:$sizing; 
+  -moz-box-sizing:$sizing; 
+  box-sizing:$sizing; 
+} 
+.box-border { 
+  border:1px solid #ccc; 
+  @include box-sizing(border-box); 
+}
+```
+
+
+#### 扩展
+
+```
+.message{
+  border:1px solid #ccc;
+}
+.sucess{
+  @extend .message;
+  border-color:green;
+}
+```

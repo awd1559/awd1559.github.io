@@ -802,9 +802,19 @@ git status | check current project status |
 
 > git tag
 
+```
+# list tag
+git tag
 
-- git submodule init
-- git submodule update
+# add tag
+git tag v1.0 
+
+或者 # add tag
+git tag -a v1.0-m 'first version'
+
+# delete tag
+git tag -d v1.0
+```
 
 > git log
 

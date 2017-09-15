@@ -5,32 +5,55 @@ subtitle:   " \"c++\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+category: lang
+permalink: /lang/cpp
 tags:
     - lang
 ---
 
 
-标准
-c++98
-	描述语言特性，扩展，异常、运行阶段类型识别(RTTI)，模版和标准模版库(STL)
-C++2003
-	修订错误，减少多义性，没有修改语言特性
-用C++98代替C++98/C++2003
 
-C++11
+
+# git
+
+> - [openframeworks](http://openframeworks.cc)
+> - [openframeworks](https://github.com/openframeworks)
+
+****
+
+server
+> - [crow](https://github.com/ipkn/crow) 3000 stars, long no maintaince
+> - [kore](https://github.com/jorisvink/kore)  2300 stars, no windows support
+> - [silicon](https://github.com/matt-42/silicon/)  1300 stars
+> - [onion](https://github.com/davidmoreno/onion)   1100 stars
+> - [civetweb](https://github.com/civetweb/civetweb) 500 stars, on win, linux,mac
+> - [treefrog-framework](https://github.com/treefrogframework/treefrog-framework)   300 stars, for win,linux,mac
+
+
+
+
+# 标准
+> - C++98
+	描述语言特性，扩展，异常、运行阶段类型识别(RTTI)，模版和标准模版库(STL)
+> - C++2003
+	修订错误，减少多义性，没有修改语言特性
+	用C++98代替C++98/C++2003
+> - C++11
 	新增语言特性
+
 
 
 # 基础
 
 #### 与C的不同
-兼容所有c程序
+> - 兼容所有c程序
 
+```
 //c
 #include <math.h>
 //cpp
 #include <cmath>
-
+```
 
 
 

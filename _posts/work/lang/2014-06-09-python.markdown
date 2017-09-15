@@ -5,10 +5,10 @@ subtitle:   " \"web:python\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
-category: web
-permalink: /web/python
+category: lang
+permalink: /lang/python
 tags:
-    - web
+    - lang
 ---
 > - [web目录](/web/)
 

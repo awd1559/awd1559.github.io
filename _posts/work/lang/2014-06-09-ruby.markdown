@@ -5,21 +5,22 @@ subtitle:   " \"ruby program language\""
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
-category: web
-permalink: /web/ruby
+category: lang
+permalink: /lang/ruby
 tags:
-    - web
+    - lang
 ---
 > - [web目录](/web/)
 
 
 [ruby](https://www.ruby-lang.org/zh_cn/)
 [doc](http://ruby-doc.org/)
+[rails-style-guide](https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md)
 
 
 # install
 
-[see rails install](/2014/06/09/rails)
+[see rails install](/web/rails)
 
 # basic
 

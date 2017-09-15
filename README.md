@@ -1,6 +1,6 @@
 #code snip & note 
-	[pages](awd1559.github.io)
-	[domain](emotion.net.cn)
+	[pages](http://awd1559.github.io/)
+	[domain](http://emotion.net.cn/)
 	
 ****
 	create a cocostudio project

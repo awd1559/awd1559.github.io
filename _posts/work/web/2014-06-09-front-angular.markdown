@@ -22,7 +22,7 @@ tags:
 [angular.io](https://github.com/angular/angular.io) site for Angular 2 documentation<br>
 [doc](http://docs.angularjs.cn/api)<br>
 
-#### Angularjs in IDEA
+# Angularjs in IDEA
 
 ```
 newproject -> static web -> AngularJS
@@ -48,7 +48,7 @@ karma
 
 
 
-#### Angular CLI
+# Angular CLI
 
 ```
 npm install angular-cli
@@ -212,6 +212,63 @@ angular.module('myApp')
 })
 ```
 
+
+# Component
+
+- [ngmodules](https://ngmodules.org/)
+- [angular-ui](https://github.com/angular-ui)
+
+
+
+#### [angular-material](https://github.com/angular/material)
+
+```
+//install
+bower install angular-material
+//build
+npm install
+gulp build
+//view the doc
+gulp docs
+cd dist/docs
+php -S 
+```
+
+
+
+
+
+
+#### [lumX](https://github.com/lumapps/lumX)
+- [demo&doc](http://ui.lumapps.com/) 
+
+  AngularJS, Google Material Design
+  
+  demo code included in github(express+angularjs)
+  to use the demo
+ 
+```
+    npm install & bower install
+    gulp serve
+    http://localhost:8080
+  
+  angular.module('myModule', ['lumx']);
+```
+
+
+
+
+
+# Project
+
+- [ng-admin](https://github.com/marmelab/ng-admin)
+- [taigaio](https://github.com/taigaio)
+
+
+
+
+# examples
+- [angularmvctutorial](https://github.com/bumblebeeman/angularmvctutorial)      angularjs in asp.netmvc
 
 
 

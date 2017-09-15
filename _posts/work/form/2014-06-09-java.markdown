@@ -1,0 +1,393 @@
+---
+layout:     post
+title:      "java form"
+subtitle:   " \"java form\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: form
+permalink: /form/java
+tags:
+    - form
+---
+> - [form目录](/form/)
+
+# JavaFX
+
+[AwesomeJavaFX](https://github.com/mhrimaz/AwesomeJavaFX)
+
+
+#### starter
+
+```
+class Main extends Application
+    start
+    Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));   primaryStage.setTitle("Hello World");   primaryStage.setScene(new Scene(root, 300, 275));   primaryStage.show();
+```
+
+
+```
+public class HelloWorld extends Application{
+   public static void main(String[] args) {
+       launch(args);
+    }
+  
+   @Override
+   public void start(Stage primaryStage) {
+       primaryStage.setTitle("Hello World!");
+       Button btn = new Button();
+       btn.setText("Say 'Hello World'");
+       btn.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+                System.out.println("HelloWorld!");
+           }
+       });
+       
+       StackPane root = new StackPane();
+       root.getChildren().add(btn);
+       primaryStage.setScene(new Scene(root, 300, 250));
+       primaryStage.show();
+    }
+}
+```
+
+```
+//屏幕最大 Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds(); stage.setX(primaryScreenBounds.getMinX()); stage.setY(primaryScreenBounds.getMinY()); stage.setWidth(primaryScreenBounds.getWidth()); stage.setHeight(primaryScreenBounds.getHeight());
+```
+
+
+```
+//进入全屏模式
+final Scene scene = new Scene(box,300, 250);
+scene.setFill(null);
+stage.setScene(scene);
+stage.show();
+
+stage.setFullScreen(true);
+```
+
+
+```
+Group root = new Group(); Scene scene = new Scene(root, 400, 350, Color.BLACK);  ... child node root.getChildren().add(node);  primaryStage.setScene(scene); primaryStage.show();
+```
+
+
+#### component
+
+```
+layout
+    VBox
+    HBox
+    StackPane
+    BorderPane
+    GridPane
+    FlowPane
+    TilePane
+    AnchorPane
+    SplitPane
+    ScrollPane
+    TabPane
+    TreeView
+
+VBox
+HBox box = new HBox(10); box.setPrefSize(100, 100); box.setBackground(new Background(new BackgroundFill(Color.rgb(17, 119, 255), CornerRadii.EMPTY, Insets.EMPTY)));
+
+
+HBox.setMargin(node1, new Insets(2, 2, 2, 2));  //margin between node1 and parent padding
+hbox.getChildren().addAll(node1, node2, node3, node4);
+
+
+StackPane
+StackPane stack = new StackPane();
+stack.getChildren().addAll(new Rectangle(100,100,Color.BLUE), new Label("Go!"));
+
+
+BoardPane
+BorderPane borderpane = new BorderPane();
+ToolBar toolbar = new ToolBar();
+HBox statusbar = new HBox();
+Node appContent = new AppContentNode();
+borderPane.setTop(toolbar);
+borderPane.setCenter(appContent);
+borderPane.setBottom(statusbar);
+
+
+
+
+GridPane
+GridPane gridpane = new GridPane();
+GridPane.setConstraints(label, 3, 1); // column=3 row=1
+gridpane.getChildren().addAll(button, label);
+
+//约束
+gridpane.getColumnConstraints().add(new ColumnConstraints(100)); // column 1 is 100 wide
+gridpane.getColumnConstraints().add(new ColumnConstraints(200)); // column 2 is 200 wide
+
+
+
+FlowPane
+FlowPane flowPane = new FlowPane();
+flowPane.setAlignment(Pos.TOP_RIGHT);
+flowPane.setVgap(8);
+flowPane.setHgap(4);
+flowPane.getChildren().addAll(...); 
+
+
+TilePane
+TilePane tile = new TilePane();
+ tile.setHgap(8);
+ tile.setPrefColumns(4);
+ for (int i = 0; i < 20; i++) {
+     tile.getChildren().add(new ImageView(...));
+ }
+
+
+AnchorPane
+AnchorPane anchorPane = new AnchorPane();
+
+// List should stretch as anchorPane is resized
+ListView list = new ListView();
+AnchorPane.setTopAnchor(list, 10.0);
+AnchorPane.setLeftAnchor(list, 10.0);
+AnchorPane.setRightAnchor(list, 65.0);
+
+// Button will float on right edge
+Button button = new Button("Add");
+AnchorPane.setTopAnchor(button, 10.0);
+AnchorPane.setRightAnchor(button, 10.0);
+anchorPane.getChildren().addAll(list, button);
+
+
+
+
+SplitPane
+SplitPane sp = new SplitPane();
+
+final StackPane sp1 = new StackPane();
+sp1.getItems().add(new Button("Button One"));
+
+final StackPane sp2 = new StackPane();
+sp2.getItems().add(new Button("Button Two"));
+
+final StackPane sp3 = new StackPane();
+sp3.getItems().add(new Button("Button Three"));
+
+sp.getItems().addAll(sp1, sp2, sp3);
+sp.setDividerPositions(0.3f, 0.6f, 0.9f);
+
+
+ScrollPane
+Rectangle rect = new Rectangle(200, 200, Color.RED);
+ScrollPane s1 = new ScrollPane();
+s1.setPrefSize(120, 120);
+s1.setContent(rect);
+
+
+ScrollBar
+ScrollBar s1 = new ScrollBar();
+s1.setOrientation(Orientation.VERTICAL);
+ 
+
+TabPane
+ TabPane tabPane = new TabPane();
+ Tab tab = new Tab();
+ tab.setText("new tab");
+ tab.setContent(new Rectangle(200,200, Color.LIGHTSTEELBLUE));
+ tabPane.getTabs().add(tab);
+ 
+ListView
+ ObservableList<String> names = FXCollections.observableArrayList(
+          "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
+ ListView<String> listView = new ListView<String>(names);
+ 
+ 
+TableView
+TableView<Person> table = new TableView<Person>();
+ObservableList<Person> teamMembers = ...;
+table.setItems(teamMembers);
+
+TableColumn<Person,String> firstNameCol = new TableColumn<Person,String>("First Name");
+firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
+TableColumn<Person,String> lastNameCol = new TableColumn<Person,String>("Last Name");
+lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
+
+table.getColumns().setAll(firstNameCol, lastNameCol);
+
+ 
+ 
+ 
+TreeView
+TreeItem<String> root = new TreeItem<String>("Root Node");
+root.setExpanded(true);
+root.getChildren().addAll(
+ new TreeItem<String>("Item 1"),
+ new TreeItem<String>("Item 2"),
+ new TreeItem<String>("Item 3")
+);
+TreeView<String> treeView = new TreeView<String>(root);
+
+
+TabPane
+ TabPane tabPane = new TabPane();
+ Tab tab = new Tab();
+ tab.setText("new tab");
+ tab.setContent(new Rectangle(200,200, Color.LIGHTSTEELBLUE));
+ tabPane.getTabs().add(tab);
+
+
+
+
+Menu
+
+ToolBar
+ToolBar toolBar = new ToolBar(
+     new Button("New"),
+     new Button("Open"),
+     new Button("Save"),
+     new Separator(true),
+     new Button("Clean"),
+     new Button("Compile"),
+     new Button("Run"),
+     new Separator(true),
+     new Button("Debug"),
+     new Button("Profile")
+ );
+``` 
+
+
+
+
+
+# TornadoFX
+
+#### Property
+
+```
+Person
+var id by property(id)
+fun idProperty() = getProperty(Person::id)
+////model : ItemViewModel<Person>()
+val id = bind { item?.idProperty() }
+
+
+TodoItem
+val textProperty = SimpleStringProperty(text)
+var text by textProperty
+////model : ItemViewModel<TodoItem>
+val text = bind(autocommit = true) {item?.textProperty }
+```
+
+#### Setting Up
+
+```
+<dependency>
+    <groupId>no.tornado</groupId>
+    <artifactId>tornadofx</artifactId>
+    <version>1.7.5</version>
+</dependency>
+
+<dependency>
+    <groupId>no.tornado</groupId>
+    <artifactId>tornadofx-controls</artifactId>
+    <version>1.0.5</version>
+</dependency>
+```
+
+
+#### command line
+
+```
+fun main(args: Array<String>) {
+	Application.launch(MyApp::calss.java, *args)
+}
+```
+
+
+
+	
+#### Components
+
+```
+App and View Basics
+
+class MyApp: App(MyView::class)
+
+Long Running Tasks
+
+runAsync {
+	myController.loadText()
+} ui { loadedText ->
+	textfield.text = loadedText
+}
+
+TaskStatus
+	running
+	message
+	title
+	progress
+
+见例子AsyncProgressApp.kt
+
+var inputField: TextField by singleAssign() 只被赋值一次
+
+Fragment
+
+Both View and Fragment support openModal(), openWindow and openInternalWindow
+find(MyFragment::class).openModal(stageStyle = StageStyle.UTILITY)
+openInternalWindow(Editor::class)
+replaceWith(MyView2::class)
+
+
+
+
+class Main : App(Solutions::class)
+
+
+val openStages = arrayListOf<Stage>()
+
+val map = mapOf("Counter" to Counter::class,
+        "Temperature Converter" to TemperatureConverter::class,
+        "Circle Drawer" to CircleDrawer::class,
+        "Cells" to Cells::class)
+
+for ((name, kClass) in map.entries) {
+    button(name) {
+        prefWidth = 200.0
+        setOnAction {
+            val view = kClass.primaryConstructor?.call()
+            val stage = Stage()
+            stage.scene = Scene(view?.root)
+            stage.title = name
+            stage.show()
+            openStages.add(stage)
+        }
+    }
+}
+
+init {
+    primaryStage.setOnCloseRequest {
+        for (s in openStages) {
+            s.close()
+        }
+    }
+}
+```
+
+
+
+# projects
+
+- [FreeMind](http://sourceforge.net/projects/freemind/)
+- [XMind](https://github.com/xmindltd/xmind)
+
+
+#### javafx
+
+> - [asciidocfx](https://github.com/asciidocfx/asciidocfx)  a book editor: pdf, epub,mobi
+
+> - [VocabHunter](https://github.com/VocabHunter/VocabHunter) 背单词
+
+> - [Musicott](https://github.com/octaviospain/Musicott) music player
+mvn package -Dmaven.test.skip=true
+

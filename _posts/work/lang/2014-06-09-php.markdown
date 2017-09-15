@@ -1,0 +1,156 @@
+---
+layout:     post
+title:      "php"
+subtitle:   " \"php\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: lang
+permalink: /lang/php
+tags:
+    - lang
+---
+
+# php
+
+
+#### basic
+
+mac,apache
+
+```
+/etc/apache/httpd.cnf  DocumentRoot
+/Library/WebServer/Documents
+```
+
+#php include a server since v5.4
+
+```
+php -t public -S localhost:4000 
+php -S 0.0.0.0:4000               #for remote access
+```
+
+
+# php func ref
+
+- func_get_args() 返回函数参数数组
+- func_num_args() 返回函数参数个数
+
+
+Array
+
+- key($arr)
+- current($arr)
+- next($arr)
+- end($arr)
+
+- array_values($arr)
+- array_keys($arr)
+- in_array(‘item’, $arr)
+
+
+# app
+
+
+- [wordpress v4.5](/web/wordpress)
+
+
+
+
+# [pear](http://pear.php.net/)
+
+#### install
+
+```
+sudo php /usr/lib/php/install-pear-nozlib.phar
+sudo pear config-set php_ini /private/etc/php.ini
+sudo pecl config-set php_ini /private/etc/php.ini
+sudo pear upgrade-all
+```
+
+#### usage
+
+```
+#install package
+pear install  packagenaem   
+
+#download package
+pear download packagenaem  
+
+pear remote-list 
+
+#list local packages
+pear list
+#list upgradable packages
+pear list-upgrades
+
+pear upgrade packagename 
+pear upgrade-all
+pear uninstall packagename 
+```
+
+```
+#install to /usr/lib/php/pear
+sudo pear install ch
+
+in /etc/php.ini中include_path=".:/php/includes/:/usr/lib/pear"
+pear install HTML_AJAX
+require_once("HTML/AJAX.php");
+```
+
+
+
+
+# [composer](https://getcomposer.org)
+
+for php 
+
+#### install & update
+
+```
+mv composer.phar /usr/local/bin/composer
+chmod a+x composer
+
+#update composer 
+/usr/local/bin/composer self-update 
+```
+
+```
+#install bootstrap
+composer require "twbs/bootstrap"   
+
+#global install laravel installer 
+composer global require "laravel/installer" 
+
+#install packages in composer.json
+composer install
+```
+
+#### composer.json
+[schema](http://docs.phpcomposer.com/04-schema.html)
+
+```
+{
+  "name":"",
+  "description": "",
+  "keywords":"",
+  "license":"",
+  "type":"",
+  "require":{
+    "php": ">=5.5.9",
+    "laravel/framework": "5.2.*"
+  },
+  "require-dev":{},
+  "autoload":{}
+}
+```
+
+|------------|-----------------------|
+|require     |needed composer package|
+|require-dev |                       |
+|autoload    |                       |
+|autoload-dev|                       |
+|scripts     |plugin scripts         |
+|config      |composer config        |
+
+
