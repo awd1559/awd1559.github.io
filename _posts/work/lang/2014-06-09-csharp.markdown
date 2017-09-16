@@ -11,6 +11,8 @@ tags:
     - lang
 ---
 
+> - [awesome-dotnet](https://github.com/quozd/awesome-dotnet)
+
 应用程序域是分离组件的一种方式
 有final，c++中缺少final， ch16
 attributes ch15
