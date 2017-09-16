@@ -25,6 +25,237 @@ gcc -Wall 包含部分lint功能。
 
 
 
+# gcc
+
+```
+gcc -E //预处理后停止
+gcc -c //编译到目标文件
+gcc -c //包含调试信息
+gcc -I 头文件路径
+gcc -L so文件路径
+gcc -l event 链接libevent.so
+gcc -O2 2级优化
+gcc -p add profiling
+
+
+gcc扩展
+inline函数,编译器决定是作为宏还是函数
+
+__attribute__((attribute_name))
+
+case 0 ... 1: /*case 区间*/
+```
+
+
+# gdb
+
+```
+gcc -g -Wall -o demo demo.c
+-g 指示编译带调试信息的可执行程序
+
+gdb demo
+开始运行调试
+
+l (list)       #查看源文件
+b 9          #第九行设置断点
+info b     #查看所有断点信息
+r              #开始执行程序
+p a         #打印变量a的值
+n            #单步
+s            #进入函数跟踪
+c           #继续执行
+
+p $1 //打印1号历史值
+p arr@10 打印arr开始的10个元素
+p arr[3]@10 打印arr[3]开始的10个元素
+whatis i i变量的类型
+
+b 33 在33行设置断点
+b function_name 在函数设置断点
+b file_name:line_number
+b file_name:function_name
+b 24 if i == 5  条件断点
+
+ptype s 列出s类型的定义
+
+
+strip 清理程序符号表
+```
+
+
+
+
+
+
+
+
+
+
+
+# 《c陷阱》
+
+```
+词法分析贪心法
+'c'代表char/int 'yes'
+
+"s"代表指向无名数组起始字符的指针
+
+数组包括一个额外的'\0'
+c callback
+void (*fp)();声明函数指针
+
+(*fp)();调用该函数
+
+简写为fp();
+《c陷阱》p30运算符优先级
+c只有一维数组，但数组元素可以为数组。
+
+数组长度必须在编译期间确定。
+数组下标运算实际是通过指针运算实现的
+
+int c[12][31]
+c[4][7] 等同于 *(*(c+4)+7)
+int (*ap)[31]: ap指向数组，数组有31个int元素
+ap = c;
+int f(char *s)和int f(char s[])意思一样
+main(char*argv[])等价于main(char **argv)
+char filename = "/etc/password";
+extern char *filename;不同
+extern char fiilename[]; 相同
+#define NEWTYPE struct foo;
+typedef struct foo NEWTYPE;
+请使用typedef方式
+```
+
+
+
+
+
+
+
+
+
+
+
+
+# 《c专家编程》
+
+```
+1、c时空
+
+ansi c 相对于k&r c
+1）形式参数的类型作为函数声明的一部分
+2）新增关键字enum（enum最早出现于pcc编译器中）
+int i = 10;
+int j = 11;
+const int *p = &i;/*const int 指针*/
+*p = 11; /* WRONE */
+p = &j;
+
+2、bug和语言特性
+NUL == '\0';
+NULL == (void*)0;
+printf(
+"string_1"
+"string_2"
+"string_3"); /*相邻字符串合并*/
+int *ap[]; /*int指针的数组*/
+int (*ap)[2]; /*指向数组的指针,数组有2个int元素*/
+int(*fp)(); /*函数指针，返回值为int*/
+int *(fp());/*函数，返回值为int指针*/
+
+
+3、声明
+int const * p;//指向的int只读
+const int * p;//指向的int只读
+int * const p;//指针只读
+int(* func())(); //函数，返回值是函数指针
+int(* foo())[];//函数，返回值是指向数组的指针
+int(* foo[])(); //函数指针数组
+int foo[][]; //数组元素为数组
+struct sname {
+    //....
+}val1, val2, val3;
+
+struct sname val4; //请使用这种方式定义struct变量。
+typedef struct {
+    //...
+} mytype;
+
+mytype val1, val2;
+struct 传参数？？？
+
+
+
+4、数组和指针
+
+5、链接
+
+ar archive 静态链接 *.a
+
+ld load 动态链接 *.so
+nm libm.a //列出所有库中符号
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# flex bison & lex yacc
+
+
+```
+//matthew.flex
+%%
+Mathews printf("Matthew");
+%%
+int main()
+{
+    yylex();
+    return(0);
+}
+```
+
+```
+flex matthew.flex  => lex.yy.c
+
+//brew info flex 查看以下指示
+LDFLAGS: -L/usr/local/opt/flex/lib
+CPPFLAGS: -I/usr/local/opt/flex/include
+
+gcc -g -Wall -lfl -o matthew lex.yy.c
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Basic
 
