@@ -16,6 +16,14 @@ tags:
 
 [AwesomeJavaFX](https://github.com/mhrimaz/AwesomeJavaFX)
 
+#### git
+
+> - [jfoenix](http://www.jfoenix.com/)
+> - [controlsfx](http://fxexperience.com/controlsfx/)
+> - [scenic-view](http://fxexperience.com/scenic-view/) understand the current state of your application scenegraph
+> - [fontawesomefx](https://bitbucket.org/Jerady/fontawesomefx) font awesome icon for JavaFX
+
+
 
 #### starter
 
@@ -259,7 +267,47 @@ ToolBar toolBar = new ToolBar(
 
 
 
-# TornadoFX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# [TornadoFX](https://github.com/edvin/tornadofx)
+
+
+#### command line
+
+```
+class TornadoFXApp : App(MainView::class, Styles::class)
+
+fun main(args: Array<String>) {
+  Application.launch(MyApp::calss.java, *args)
+}
+```
 
 #### Property
 
@@ -295,13 +343,7 @@ val text = bind(autocommit = true) {item?.textProperty }
 ```
 
 
-#### command line
 
-```
-fun main(args: Array<String>) {
-	Application.launch(MyApp::calss.java, *args)
-}
-```
 
 
 
@@ -309,38 +351,6 @@ fun main(args: Array<String>) {
 #### Components
 
 ```
-App and View Basics
-
-class MyApp: App(MyView::class)
-
-Long Running Tasks
-
-runAsync {
-	myController.loadText()
-} ui { loadedText ->
-	textfield.text = loadedText
-}
-
-TaskStatus
-	running
-	message
-	title
-	progress
-
-见例子AsyncProgressApp.kt
-
-var inputField: TextField by singleAssign() 只被赋值一次
-
-Fragment
-
-Both View and Fragment support openModal(), openWindow and openInternalWindow
-find(MyFragment::class).openModal(stageStyle = StageStyle.UTILITY)
-openInternalWindow(Editor::class)
-replaceWith(MyView2::class)
-
-
-
-
 class Main : App(Solutions::class)
 
 
