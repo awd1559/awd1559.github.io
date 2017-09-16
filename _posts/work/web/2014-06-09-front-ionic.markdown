@@ -6,14 +6,14 @@ date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
 category: web
-permalink: /web/ionic2
+permalink: /web/ionic
 tags:
     - web
 ---
 > - [web front目录](/web/front)
 
 
-##### [ionic2](http://ionicframework.com)
+##### [ionic](http://ionicframework.com)
 - [github](https://github.com/driftyco/ionic)
 
 
