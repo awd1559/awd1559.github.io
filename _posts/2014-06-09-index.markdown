@@ -8,7 +8,7 @@ header-img: "img/post-bg-2015.jpg"
 ---
 
 
-# [Android目录](/android/)
+# [Android](/android/)
 
 # [Apple](/apple/)
 

@@ -1,0 +1,160 @@
+---
+layout:     post
+title:      "linux shell"
+subtitle:   " \"all about linux software\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: linux
+permalink: /linux/software
+tags:
+    - linux
+---
+> - [linux目录](/linux/)
+
+
+
+
+# awk
+
+> - 逐行扫描
+> - 匹配则执行命令
+> - 匹配而未指定命令，则打印该行到屏幕
+
+```
+awk option '/patten/{action}' filenames
+awk '/Sally/{print $1, $2}' datafile //print column 1 & 2
+```
+
+内置变量  |          |                |
+value    | comment | default         |
+-------- | ------- | --------------- |
+ORS      |输入记录的分隔符(行分隔符) |换行符
+RS       |输出记录的分隔符           |换行符
+FS       |输入字段分隔符             |空格 
+OFS      |输出字段分割符             |单个空格
+NR       |每条记录的记录号           |
+NF       |记录的字段数               |
+
+
+```
+awk '$1 ~ /Bill/' filename      #在第一个字段里匹配模式，而不是整行
+awk '$2 !~ /Adam/' filename     #打印第二列不匹配模式的行
+awk '$3 > 5000{print $1}' filename  #如果第三列>5000，打印第一列
+awk '{max=($1 > $2) ?$1:$2; print max}' filename    #第一列和第二列中的值，打印值大的一列
+awk '$3*$4 > 500' filename      #第三列和第四列乘积> 500的行输出
+awk '$2 >5 && $2 <=15' filename     #并且
+awk '/Tom/, /Suzanne/' filename     #范围
+
+awk '$1 ~ /Tom/{wage = $2*$3;print wage}' filename  #定义变量
+awk '$4>70 {print $1, $2 > "passing_file"}' filename    #重定向部分结果
+
+awk 'BEGIN{"date"| getline d; print d}' filename    #getline函数从标准输入、管道、文件读取输入到变量d
+awk 'BEGIN{"date"| getline d; split(d,mon); print mon[2]}' filename 
+awk 'BEGIN{while("ls"|getline) print}' filename     #每循环一次，getline从ls中读取一行
+
+awk 'BEGIN{printf "what is your name:"; \
+getline name < "/dev/tty" }\                #读入查找的名字
+$1 ~ name {print "Found " name " on line ", NR "."}\    #在第一个字段中查找
+END{print "See ya, " name "."}' filename
+```
+
+# grep
+
+```
+grep 'pattern' filename     #基本RE元字符
+
+grep -n '\.5s' datafile #输出符合模式的行，包含.5s的行
+
+grep -G 'pattern' filename  #同上
+grep -E 'pattern' filename  #扩展RE元字符，同egrep
+grep -F 'pattern' filename  #非RE元字符，同fgrep
+```
+
+
+   | pattern          |
+-- | ---------------- |
+-n | #输出原文件中的行号 |
+-i | #不区分大小写      |
+-v | #输出不符合模式的行 |
+-l | #只输出文件名      |
+-w | #模式作用于词      |
+
+- egrep 在grep元字符集上增加了更多的元字符
+- fgrep 在linux中为grep -F, 没有元字符，模式中字符为字面含义
+
+
+# sed
+
+> - 逐行处理文本
+> - 把正在处理的行保存到临时缓冲区，称为模式空间
+> - 执行完sed命令后，将该行发送到屏幕，读取下一行
+> - 还有一个暂存缓冲区(8192)，供hH存放，供gG读取
+
+
+```
+sed [options] 'command' file(s)  
+```
+
+```
+sed '1,3d' file     #删除1-3行，其他行默认打印，不影响原文件
+sed -n '/[Jj]ohn/p' file#打印符合模式的行，其他行不输出
+```
+
+   | options      |
+-- | ------------ |
+-e | 允许多项编辑   |
+-f | 制定sed脚本   |
+-n | 取消默认的输出 |
+
+   | command
+-- | ------------------------------------------------- |
+a\ | #在当前行后添加一行和多行                             |
+c\ | #替换                                              |
+d  | #删除                                              |
+i\ | #在当前行之前插入                                    |
+h  | #模式空间里的内容复制到暂存缓冲区                       |
+H  | #模式空间里的内容追加到暂存缓冲区                       |
+g  | #用暂存缓冲区内容覆盖模式空间内容                       |
+G  | #暂存缓冲区内容追加模式空间内容                         |
+l  | #列出非打印字符                                      |
+p  | #打印                                           |
+n  | #读入下一行，并从下一条命令而不是第一条命令开始对其处理 |
+q  | #退出sed                                       |
+r  | #从文件中读取行到模式空间                          |
+!  | #对所选行外的所有行应用命令                         |
+s  | #字符串替换                                      |
+
+  | 替换标志                      |
+--| ---------------------------- |
+g |  #在行内进行全局替换            |
+p |  #打印                        |
+w |  #将行写如文件                 |
+x |  #交换暂存换种去与模式空间的内容  |
+y |  #将字符转化为另一个字符         |
+
+
+```
+sed -e '1,3d' -e 's/Hemenway/Jones/' datafile
+#多重编辑：删除1-3行，将Hemenway替换为Jones
+
+sed '/Suan/r newfile' datafile
+#匹配模式后，在该行后输出文件newfile中的内容
+
+sed '/north/w newfile' datafile
+#将模式匹配的行写入文件newfile中
+
+sed '/^north/a \
+this will added as next line ----' datafile
+#匹配模式后，添加一行
+
+sed '/eastern/{n; s/AM/Archie/;}' datafile
+#匹配模式后，对下一行执行n中的命令
+#多个命令组成一个命令用{}表示
+
+sed -e '/^north/h' -e '$G' datafile
+#1)匹配模式后放到暂存缓冲区， 
+#2)匹配最后一行后，取出holding buffer内容，追加匹配行(本例即最后一行)
+```
+
+

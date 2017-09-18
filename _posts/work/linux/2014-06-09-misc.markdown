@@ -1,0 +1,36 @@
+---
+layout:     post
+title:      "linux"
+subtitle:   " \"all about linux system misc\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: linux
+permalink: /linux/misc
+tags:
+    - linux
+---
+> - [linux目录](/linux/)
+
+
+
+
+#### rpm 
+```
+finger @kernl.org           //获得最新的代码列表
+
+
+Redhat Package Manager 
+rpm -e --nodeps             //强制卸载
+rpm -i src.rpm              //安装软件源代码包
+rpmbuild -bb H.src          //做rpm
+rpm -ivh                    //安装rpm
+rpm -Uivh                   //升级
+
+
+
+apt-get update
+apt-get install 
+apt-get remove
+```
+

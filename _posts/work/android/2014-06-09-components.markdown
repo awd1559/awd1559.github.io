@@ -483,6 +483,8 @@ onCreate()
 onDestory()
 
 //run on foregroud, for example: Music Service
+//higher priority
+//Notification: xxxService is running
 startForeground()
 stopForeground()
 ```
@@ -526,10 +528,11 @@ unbindService(connection);
 
 #### IntentService
 
-IntentService use worker-thread<br>
-onHanadleInput(Intent intent):process request<br>
-use queue<br>
-after queue finished, IntentService call stopSelf()<br>
+different with Service
+> - IntentService use worker-thread
+> - onHanadleInput(Intent intent):process the request
+> - use queue
+> - after queue finished, IntentService call stopSelf()
 
 
 
@@ -537,6 +540,8 @@ after queue finished, IntentService call stopSelf()<br>
 
 
 # Content Provider
+
+```
 ContentResolver借用URI来找到ContentProvider应用程序，并进行CRUD
 
 Uri uri = Uri.parse("content://com.wang.myprovider")
@@ -608,7 +613,7 @@ resolver.delete
 
 
 //listen to value change in ContentProvider
-
+```
 
 
 

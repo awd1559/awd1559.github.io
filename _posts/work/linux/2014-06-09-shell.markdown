@@ -1,0 +1,165 @@
+---
+layout:     post
+title:      "linux shell"
+subtitle:   " \"all about linux shell\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: linux
+permalink: /linux/shell
+tags:
+    - linux
+---
+> - [linux目录](/linux/)
+
+
+# shell
+
+
+```
+cat /etc/shells  #得到所有可用的shell,  在mac上是shells文件，在其他系统中不定，可能为shell
+ps/pstree/ptree #mac中没有pstree和ptree
+```
+
+orders for looking cmd:
+- alias
+- shell keyword
+- function
+- inside cmd
+- path
+
+> pipline
+> who | wc
+
+> redirect
+> who > file
+
+
+
+cmd    |        comment          |
+------ | ----------------------- |
+ps     | current shell thread    |
+ps aux | show all thread         |
+pstree | show thread tree        |
+id     | current user            |
+env    | show shell env value    |
+set    | show or set shell value |
+tail -f| follow                  |
+ssh    | ssh root@some.example.com| 
+top    | info about processes |
+
+
+> bash scripts
+
+
+```
+#!/bin/bash     #first line
+
+
+#通配符
+* ? [ ]         #用于文件名匹配
+< > 2> >> |     #用于IO重定向和管道
+
+echo how are you \<?\>
+echo "how are you <?>"  #通配符必须用反斜杠或引号输出
+
+
+
+#变量
+var_name=var_value           #=号不能有空格
+declare var_name=var_value;  #declare定义局部变量
+export VAR=value             #export定义全局变量
+                             #全局变量当脚本执行结束，退出子进程，依然存在
+
+echo "the value: $var_name"  #$提取变量
+
+read name1 name2             #读取用户输入
+
+#命令行参数
+$scriptname arg1 arg2 arg3 ...
+#脚本中
+echo $1 $2 $3...    #命令行参数
+echo $*             #所有参数
+echo $#             #参数的个数
+
+
+$?      #最后一个命令的退出状态, 0为正常退出
+
+
+#定义数组
+declare -a fruit=(apples pears plums)
+#读取数组
+echo ${fruit[0]}
+echo ${fruit[*]}
+#数组
+set apples pears plums
+echo $1 $2 $3 # => apples pears plums
+shift
+echo $1 $2 $3 # => pears plums
+echo $*       # => pears plums
+
+
+#使用命令输出内容
+var_name=`cmd`
+var_name=$(cmd)
+echo "Today is `date`"
+echo "Today is $(date)"
+
+#不支持直接运算
+num=`expr 5 + 5`                      #5+5，没有空格会发生错误
+
+
+
+#if...else
+if command                            #执行command命令并判断
+if [[expression]]                     #表达式求真
+if ((numeric expression))             #算术式求真
+then
+    block of statements
+else
+    block of statements
+fi
+
+#case
+case $color in
+blue)
+    echo blue
+    ;;
+green)
+    echo green
+    ;;
+*)
+    echo donot know
+    ;;
+esac
+
+
+#while, until, for
+while command
+while [[expression]]
+while ((numeric expression))
+do
+done
+
+
+until command
+untile [[expression]]
+do
+done
+
+for
+variable in wd1 wd2 wd3
+do
+done
+
+
+
+#文件测试，注意空格
+if [ -f file ]   #文件存在，并且不是目录
+if [ -d dir ]    #文件存在，并且是个目录
+if [ -s file ]   #文件大小非0
+if [ -r file ]   #可读
+if [ -w file ]   #当前用户可写
+if [ -x file ]   #当前用户可执行该文件
+
+```

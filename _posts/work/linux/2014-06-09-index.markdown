@@ -11,6 +11,15 @@ tags:
     - linux
 ---
 
-- [linux](/linux/linux)
+# admin
+
+- [shell](/linux/shell)
+- [software](/linux/software)
+- [programming](/linux/code)
+- [misc](/linux/misc)
+
+# kernel
+- [init](/linux/init)
+
 - [kernel](/linux/kernel)
 
