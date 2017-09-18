@@ -29,6 +29,7 @@ tags:
 # projects
 
 > - [Coding](https://github.com/Coding)
+> - [WordPress](https://github.com/wordpress-mobile)
 > - [ECMobile](https://github.com/GeekZooStudio)
 > - [简聊](https://github.com/jianliaoim)
 
