@@ -1,0 +1,225 @@
+---
+layout:     post
+title:      "Android SQLite"
+subtitle:   " \"Android SQLite\""
+date:       2014-06-09 12:00:00
+author:     "awd"
+header-img: "img/post-bg-2015.jpg"
+category: android
+permalink: /android/sqlite
+tags:
+    - Android
+---
+><small>目录:[Android目录](/android/)</small>
+
+
+
+
+# SQLiteOpenHelper
+
+```
+public class DictionaryOpenHelper extends SQLiteOpenHelper {
+
+    private static final int DATABASE_VERSION = 2;
+    private static final String DICTIONARY_TABLE_NAME = "dictionary";
+    private static final String DICTIONARY_TABLE_CREATE =
+                "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
+                KEY_WORD + " TEXT, " +
+                KEY_DEFINITION + " TEXT);";
+
+    DictionaryOpenHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(DICTIONARY_TABLE_CREATE);
+    }
+
+    @Override
+    public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
+        //called when DATABASE_VERSION newer than db.version
+
+        int v = newVersion - oldVersion;
+        switch( v ) {
+            case 1:
+                db.execSQL("...");
+            case 2:
+                db.execSQL("Create Table ...")
+            case 3:
+                db.execSQL("Alter Table ...");
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onDowngrade (SQLiteDatabase db, int oldVersion, int newVersion) {
+        //called when DATABASE_VERSION older than db.version
+    }
+}
+
+DictionaryOpenHelper helper = new DictionaryOpenHelper(this);
+SQLiteDatabase db = helper.getWritableDatabase();
+db.execSQL("");
+```
+
+
+```
+//insert
+ContentValues values = new ContentValules();
+values.put("firstname", "J.K.");
+values.put("lastname", "Rowling");
+long newAuthorID = db.insert("tbl_authors", null, values);
+values.clear();
+
+
+//update
+ContentValues values = new ContentValues();
+values.put("title", "new title");
+db.update("tbl_books", values, "id=?", new String[]{bookID.toString()});
+
+//delete
+db.delete("tbl_books", "id=?", new String[] {bookId.toString()});
+
+
+//transaction
+db.beginTransaction();
+try{
+    ... ...
+    ... ...
+    ... ...
+    database.setTransactionSuccessful();
+} catch (Exception e){
+    
+} finally {
+    db.endTransaction();
+}
+
+
+
+//query
+//api level 1
+Cursor cur = db.query (String table, 
+                String[] columns, 
+                String selection, 
+                String[] selectionArgs, 
+                String groupBy, 
+                String having, 
+                String orderBy, 
+                String limit)
+
+//api level 16
+Cursor rawQuery (String sql, 
+                String[] selectionArgs)
+
+
+
+//bind ui
+startManagingCursor(cur);//将Cursor交给activity管理
+String[] from = new String[] { DiaryDbAdapter.KEY_TITLE, DiaryDbAdapter.KEY_CREATED };
+int[] to = new int[] { R.id.text1, R.id.created };          //此次两个id应该在R.layout.diary_row中
+SimpleCursorAdapter notes = new SimpleCursorAdapter(this, R.layout.diary_row, cur, from, to);
+setListAdapter(notes);
+```
+
+
+
+
+
+# SQLiteQueryBuilder
+
+```
+SQLiteQuereyBuilder queryBuilder = new SQLiteQueryBuilder();
+queryBuilder.setTables("tbl_books, tbl_authors");
+queryBuilder.appendWhere("tbl_books.authorid=tbl_authors.id");
+
+String asColumnsToReturn[] = {
+    "tbl_books.title", 
+    "tbl_books.id",
+    "tbl_authors.firstname",
+    "tbl_authors.lastname",
+    "tbl_books.authorid" };
+queryBuilder.appendWhere(Pets.PETS_TABLE_NAME + "." + Pets.PET_TYPE_ID + "=" + 
+                        PetType.PETTYPE_TABLE_NAME + "." + PetType._ID);
+
+String strSortOrder = "title ASC";
+
+Cursor c = queryBuilder.query(database, asColumnsToReturn, null, null, null, null, strSortOrder);
+```
+
+
+
+# BaseColumns 
+> - 记住表的列名
+> - BaseColumns接口，有两个变量:_id,count
+
+```
+public final class PetDatabase{
+    private PetDatabase() {}
+
+    public static final class Pets implements BaseColumns {
+        private Pets(){}
+        public static final String PETS_TABLE_NAME = "table_pets";
+        public static final String PET_NAME = "pet_name";
+        public static final String PET_TYPE_ID = "pet_type_id";
+        public static final String DEFAULT_SORT_ORDER = "pet_name ASC";
+    }
+
+    public static final class PetType implments BAseColumns {
+        private PetType() {}
+        public static final String PETTYPE_TABLE_NAME = "table_pettypes";
+        public static final String PET_TYPE_NAME = "pet_type";
+        public static final String DEFAULT_SORT_ORDER = "pet_type ASC";
+    }
+}
+```
+
+
+
+
+
+
+
+# Struct
+
+
+```
+//app.db
+public class AppDB {
+    private SQLiteDatabase db;
+    private static final String CREATE_TABLE_XXXXXX = "create table if not exist ";
+    public AppDB(Contenxt context) {
+        db = ctx.openOrCreateDatabase(DATABASE_NAME, 0, null);
+        db.execSQL(CREATE_TABLE_XXXXXX);
+        //or
+        xxxTable.createTables(db);
+    }
+
+    public SQLiteDatabase getDatabase() {
+        return db;
+    }
+}
+//models.xxx
+public class xxx {
+    public static final String KEY_
+}
+
+
+//datasets.xxxTable
+public class xxxTable {
+    public static void createTables(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " ( );");
+    }
+    public static void save(XXX xxx) { 
+    save(TABLE_NAME, xxx, getWriteableDb()); }
+    private static void save(String table, XXX xxx, SQLiteDatabase db) {
+        SQLiteDatabse db = getDatabase();
+        ContentValues values = new ContentValues();
+        values.put("property1", xxx.getProperty1());
+
+
+        db.insert();
+    }
+}
+```
