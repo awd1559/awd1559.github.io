@@ -19,4 +19,4 @@ tags:
 - [设备列表](/list/device/)
 - [书单](/list/book/)
 - [我的视频列表](/list/video/)
-- [使用工具](/tools/)
+- [使用工具](/list/tools/)
