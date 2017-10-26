@@ -18,8 +18,11 @@ final SUPPORT_LIBRARY_VERSION = '25.2.0'
 
 compile 'com.android.support:support-v4:*'
 compile 'com.android.support:support-compat:*'
+compile 'com.android.support:support-core-utils:*'
 compile 'com.android.support:support-core-ui:26.+'
+compile 'com.android.support:support-media-compat:26.+'
 compile 'com.android.support:support-fragment:26.+'
+
 
 compile 'com.android.support:multidex:1.0.1'
 
