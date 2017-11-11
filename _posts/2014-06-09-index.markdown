@@ -25,9 +25,9 @@ header-img: "img/post-bg-2015.jpg"
 
 # misc
 
-> - [erp](/erp/)
-> - [temp](/temp/)
-> - [urls](/urls/)
+> - [erp](/erp)
+> - [temp](/temp)
+> - [urls](/urls)
 
 
 # lang
