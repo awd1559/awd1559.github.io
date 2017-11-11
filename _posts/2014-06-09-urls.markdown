@@ -5,6 +5,7 @@ subtitle:   "all github & web bookmarks"
 date:       2014-06-09 12:00:00
 author:     "awd"
 header-img: "img/post-bg-2015.jpg"
+permalink: /urls
 tags:
     - info
 ---
@@ -21,8 +22,6 @@ tags:
 
 #### Android
 
-- [awesome-android](https://github.com/JStumpp/awesome-android)
-- [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
 - [Apktool](https://github.com/iBotPeaches/Apktool)
 
 - [BuildingBlocks](https://github.com/tangqi92/BuildingBlocks)  quickly and easily take to build their own applications
