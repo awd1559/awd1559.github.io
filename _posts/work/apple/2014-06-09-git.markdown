@@ -12,4 +12,152 @@ tags:
 ---
 ><small>目录:[Apple目录](/apple/)</small>
 
+# [mac](https://github.com/iCHAIT/awesome-macOS)
+
+#### Audio
+> - [BackgroundMusic](https://github.com/kyleneideck/BackgroundMusic) [objc]
+> - [XLD](https://sourceforge.net/p/xld/code/HEAD/tree/) transcoding lossless audio [objc]
+
+#### chat
+
+> - [ChitChat](https://github.com/stonesam92/ChitChat)
+
+#### dev
+
+> - [Cakebrew](https://github.com/brunophilipe/Cakebrew) gui for homebrew [objc]
+> - [gasmask](https://github.com/2ndalpha/gasmask) Hosts file manager for OS X [objc]
+> - [gitbar](https://github.com/Shikkic/gitbar)
+> - [GitUp](https://github.com/git-up/GitUp) git interface
+> - [Hosts.prefpane](https://github.com/specialunderwear/Hosts.prefpane)
+> - [ImageAlpha](https://github.com/pornel/ImageAlpha)  Mac GUI for pngquant, pngnq and posterizer [python]
+> - [ImageOptim](https://github.com/ImageOptim/ImageOptim) GUI image optimizer for Mac
+> - [PostgresApp](https://github.com/PostgresApp/PostgresApp) PostgreSQL
+> - [QorumLogs](https://github.com/goktugyil/QorumLogs) Swift Logging Utility for Xcode & Google Docs
+> - [sequelpro](https://github.com/sequelpro/sequelpro) MySQL/MariaDB database management
+> - [Unused](https://github.com/jeffhodnett/Unused) checking Xcode projects for unused resources
+> - [WWDC](https://github.com/insidegui/WWDC) unofficial WWDC app for macOS
+
+
+#### editor
+
+> - [textmate](https://github.com/textmate/textmate)
+> - [macvim](https://github.com/macvim-dev/macvim)
+> - [vimr](https://github.com/qvacua/vimr/)
+> - [CotEditor](https://github.com/coteditor/CotEditor/)
+
+
+
+#### Finder
+
+> - [quick-look-plugins](https://github.com/sindresorhus/quick-look-plugins)
+
+#### Game
+
+> - [The Battle for Wesnoth](https://www.wesnoth.org) Turn-based tactical strategy game
+> - [boxer](http://boxerapp.com) DOS game emulator
+> - [dolphin](https://cn.dolphin-emu.org/?cr=cn) Open Source emulator for Nintendo GameCube and Wii games
+> - [OpenEmu](http://openemu.org) Multiple Video Game System
+> - [Screentendo](http://aaronrandall.com/blog/screentendo/)
+> - [Stockfish](http://stockfishchess.org/mac/) chess
+
+
+#### Graphics
+
+> - [GifCapture](https://github.com/onmyway133/GifCapture) 
+
+#### Productivity
+
+> - [selfcontrol](https://github.com/SelfControlApp/selfcontrol/) block distracting websites
+
+#### Sharing Files
+
+> - [mac2imgur](https://github.com/mileswd/mac2imgur)
+
+#### Terminal
+
+> - [iTerm2](https://github.com/gnachman/iTerm2)
+
+#### Utilities
+
+> - [AnyBar](https://github.com/tonsky/AnyBar)
+> - [APNGb](https://github.com/mancunianetz/APNGb)
+> - [beardedspice](https://github.com/beardedspice/beardedspice)
+> - [bitbar](https://github.com/matryer/bitbar)
+> - [DisableMonitor](https://github.com/Eun/DisableMonitor)
+> - [Fanny](https://github.com/DanielStormApps/Fanny)
+> - [finicky](https://github.com/johnste/finicky)
+> - [Helium](https://github.com/JadenGeller/Helium)
+> - [bjango](https://github.com/bjango)
+> - [kawa](https://github.com/utatti/kawa)
+> - [KeepingYouAwake](https://github.com/newmarcel/KeepingYouAwake)
+> - [Keka](https://sourceforge.net/projects/keka/)
+> - [macdown](https://github.com/MacDownApp/macdown)
+> - [mackup](https://github.com/lra/mackup)
+> - [Media Converter](https://sourceforge.net/projects/media-converter/)
+> - [Menubar-Colors](https://github.com/nvzqz/Menubar-Colors)
+> - [MenuMeters](https://github.com/yujitach/MenuMeters)
+> - [nv](https://github.com/scrod/nv/) modeless, mouseless Mac OS X note-taking application 
+> - [Noti](https://github.com/jariz/Noti)
+> - [ShiftIt](https://github.com/fikovnik/ShiftIt)
+> - [SlowQuitApps](https://github.com/dteoh/SlowQuitApps)
+> - [uebersicht](https://github.com/felixhageloh/uebersicht)
+
+
+#### Video
+
 > - [iina](https://github.com/lhc70000/iina) video player
+> - [HandBrake](https://github.com/HandBrake/HandBrake)
+> - [mpv](https://github.com/mpv-player/mpv)
+> - [Subler](https://bitbucket.org/galad87/subler/src)
+> - [Subtitlr](https://github.com/spilja/Subtitlr)
+
+#### Window Management
+
+> - [Amethyst](https://github.com/ianyh/Amethyst)
+> - [hammerspoon](https://github.com/Hammerspoon/hammerspoon)
+> - [kwm](https://github.com/koekeishiya/kwm)
+> - [phoenix](https://github.com/kasper/phoenix)
+> - [spectacle](https://github.com/eczarny/spectacle)
+
+#### Others
+
+> - [catch](https://github.com/mipstian/catch)
+> - [gInbox](https://github.com/chenasraf/gInbox)
+> - [Sonora](https://github.com/sonoramac/Sonora)
+> - [soundcleod](https://github.com/salomvary/soundcleod)
+> - [Juice](https://github.com/brianmichel/Juice)
+
+#### Command Line Utilities
+
+> - [m-cli](https://github.com/rgcr/m-cli) Swiss Army Knife for macOS
+> - [Mac-CLI](https://github.com/guarinogabriel/Mac-CLI)
+> - [mas](https://github.com/mas-cli/mas) Mac App Store command line interface
+
+#### macOS Utilities
+
+> - [EnvPane](https://github.com/hschmidt/EnvPane)
+> - [glances](https://github.com/nicolargo/glances)
+
+# [command-line](https://github.com/herrbischoff/awesome-osx-command-line)
+
+
+# [iOS](https://github.com/dkhamsing/open-source-ios-apps)
+
+> - [browser-ios](https://github.com/brave/browser-ios) - swift
+> - [firefox-ios](https://github.com/mozilla-mobile/firefox-ios) - swift
+> - [focus-ios](https://github.com/mozilla-mobile/focus-ios) - swift
+> - [Frameless](https://github.com/stakes/Frameless) - swift 
+> - [OnionBrowser](https://github.com/mtigas/OnionBrowser) [tor]
+> - [react-native-nw-react-calculator](https://github.com/benoitvallon/react-native-nw-react-calculator) -reactive native
+> - [LunarCore](https://github.com/cyanzhong/LunarCore) - objc
+> - [Messenger](https://github.com/relatedcode/Messenger)
+> - [blink](https://github.com/blinksh/blink)
+> - [Dash-iOS](https://github.com/Kapeli/Dash-iOS)
+> - [JASONETTE-iOS](https://github.com/Jasonette/JASONETTE-iOS)
+> - [CodeHub](https://github.com/CodeHubApp/CodeHub)
+> - [MVVMReactiveCocoa](https://github.com/leichunfeng/MVVMReactiveCocoa) - react native
+> - [f8app](https://github.com/fbsamples/f8app) - react native
+> - [canabalt-ios](https://github.com/ericjohnson/canabalt-ios) - objc
+> - [bmc](https://github.com/xbmc/xbmc) - objc
+> - [Artsy](https://github.com/artsy/eigen)
+> - [DesignerNewsApp](https://github.com/MengTo/DesignerNewsApp) - swift

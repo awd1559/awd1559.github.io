@@ -422,7 +422,16 @@ public class MainController {
 
 
 
+# ComandLine
 
+#### springboot cli
+
+```
+spring init     //using spring.io => demo.zip
+spring run .    //run springboot 
+spring jar app.jar .
+spring war app.war .
+```
 
 
 # IDE
