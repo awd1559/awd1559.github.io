@@ -117,12 +117,12 @@ brew doctor
 
 
 
-//适用系统更新
-MIUI 系统更新， 每周五升级
+> - 使用系统更新
+> - MIUI 系统更新， 每周五升级
 
-//升级包
-MIUI系统更新，菜单，选择安装包
-选择存储卡上的ROM文件
+> - 使用升级包
+> - MIUI系统更新，菜单，选择安装包
+> - 选择存储卡上的ROM文件
 
 
 
@@ -141,8 +141,8 @@ MIUI系统更新，菜单，选择安装包
 
 #### error
 
-> 进程android.process.media已停止解决方法
-> 应用 － 全部 － 媒体存储 － 清除数据
+> - 进程android.process.media已停止解决方法:
+> - 应用 － 全部 － 媒体存储 － 清除数据
 
 
 
@@ -632,8 +632,8 @@ F4             | code Hierarchies             |
 #### error fix
 
 Eclipse 提示rt.jar中访问限制(Access restriction)
-在Window - Preferences
-Java - Compiler - Errors/Warnings
+在Window - Preferences - 
+Java - Compiler - Errors/Warnings - 
 Deprecated and restricted API。把Forbidden reference (access rules): 的规则由默认的Error改为Warning即可。
 
 
