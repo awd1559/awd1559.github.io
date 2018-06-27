@@ -141,7 +141,7 @@ all_the_data = open('abinfile', 'rb').read() #二进制文件
 
 //或者 使用后关闭
 file_object = open('thefile.txt')
-try"
+try:
 	all_the_text = file_object.read()
 finally:
 	file_object.close()

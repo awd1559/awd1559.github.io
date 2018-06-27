@@ -17,10 +17,10 @@ tags:
 ```
 在vs2005中配置glut，运行opengl
 解压glut-3.7.6-bin.zip得到glut.h、glut.dll、glut32.dll
-glut.h放到
-C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Include\gl
-glut.dll、glut32.dll放到
-C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Lib和system32
+
+glut.h放到C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Include\gl
+
+glut.dll、glut32.dll放到C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Lib和system32
 
 打开vs2005，新建项目，然后选择Win32 Console Application
 在弹出的对话框左边点Application Settings，找到Empty project并勾上，选择Finish。

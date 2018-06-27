@@ -15,7 +15,7 @@ tags:
 
 #### Comment
 ```
-/**			//在IntelliJ中输入/** 自动识别注视
+/**			//在IntelliJ中输入/** 自动识别注释
  */
  javadoc -d dir packageName //提取packageName的注释道dir目录
 ```

@@ -1226,9 +1226,6 @@ add_action( 'init', 'myScripts' );
 
 上面的例子如果使用相同的add_action，就可以被合并成一个单一的函数。 换句话说，您可以使用多个 if 语句在一个函数中分裂了你的脚本和CSS调用，如：if_admin！if_admin，is_page，is_single和current_user_can的，因为每次使用相同的add_action的init。
 
-原文：http://technerdia.com/1789_include-jquery-css.html
-编译：倡萌@WordPress大学
-
 
 
 
@@ -1246,7 +1243,7 @@ get_the_category_list(',')		current post cat，输出a，如无参数输出ul-li
 get_the_term_list($post->ID, )
 
 comments_popup_link('0 条评论', '1 条评论', '% 条评论', '评论已关闭');		输出a
-wordpress基本模版文件
+wordpress基本模版文件
 Loop循环
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <?php endwhile; else: ?>
